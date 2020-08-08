@@ -1,0 +1,51 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "extends": ["eslint:recommended", "airbnb-base", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
+
+  "rules": {
+    "prettier/prettier": "error",
+    "import/prefer-default-export": "error",
+    "no-unused-vars": "warn",
+    "no-use-before-define": [
+      "warn",
+      {
+        "functions": false
+      }
+    ],
+    "no-console": [
+      "warn",
+      {
+        "allow": ["error"]
+      }
+    ],
+    "array-element-newline": [
+      "error",
+      {
+        "ArrayExpression": "consistent",
+        "ArrayPattern": {
+          "minItems": 3
+        }
+      }
+    ],
+    "object-curly-newline": [
+      "warn",
+      {
+        "ObjectExpression": {
+          "multiline": true,
+          "minProperties": 4
+        },
+        "ObjectPattern": {
+          "multiline": true,
+          "minProperties": 4
+        },
+        "ImportDeclaration": "never",
+        "ExportDeclaration": {
+          "multiline": true,
+          "minProperties": 4
+        }
+      }
+    ]
+  }
+}
