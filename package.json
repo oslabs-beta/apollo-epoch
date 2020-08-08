@@ -27,6 +27,7 @@
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^4.2.1",
@@ -51,5 +52,8 @@
     "webpack": "^4.44.1",
     "webpack-merge": "^5.1.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react": "^16.13.1",
+    "typescript": "^3.9.7"
+  }
 }
