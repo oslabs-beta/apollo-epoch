@@ -1,8 +1,13 @@
 {
   "root": true,
   "parser": "babel-eslint",
-  "extends": ["eslint:recommended", "airbnb-base", "plugin:prettier/recommended"],
-  "plugins": ["prettier"],
+  "extends": [
+    "eslint:recommended",
+    "airbnb",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": ["prettier", "react"],
 
   "rules": {
     "prettier/prettier": "error",
@@ -46,6 +51,7 @@
           "minProperties": 4
         }
       }
-    ]
+    ],
+    "import/no-extraneous-dependencies": ["warn"]
   }
 }
