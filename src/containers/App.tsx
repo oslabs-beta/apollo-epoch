@@ -1,6 +1,6 @@
-import * as React from "react";
-import HistoryContainer from "./HistoryContainer";
-import InfoContainer from "./InfoContainer";
+import * as React from 'react';
+import HistoryContainer from './HistoryContainer';
+import InfoContainer from './InfoContainer';
 
 const App: React.FC = () => {
   return (

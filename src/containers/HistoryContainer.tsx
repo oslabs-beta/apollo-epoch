@@ -1,5 +1,5 @@
-import * as React from "react";
-import HistoryView from "../components/HistoryView";
+import * as React from 'react';
+import HistoryView from '../components/HistoryView';
 
 export interface HistoryContainerProps {}
 

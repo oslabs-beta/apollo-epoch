@@ -1,9 +1,9 @@
-import * as React from "react";
-import Nav from "../components/Nav";
-import QueryInfo from "../components/QueryInfo";
-import ResponseInfo from "../components/ResponseInfo";
-import StateInfo from "../components/StateInfo";
-import DiffInfo from "../components/DiffInfo";
+import * as React from 'react';
+import Nav from '../components/Nav';
+import QueryInfo from '../components/QueryInfo';
+import ResponseInfo from '../components/ResponseInfo';
+import StateInfo from '../components/StateInfo';
+import DiffInfo from '../components/DiffInfo';
 
 export interface InfoContainerProps {}
 
@@ -12,7 +12,7 @@ type infoTypes = {
 };
 
 const InfoContainer: React.FC<InfoContainerProps> = () => {
-  const [selectedInfo, setSelectedInfo] = useState("");
+  const [selectedInfo, setSelectedInfo] = useState('');
   const info: infoTypes = {
     QueryInfo: <QueryInfo />,
     ResponseInfo: <ResponseInfo />,
