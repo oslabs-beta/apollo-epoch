@@ -1,15 +1,28 @@
 const path = require('path');
-const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { merge } = require('webpack-merge');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtensionReloader = require('webpack-chrome-extension-reloader');
 const common = require('./webpack.common');
+
+const src = path.resolve(__dirname, 'testSetup');
+const destination = path.resolve(__dirname, 'build');
 
 module.exports = merge(common, {
   mode: 'development',
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-  plugins: [new HtmlWebpackPlugin({ template: './src/template.html' })],
+  watch: true,
+  output: { filename: '[name].js' },
+  devtool: 'source-map',
+  plugins: [
+    new CopyWebpackPlugin({ patterns: [{ from: `${src}/panel.html`, to: destination }] }),
+    new ExtensionReloader({
+      reloadPage: true,
+      entries: {
+        contentScript: 'contentScript',
+        background: 'background',
+        extensionPage: 'bundle',
+      },
+    }),
+  ],
   module: {
     rules: [
       {
