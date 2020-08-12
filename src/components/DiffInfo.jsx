@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-export interface DiffInfoProps {}
+// export interface DiffInfoProps {}
 
-const DiffInfo: React.FC<DiffInfoProps> = () => {
+const DiffInfo = () => {
   return <div>DiffInfo here</div>;
 };
 

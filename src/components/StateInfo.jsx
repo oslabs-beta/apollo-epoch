@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-export interface StateInfoProps {}
+// export interface StateInfoProps {}
 
-const StateInfo: React.FC<StateInfoProps> = () => {
+const StateInfo = () => {
   return <div>StateInfo here</div>;
 };
 

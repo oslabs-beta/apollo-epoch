@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-export interface QueryInfoProps {}
+// export interface QueryInfoProps {}
 
-const QueryInfo: React.FC<QueryInfoProps> = () => {
+const QueryInfo = () => {
   return <div>QueryInfo here</div>;
 };
 

@@ -5,15 +5,15 @@ import ResponseInfo from '../components/ResponseInfo';
 import StateInfo from '../components/StateInfo';
 import DiffInfo from '../components/DiffInfo';
 
-export interface InfoContainerProps {}
+// export interface InfoContainerProps {}
 
-type infoTypes = {
-  [infoType: string]: JSX.Element;
-};
+// type infoTypes = {
+//   [infoType: string]: JSX.Element;
+// };
 
-const InfoContainer: React.FC<InfoContainerProps> = () => {
-  const [selectedInfo, setSelectedInfo] = useState('');
-  const info: infoTypes = {
+const InfoContainer = () => {
+  const [selectedInfo, setSelectedInfo] = React.useState('');
+  const info = {
     QueryInfo: <QueryInfo />,
     ResponseInfo: <ResponseInfo />,
     StateInfo: <StateInfo />,

@@ -203,105 +203,28 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./testSetup/chromeExtension/contentScript.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./chromeExtension/contentScript.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./testSetup/chromeExtension/contentScript.js":
-/*!****************************************************!*\
-  !*** ./testSetup/chromeExtension/contentScript.js ***!
-  \****************************************************/
+/***/ "./chromeExtension/contentScript.js":
+/*!******************************************!*\
+  !*** ./chromeExtension/contentScript.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
-  switch (msg.msg) {
-    case 'getDOM':
-      sendResponse({
-        msg: document.getElementsByTagName('body')[0].innerHTML
-      });
-      break;
+  console.log('listener created');
 
-    case 'rerenderDOM':
-      console.log(msg);
-      var tab;
-
-      if (document.getElementsByClassName('snapShot').length === 0) {
-        tab = document.createElement('div');
-      } else {
-        tab = document.getElementsByClassName('snapShot')[0];
-      }
-
-      var p = document.createElement('p');
-      p.addEventListener('click', function () {
-        document.getElementsByTagName('body')[0].removeChild(tab);
-      });
-      p.innerText = 'Close Snapshot';
-      p.setAttribute('style', 'position:fixed; top: 10; left: 10');
-      tab.className = 'snapShot';
-      tab.setAttribute('style', 'position: fixed; background-color: white; width: 100%; height: 100%; top: 0; left: 0; border: 1px solid blue;');
-      tab.innerHTML = msg.newBody;
-      tab.prepend(p);
-      document.getElementsByTagName('body')[0].appendChild(tab);
-      sendResponse({
-        msg: 'rerender done'
-      });
-      break;
-
-    case 'getCache':
-      console.log('this is getCache message', msg);
-      runInPageContext(function () {
-        window.postMessage({
-          type: 'FROM_PAGE',
-          text: window.__APOLLO_CLIENT__.localState.cache.data.data
-        }, '*');
-      }, 'xx-XX');
-      sendResponse({
-        msg: 'cache requested'
-      });
-      break;
-
-    case 'retrieveCache':
-      sendResponse({
-        msg: cache
-      });
-      break;
+  if (msg.type === 'send cache') {
+    chrome.runtime.sendMessage({
+      type: 'cache to background',
+      payload: chrome.window.__APOLLO_CLIENT__.localState.cache.data.data
+    });
   }
-}); // var port = chrome.runtime.connect();
-
-var cache;
-window.addEventListener('message', function (event) {
-  // We only accept messages from ourselves
-  if (event.source != window) return;
-
-  if (event.data.type && event.data.type == 'FROM_PAGE') {
-    console.log("Content script received: ".concat(event.data.text));
-    cache = event.data.text;
-  }
-}, false); // Breaks out of the content script context by injecting a specially
-// constructed script tag and injecting it into the page.
-
-var runInPageContext = function runInPageContext(method) {
-  // The stringified method which will be parsed as a function object.
-  var stringifiedMethod = method instanceof Function ? method.toString() : "() => { ".concat(method, " }"); // The stringified arguments for the method as JS code that will reconstruct the array.
-
-  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    args[_key - 1] = arguments[_key];
-  }
-
-  var stringifiedArgs = JSON.stringify(args); // The full content of the script tag.
-
-  var scriptContent = "\n    // Parse and run the method with its arguments.\n    (".concat(stringifiedMethod, ")(...").concat(stringifiedArgs, ");\n\n    // Remove the script element to cover our tracks.\n    document.currentScript.parentElement\n      .removeChild(document.currentScript);\n  "); // Create a script tag and inject it into the document.
-
-  var scriptElement = document.createElement('script');
-  scriptElement.innerHTML = scriptContent;
-  document.documentElement.prepend(scriptElement);
-}; // Break out of the sandbox and run `overwriteLanguage()` in the page context.
-
-
-console.log('hello from contentScript');
-console.log('Goodbye from contentScript');
+});
 
 /***/ })
 

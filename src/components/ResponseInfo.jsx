@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-export interface ResponseInfoProps {}
+// export interface ResponseInfoProps {}
 
-const ResponseInfo: React.FC<ResponseInfoProps> = () => {
+const ResponseInfo = () => {
   return <div>ResponseInfo here</div>;
 };
 

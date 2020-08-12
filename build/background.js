@@ -203,42 +203,46 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./testSetup/chromeExtension/background.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./chromeExtension/background.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./testSetup/chromeExtension/background.js":
-/*!*************************************************!*\
-  !*** ./testSetup/chromeExtension/background.js ***!
-  \*************************************************/
+/***/ "./chromeExtension/background.js":
+/*!***************************************!*\
+  !*** ./chromeExtension/background.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var onMessageListener = function onMessageListener(message, sender, sendResponse) {
-  switch (message.type) {
-    case 'bglog':
-      console.log(message.msg);
-      break;
-
-    case 'contentScript':
+var connections = {};
+chrome.runtime.onConnect.addListener(function (port) {
+  port.onMessage.addListener(function (msg) {
+    if (msg.type === 'send cache') {
       chrome.tabs.query({
         active: true,
         currentWindow: true
       }, function (tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, message, function (response) {
-          sendResponse({
-            msg: response.msg
-          });
+        chrome.tabs.sendMessage(tabs[0].id, msg, function (res) {
+          // sendResponse({ msg: res.msg });
+          connections[tabs[0].id] = port;
         });
       });
-      break;
+    }
+  });
+});
+chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+  console.log('sender ->', sender);
+
+  if (msg.type === 'cache to background') {
+    // chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    //   connections[tabs[0].id]
+    // }
+    chrome.storage.local.set({
+      cacheCopy: msg.payload
+    });
   }
-
-  return true;
-};
-
-chrome.runtime.onMessage.addListener(onMessageListener);
+});
 
 /***/ })
 

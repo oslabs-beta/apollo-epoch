@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./testSetup/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -28601,9 +28601,72 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./testSetup/components/App.jsx":
+/***/ "./src/components/DiffInfo.jsx":
+/*!*************************************!*\
+  !*** ./src/components/DiffInfo.jsx ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // export interface DiffInfoProps {}
+
+var DiffInfo = function DiffInfo() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, "DiffInfo here");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (DiffInfo);
+
+/***/ }),
+
+/***/ "./src/components/HistoryView.jsx":
+/*!****************************************!*\
+  !*** ./src/components/HistoryView.jsx ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // export interface HistoryViewProps {}
+
+var HistoryView = function HistoryView() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, "List out the queries performed here");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (HistoryView);
+
+/***/ }),
+
+/***/ "./src/components/Nav.jsx":
+/*!********************************!*\
+  !*** ./src/components/Nav.jsx ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // export interface NavProps {}
+
+var Nav = function Nav() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, "Info nav buttons here");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Nav);
+
+/***/ }),
+
+/***/ "./src/components/QueryInfo.jsx":
 /*!**************************************!*\
-  !*** ./testSetup/components/App.jsx ***!
+  !*** ./src/components/QueryInfo.jsx ***!
   \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -28612,20 +28675,185 @@ if (false) {} else {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // export interface QueryInfoProps {}
+
+var QueryInfo = function QueryInfo() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, "QueryInfo here");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (QueryInfo);
+
+/***/ }),
+
+/***/ "./src/components/ResponseInfo.jsx":
+/*!*****************************************!*\
+  !*** ./src/components/ResponseInfo.jsx ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // export interface ResponseInfoProps {}
+
+var ResponseInfo = function ResponseInfo() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, "ResponseInfo here");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ResponseInfo);
+
+/***/ }),
+
+/***/ "./src/components/StateInfo.jsx":
+/*!**************************************!*\
+  !*** ./src/components/StateInfo.jsx ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+ // export interface StateInfoProps {}
+
+var StateInfo = function StateInfo() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, "StateInfo here");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (StateInfo);
+
+/***/ }),
+
+/***/ "./src/containers/App.jsx":
+/*!********************************!*\
+  !*** ./src/containers/App.jsx ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _HistoryContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HistoryContainer */ "./src/containers/HistoryContainer.jsx");
+/* harmony import */ var _InfoContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InfoContainer */ "./src/containers/InfoContainer.jsx");
+
+
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hola Monde!!!!");
+  react__WEBPACK_IMPORTED_MODULE_0__["useEffect"](function () {
+    // chrome.devtools.network.onRequestFinished.addListener((req) => {
+    //   console.log('req is ->', req);
+    //   if ()
+    // });
+    var connection = chrome.runtime.connect();
+    connection.onMessage.addListener(function (msg) {
+      if (msg.type === 'cache') {
+        console.log('msg.payload ->', msg.payload);
+      }
+    });
+    connection.postMessage({
+      type: 'send cache',
+      payload: chrome.devtools.inspectedWindow.tabId
+    });
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    className: "main"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_HistoryContainer__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_InfoContainer__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
 
 /***/ }),
 
-/***/ "./testSetup/index.js":
-/*!****************************!*\
-  !*** ./testSetup/index.js ***!
-  \****************************/
+/***/ "./src/containers/HistoryContainer.jsx":
+/*!*********************************************!*\
+  !*** ./src/containers/HistoryContainer.jsx ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_HistoryView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/HistoryView */ "./src/components/HistoryView.jsx");
+
+ // export interface HistoryContainerProps {}
+
+var HistoryContainer = function HistoryContainer() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_HistoryView__WEBPACK_IMPORTED_MODULE_1__["default"], null);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (HistoryContainer);
+
+/***/ }),
+
+/***/ "./src/containers/InfoContainer.jsx":
+/*!******************************************!*\
+  !*** ./src/containers/InfoContainer.jsx ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Nav__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Nav */ "./src/components/Nav.jsx");
+/* harmony import */ var _components_QueryInfo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/QueryInfo */ "./src/components/QueryInfo.jsx");
+/* harmony import */ var _components_ResponseInfo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/ResponseInfo */ "./src/components/ResponseInfo.jsx");
+/* harmony import */ var _components_StateInfo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/StateInfo */ "./src/components/StateInfo.jsx");
+/* harmony import */ var _components_DiffInfo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/DiffInfo */ "./src/components/DiffInfo.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+ // export interface InfoContainerProps {}
+// type infoTypes = {
+//   [infoType: string]: JSX.Element;
+// };
+
+var InfoContainer = function InfoContainer() {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__["useState"](''),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      selectedInfo = _React$useState2[0],
+      setSelectedInfo = _React$useState2[1];
+
+  var info = {
+    QueryInfo: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_QueryInfo__WEBPACK_IMPORTED_MODULE_2__["default"], null),
+    ResponseInfo: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_ResponseInfo__WEBPACK_IMPORTED_MODULE_3__["default"], null),
+    StateInfo: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_StateInfo__WEBPACK_IMPORTED_MODULE_4__["default"], null),
+    DiffInfo: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_DiffInfo__WEBPACK_IMPORTED_MODULE_5__["default"], null)
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_Nav__WEBPACK_IMPORTED_MODULE_1__["default"], null), info[selectedInfo]);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (InfoContainer);
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -28635,11 +28863,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/App */ "./testSetup/components/App.jsx");
+/* harmony import */ var _containers_App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./containers/App */ "./src/containers/App.jsx");
 
 
 
-react_dom__WEBPACK_IMPORTED_MODULE_1__["render"]( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_App__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('root'));
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_App__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('root'));
 
 /***/ })
 
