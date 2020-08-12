@@ -54,6 +54,7 @@ module.exports = {
         { from: `${src}/manifest.json`, to: destination },
         { from: `${src}/devtools.html`, to: destination },
         { from: `${src}/devtools.js`, to: destination },
+        { from: `${src}/popup.html`, to: destination },
       ],
     }),
   ],
