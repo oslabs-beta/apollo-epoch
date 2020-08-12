@@ -1,24 +1,15 @@
 {
-  "name": "Test Epoch",
-  "version": "1.0",
+  "name": "Apollo Epoch",
+  "version": "0.1",
   "manifest_version": 2,
-  "description": "The GraphQL debugging tool for Apollo Client in the Chrome developer console.",
+  "description": "The GraphQL time travel debugging tool for Apollo Client in the Chrome developer console.",
   "devtools_page": "devtools.html",
   "browser_action": {
     "default_popup": "./panel.html",
-    "default_title": "OPEN!!!"
+    "default_title": "Apollo Epoch"
   },
   "background": {
     "scripts": ["background.js"]
   },
-  "permissions": ["storage", "activeTab", "<all_urls>", "tabs"],
-  "commands": {
-    "_execute_browser_action": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+A",
-        "mac": "MacCtrl+Shift+F"
-      },
-      "description": "Opens hello.html"
-    }
-  }
+  "permissions": ["storage", "activeTab", "<all_urls>", "tabs"]
 }

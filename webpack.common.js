@@ -2,14 +2,14 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const src = path.resolve(__dirname, 'testSetup');
+const src = path.resolve(__dirname, 'chromeExtension');
 const destination = path.resolve(__dirname, 'build');
 
 module.exports = {
   entry: {
-    index: `${src}/index.js`,
-    background: `${src}/chromeExtension/background.js`,
-    contentScript: `${src}/chromeExtension/contentScript.js`,
+    index: `./src/index.js`,
+    background: `${src}/background.js`,
+    contentScript: `${src}/contentScript.js`,
   },
   output: { path: destination },
   module: {
@@ -51,8 +51,9 @@ module.exports = {
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
-        { from: `${src}/chromeExtension/manifest.json`, to: destination },
-        { from: `${src}/chromeExtension/devtools.html`, to: destination },
+        { from: `${src}/manifest.json`, to: destination },
+        { from: `${src}/devtools.html`, to: destination },
+        { from: `${src}/devtools.js`, to: destination },
       ],
     }),
   ],
