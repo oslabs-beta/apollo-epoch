@@ -45,7 +45,7 @@ module.exports = {
   },
   resolve: {
     // Allows importing JS / JSX files without specifying extension
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.mjs'],
   },
   plugins: [
     new CleanWebpackPlugin(),

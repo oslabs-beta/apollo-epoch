@@ -1,9 +1,10 @@
 import * as React from 'react';
+import { print } from 'graphql/language/printer';
 import HistoryContainer from './HistoryContainer';
 import InfoContainer from './InfoContainer';
 import sendMessageTypes from '../util/messageTypes';
 
-const { epoch, contentScript } = sendMessageTypes;
+const { epoch, contentScript, background } = sendMessageTypes;
 
 const App = () => {
   const [cache, setCache] = React.useState({});
@@ -26,6 +27,16 @@ const App = () => {
         console.log('Content Script Opening Payload ->', message.payload);
         console.log('Sender Info ->', sender);
         setCache(message.payload);
+      }
+
+      if (message.type === background.cache) {
+        console.log('APP CACHE!!', message.payload);
+        const documents = Object.keys(message.payload);
+
+        documents.forEach((doc) => {
+          const qString = print(message.payload[doc].document);
+          console.log('qString', qString);
+        });
       }
     });
 

@@ -220,7 +220,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_util_messageTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/util/messageTypes */ "./src/util/messageTypes.js");
 
 var epoch = _src_util_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].epoch,
-    contentScript = _src_util_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].contentScript;
+    contentScript = _src_util_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].contentScript,
+    background = _src_util_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].background;
 console.log('Background Script Running');
 var connections = {};
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
@@ -241,6 +242,11 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 
     console.log('ApolloClient', resultObj); // console.log('cache', cache);
     // console.log('qManager', queryManager);
+
+    connections[sender.tab.id].postMessage({
+      type: background.cache,
+      payload: resultObj
+    });
   }
 }); // Something to keep in mind, Epoch will have a different instance for each browser
 // tab in which it's running
@@ -311,7 +317,7 @@ var sendMessageTypes = {
     messingAround: 'justMessin'
   },
   background: {
-    placeholder: 'placeholder'
+    cache: 'returningData'
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (sendMessageTypes);

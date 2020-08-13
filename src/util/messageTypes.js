@@ -5,7 +5,7 @@ const sendMessageTypes = {
     messageReceived: 'messageReceived',
     messingAround: 'justMessin',
   },
-  background: { placeholder: 'placeholder' },
+  background: { cache: 'returningData' },
 };
 
 export default sendMessageTypes;
