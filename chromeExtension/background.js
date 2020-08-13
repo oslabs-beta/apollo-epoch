@@ -6,15 +6,17 @@ console.log('Background Script Running');
 const connections = {};
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if ((message.type = 'helloFromContent')) {
+  if (message.type === 'helloFromContent') {
     console.log('received From Content', message.payload);
     sendResponse({ type: 'Back at you from Background' });
   }
-});
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === contentScript.messageReceived) {
     console.log('Background Message Activate!');
+  }
+
+  if (message.type === contentScript.epochReceived) {
+    console.log('backgroundCache', message.payload);
   }
 });
 
@@ -46,7 +48,7 @@ chrome.runtime.onConnect.addListener((port) => {
         console.log('response tabId', tabId);
         connections[tabId].postMessage(response);
       });
-     // return true;
+      // return true;
     }
   };
 
