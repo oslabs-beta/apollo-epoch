@@ -34,7 +34,7 @@ chrome.runtime.sendMessage({ type: 'helloFromContent', payload: 'HelloPayload' }
 window.addEventListener('message', (event) => {
   console.log('windowEvent', event.data);
   if (event.source !== window) return;
-
+  console.log('contentWindowResponse', event);
   if (event.data && event.data.type === 'FROM_PAGE') {
     const cache = event.data.payload;
     console.log('contentCache', cache);
@@ -45,7 +45,25 @@ window.addEventListener('message', (event) => {
 
 const sendMessageWithCache = () => {
   window.postMessage(
-    { type: 'FROM_PAGE', payload: window.__APOLLO_CLIENT__.localState.cache.data.data },
+    {
+      type: 'FROM_PAGE',
+      payload: JSON.stringify(filterQueryInfo(window.__APOLLO_CLIENT__.queryManager.queries)),
+    },
     '*'
   );
 };
+
+function filterQueryInfo(queryInfoMap) {
+  console.log('queryMap', queryInfoMap);
+  const filteredQueryInfo = {};
+  queryInfoMap.forEach((value, key) => {
+    filteredQueryInfo[key] = {
+      document: value.document,
+      graphQLErrors: value.graphQLErrors,
+      networkError: value.networkError,
+      networkStatus: value.networkStatus,
+      variables: value.variables,
+    };
+  });
+  return filteredQueryInfo;
+}
