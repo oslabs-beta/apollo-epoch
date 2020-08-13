@@ -16,7 +16,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message.type === contentScript.epochReceived) {
-    console.log('backgroundCache', message.payload);
+    const resultObj = message.payload;
+    // const { queryManager } = resultObj;
+    // const cache = resultObj.localState.cache.data.data;
+    console.log('ApolloClient', resultObj);
+    // console.log('cache', cache);
+    // console.log('qManager', queryManager);
   }
 });
 
