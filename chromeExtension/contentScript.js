@@ -53,6 +53,7 @@ const sendMessageWithCache = () => {
     const filteredQueryInfo = {};
 
     queryInfoMap.forEach((value, key) => {
+      const queryObj = value;
       filteredQueryInfo[key] = {
         document: value.document,
         graphQLErrors: value.graphQLErrors,
@@ -60,13 +61,22 @@ const sendMessageWithCache = () => {
         networkStatus: value.networkStatus,
         variables: value.variables,
       };
+      if (queryObj && queryObj.observableQuery) {
+        filteredQueryInfo[key].lastResult = queryObj.observableQuery.lastResult;
+      }
     });
     return filteredQueryInfo;
   }
   window.postMessage(
     {
       type: 'FROM_PAGE',
-      payload: JSON.stringify(filterQueryInfo(window.__APOLLO_CLIENT__.queryManager.queries)),
+      payload: JSON.stringify({
+        queries: filterQueryInfo(window.__APOLLO_CLIENT__.queryManager.queries),
+        info: {
+          idCount: window.__APOLLO_CLIENT__.queryManager.queryIdCounter,
+          requestCount: window.__APOLLO_CLIENT__.queryManager.requestIdCounter,
+        },
+      }),
     },
     '*'
   );

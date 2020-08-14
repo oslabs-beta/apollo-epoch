@@ -283,6 +283,7 @@ var sendMessageWithCache = function sendMessageWithCache() {
     console.log('queryMap', queryInfoMap);
     var filteredQueryInfo = {};
     queryInfoMap.forEach(function (value, key) {
+      var queryObj = value;
       filteredQueryInfo[key] = {
         document: value.document,
         graphQLErrors: value.graphQLErrors,
@@ -290,13 +291,23 @@ var sendMessageWithCache = function sendMessageWithCache() {
         networkStatus: value.networkStatus,
         variables: value.variables
       };
+
+      if (queryObj && queryObj.observableQuery) {
+        filteredQueryInfo[key].lastResult = queryObj.observableQuery.lastResult;
+      }
     });
     return filteredQueryInfo;
   }
 
   window.postMessage({
     type: 'FROM_PAGE',
-    payload: JSON.stringify(filterQueryInfo(window.__APOLLO_CLIENT__.queryManager.queries))
+    payload: JSON.stringify({
+      queries: filterQueryInfo(window.__APOLLO_CLIENT__.queryManager.queries),
+      info: {
+        idCount: window.__APOLLO_CLIENT__.queryManager.queryIdCounter,
+        requestCount: window.__APOLLO_CLIENT__.queryManager.requestIdCounter
+      }
+    })
   }, '*');
 };
 
