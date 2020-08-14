@@ -3,6 +3,7 @@ import { print } from 'graphql/language/printer';
 import HistoryContainer from './HistoryContainer';
 import InfoContainer from './InfoContainer';
 import sendMessageTypes from '../util/messageTypes';
+import '../styles/main.css';
 
 const { epoch, contentScript, background } = sendMessageTypes;
 
@@ -53,13 +54,21 @@ const App = () => {
 
   console.log('appCache', cache);
   return (
-    <div className="main">
-      <h1>Hola Monde!!!</h1>
-      <button onClick={getCache}>Get Cache</button>
-      {/* // render out history  */}
-      <HistoryContainer />
-      {/* // render out info display */}
-      <InfoContainer />
+    <div className="wrapper">
+      <div className="main">
+        <div className="heading">
+          <h1>Hola Monde!!!</h1>
+          <button onClick={getCache}>Get Cache</button>
+        </div>
+        <div className="containers-wrapper">
+          <div className="containers">
+            {/* // render out history  */}
+            <HistoryContainer />
+            {/* // render out info display */}
+            <InfoContainer />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
