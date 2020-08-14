@@ -36,34 +36,48 @@ window.addEventListener('message', (event) => {
   if (event.source !== window) return;
   console.log('contentWindowResponse', event);
   if (event.data && event.data.type === 'FROM_PAGE') {
-    const cache = event.data.payload;
+    const cache = JSON.parse(event.data.payload);
     console.log('contentCache', cache);
-    if (cache) chrome.runtime.sendMessage({ type: contentScript.epochReceived, payload: cache });
+    if (cache) {
+      chrome.runtime.sendMessage({ type: contentScript.epochReceived, payload: cache });
+      return;
+    }
     chrome.runtime.sendMessage({ type: contentScript.epochReceived, payload: 'noCache' });
   }
 });
 
 const sendMessageWithCache = () => {
+  function filterQueryInfo(queryInfoMap) {
+    console.log('queryMap', queryInfoMap);
+
+    const filteredQueryInfo = {};
+
+    queryInfoMap.forEach((value, key) => {
+      const queryObj = value;
+      filteredQueryInfo[key] = {
+        document: value.document,
+        graphQLErrors: value.graphQLErrors,
+        networkError: value.networkError,
+        networkStatus: value.networkStatus,
+        variables: value.variables,
+      };
+      if (queryObj && queryObj.observableQuery) {
+        filteredQueryInfo[key].lastResult = queryObj.observableQuery.lastResult;
+      }
+    });
+    return filteredQueryInfo;
+  }
   window.postMessage(
     {
       type: 'FROM_PAGE',
-      payload: JSON.stringify(filterQueryInfo(window.__APOLLO_CLIENT__.queryManager.queries)),
+      payload: JSON.stringify({
+        queries: filterQueryInfo(window.__APOLLO_CLIENT__.queryManager.queries),
+        info: {
+          idCount: window.__APOLLO_CLIENT__.queryManager.queryIdCounter,
+          requestCount: window.__APOLLO_CLIENT__.queryManager.requestIdCounter,
+        },
+      }),
     },
     '*'
   );
 };
-
-function filterQueryInfo(queryInfoMap) {
-  console.log('queryMap', queryInfoMap);
-  const filteredQueryInfo = {};
-  queryInfoMap.forEach((value, key) => {
-    filteredQueryInfo[key] = {
-      document: value.document,
-      graphQLErrors: value.graphQLErrors,
-      networkError: value.networkError,
-      networkStatus: value.networkStatus,
-      variables: value.variables,
-    };
-  });
-  return filteredQueryInfo;
-}

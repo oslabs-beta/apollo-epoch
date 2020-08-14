@@ -1,6 +1,6 @@
 import sendMessageTypes from '../src/util/messageTypes';
 
-const { epoch, contentScript } = sendMessageTypes;
+const { epoch, contentScript, background } = sendMessageTypes;
 
 console.log('Background Script Running');
 const connections = {};
@@ -22,6 +22,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log('ApolloClient', resultObj);
     // console.log('cache', cache);
     // console.log('qManager', queryManager);
+    connections[sender.tab.id].postMessage({ type: background.cache, payload: resultObj });
   }
 });
 
