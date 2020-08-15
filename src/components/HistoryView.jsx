@@ -21,7 +21,7 @@ const HistoryView = () => {
         ActiveQuery:
         {activeQuery}
       </h2>
-      {queries}
+      <div className="query-cards">{queries}</div>
     </div>
   );
 };

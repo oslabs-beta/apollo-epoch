@@ -24,11 +24,11 @@ const InfoContainer = () => {
     DiffInfo: <DiffInfo diff={selectedQuery.diff} />,
   };
   return (
-    <>
+    <div className="info-container">
       <Nav setSelectedInfo={setSelectedInfo} />
       {/* Use info object to conditionally render out QueryInfo | ResponseInfo | StateInfo | DiffInfo */}
       {info[selectedInfo]}
-    </>
+    </div>
   );
 };
 
