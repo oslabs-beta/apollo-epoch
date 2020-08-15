@@ -86,6 +86,5128 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/graphql-syntax-highlighter-react/dist/style.css":
+/*!************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/graphql-syntax-highlighter-react/dist/style.css ***!
+  \************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, ".GraphqlCodeBlock pre {\n  background: transparent;\n  background-color: transparent;\n  margin: 0;\n  padding: 0;\n  text-align: left;\n}\n\n/* colors copied from graphiql */\n.GraphqlCodeBlock span.comment {\n  color: #999999;\n}\n\n.GraphqlCodeBlock span.number {\n  color: #2882F9;\n}\n\n.GraphqlCodeBlock span.variable {\n  color: #397D13;\n}\n\n.GraphqlCodeBlock span.atom {\n  color: #CA9800;\n}\n\n.GraphqlCodeBlock span.attribute {\n  color: #8B2BB9;\n}\n\n.GraphqlCodeBlock span.punctuation {\n  color: #555555;\n}\n\n.GraphqlCodeBlock span.keyword {\n  color: #B11A04;\n}\n\n.GraphqlCodeBlock span.def {\n  color: #D2054E;\n}\n\n.GraphqlCodeBlock span.property {\n  color: #1F61A0;\n}\n", "",{"version":3,"sources":["style.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,6BAA6B;EAC7B,SAAS;EACT,UAAU;EACV,gBAAgB;AAClB;;AAEA,gCAAgC;AAChC;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;AAChB","file":"style.css","sourcesContent":[".GraphqlCodeBlock pre {\n  background: transparent;\n  background-color: transparent;\n  margin: 0;\n  padding: 0;\n  text-align: left;\n}\n\n/* colors copied from graphiql */\n.GraphqlCodeBlock span.comment {\n  color: #999999;\n}\n\n.GraphqlCodeBlock span.number {\n  color: #2882F9;\n}\n\n.GraphqlCodeBlock span.variable {\n  color: #397D13;\n}\n\n.GraphqlCodeBlock span.atom {\n  color: #CA9800;\n}\n\n.GraphqlCodeBlock span.attribute {\n  color: #8B2BB9;\n}\n\n.GraphqlCodeBlock span.punctuation {\n  color: #555555;\n}\n\n.GraphqlCodeBlock span.keyword {\n  color: #B11A04;\n}\n\n.GraphqlCodeBlock span.def {\n  color: #D2054E;\n}\n\n.GraphqlCodeBlock span.property {\n  color: #1F61A0;\n}\n"]}]);
+// Exports
+/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/styles/main.css":
+/*!*******************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/styles/main.css ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, "* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\n\n:root {\n  --main-bg: #0a090c;\n  --secondary-bg-hover: #a487de61;\n  --secondary-bg: #2c2240;\n  --text-color: #f0edee;\n  --light-border: #90ddf0;\n  --dark-border: #08637a;\n  --nav-buttons: #20909f;\n  --nav-buttons-hover: #2c666e6d;\n}\n\nbody {\n  background-color: var(--main-bg);\n  color: var(--text-color);\n}\n\nbody * {\n  transition: 0.3s;\n}\n\n.heading {\n  display: flex;\n  height: 10vh;\n  width: 100%;\n  justify-content: space-between;\n  margin-top: 5px;\n  padding: 0 10px;\n}\n\n.wrapper {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  width: 100vw;\n  height: 100vh;\n}\n\n.main {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  width: 100vw;\n  height: 100vh;\n}\n\n.containers-wrapper {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n}\n\n.containers {\n  display: flex;\n  width: 100%;\n}\n\n.history-view {\n  display: flex;\n  flex-direction: column;\n  width: 30%;\n  height: 80vh;\n  border: 1px solid var(--dark-border);\n}\n\n.history-view h1 {\n  width: 100%;\n  height: 5vh;\n  text-align: center;\n}\n\n.info-container {\n  width: 70%;\n  height: 80vh;\n  border: 1px solid var(--dark-border);\n}\n\n.query-card {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 10vh;\n  background-color: var(--secondary-bg);\n  /* border: 4px dotted var(--dark-border); */\n  text-align: center;\n}\n\n.query-card:hover {\n  background-color: var(--secondary-bg-hover);\n}\n\n.nav {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1% 2.5%;\n  height: 10vh;\n}\n\n.nav-button {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 100%;\n  width: 25%;\n  text-align: center;\n  background-color: var(--nav-buttons);\n  border: 1px solid var(--light-border);\n}\n\n.nav-button:hover {\n  background-color: var(--nav-buttons-hover);\n}\n\n.forward-button,\n.backward-button {\n  height: 100px;\n  width: 100px;\n}\n\n.backward-button {\n  transform: rotateY(180deg);\n}\n", "",{"version":3,"sources":["main.css"],"names":[],"mappings":"AAAA;EACE,sBAAsB;EACtB,SAAS;EACT,UAAU;AACZ;;AAEA;EACE,kBAAkB;EAClB,+BAA+B;EAC/B,uBAAuB;EACvB,qBAAqB;EACrB,uBAAuB;EACvB,sBAAsB;EACtB,sBAAsB;EACtB,8BAA8B;AAChC;;AAEA;EACE,gCAAgC;EAChC,wBAAwB;AAC1B;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,aAAa;EACb,YAAY;EACZ,WAAW;EACX,8BAA8B;EAC9B,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,uBAAuB;EACvB,mBAAmB;EACnB,YAAY;EACZ,aAAa;AACf;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,2BAA2B;EAC3B,YAAY;EACZ,aAAa;AACf;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,WAAW;AACb;;AAEA;EACE,aAAa;EACb,WAAW;AACb;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,UAAU;EACV,YAAY;EACZ,oCAAoC;AACtC;;AAEA;EACE,WAAW;EACX,WAAW;EACX,kBAAkB;AACpB;;AAEA;EACE,UAAU;EACV,YAAY;EACZ,oCAAoC;AACtC;;AAEA;EACE,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,WAAW;EACX,YAAY;EACZ,qCAAqC;EACrC,2CAA2C;EAC3C,kBAAkB;AACpB;;AAEA;EACE,2CAA2C;AAC7C;;AAEA;EACE,aAAa;EACb,8BAA8B;EAC9B,mBAAmB;EACnB,gBAAgB;EAChB,YAAY;AACd;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,YAAY;EACZ,UAAU;EACV,kBAAkB;EAClB,oCAAoC;EACpC,qCAAqC;AACvC;;AAEA;EACE,0CAA0C;AAC5C;;AAEA;;EAEE,aAAa;EACb,YAAY;AACd;;AAEA;EACE,0BAA0B;AAC5B","file":"main.css","sourcesContent":["* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\n\n:root {\n  --main-bg: #0a090c;\n  --secondary-bg-hover: #a487de61;\n  --secondary-bg: #2c2240;\n  --text-color: #f0edee;\n  --light-border: #90ddf0;\n  --dark-border: #08637a;\n  --nav-buttons: #20909f;\n  --nav-buttons-hover: #2c666e6d;\n}\n\nbody {\n  background-color: var(--main-bg);\n  color: var(--text-color);\n}\n\nbody * {\n  transition: 0.3s;\n}\n\n.heading {\n  display: flex;\n  height: 10vh;\n  width: 100%;\n  justify-content: space-between;\n  margin-top: 5px;\n  padding: 0 10px;\n}\n\n.wrapper {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  width: 100vw;\n  height: 100vh;\n}\n\n.main {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  width: 100vw;\n  height: 100vh;\n}\n\n.containers-wrapper {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n}\n\n.containers {\n  display: flex;\n  width: 100%;\n}\n\n.history-view {\n  display: flex;\n  flex-direction: column;\n  width: 30%;\n  height: 80vh;\n  border: 1px solid var(--dark-border);\n}\n\n.history-view h1 {\n  width: 100%;\n  height: 5vh;\n  text-align: center;\n}\n\n.info-container {\n  width: 70%;\n  height: 80vh;\n  border: 1px solid var(--dark-border);\n}\n\n.query-card {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 10vh;\n  background-color: var(--secondary-bg);\n  /* border: 4px dotted var(--dark-border); */\n  text-align: center;\n}\n\n.query-card:hover {\n  background-color: var(--secondary-bg-hover);\n}\n\n.nav {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1% 2.5%;\n  height: 10vh;\n}\n\n.nav-button {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 100%;\n  width: 25%;\n  text-align: center;\n  background-color: var(--nav-buttons);\n  border: 1px solid var(--light-border);\n}\n\n.nav-button:hover {\n  background-color: var(--nav-buttons-hover);\n}\n\n.forward-button,\n.backward-button {\n  height: 100px;\n  width: 100px;\n}\n\n.backward-button {\n  transform: rotateY(180deg);\n}\n"]}]);
+// Exports
+/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+// eslint-disable-next-line func-names
+module.exports = function (useSourceMap) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item, useSourceMap);
+
+      if (item[2]) {
+        return "@media ".concat(item[2], " {").concat(content, "}");
+      }
+
+      return content;
+    }).join('');
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery, dedupe) {
+    if (typeof modules === 'string') {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, '']];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var i = 0; i < this.length; i++) {
+        // eslint-disable-next-line prefer-destructuring
+        var id = this[i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = [].concat(modules[_i]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      if (mediaQuery) {
+        if (!item[2]) {
+          item[2] = mediaQuery;
+        } else {
+          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+  var content = item[1] || ''; // eslint-disable-next-line prefer-destructuring
+
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (useSourceMap && typeof btoa === 'function') {
+    var sourceMapping = toComment(cssMapping);
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return "/*# sourceURL=".concat(cssMapping.sourceRoot || '').concat(source, " */");
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+  }
+
+  return [content].join('\n');
+} // Adapted from convert-source-map (MIT)
+
+
+function toComment(sourceMap) {
+  // eslint-disable-next-line no-undef
+  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+  var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+  return "/*# ".concat(data, " */");
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/dist/GraphqlCodeBlock.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/dist/GraphqlCodeBlock.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Rules = __webpack_require__(/*! ./utils/Rules.js */ "./node_modules/graphql-syntax-highlighter-react/dist/utils/Rules.js");
+
+var _runParser = __webpack_require__(/*! ./utils/runParser.js */ "./node_modules/graphql-syntax-highlighter-react/dist/utils/runParser.js");
+
+var _runParser2 = _interopRequireDefault(_runParser);
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _printer = __webpack_require__(/*! graphql/language/printer */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/printer.js");
+
+var _parser = __webpack_require__(/*! graphql/language/parser */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/parser.js");
+
+__webpack_require__(/*! ./style.css */ "./node_modules/graphql-syntax-highlighter-react/dist/style.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var GraphqlCodeBlock = function (_Component) {
+  _inherits(GraphqlCodeBlock, _Component);
+
+  function GraphqlCodeBlock() {
+    _classCallCheck(this, GraphqlCodeBlock);
+
+    return _possibleConstructorReturn(this, (GraphqlCodeBlock.__proto__ || Object.getPrototypeOf(GraphqlCodeBlock)).apply(this, arguments));
+  }
+
+  _createClass(GraphqlCodeBlock, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          className = _props.className,
+          queryBody = _props.queryBody;
+
+
+      var formatted = void 0;
+      try {
+        formatted = (0, _printer.print)((0, _parser.parse)(queryBody));
+      } catch (e) {
+        return _react2.default.createElement(
+          'div',
+          null,
+          '[PARSE ERROR] ',
+          queryBody
+        );
+      }
+
+      var highlighted = [];
+      var rowKeys = [];
+      (0, _runParser2.default)(formatted, {
+        eatWhitespace: function eatWhitespace(stream) {
+          return stream.eatWhile(_Rules.isIgnored);
+        },
+        LexRules: _Rules.LexRules,
+        ParseRules: _Rules.ParseRules
+      }, function (stream, state, style, rowIndex, newRow) {
+        var _sourceText = stream._sourceText,
+            _start = stream._start,
+            _pos = stream._pos;
+
+
+        if (newRow) {
+          rowKeys.push(_sourceText);
+          highlighted.push([]);
+        }
+        var substr = _sourceText.substring(_start, _pos);
+        highlighted[highlighted.length - 1].push(_react2.default.createElement(
+          'span',
+          { key: rowKeys.length + '-' + _start + '-' + _pos, className: style },
+          substr
+        ));
+      });
+
+      var body = [];
+      highlighted.forEach(function (row, index) {
+        body.push(_react2.default.createElement(
+          'pre',
+          { key: 'query-row-' + index },
+          row
+        ));
+      });
+
+      return _react2.default.createElement(
+        'div',
+        { className: className },
+        body
+      );
+    }
+  }]);
+
+  return GraphqlCodeBlock;
+}(_react.Component);
+
+GraphqlCodeBlock.propTypes = {
+  queryBody: _propTypes2.default.string,
+  className: _propTypes2.default.string
+};
+exports.default = GraphqlCodeBlock;
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/dist/style.css":
+/*!**********************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/dist/style.css ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(/*! ../../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !../../css-loader/dist/cjs.js!./style.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/graphql-syntax-highlighter-react/dist/style.css");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/dist/utils/CharacterStream.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/dist/utils/CharacterStream.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ *  Copyright (c) Facebook, Inc.
+ *  All rights reserved.
+ *
+ *  This source code is licensed under the license found in the
+ *  LICENSE file in the root directory of this source tree.
+ *
+ *  
+ */
+
+/**
+ * CharacterStream implements a stream of character tokens given a source text.
+ * The API design follows that of CodeMirror.StringStream.
+ *
+ * Required:
+ *
+ *      sourceText: (string), A raw GraphQL source text. Works best if a line
+ *        is supplied.
+ *
+ */
+
+var CharacterStream = function () {
+  function CharacterStream(sourceText) {
+    var _this = this;
+
+    _classCallCheck(this, CharacterStream);
+
+    this.getStartOfToken = function () {
+      return _this._start;
+    };
+
+    this.getCurrentPosition = function () {
+      return _this._pos;
+    };
+
+    this.eol = function () {
+      return _this._sourceText.length === _this._pos;
+    };
+
+    this.sol = function () {
+      return _this._pos === 0;
+    };
+
+    this.peek = function () {
+      return _this._sourceText.charAt(_this._pos) ? _this._sourceText.charAt(_this._pos) : null;
+    };
+
+    this.next = function () {
+      var char = _this._sourceText.charAt(_this._pos);
+      _this._pos++;
+      return char;
+    };
+
+    this.eat = function (pattern) {
+      var isMatched = _this._testNextCharacter(pattern);
+      if (isMatched) {
+        _this._start = _this._pos;
+        _this._pos++;
+        return _this._sourceText.charAt(_this._pos - 1);
+      }
+      return undefined;
+    };
+
+    this.eatWhile = function (match) {
+      var isMatched = _this._testNextCharacter(match);
+      var didEat = false;
+
+      // If a match, treat the total upcoming matches as one token
+      if (isMatched) {
+        didEat = isMatched;
+        _this._start = _this._pos;
+      }
+
+      while (isMatched) {
+        _this._pos++;
+        isMatched = _this._testNextCharacter(match);
+        didEat = true;
+      }
+
+      return didEat;
+    };
+
+    this.eatSpace = function () {
+      return _this.eatWhile(/[\s\u00a0]/);
+    };
+
+    this.skipToEnd = function () {
+      _this._pos = _this._sourceText.length;
+    };
+
+    this.skipTo = function (position) {
+      _this._pos = position;
+    };
+
+    this.match = function (pattern) {
+      var consume = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      var caseFold = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+      var token = null;
+      var match = null;
+
+      if (typeof pattern === 'string') {
+        var regex = new RegExp(pattern, caseFold ? 'i' : 'g');
+        match = regex.test(_this._sourceText.substr(_this._pos, pattern.length));
+        token = pattern;
+      } else if (pattern instanceof RegExp) {
+        match = _this._sourceText.slice(_this._pos).match(pattern);
+        token = match && match[0];
+      }
+
+      if (match != null) {
+        if (typeof pattern === 'string' || match instanceof Array &&
+        // String.match returns 'index' property, which flow fails to detect
+        // for some reason. The below is a workaround, but an easier solution
+        // is just checking if `match.index === 0`
+        _this._sourceText.startsWith(match[0], _this._pos)) {
+          if (consume) {
+            _this._start = _this._pos;
+            if (token && token.length) {
+              _this._pos += token.length;
+            }
+          }
+          return match;
+        }
+      }
+
+      // No match available.
+      return false;
+    };
+
+    this.backUp = function (num) {
+      _this._pos -= num;
+    };
+
+    this.column = function () {
+      return _this._pos;
+    };
+
+    this.indentation = function () {
+      var match = _this._sourceText.match(/\s*/);
+      var indent = 0;
+      if (match && match.length === 0) {
+        var whitespaces = match[0];
+        var pos = 0;
+        while (whitespaces.length > pos) {
+          if (whitespaces.charCodeAt(pos) === 9) {
+            indent += 2;
+          } else {
+            indent++;
+          }
+          pos++;
+        }
+      }
+
+      return indent;
+    };
+
+    this.current = function () {
+      return _this._sourceText.slice(_this._start, _this._pos);
+    };
+
+    this._start = 0;
+    this._pos = 0;
+    this._sourceText = sourceText;
+  }
+
+  _createClass(CharacterStream, [{
+    key: '_testNextCharacter',
+    value: function _testNextCharacter(pattern) {
+      var character = this._sourceText.charAt(this._pos);
+      var isMatched = false;
+      if (typeof pattern === 'string') {
+        isMatched = character === pattern;
+      } else {
+        isMatched = pattern instanceof RegExp ? pattern.test(character) : pattern(character);
+      }
+      return isMatched;
+    }
+  }]);
+
+  return CharacterStream;
+}();
+
+exports.default = CharacterStream;
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/dist/utils/RuleHelpers.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/dist/utils/RuleHelpers.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.opt = opt;
+exports.list = list;
+exports.butNot = butNot;
+exports.t = t;
+exports.p = p;
+/**
+ *  Copyright (c) 2015, Facebook, Inc.
+ *  All rights reserved.
+ *
+ *  This source code is licensed under the BSD-style license found in the
+ *  LICENSE file in the root directory of this source tree. An additional grant
+ *  of patent rights can be found in the PATENTS file in the same directory.
+ */
+// These functions help build matching rules for ParseRules.
+
+/**
+ *  Copyright (c) Facebook, Inc.
+ *  All rights reserved.
+ *
+ *  This source code is licensed under the license found in the
+ *  LICENSE file in the root directory of this source tree.
+ *
+ *  
+ */
+
+// These functions help build matching rules for ParseRules.
+
+
+// An optional rule.
+function opt(ofRule) {
+  return { ofRule: ofRule };
+}
+
+// A list of another rule.
+function list(ofRule, separator) {
+  return { ofRule: ofRule, isList: true, separator: separator };
+}
+
+// An constraint described as `but not` in the GraphQL spec.
+function butNot(rule, exclusions) {
+  var ruleMatch = rule.match;
+  rule.match = function (token) {
+    var check = false;
+    if (ruleMatch) {
+      check = ruleMatch(token);
+    }
+    return check && exclusions.every(function (exclusion) {
+      return exclusion.match && !exclusion.match(token);
+    });
+  };
+  return rule;
+}
+
+// Token of a kind
+function t(kind, style) {
+  return { style: style, match: function match(token) {
+      return token.kind === kind;
+    } };
+}
+
+// Punctuator
+function p(value, style) {
+  return {
+    style: style || 'punctuation',
+    match: function match(token) {
+      return token.kind === 'Punctuation' && token.value === value;
+    }
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/dist/utils/Rules.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/dist/utils/Rules.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ParseRules = exports.LexRules = exports.isIgnored = undefined;
+
+var _RuleHelpers = __webpack_require__(/*! ./RuleHelpers */ "./node_modules/graphql-syntax-highlighter-react/dist/utils/RuleHelpers.js");
+
+/**
+ * Whitespace tokens defined in GraphQL spec.
+ */
+var isIgnored = exports.isIgnored = function isIgnored(ch) {
+  return ch === ' ' || ch === '\t' || ch === ',' || ch === '\n' || ch === '\r' || ch === '\uFEFF';
+};
+
+/**
+ * The lexer rules. These are exactly as described by the spec.
+ */
+/**
+ *  Copyright (c) 2015, Facebook, Inc.
+ *  All rights reserved.
+ *
+ *  This source code is licensed under the BSD-style license found in the
+ *  LICENSE file in the root directory of this source tree. An additional grant
+ *  of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+var LexRules = exports.LexRules = {
+  // The Name token.
+  Name: /^[_A-Za-z][_0-9A-Za-z]*/,
+
+  // All Punctuation used in GraphQL
+  Punctuation: /^(?:!|\$|\(|\)|\.\.\.|:|=|@|\[|\]|\{|\||\})/,
+
+  // Combines the IntValue and FloatValue tokens.
+  Number: /^-?(?:0|(?:[1-9][0-9]*))(?:\.[0-9]*)?(?:[eE][+-]?[0-9]+)?/,
+
+  // Note the closing quote is made optional as an IDE experience improvment.
+  String: /^"(?:[^"\\]|\\(?:"|\/|\\|b|f|n|r|t|u[0-9a-fA-F]{4}))*"?/
+};
+
+/**
+ * The parser rules. These are very close to, but not exactly the same as the
+ * spec. Minor deviations allow for a simpler implementation. The resulting
+ * parser can parse everything the spec declares possible.
+ */
+var ParseRules = exports.ParseRules = {
+  Document: [(0, _RuleHelpers.list)('Definition')],
+  Definition: function Definition(token) {
+    switch (token.value) {
+      case '{':
+        return 'ShortQuery';
+      case 'query':
+        return 'Query';
+      case 'mutation':
+        return 'Mutation';
+      case 'subscription':
+        return 'Subscription';
+      case 'fragment':
+        return 'FragmentDefinition';
+      case 'schema':
+        return 'SchemaDef';
+      case 'scalar':
+        return 'ScalarDef';
+      case 'type':
+        return 'ObjectTypeDef';
+      case 'interface':
+        return 'InterfaceDef';
+      case 'union':
+        return 'UnionDef';
+      case 'enum':
+        return 'EnumDef';
+      case 'input':
+        return 'InputDef';
+      case 'extend':
+        return 'ExtendDef';
+      case 'directive':
+        return 'DirectiveDef';
+    }
+  },
+
+  // Note: instead of "Operation", these rules have been separated out.
+  ShortQuery: ['SelectionSet'],
+  Query: [word('query'), (0, _RuleHelpers.opt)(name('def')), (0, _RuleHelpers.opt)('VariableDefinitions'), (0, _RuleHelpers.list)('Directive'), 'SelectionSet'],
+  Mutation: [word('mutation'), (0, _RuleHelpers.opt)(name('def')), (0, _RuleHelpers.opt)('VariableDefinitions'), (0, _RuleHelpers.list)('Directive'), 'SelectionSet'],
+  Subscription: [word('subscription'), (0, _RuleHelpers.opt)(name('def')), (0, _RuleHelpers.opt)('VariableDefinitions'), (0, _RuleHelpers.list)('Directive'), 'SelectionSet'],
+  VariableDefinitions: [(0, _RuleHelpers.p)('('), (0, _RuleHelpers.list)('VariableDefinition'), (0, _RuleHelpers.p)(')')],
+  VariableDefinition: ['Variable', (0, _RuleHelpers.p)(':'), 'Type', (0, _RuleHelpers.opt)('DefaultValue')],
+  Variable: [(0, _RuleHelpers.p)('$', 'variable'), name('variable')],
+  DefaultValue: [(0, _RuleHelpers.p)('='), 'Value'],
+  SelectionSet: [(0, _RuleHelpers.p)('{'), (0, _RuleHelpers.list)('Selection'), (0, _RuleHelpers.p)('}')],
+  Selection: function Selection(token, stream) {
+    return token.value === '...' ? stream.match(/[\s\u00a0,]*(on\b|@|{)/, false) ? 'InlineFragment' : 'FragmentSpread' : stream.match(/[\s\u00a0,]*:/, false) ? 'AliasedField' : 'Field';
+  },
+
+  // Note: this minor deviation of "AliasedField" simplifies the lookahead.
+  AliasedField: [name('property'), (0, _RuleHelpers.p)(':'), name('qualifier'), (0, _RuleHelpers.opt)('Arguments'), (0, _RuleHelpers.list)('Directive'), (0, _RuleHelpers.opt)('SelectionSet')],
+  Field: [name('property'), (0, _RuleHelpers.opt)('Arguments'), (0, _RuleHelpers.list)('Directive'), (0, _RuleHelpers.opt)('SelectionSet')],
+  Arguments: [(0, _RuleHelpers.p)('('), (0, _RuleHelpers.list)('Argument'), (0, _RuleHelpers.p)(')')],
+  Argument: [name('attribute'), (0, _RuleHelpers.p)(':'), 'Value'],
+  FragmentSpread: [(0, _RuleHelpers.p)('...'), name('def'), (0, _RuleHelpers.list)('Directive')],
+  InlineFragment: [(0, _RuleHelpers.p)('...'), (0, _RuleHelpers.opt)('TypeCondition'), (0, _RuleHelpers.list)('Directive'), 'SelectionSet'],
+  FragmentDefinition: [word('fragment'), (0, _RuleHelpers.opt)((0, _RuleHelpers.butNot)(name('def'), [word('on')])), 'TypeCondition', (0, _RuleHelpers.list)('Directive'), 'SelectionSet'],
+  TypeCondition: [word('on'), type('atom')],
+  // Variables could be parsed in cases where only Const is expected by spec.
+  Value: function Value(token) {
+    switch (token.kind) {
+      case 'Number':
+        return 'NumberValue';
+      case 'String':
+        return 'StringValue';
+      case 'Punctuation':
+        switch (token.value) {
+          case '[':
+            return 'ListValue';
+          case '{':
+            return 'ObjectValue';
+          case '$':
+            return 'Variable';
+        }
+        return null;
+      case 'Name':
+        switch (token.value) {
+          case 'true':case 'false':
+            return 'BooleanValue';
+        }
+        return 'EnumValue';
+    }
+  },
+
+  NumberValue: [(0, _RuleHelpers.t)('Number', 'number')],
+  StringValue: [(0, _RuleHelpers.t)('String', 'string')],
+  BooleanValue: [(0, _RuleHelpers.t)('Name', 'builtin')],
+  EnumValue: [name('string-2')],
+  ListValue: [(0, _RuleHelpers.p)('['), (0, _RuleHelpers.list)('Value'), (0, _RuleHelpers.p)(']')],
+  ObjectValue: [(0, _RuleHelpers.p)('{'), (0, _RuleHelpers.list)('ObjectField'), (0, _RuleHelpers.p)('}')],
+  ObjectField: [name('attribute'), (0, _RuleHelpers.p)(':'), 'Value'],
+  Type: function Type(token) {
+    return token.value === '[' ? 'ListType' : 'NamedType';
+  },
+
+  // NonNullType has been merged into ListType and NamedType to simplify.
+  ListType: [(0, _RuleHelpers.p)('['), 'Type', (0, _RuleHelpers.p)(']'), (0, _RuleHelpers.opt)((0, _RuleHelpers.p)('!'))],
+  NamedType: [name('atom'), (0, _RuleHelpers.opt)((0, _RuleHelpers.p)('!'))],
+  Directive: [(0, _RuleHelpers.p)('@', 'meta'), name('meta'), (0, _RuleHelpers.opt)('Arguments')],
+  // GraphQL schema language
+  SchemaDef: [word('schema'), (0, _RuleHelpers.list)('Directive'), (0, _RuleHelpers.p)('{'), (0, _RuleHelpers.list)('OperationTypeDef'), (0, _RuleHelpers.p)('}')],
+  OperationTypeDef: [name('keyword'), (0, _RuleHelpers.p)(':'), name('atom')],
+  ScalarDef: [word('scalar'), name('atom'), (0, _RuleHelpers.list)('Directive')],
+  ObjectTypeDef: [word('type'), name('atom'), (0, _RuleHelpers.opt)('Implements'), (0, _RuleHelpers.list)('Directive'), (0, _RuleHelpers.p)('{'), (0, _RuleHelpers.list)('FieldDef'), (0, _RuleHelpers.p)('}')],
+  Implements: [word('implements'), (0, _RuleHelpers.list)(name('atom'))],
+  FieldDef: [name('property'), (0, _RuleHelpers.opt)('ArgumentsDef'), (0, _RuleHelpers.p)(':'), 'Type', (0, _RuleHelpers.list)('Directive')],
+  ArgumentsDef: [(0, _RuleHelpers.p)('('), (0, _RuleHelpers.list)('InputValueDef'), (0, _RuleHelpers.p)(')')],
+  InputValueDef: [name('attribute'), (0, _RuleHelpers.p)(':'), 'Type', (0, _RuleHelpers.opt)('DefaultValue'), (0, _RuleHelpers.list)('Directive')],
+  InterfaceDef: [word('interface'), name('atom'), (0, _RuleHelpers.list)('Directive'), (0, _RuleHelpers.p)('{'), (0, _RuleHelpers.list)('FieldDef'), (0, _RuleHelpers.p)('}')],
+  UnionDef: [word('union'), name('atom'), (0, _RuleHelpers.list)('Directive'), (0, _RuleHelpers.p)('='), name('atom'), (0, _RuleHelpers.list)('UnionMember')],
+  UnionMember: [(0, _RuleHelpers.p)('|'), name('atom')],
+  EnumDef: [word('enum'), name('atom'), (0, _RuleHelpers.list)('Directive'), (0, _RuleHelpers.p)('{'), (0, _RuleHelpers.list)('EnumValueDef'), (0, _RuleHelpers.p)('}')],
+  EnumValueDef: [name('string-2'), (0, _RuleHelpers.list)('Directive')],
+  InputDef: [word('input'), name('atom'), (0, _RuleHelpers.list)('Directive'), (0, _RuleHelpers.p)('{'), (0, _RuleHelpers.list)('InputValueDef'), (0, _RuleHelpers.p)('}')],
+  ExtendDef: [word('extend'), 'ObjectTypeDef'],
+  DirectiveDef: [word('directive'), (0, _RuleHelpers.p)('@', 'meta'), name('meta'), (0, _RuleHelpers.opt)('ArgumentsDef'), word('on'), name('string-2'), (0, _RuleHelpers.list)('DirectiveLocation')],
+  DirectiveLocation: [(0, _RuleHelpers.p)('|'), name('string-2')]
+};
+
+// A keyword Token.
+function word(value) {
+  return {
+    style: 'keyword',
+    match: function match(token) {
+      return token.kind === 'Name' && token.value === value;
+    }
+  };
+}
+
+// A Name Token which will decorate the state with a `name`.
+function name(style) {
+  return {
+    style: style,
+    match: function match(token) {
+      return token.kind === 'Name';
+    },
+    update: function update(state, token) {
+      state.name = token.value;
+    }
+  };
+}
+
+// A Name Token which will decorate the previous state with a `type`.
+function type(style) {
+  return {
+    style: style,
+    match: function match(token) {
+      return token.kind === 'Name';
+    },
+    update: function update(state, token) {
+      state.prevState.type = token.value;
+    }
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/dist/utils/onlineParser.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/dist/utils/onlineParser.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = onlineParser;
+/**
+ *  Copyright (c) 2015, Facebook, Inc.
+ *  All rights reserved.
+ *
+ *  This source code is licensed under the BSD-style license found in the
+ *  LICENSE file in the root directory of this source tree. An additional grant
+ *  of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+/**
+ * Builds an online immutable parser, designed to be used as part of a syntax
+ * highlighting and code intelligence tools.
+ *
+ * Options:
+ *
+ *     eatWhitespace: (
+ *       stream: Stream | CodeMirror.StringStream | CharacterStream
+ *     ) => boolean
+ *       Use CodeMirror API.
+ *
+ *     LexRules: { [name: string]: RegExp }, Includes `Punctuation`.
+ *
+ *     ParseRules: { [name: string]: Array<Rule> }, Includes `Document`.
+ *
+ *     editorConfig: { [name: string]: mixed }, Provides an editor-specific
+ *       configurations set.
+ *
+ */
+
+function onlineParser(options) {
+  return {
+    startState: function startState() {
+      var initialState = { level: 0 };
+      pushRule(options.ParseRules, initialState, 'Document');
+      return initialState;
+    },
+    token: function token(stream, state) {
+      return getToken(stream, state, options);
+    }
+  };
+}
+
+function getToken(stream, state, options) {
+  var LexRules = options.LexRules,
+      ParseRules = options.ParseRules,
+      eatWhitespace = options.eatWhitespace,
+      editorConfig = options.editorConfig;
+
+  if (state.needsAdvance) {
+    state.needsAdvance = false;
+    advanceRule(state, true);
+  }
+
+  // Remember initial indentation
+  if (stream.sol()) {
+    var tabSize = editorConfig && editorConfig.tabSize || 2;
+    state.indentLevel = Math.floor(stream.indentation() / tabSize);
+  }
+
+  // Consume spaces and ignored characters
+  if (eatWhitespace(stream)) {
+    return 'ws';
+  }
+
+  // Peek a character forward and skip the entire line if it's a comment line
+  if (stream.peek() === '#') {
+    stream.skipToEnd();
+    return 'comment';
+  }
+
+  // Get a matched token from the stream, using lex
+  var token = lex(LexRules, stream);
+
+  // If there's no matching token, skip ahead.
+  if (!token) {
+    stream.match(/\S+/);
+    return 'invalidchar';
+  }
+
+  // Save state before continuing.
+  saveState(state);
+
+  // Handle changes in expected indentation level
+  if (token.kind === 'Punctuation') {
+    if (/^[{([]/.test(token.value)) {
+      // Push on the stack of levels one level deeper than the current level.
+      state.levels = (state.levels || []).concat(state.indentLevel + 1);
+    } else if (/^[})\]]/.test(token.value)) {
+      // Pop from the stack of levels.
+      // If the top of the stack is lower than the current level, lower the
+      // current level to match.
+      var levels = state.levels = (state.levels || []).slice(0, -1);
+      if (levels.length > 0 && levels[levels.length - 1] < state.indentLevel) {
+        state.indentLevel = levels[levels.length - 1];
+      }
+    }
+  }
+
+  while (state.rule) {
+    // If this is a forking rule, determine what rule to use based on
+    // the current token, otherwise expect based on the current step.
+    var expected = typeof state.rule === 'function' ? state.step === 0 ? state.rule(token, stream) : null : state.rule[state.step];
+
+    // Seperator between list elements if necessary.
+    if (state.needsSeperator) {
+      expected = expected && expected.separator;
+    }
+
+    if (expected) {
+      // Un-wrap optional/list ParseRules.
+      if (expected.ofRule) {
+        expected = expected.ofRule;
+      }
+
+      // A string represents a Rule
+      if (typeof expected === 'string') {
+        pushRule(ParseRules, state, expected);
+        continue;
+      }
+
+      // Otherwise, match a Terminal.
+      if (expected.match && expected.match(token)) {
+        if (expected.update) {
+          expected.update(state, token);
+        }
+
+        // If this token was a punctuator, advance the parse rule, otherwise
+        // mark the state to be advanced before the next token. This ensures
+        // that tokens which can be appended to keep the appropriate state.
+        if (token.kind === 'Punctuation') {
+          advanceRule(state, true);
+        } else {
+          state.needsAdvance = true;
+        }
+
+        return expected.style;
+      }
+    }
+
+    unsuccessful(state);
+  }
+
+  // The parser does not know how to interpret this token, do not affect state.
+  restoreState(state);
+  return 'invalidchar';
+}
+
+function assign(to, from) {
+  var keys = Object.keys(from);
+  for (var i = 0; i < keys.length; i++) {
+    to[keys[i]] = from[keys[i]];
+  }
+  return to;
+}
+
+var stateCache = {};
+
+// Save the current state in the cache.
+function saveState(state) {
+  assign(stateCache, state);
+}
+
+// Restore from the state cache.
+function restoreState(state) {
+  assign(state, stateCache);
+}
+
+// Push a new rule onto the state.
+function pushRule(ParseRules, state, ruleKind) {
+  if (!ParseRules[ruleKind]) {
+    throw new TypeError('Unknown rule: ' + ruleKind);
+  }
+  state.prevState = assign({}, state);
+  state.kind = ruleKind;
+  state.name = null;
+  state.type = null;
+  state.rule = ParseRules[ruleKind];
+  state.step = 0;
+  state.needsSeperator = false;
+}
+
+// Pop the current rule from the state.
+function popRule(state) {
+  state.kind = state.prevState.kind;
+  state.name = state.prevState.name;
+  state.type = state.prevState.type;
+  state.rule = state.prevState.rule;
+  state.step = state.prevState.step;
+  state.needsSeperator = state.prevState.needsSeperator;
+  state.prevState = state.prevState.prevState;
+}
+
+// Advance the step of the current rule.
+function advanceRule(state, successful) {
+  // If this is advancing successfully and the current state is a list, give
+  // it an opportunity to repeat itself.
+  if (isList(state)) {
+    if (state.rule[state.step].separator) {
+      state.needsSeperator = !state.needsSeperator;
+      // If the next list iteration might accept a non-separator, then give it
+      // an opportunity to repeat.
+      if (!state.needsSeperator) {
+        return;
+      }
+    }
+    // If this was a successful list parse, then allow it to repeat itself.
+    if (successful) {
+      return;
+    }
+  }
+
+  // Advance the step in the rule. If the rule is completed, pop
+  // the rule and advance the parent rule as well (recursively).
+  state.needsSeperator = false;
+  state.step++;
+  // While the current rule is completed.
+  while (state.rule && !(Array.isArray(state.rule) && state.step < state.rule.length)) {
+    popRule(state);
+
+    if (state.rule) {
+      // Do not advance a List step so it has the opportunity to repeat itself.
+      if (isList(state)) {
+        if (state.rule[state.step].separator) {
+          state.needsSeperator = !state.needsSeperator;
+        }
+      } else {
+        state.needsSeperator = false;
+        state.step++;
+      }
+    }
+  }
+}
+
+function isList(state) {
+  return Array.isArray(state.rule) && state.rule[state.step].isList;
+}
+
+// Unwind the state after an unsuccessful match.
+function unsuccessful(state) {
+  // Fall back to the parent rule until you get to an optional or list rule or
+  // until the entire stack of rules is empty.
+  while (state.rule && !(Array.isArray(state.rule) && state.rule[state.step].ofRule)) {
+    popRule(state);
+  }
+
+  // If there is still a rule, it must be an optional or list rule.
+  // Consider this rule a success so that we may move past it.
+  if (state.rule) {
+    advanceRule(state, false);
+  }
+}
+
+// Given a stream, returns a { kind, value } pair, or null.
+function lex(LexRules, stream) {
+  var kinds = Object.keys(LexRules);
+  for (var i = 0; i < kinds.length; i++) {
+    var match = stream.match(LexRules[kinds[i]]);
+    if (match) {
+      return { kind: kinds[i], value: match[0] };
+    }
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/dist/utils/runParser.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/dist/utils/runParser.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = runParser;
+
+var _CharacterStream = __webpack_require__(/*! ./CharacterStream */ "./node_modules/graphql-syntax-highlighter-react/dist/utils/CharacterStream.js");
+
+var _CharacterStream2 = _interopRequireDefault(_CharacterStream);
+
+var _onlineParser = __webpack_require__(/*! ./onlineParser */ "./node_modules/graphql-syntax-highlighter-react/dist/utils/onlineParser.js");
+
+var _onlineParser2 = _interopRequireDefault(_onlineParser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ *  Copyright (c) 2015, Facebook, Inc.
+ *  All rights reserved.
+ *
+ *  This source code is licensed under the BSD-style license found in the
+ *  LICENSE file in the root directory of this source tree. An additional grant
+ *  of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+function runParser(sourceText, parserOptions, callbackFn) {
+  var parser = (0, _onlineParser2.default)(parserOptions);
+  var state = parser.startState();
+  var lines = sourceText.split('\n');
+
+  lines.forEach(function (line, i) {
+    var stream = new _CharacterStream2.default(line);
+    var newRow = true;
+    while (!stream.eol()) {
+      var style = parser.token(stream, state);
+      callbackFn(stream, state, style, i, newRow);
+      newRow = false;
+    }
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/index.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/index.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var GraphqlCodeBlock = __webpack_require__(/*! ./dist/GraphqlCodeBlock.js */ "./node_modules/graphql-syntax-highlighter-react/dist/GraphqlCodeBlock.js").default;
+
+module.exports = {
+  GraphqlCodeBlock: GraphqlCodeBlock,
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/GraphQLError.js":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/GraphQLError.js ***!
+  \**************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GraphQLError = GraphQLError;
+
+var _printError = __webpack_require__(/*! ./printError */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/printError.js");
+
+var _location = __webpack_require__(/*! ../language/location */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/location.js");
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+function GraphQLError( // eslint-disable-line no-redeclare
+message, nodes, source, positions, path, originalError, extensions) {
+  // Compute list of blame nodes.
+  var _nodes = Array.isArray(nodes) ? nodes.length !== 0 ? nodes : undefined : nodes ? [nodes] : undefined; // Compute locations in the source for the given nodes/positions.
+
+
+  var _source = source;
+
+  if (!_source && _nodes) {
+    var node = _nodes[0];
+    _source = node && node.loc && node.loc.source;
+  }
+
+  var _positions = positions;
+
+  if (!_positions && _nodes) {
+    _positions = _nodes.reduce(function (list, node) {
+      if (node.loc) {
+        list.push(node.loc.start);
+      }
+
+      return list;
+    }, []);
+  }
+
+  if (_positions && _positions.length === 0) {
+    _positions = undefined;
+  }
+
+  var _locations;
+
+  if (positions && source) {
+    _locations = positions.map(function (pos) {
+      return (0, _location.getLocation)(source, pos);
+    });
+  } else if (_nodes) {
+    _locations = _nodes.reduce(function (list, node) {
+      if (node.loc) {
+        list.push((0, _location.getLocation)(node.loc.source, node.loc.start));
+      }
+
+      return list;
+    }, []);
+  }
+
+  var _extensions = extensions || originalError && originalError.extensions;
+
+  Object.defineProperties(this, {
+    message: {
+      value: message,
+      // By being enumerable, JSON.stringify will include `message` in the
+      // resulting output. This ensures that the simplest possible GraphQL
+      // service adheres to the spec.
+      enumerable: true,
+      writable: true
+    },
+    locations: {
+      // Coercing falsey values to undefined ensures they will not be included
+      // in JSON.stringify() when not provided.
+      value: _locations || undefined,
+      // By being enumerable, JSON.stringify will include `locations` in the
+      // resulting output. This ensures that the simplest possible GraphQL
+      // service adheres to the spec.
+      enumerable: Boolean(_locations)
+    },
+    path: {
+      // Coercing falsey values to undefined ensures they will not be included
+      // in JSON.stringify() when not provided.
+      value: path || undefined,
+      // By being enumerable, JSON.stringify will include `path` in the
+      // resulting output. This ensures that the simplest possible GraphQL
+      // service adheres to the spec.
+      enumerable: Boolean(path)
+    },
+    nodes: {
+      value: _nodes || undefined
+    },
+    source: {
+      value: _source || undefined
+    },
+    positions: {
+      value: _positions || undefined
+    },
+    originalError: {
+      value: originalError
+    },
+    extensions: {
+      // Coercing falsey values to undefined ensures they will not be included
+      // in JSON.stringify() when not provided.
+      value: _extensions || undefined,
+      // By being enumerable, JSON.stringify will include `path` in the
+      // resulting output. This ensures that the simplest possible GraphQL
+      // service adheres to the spec.
+      enumerable: Boolean(_extensions)
+    }
+  }); // Include (non-enumerable) stack trace.
+
+  if (originalError && originalError.stack) {
+    Object.defineProperty(this, 'stack', {
+      value: originalError.stack,
+      writable: true,
+      configurable: true
+    });
+  } else if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, GraphQLError);
+  } else {
+    Object.defineProperty(this, 'stack', {
+      value: Error().stack,
+      writable: true,
+      configurable: true
+    });
+  }
+}
+
+GraphQLError.prototype = Object.create(Error.prototype, {
+  constructor: {
+    value: GraphQLError
+  },
+  name: {
+    value: 'GraphQLError'
+  },
+  toString: {
+    value: function toString() {
+      return (0, _printError.printError)(this);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/formatError.js":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/formatError.js ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.formatError = formatError;
+
+var _invariant = _interopRequireDefault(__webpack_require__(/*! ../jsutils/invariant */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/jsutils/invariant.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Given a GraphQLError, format it according to the rules described by the
+ * Response Format, Errors section of the GraphQL Specification.
+ */
+function formatError(error) {
+  !error ? (0, _invariant.default)(0, 'Received null or undefined error.') : void 0;
+  var message = error.message || 'An unknown error occurred.';
+  var locations = error.locations;
+  var path = error.path;
+  var extensions = error.extensions;
+  return extensions ? {
+    message: message,
+    locations: locations,
+    path: path,
+    extensions: extensions
+  } : {
+    message: message,
+    locations: locations,
+    path: path
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/index.js":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/index.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "GraphQLError", {
+  enumerable: true,
+  get: function get() {
+    return _GraphQLError.GraphQLError;
+  }
+});
+Object.defineProperty(exports, "syntaxError", {
+  enumerable: true,
+  get: function get() {
+    return _syntaxError.syntaxError;
+  }
+});
+Object.defineProperty(exports, "locatedError", {
+  enumerable: true,
+  get: function get() {
+    return _locatedError.locatedError;
+  }
+});
+Object.defineProperty(exports, "printError", {
+  enumerable: true,
+  get: function get() {
+    return _printError.printError;
+  }
+});
+Object.defineProperty(exports, "formatError", {
+  enumerable: true,
+  get: function get() {
+    return _formatError.formatError;
+  }
+});
+
+var _GraphQLError = __webpack_require__(/*! ./GraphQLError */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/GraphQLError.js");
+
+var _syntaxError = __webpack_require__(/*! ./syntaxError */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/syntaxError.js");
+
+var _locatedError = __webpack_require__(/*! ./locatedError */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/locatedError.js");
+
+var _printError = __webpack_require__(/*! ./printError */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/printError.js");
+
+var _formatError = __webpack_require__(/*! ./formatError */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/formatError.js");
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/locatedError.js":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/locatedError.js ***!
+  \**************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.locatedError = locatedError;
+
+var _GraphQLError = __webpack_require__(/*! ./GraphQLError */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/GraphQLError.js");
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Given an arbitrary Error, presumably thrown while attempting to execute a
+ * GraphQL operation, produce a new GraphQLError aware of the location in the
+ * document responsible for the original Error.
+ */
+function locatedError(originalError, nodes, path) {
+  // Note: this uses a brand-check to support GraphQL errors originating from
+  // other contexts.
+  if (originalError && Array.isArray(originalError.path)) {
+    return originalError;
+  }
+
+  return new _GraphQLError.GraphQLError(originalError && originalError.message, originalError && originalError.nodes || nodes, originalError && originalError.source, originalError && originalError.positions, path, originalError);
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/printError.js":
+/*!************************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/printError.js ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.printError = printError;
+
+var _location = __webpack_require__(/*! ../language/location */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/location.js");
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Prints a GraphQLError to a string, representing useful location information
+ * about the error's position in the source.
+ */
+function printError(error) {
+  var printedLocations = [];
+
+  if (error.nodes) {
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = error.nodes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var node = _step.value;
+
+        if (node.loc) {
+          printedLocations.push(highlightSourceAtLocation(node.loc.source, (0, _location.getLocation)(node.loc.source, node.loc.start)));
+        }
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return != null) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+  } else if (error.source && error.locations) {
+    var source = error.source;
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+      for (var _iterator2 = error.locations[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var location = _step2.value;
+        printedLocations.push(highlightSourceAtLocation(source, location));
+      }
+    } catch (err) {
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+          _iterator2.return();
+        }
+      } finally {
+        if (_didIteratorError2) {
+          throw _iteratorError2;
+        }
+      }
+    }
+  }
+
+  return printedLocations.length === 0 ? error.message : [error.message].concat(printedLocations).join('\n\n') + '\n';
+}
+/**
+ * Render a helpful description of the location of the error in the GraphQL
+ * Source document.
+ */
+
+
+function highlightSourceAtLocation(source, location) {
+  var firstLineColumnOffset = source.locationOffset.column - 1;
+  var body = whitespace(firstLineColumnOffset) + source.body;
+  var lineIndex = location.line - 1;
+  var lineOffset = source.locationOffset.line - 1;
+  var lineNum = location.line + lineOffset;
+  var columnOffset = location.line === 1 ? firstLineColumnOffset : 0;
+  var columnNum = location.column + columnOffset;
+  var lines = body.split(/\r\n|[\n\r]/g);
+  return "".concat(source.name, " (").concat(lineNum, ":").concat(columnNum, ")\n") + printPrefixedLines([// Lines specified like this: ["prefix", "string"],
+  ["".concat(lineNum - 1, ": "), lines[lineIndex - 1]], ["".concat(lineNum, ": "), lines[lineIndex]], ['', whitespace(columnNum - 1) + '^'], ["".concat(lineNum + 1, ": "), lines[lineIndex + 1]]]);
+}
+
+function printPrefixedLines(lines) {
+  var existingLines = lines.filter(function (_ref) {
+    var _ = _ref[0],
+        line = _ref[1];
+    return line !== undefined;
+  });
+  var padLen = 0;
+  var _iteratorNormalCompletion3 = true;
+  var _didIteratorError3 = false;
+  var _iteratorError3 = undefined;
+
+  try {
+    for (var _iterator3 = existingLines[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+      var _ref4 = _step3.value;
+      var prefix = _ref4[0];
+      padLen = Math.max(padLen, prefix.length);
+    }
+  } catch (err) {
+    _didIteratorError3 = true;
+    _iteratorError3 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+        _iterator3.return();
+      }
+    } finally {
+      if (_didIteratorError3) {
+        throw _iteratorError3;
+      }
+    }
+  }
+
+  return existingLines.map(function (_ref3) {
+    var prefix = _ref3[0],
+        line = _ref3[1];
+    return lpad(padLen, prefix) + line;
+  }).join('\n');
+}
+
+function whitespace(len) {
+  return Array(len + 1).join(' ');
+}
+
+function lpad(len, str) {
+  return whitespace(len - str.length) + str;
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/syntaxError.js":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/syntaxError.js ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.syntaxError = syntaxError;
+
+var _GraphQLError = __webpack_require__(/*! ./GraphQLError */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/GraphQLError.js");
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Produces a GraphQLError representing a syntax error, containing useful
+ * descriptive information about the syntax error's position in the source.
+ */
+function syntaxError(source, position, description) {
+  return new _GraphQLError.GraphQLError("Syntax Error: ".concat(description), undefined, source, [position]);
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/jsutils/defineToStringTag.js":
+/*!*********************************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/jsutils/defineToStringTag.js ***!
+  \*********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = applyToStringTag;
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * The `applyToStringTag()` function checks first to see if the runtime
+ * supports the `Symbol` class and then if the `Symbol.toStringTag` constant
+ * is defined as a `Symbol` instance. If both conditions are met, the
+ * Symbol.toStringTag property is defined as a getter that returns the
+ * supplied class constructor's name.
+ *
+ * @method applyToStringTag
+ *
+ * @param {Class<any>} classObject a class such as Object, String, Number but
+ * typically one of your own creation through the class keyword; `class A {}`,
+ * for example.
+ */
+function applyToStringTag(classObject) {
+  if (typeof Symbol === 'function' && Symbol.toStringTag) {
+    Object.defineProperty(classObject.prototype, Symbol.toStringTag, {
+      get: function get() {
+        return this.constructor.name;
+      }
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/jsutils/inspect.js":
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/jsutils/inspect.js ***!
+  \***********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = inspect;
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Used to print values in error messages.
+ */
+function inspect(value) {
+  switch (_typeof(value)) {
+    case 'string':
+      return JSON.stringify(value);
+
+    case 'function':
+      return value.name ? "[function ".concat(value.name, "]") : '[function]';
+
+    case 'object':
+      if (value) {
+        if (typeof value.inspect === 'function') {
+          return value.inspect();
+        } else if (Array.isArray(value)) {
+          return '[' + value.map(inspect).join(', ') + ']';
+        }
+
+        var properties = Object.keys(value).map(function (k) {
+          return "".concat(k, ": ").concat(inspect(value[k]));
+        }).join(', ');
+        return properties ? '{ ' + properties + ' }' : '{}';
+      }
+
+      return String(value);
+
+    default:
+      return String(value);
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/jsutils/invariant.js":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/jsutils/invariant.js ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = invariant;
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+function invariant(condition, message) {
+  /* istanbul ignore else */
+  if (!condition) {
+    throw new Error(message);
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/blockStringValue.js":
+/*!*********************************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/blockStringValue.js ***!
+  \*********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = blockStringValue;
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Produces the value of a block string from its parsed raw value, similar to
+ * CoffeeScript's block string, Python's docstring trim or Ruby's strip_heredoc.
+ *
+ * This implements the GraphQL spec's BlockStringValue() static algorithm.
+ */
+function blockStringValue(rawString) {
+  // Expand a block string's raw value into independent lines.
+  var lines = rawString.split(/\r\n|[\n\r]/g); // Remove common indentation from all lines but first.
+
+  var commonIndent = null;
+
+  for (var i = 1; i < lines.length; i++) {
+    var line = lines[i];
+    var indent = leadingWhitespace(line);
+
+    if (indent < line.length && (commonIndent === null || indent < commonIndent)) {
+      commonIndent = indent;
+
+      if (commonIndent === 0) {
+        break;
+      }
+    }
+  }
+
+  if (commonIndent) {
+    for (var _i = 1; _i < lines.length; _i++) {
+      lines[_i] = lines[_i].slice(commonIndent);
+    }
+  } // Remove leading and trailing blank lines.
+
+
+  while (lines.length > 0 && isBlank(lines[0])) {
+    lines.shift();
+  }
+
+  while (lines.length > 0 && isBlank(lines[lines.length - 1])) {
+    lines.pop();
+  } // Return a string of the lines joined with U+000A.
+
+
+  return lines.join('\n');
+}
+
+function leadingWhitespace(str) {
+  var i = 0;
+
+  while (i < str.length && (str[i] === ' ' || str[i] === '\t')) {
+    i++;
+  }
+
+  return i;
+}
+
+function isBlank(str) {
+  return leadingWhitespace(str) === str.length;
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/directiveLocation.js":
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/directiveLocation.js ***!
+  \**********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DirectiveLocation = void 0;
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * The set of allowed directive location values.
+ */
+var DirectiveLocation = Object.freeze({
+  // Request Definitions
+  QUERY: 'QUERY',
+  MUTATION: 'MUTATION',
+  SUBSCRIPTION: 'SUBSCRIPTION',
+  FIELD: 'FIELD',
+  FRAGMENT_DEFINITION: 'FRAGMENT_DEFINITION',
+  FRAGMENT_SPREAD: 'FRAGMENT_SPREAD',
+  INLINE_FRAGMENT: 'INLINE_FRAGMENT',
+  VARIABLE_DEFINITION: 'VARIABLE_DEFINITION',
+  // Type System Definitions
+  SCHEMA: 'SCHEMA',
+  SCALAR: 'SCALAR',
+  OBJECT: 'OBJECT',
+  FIELD_DEFINITION: 'FIELD_DEFINITION',
+  ARGUMENT_DEFINITION: 'ARGUMENT_DEFINITION',
+  INTERFACE: 'INTERFACE',
+  UNION: 'UNION',
+  ENUM: 'ENUM',
+  ENUM_VALUE: 'ENUM_VALUE',
+  INPUT_OBJECT: 'INPUT_OBJECT',
+  INPUT_FIELD_DEFINITION: 'INPUT_FIELD_DEFINITION'
+});
+/**
+ * The enum type representing the directive location values.
+ */
+
+exports.DirectiveLocation = DirectiveLocation;
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/kinds.js":
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/kinds.js ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Kind = void 0;
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * The set of allowed kind values for AST nodes.
+ */
+var Kind = Object.freeze({
+  // Name
+  NAME: 'Name',
+  // Document
+  DOCUMENT: 'Document',
+  OPERATION_DEFINITION: 'OperationDefinition',
+  VARIABLE_DEFINITION: 'VariableDefinition',
+  SELECTION_SET: 'SelectionSet',
+  FIELD: 'Field',
+  ARGUMENT: 'Argument',
+  // Fragments
+  FRAGMENT_SPREAD: 'FragmentSpread',
+  INLINE_FRAGMENT: 'InlineFragment',
+  FRAGMENT_DEFINITION: 'FragmentDefinition',
+  // Values
+  VARIABLE: 'Variable',
+  INT: 'IntValue',
+  FLOAT: 'FloatValue',
+  STRING: 'StringValue',
+  BOOLEAN: 'BooleanValue',
+  NULL: 'NullValue',
+  ENUM: 'EnumValue',
+  LIST: 'ListValue',
+  OBJECT: 'ObjectValue',
+  OBJECT_FIELD: 'ObjectField',
+  // Directives
+  DIRECTIVE: 'Directive',
+  // Types
+  NAMED_TYPE: 'NamedType',
+  LIST_TYPE: 'ListType',
+  NON_NULL_TYPE: 'NonNullType',
+  // Type System Definitions
+  SCHEMA_DEFINITION: 'SchemaDefinition',
+  OPERATION_TYPE_DEFINITION: 'OperationTypeDefinition',
+  // Type Definitions
+  SCALAR_TYPE_DEFINITION: 'ScalarTypeDefinition',
+  OBJECT_TYPE_DEFINITION: 'ObjectTypeDefinition',
+  FIELD_DEFINITION: 'FieldDefinition',
+  INPUT_VALUE_DEFINITION: 'InputValueDefinition',
+  INTERFACE_TYPE_DEFINITION: 'InterfaceTypeDefinition',
+  UNION_TYPE_DEFINITION: 'UnionTypeDefinition',
+  ENUM_TYPE_DEFINITION: 'EnumTypeDefinition',
+  ENUM_VALUE_DEFINITION: 'EnumValueDefinition',
+  INPUT_OBJECT_TYPE_DEFINITION: 'InputObjectTypeDefinition',
+  // Directive Definitions
+  DIRECTIVE_DEFINITION: 'DirectiveDefinition',
+  // Type System Extensions
+  SCHEMA_EXTENSION: 'SchemaExtension',
+  // Type Extensions
+  SCALAR_TYPE_EXTENSION: 'ScalarTypeExtension',
+  OBJECT_TYPE_EXTENSION: 'ObjectTypeExtension',
+  INTERFACE_TYPE_EXTENSION: 'InterfaceTypeExtension',
+  UNION_TYPE_EXTENSION: 'UnionTypeExtension',
+  ENUM_TYPE_EXTENSION: 'EnumTypeExtension',
+  INPUT_OBJECT_TYPE_EXTENSION: 'InputObjectTypeExtension'
+});
+/**
+ * The enum type representing the possible kind values of AST nodes.
+ */
+
+exports.Kind = Kind;
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/lexer.js":
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/lexer.js ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createLexer = createLexer;
+exports.getTokenDesc = getTokenDesc;
+exports.TokenKind = void 0;
+
+var _error = __webpack_require__(/*! ../error */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/index.js");
+
+var _blockStringValue = _interopRequireDefault(__webpack_require__(/*! ./blockStringValue */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/blockStringValue.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Given a Source object, this returns a Lexer for that source.
+ * A Lexer is a stateful stream generator in that every time
+ * it is advanced, it returns the next token in the Source. Assuming the
+ * source lexes, the final Token emitted by the lexer will be of kind
+ * EOF, after which the lexer will repeatedly return the same EOF token
+ * whenever called.
+ */
+function createLexer(source, options) {
+  var startOfFileToken = new Tok(TokenKind.SOF, 0, 0, 0, 0, null);
+  var lexer = {
+    source: source,
+    options: options,
+    lastToken: startOfFileToken,
+    token: startOfFileToken,
+    line: 1,
+    lineStart: 0,
+    advance: advanceLexer,
+    lookahead: lookahead
+  };
+  return lexer;
+}
+
+function advanceLexer() {
+  this.lastToken = this.token;
+  var token = this.token = this.lookahead();
+  return token;
+}
+
+function lookahead() {
+  var token = this.token;
+
+  if (token.kind !== TokenKind.EOF) {
+    do {
+      // Note: next is only mutable during parsing, so we cast to allow this.
+      token = token.next || (token.next = readToken(this, token));
+    } while (token.kind === TokenKind.COMMENT);
+  }
+
+  return token;
+}
+/**
+ * The return type of createLexer.
+ */
+
+
+/**
+ * An exported enum describing the different kinds of tokens that the
+ * lexer emits.
+ */
+var TokenKind = Object.freeze({
+  SOF: '<SOF>',
+  EOF: '<EOF>',
+  BANG: '!',
+  DOLLAR: '$',
+  AMP: '&',
+  PAREN_L: '(',
+  PAREN_R: ')',
+  SPREAD: '...',
+  COLON: ':',
+  EQUALS: '=',
+  AT: '@',
+  BRACKET_L: '[',
+  BRACKET_R: ']',
+  BRACE_L: '{',
+  PIPE: '|',
+  BRACE_R: '}',
+  NAME: 'Name',
+  INT: 'Int',
+  FLOAT: 'Float',
+  STRING: 'String',
+  BLOCK_STRING: 'BlockString',
+  COMMENT: 'Comment'
+});
+/**
+ * The enum type representing the token kinds values.
+ */
+
+exports.TokenKind = TokenKind;
+
+/**
+ * A helper function to describe a token as a string for debugging
+ */
+function getTokenDesc(token) {
+  var value = token.value;
+  return value ? "".concat(token.kind, " \"").concat(value, "\"") : token.kind;
+}
+
+var charCodeAt = String.prototype.charCodeAt;
+var slice = String.prototype.slice;
+/**
+ * Helper function for constructing the Token object.
+ */
+
+function Tok(kind, start, end, line, column, prev, value) {
+  this.kind = kind;
+  this.start = start;
+  this.end = end;
+  this.line = line;
+  this.column = column;
+  this.value = value;
+  this.prev = prev;
+  this.next = null;
+} // Print a simplified form when appearing in JSON/util.inspect.
+
+
+Tok.prototype.toJSON = Tok.prototype.inspect = function toJSON() {
+  return {
+    kind: this.kind,
+    value: this.value,
+    line: this.line,
+    column: this.column
+  };
+};
+
+function printCharCode(code) {
+  return (// NaN/undefined represents access beyond the end of the file.
+    isNaN(code) ? TokenKind.EOF : // Trust JSON for ASCII.
+    code < 0x007f ? JSON.stringify(String.fromCharCode(code)) : // Otherwise print the escaped form.
+    "\"\\u".concat(('00' + code.toString(16).toUpperCase()).slice(-4), "\"")
+  );
+}
+/**
+ * Gets the next token from the source starting at the given position.
+ *
+ * This skips over whitespace and comments until it finds the next lexable
+ * token, then lexes punctuators immediately or calls the appropriate helper
+ * function for more complicated tokens.
+ */
+
+
+function readToken(lexer, prev) {
+  var source = lexer.source;
+  var body = source.body;
+  var bodyLength = body.length;
+  var pos = positionAfterWhitespace(body, prev.end, lexer);
+  var line = lexer.line;
+  var col = 1 + pos - lexer.lineStart;
+
+  if (pos >= bodyLength) {
+    return new Tok(TokenKind.EOF, bodyLength, bodyLength, line, col, prev);
+  }
+
+  var code = charCodeAt.call(body, pos); // SourceCharacter
+
+  switch (code) {
+    // !
+    case 33:
+      return new Tok(TokenKind.BANG, pos, pos + 1, line, col, prev);
+    // #
+
+    case 35:
+      return readComment(source, pos, line, col, prev);
+    // $
+
+    case 36:
+      return new Tok(TokenKind.DOLLAR, pos, pos + 1, line, col, prev);
+    // &
+
+    case 38:
+      return new Tok(TokenKind.AMP, pos, pos + 1, line, col, prev);
+    // (
+
+    case 40:
+      return new Tok(TokenKind.PAREN_L, pos, pos + 1, line, col, prev);
+    // )
+
+    case 41:
+      return new Tok(TokenKind.PAREN_R, pos, pos + 1, line, col, prev);
+    // .
+
+    case 46:
+      if (charCodeAt.call(body, pos + 1) === 46 && charCodeAt.call(body, pos + 2) === 46) {
+        return new Tok(TokenKind.SPREAD, pos, pos + 3, line, col, prev);
+      }
+
+      break;
+    // :
+
+    case 58:
+      return new Tok(TokenKind.COLON, pos, pos + 1, line, col, prev);
+    // =
+
+    case 61:
+      return new Tok(TokenKind.EQUALS, pos, pos + 1, line, col, prev);
+    // @
+
+    case 64:
+      return new Tok(TokenKind.AT, pos, pos + 1, line, col, prev);
+    // [
+
+    case 91:
+      return new Tok(TokenKind.BRACKET_L, pos, pos + 1, line, col, prev);
+    // ]
+
+    case 93:
+      return new Tok(TokenKind.BRACKET_R, pos, pos + 1, line, col, prev);
+    // {
+
+    case 123:
+      return new Tok(TokenKind.BRACE_L, pos, pos + 1, line, col, prev);
+    // |
+
+    case 124:
+      return new Tok(TokenKind.PIPE, pos, pos + 1, line, col, prev);
+    // }
+
+    case 125:
+      return new Tok(TokenKind.BRACE_R, pos, pos + 1, line, col, prev);
+    // A-Z _ a-z
+
+    case 65:
+    case 66:
+    case 67:
+    case 68:
+    case 69:
+    case 70:
+    case 71:
+    case 72:
+    case 73:
+    case 74:
+    case 75:
+    case 76:
+    case 77:
+    case 78:
+    case 79:
+    case 80:
+    case 81:
+    case 82:
+    case 83:
+    case 84:
+    case 85:
+    case 86:
+    case 87:
+    case 88:
+    case 89:
+    case 90:
+    case 95:
+    case 97:
+    case 98:
+    case 99:
+    case 100:
+    case 101:
+    case 102:
+    case 103:
+    case 104:
+    case 105:
+    case 106:
+    case 107:
+    case 108:
+    case 109:
+    case 110:
+    case 111:
+    case 112:
+    case 113:
+    case 114:
+    case 115:
+    case 116:
+    case 117:
+    case 118:
+    case 119:
+    case 120:
+    case 121:
+    case 122:
+      return readName(source, pos, line, col, prev);
+    // - 0-9
+
+    case 45:
+    case 48:
+    case 49:
+    case 50:
+    case 51:
+    case 52:
+    case 53:
+    case 54:
+    case 55:
+    case 56:
+    case 57:
+      return readNumber(source, pos, code, line, col, prev);
+    // "
+
+    case 34:
+      if (charCodeAt.call(body, pos + 1) === 34 && charCodeAt.call(body, pos + 2) === 34) {
+        return readBlockString(source, pos, line, col, prev);
+      }
+
+      return readString(source, pos, line, col, prev);
+  }
+
+  throw (0, _error.syntaxError)(source, pos, unexpectedCharacterMessage(code));
+}
+/**
+ * Report a message that an unexpected character was encountered.
+ */
+
+
+function unexpectedCharacterMessage(code) {
+  if (code < 0x0020 && code !== 0x0009 && code !== 0x000a && code !== 0x000d) {
+    return "Cannot contain the invalid character ".concat(printCharCode(code), ".");
+  }
+
+  if (code === 39) {
+    // '
+    return "Unexpected single quote character ('), did you mean to use " + 'a double quote (")?';
+  }
+
+  return "Cannot parse the unexpected character ".concat(printCharCode(code), ".");
+}
+/**
+ * Reads from body starting at startPosition until it finds a non-whitespace
+ * or commented character, then returns the position of that character for
+ * lexing.
+ */
+
+
+function positionAfterWhitespace(body, startPosition, lexer) {
+  var bodyLength = body.length;
+  var position = startPosition;
+
+  while (position < bodyLength) {
+    var code = charCodeAt.call(body, position); // tab | space | comma | BOM
+
+    if (code === 9 || code === 32 || code === 44 || code === 0xfeff) {
+      ++position;
+    } else if (code === 10) {
+      // new line
+      ++position;
+      ++lexer.line;
+      lexer.lineStart = position;
+    } else if (code === 13) {
+      // carriage return
+      if (charCodeAt.call(body, position + 1) === 10) {
+        position += 2;
+      } else {
+        ++position;
+      }
+
+      ++lexer.line;
+      lexer.lineStart = position;
+    } else {
+      break;
+    }
+  }
+
+  return position;
+}
+/**
+ * Reads a comment token from the source file.
+ *
+ * #[\u0009\u0020-\uFFFF]*
+ */
+
+
+function readComment(source, start, line, col, prev) {
+  var body = source.body;
+  var code;
+  var position = start;
+
+  do {
+    code = charCodeAt.call(body, ++position);
+  } while (code !== null && ( // SourceCharacter but not LineTerminator
+  code > 0x001f || code === 0x0009));
+
+  return new Tok(TokenKind.COMMENT, start, position, line, col, prev, slice.call(body, start + 1, position));
+}
+/**
+ * Reads a number token from the source file, either a float
+ * or an int depending on whether a decimal point appears.
+ *
+ * Int:   -?(0|[1-9][0-9]*)
+ * Float: -?(0|[1-9][0-9]*)(\.[0-9]+)?((E|e)(+|-)?[0-9]+)?
+ */
+
+
+function readNumber(source, start, firstCode, line, col, prev) {
+  var body = source.body;
+  var code = firstCode;
+  var position = start;
+  var isFloat = false;
+
+  if (code === 45) {
+    // -
+    code = charCodeAt.call(body, ++position);
+  }
+
+  if (code === 48) {
+    // 0
+    code = charCodeAt.call(body, ++position);
+
+    if (code >= 48 && code <= 57) {
+      throw (0, _error.syntaxError)(source, position, "Invalid number, unexpected digit after 0: ".concat(printCharCode(code), "."));
+    }
+  } else {
+    position = readDigits(source, position, code);
+    code = charCodeAt.call(body, position);
+  }
+
+  if (code === 46) {
+    // .
+    isFloat = true;
+    code = charCodeAt.call(body, ++position);
+    position = readDigits(source, position, code);
+    code = charCodeAt.call(body, position);
+  }
+
+  if (code === 69 || code === 101) {
+    // E e
+    isFloat = true;
+    code = charCodeAt.call(body, ++position);
+
+    if (code === 43 || code === 45) {
+      // + -
+      code = charCodeAt.call(body, ++position);
+    }
+
+    position = readDigits(source, position, code);
+  }
+
+  return new Tok(isFloat ? TokenKind.FLOAT : TokenKind.INT, start, position, line, col, prev, slice.call(body, start, position));
+}
+/**
+ * Returns the new position in the source after reading digits.
+ */
+
+
+function readDigits(source, start, firstCode) {
+  var body = source.body;
+  var position = start;
+  var code = firstCode;
+
+  if (code >= 48 && code <= 57) {
+    // 0 - 9
+    do {
+      code = charCodeAt.call(body, ++position);
+    } while (code >= 48 && code <= 57); // 0 - 9
+
+
+    return position;
+  }
+
+  throw (0, _error.syntaxError)(source, position, "Invalid number, expected digit but got: ".concat(printCharCode(code), "."));
+}
+/**
+ * Reads a string token from the source file.
+ *
+ * "([^"\\\u000A\u000D]|(\\(u[0-9a-fA-F]{4}|["\\/bfnrt])))*"
+ */
+
+
+function readString(source, start, line, col, prev) {
+  var body = source.body;
+  var position = start + 1;
+  var chunkStart = position;
+  var code = 0;
+  var value = '';
+
+  while (position < body.length && (code = charCodeAt.call(body, position)) !== null && // not LineTerminator
+  code !== 0x000a && code !== 0x000d) {
+    // Closing Quote (")
+    if (code === 34) {
+      value += slice.call(body, chunkStart, position);
+      return new Tok(TokenKind.STRING, start, position + 1, line, col, prev, value);
+    } // SourceCharacter
+
+
+    if (code < 0x0020 && code !== 0x0009) {
+      throw (0, _error.syntaxError)(source, position, "Invalid character within String: ".concat(printCharCode(code), "."));
+    }
+
+    ++position;
+
+    if (code === 92) {
+      // \
+      value += slice.call(body, chunkStart, position - 1);
+      code = charCodeAt.call(body, position);
+
+      switch (code) {
+        case 34:
+          value += '"';
+          break;
+
+        case 47:
+          value += '/';
+          break;
+
+        case 92:
+          value += '\\';
+          break;
+
+        case 98:
+          value += '\b';
+          break;
+
+        case 102:
+          value += '\f';
+          break;
+
+        case 110:
+          value += '\n';
+          break;
+
+        case 114:
+          value += '\r';
+          break;
+
+        case 116:
+          value += '\t';
+          break;
+
+        case 117:
+          // u
+          var charCode = uniCharCode(charCodeAt.call(body, position + 1), charCodeAt.call(body, position + 2), charCodeAt.call(body, position + 3), charCodeAt.call(body, position + 4));
+
+          if (charCode < 0) {
+            throw (0, _error.syntaxError)(source, position, 'Invalid character escape sequence: ' + "\\u".concat(body.slice(position + 1, position + 5), "."));
+          }
+
+          value += String.fromCharCode(charCode);
+          position += 4;
+          break;
+
+        default:
+          throw (0, _error.syntaxError)(source, position, "Invalid character escape sequence: \\".concat(String.fromCharCode(code), "."));
+      }
+
+      ++position;
+      chunkStart = position;
+    }
+  }
+
+  throw (0, _error.syntaxError)(source, position, 'Unterminated string.');
+}
+/**
+ * Reads a block string token from the source file.
+ *
+ * """("?"?(\\"""|\\(?!=""")|[^"\\]))*"""
+ */
+
+
+function readBlockString(source, start, line, col, prev) {
+  var body = source.body;
+  var position = start + 3;
+  var chunkStart = position;
+  var code = 0;
+  var rawValue = '';
+
+  while (position < body.length && (code = charCodeAt.call(body, position)) !== null) {
+    // Closing Triple-Quote (""")
+    if (code === 34 && charCodeAt.call(body, position + 1) === 34 && charCodeAt.call(body, position + 2) === 34) {
+      rawValue += slice.call(body, chunkStart, position);
+      return new Tok(TokenKind.BLOCK_STRING, start, position + 3, line, col, prev, (0, _blockStringValue.default)(rawValue));
+    } // SourceCharacter
+
+
+    if (code < 0x0020 && code !== 0x0009 && code !== 0x000a && code !== 0x000d) {
+      throw (0, _error.syntaxError)(source, position, "Invalid character within String: ".concat(printCharCode(code), "."));
+    } // Escape Triple-Quote (\""")
+
+
+    if (code === 92 && charCodeAt.call(body, position + 1) === 34 && charCodeAt.call(body, position + 2) === 34 && charCodeAt.call(body, position + 3) === 34) {
+      rawValue += slice.call(body, chunkStart, position) + '"""';
+      position += 4;
+      chunkStart = position;
+    } else {
+      ++position;
+    }
+  }
+
+  throw (0, _error.syntaxError)(source, position, 'Unterminated string.');
+}
+/**
+ * Converts four hexadecimal chars to the integer that the
+ * string represents. For example, uniCharCode('0','0','0','f')
+ * will return 15, and uniCharCode('0','0','f','f') returns 255.
+ *
+ * Returns a negative number on error, if a char was invalid.
+ *
+ * This is implemented by noting that char2hex() returns -1 on error,
+ * which means the result of ORing the char2hex() will also be negative.
+ */
+
+
+function uniCharCode(a, b, c, d) {
+  return char2hex(a) << 12 | char2hex(b) << 8 | char2hex(c) << 4 | char2hex(d);
+}
+/**
+ * Converts a hex character to its integer value.
+ * '0' becomes 0, '9' becomes 9
+ * 'A' becomes 10, 'F' becomes 15
+ * 'a' becomes 10, 'f' becomes 15
+ *
+ * Returns -1 on error.
+ */
+
+
+function char2hex(a) {
+  return a >= 48 && a <= 57 ? a - 48 // 0-9
+  : a >= 65 && a <= 70 ? a - 55 // A-F
+  : a >= 97 && a <= 102 ? a - 87 // a-f
+  : -1;
+}
+/**
+ * Reads an alphanumeric + underscore name from the source.
+ *
+ * [_A-Za-z][_0-9A-Za-z]*
+ */
+
+
+function readName(source, start, line, col, prev) {
+  var body = source.body;
+  var bodyLength = body.length;
+  var position = start + 1;
+  var code = 0;
+
+  while (position !== bodyLength && (code = charCodeAt.call(body, position)) !== null && (code === 95 || // _
+  code >= 48 && code <= 57 || // 0-9
+  code >= 65 && code <= 90 || // A-Z
+  code >= 97 && code <= 122) // a-z
+  ) {
+    ++position;
+  }
+
+  return new Tok(TokenKind.NAME, start, position, line, col, prev, slice.call(body, start, position));
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/location.js":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/location.js ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getLocation = getLocation;
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Represents a location in a Source.
+ */
+
+/**
+ * Takes a Source and a UTF-8 character offset, and returns the corresponding
+ * line and column as a SourceLocation.
+ */
+function getLocation(source, position) {
+  var lineRegexp = /\r\n|[\n\r]/g;
+  var line = 1;
+  var column = position + 1;
+  var match;
+
+  while ((match = lineRegexp.exec(source.body)) && match.index < position) {
+    line += 1;
+    column = position + 1 - (match.index + match[0].length);
+  }
+
+  return {
+    line: line,
+    column: column
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/parser.js":
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/parser.js ***!
+  \***********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.parse = parse;
+exports.parseValue = parseValue;
+exports.parseType = parseType;
+exports.parseConstValue = parseConstValue;
+exports.parseTypeReference = parseTypeReference;
+exports.parseNamedType = parseNamedType;
+
+var _inspect = _interopRequireDefault(__webpack_require__(/*! ../jsutils/inspect */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/jsutils/inspect.js"));
+
+var _source = __webpack_require__(/*! ./source */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/source.js");
+
+var _error = __webpack_require__(/*! ../error */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/error/index.js");
+
+var _lexer = __webpack_require__(/*! ./lexer */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/lexer.js");
+
+var _kinds = __webpack_require__(/*! ./kinds */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/kinds.js");
+
+var _directiveLocation = __webpack_require__(/*! ./directiveLocation */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/directiveLocation.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Given a GraphQL source, parses it into a Document.
+ * Throws GraphQLError if a syntax error is encountered.
+ */
+function parse(source, options) {
+  var sourceObj = typeof source === 'string' ? new _source.Source(source) : source;
+
+  if (!(sourceObj instanceof _source.Source)) {
+    throw new TypeError("Must provide Source. Received: ".concat((0, _inspect.default)(sourceObj)));
+  }
+
+  var lexer = (0, _lexer.createLexer)(sourceObj, options || {});
+  return parseDocument(lexer);
+}
+/**
+ * Given a string containing a GraphQL value (ex. `[42]`), parse the AST for
+ * that value.
+ * Throws GraphQLError if a syntax error is encountered.
+ *
+ * This is useful within tools that operate upon GraphQL Values directly and
+ * in isolation of complete GraphQL documents.
+ *
+ * Consider providing the results to the utility function: valueFromAST().
+ */
+
+
+function parseValue(source, options) {
+  var sourceObj = typeof source === 'string' ? new _source.Source(source) : source;
+  var lexer = (0, _lexer.createLexer)(sourceObj, options || {});
+  expect(lexer, _lexer.TokenKind.SOF);
+  var value = parseValueLiteral(lexer, false);
+  expect(lexer, _lexer.TokenKind.EOF);
+  return value;
+}
+/**
+ * Given a string containing a GraphQL Type (ex. `[Int!]`), parse the AST for
+ * that type.
+ * Throws GraphQLError if a syntax error is encountered.
+ *
+ * This is useful within tools that operate upon GraphQL Types directly and
+ * in isolation of complete GraphQL documents.
+ *
+ * Consider providing the results to the utility function: typeFromAST().
+ */
+
+
+function parseType(source, options) {
+  var sourceObj = typeof source === 'string' ? new _source.Source(source) : source;
+  var lexer = (0, _lexer.createLexer)(sourceObj, options || {});
+  expect(lexer, _lexer.TokenKind.SOF);
+  var type = parseTypeReference(lexer);
+  expect(lexer, _lexer.TokenKind.EOF);
+  return type;
+}
+/**
+ * Converts a name lex token into a name parse node.
+ */
+
+
+function parseName(lexer) {
+  var token = expect(lexer, _lexer.TokenKind.NAME);
+  return {
+    kind: _kinds.Kind.NAME,
+    value: token.value,
+    loc: loc(lexer, token)
+  };
+} // Implements the parsing rules in the Document section.
+
+/**
+ * Document : Definition+
+ */
+
+
+function parseDocument(lexer) {
+  var start = lexer.token;
+  return {
+    kind: _kinds.Kind.DOCUMENT,
+    definitions: many(lexer, _lexer.TokenKind.SOF, parseDefinition, _lexer.TokenKind.EOF),
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * Definition :
+ *   - ExecutableDefinition
+ *   - TypeSystemDefinition
+ *   - TypeSystemExtension
+ */
+
+
+function parseDefinition(lexer) {
+  if (peek(lexer, _lexer.TokenKind.NAME)) {
+    switch (lexer.token.value) {
+      case 'query':
+      case 'mutation':
+      case 'subscription':
+      case 'fragment':
+        return parseExecutableDefinition(lexer);
+
+      case 'schema':
+      case 'scalar':
+      case 'type':
+      case 'interface':
+      case 'union':
+      case 'enum':
+      case 'input':
+      case 'directive':
+        return parseTypeSystemDefinition(lexer);
+
+      case 'extend':
+        return parseTypeSystemExtension(lexer);
+    }
+  } else if (peek(lexer, _lexer.TokenKind.BRACE_L)) {
+    return parseExecutableDefinition(lexer);
+  } else if (peekDescription(lexer)) {
+    return parseTypeSystemDefinition(lexer);
+  }
+
+  throw unexpected(lexer);
+}
+/**
+ * ExecutableDefinition :
+ *   - OperationDefinition
+ *   - FragmentDefinition
+ */
+
+
+function parseExecutableDefinition(lexer) {
+  if (peek(lexer, _lexer.TokenKind.NAME)) {
+    switch (lexer.token.value) {
+      case 'query':
+      case 'mutation':
+      case 'subscription':
+        return parseOperationDefinition(lexer);
+
+      case 'fragment':
+        return parseFragmentDefinition(lexer);
+    }
+  } else if (peek(lexer, _lexer.TokenKind.BRACE_L)) {
+    return parseOperationDefinition(lexer);
+  }
+
+  throw unexpected(lexer);
+} // Implements the parsing rules in the Operations section.
+
+/**
+ * OperationDefinition :
+ *  - SelectionSet
+ *  - OperationType Name? VariableDefinitions? Directives? SelectionSet
+ */
+
+
+function parseOperationDefinition(lexer) {
+  var start = lexer.token;
+
+  if (peek(lexer, _lexer.TokenKind.BRACE_L)) {
+    return {
+      kind: _kinds.Kind.OPERATION_DEFINITION,
+      operation: 'query',
+      name: undefined,
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: parseSelectionSet(lexer),
+      loc: loc(lexer, start)
+    };
+  }
+
+  var operation = parseOperationType(lexer);
+  var name;
+
+  if (peek(lexer, _lexer.TokenKind.NAME)) {
+    name = parseName(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.OPERATION_DEFINITION,
+    operation: operation,
+    name: name,
+    variableDefinitions: parseVariableDefinitions(lexer),
+    directives: parseDirectives(lexer, false),
+    selectionSet: parseSelectionSet(lexer),
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * OperationType : one of query mutation subscription
+ */
+
+
+function parseOperationType(lexer) {
+  var operationToken = expect(lexer, _lexer.TokenKind.NAME);
+
+  switch (operationToken.value) {
+    case 'query':
+      return 'query';
+
+    case 'mutation':
+      return 'mutation';
+
+    case 'subscription':
+      return 'subscription';
+  }
+
+  throw unexpected(lexer, operationToken);
+}
+/**
+ * VariableDefinitions : ( VariableDefinition+ )
+ */
+
+
+function parseVariableDefinitions(lexer) {
+  return peek(lexer, _lexer.TokenKind.PAREN_L) ? many(lexer, _lexer.TokenKind.PAREN_L, parseVariableDefinition, _lexer.TokenKind.PAREN_R) : [];
+}
+/**
+ * VariableDefinition : Variable : Type DefaultValue? Directives[Const]?
+ */
+
+
+function parseVariableDefinition(lexer) {
+  var start = lexer.token;
+
+  if (lexer.options.experimentalVariableDefinitionDirectives) {
+    return {
+      kind: _kinds.Kind.VARIABLE_DEFINITION,
+      variable: parseVariable(lexer),
+      type: (expect(lexer, _lexer.TokenKind.COLON), parseTypeReference(lexer)),
+      defaultValue: skip(lexer, _lexer.TokenKind.EQUALS) ? parseValueLiteral(lexer, true) : undefined,
+      directives: parseDirectives(lexer, true),
+      loc: loc(lexer, start)
+    };
+  }
+
+  return {
+    kind: _kinds.Kind.VARIABLE_DEFINITION,
+    variable: parseVariable(lexer),
+    type: (expect(lexer, _lexer.TokenKind.COLON), parseTypeReference(lexer)),
+    defaultValue: skip(lexer, _lexer.TokenKind.EQUALS) ? parseValueLiteral(lexer, true) : undefined,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * Variable : $ Name
+ */
+
+
+function parseVariable(lexer) {
+  var start = lexer.token;
+  expect(lexer, _lexer.TokenKind.DOLLAR);
+  return {
+    kind: _kinds.Kind.VARIABLE,
+    name: parseName(lexer),
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * SelectionSet : { Selection+ }
+ */
+
+
+function parseSelectionSet(lexer) {
+  var start = lexer.token;
+  return {
+    kind: _kinds.Kind.SELECTION_SET,
+    selections: many(lexer, _lexer.TokenKind.BRACE_L, parseSelection, _lexer.TokenKind.BRACE_R),
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * Selection :
+ *   - Field
+ *   - FragmentSpread
+ *   - InlineFragment
+ */
+
+
+function parseSelection(lexer) {
+  return peek(lexer, _lexer.TokenKind.SPREAD) ? parseFragment(lexer) : parseField(lexer);
+}
+/**
+ * Field : Alias? Name Arguments? Directives? SelectionSet?
+ *
+ * Alias : Name :
+ */
+
+
+function parseField(lexer) {
+  var start = lexer.token;
+  var nameOrAlias = parseName(lexer);
+  var alias;
+  var name;
+
+  if (skip(lexer, _lexer.TokenKind.COLON)) {
+    alias = nameOrAlias;
+    name = parseName(lexer);
+  } else {
+    name = nameOrAlias;
+  }
+
+  return {
+    kind: _kinds.Kind.FIELD,
+    alias: alias,
+    name: name,
+    arguments: parseArguments(lexer, false),
+    directives: parseDirectives(lexer, false),
+    selectionSet: peek(lexer, _lexer.TokenKind.BRACE_L) ? parseSelectionSet(lexer) : undefined,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * Arguments[Const] : ( Argument[?Const]+ )
+ */
+
+
+function parseArguments(lexer, isConst) {
+  var item = isConst ? parseConstArgument : parseArgument;
+  return peek(lexer, _lexer.TokenKind.PAREN_L) ? many(lexer, _lexer.TokenKind.PAREN_L, item, _lexer.TokenKind.PAREN_R) : [];
+}
+/**
+ * Argument[Const] : Name : Value[?Const]
+ */
+
+
+function parseArgument(lexer) {
+  var start = lexer.token;
+  return {
+    kind: _kinds.Kind.ARGUMENT,
+    name: parseName(lexer),
+    value: (expect(lexer, _lexer.TokenKind.COLON), parseValueLiteral(lexer, false)),
+    loc: loc(lexer, start)
+  };
+}
+
+function parseConstArgument(lexer) {
+  var start = lexer.token;
+  return {
+    kind: _kinds.Kind.ARGUMENT,
+    name: parseName(lexer),
+    value: (expect(lexer, _lexer.TokenKind.COLON), parseConstValue(lexer)),
+    loc: loc(lexer, start)
+  };
+} // Implements the parsing rules in the Fragments section.
+
+/**
+ * Corresponds to both FragmentSpread and InlineFragment in the spec.
+ *
+ * FragmentSpread : ... FragmentName Directives?
+ *
+ * InlineFragment : ... TypeCondition? Directives? SelectionSet
+ */
+
+
+function parseFragment(lexer) {
+  var start = lexer.token;
+  expect(lexer, _lexer.TokenKind.SPREAD);
+
+  if (peek(lexer, _lexer.TokenKind.NAME) && lexer.token.value !== 'on') {
+    return {
+      kind: _kinds.Kind.FRAGMENT_SPREAD,
+      name: parseFragmentName(lexer),
+      directives: parseDirectives(lexer, false),
+      loc: loc(lexer, start)
+    };
+  }
+
+  var typeCondition;
+
+  if (lexer.token.value === 'on') {
+    lexer.advance();
+    typeCondition = parseNamedType(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.INLINE_FRAGMENT,
+    typeCondition: typeCondition,
+    directives: parseDirectives(lexer, false),
+    selectionSet: parseSelectionSet(lexer),
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * FragmentDefinition :
+ *   - fragment FragmentName on TypeCondition Directives? SelectionSet
+ *
+ * TypeCondition : NamedType
+ */
+
+
+function parseFragmentDefinition(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'fragment'); // Experimental support for defining variables within fragments changes
+  // the grammar of FragmentDefinition:
+  //   - fragment FragmentName VariableDefinitions? on TypeCondition Directives? SelectionSet
+
+  if (lexer.options.experimentalFragmentVariables) {
+    return {
+      kind: _kinds.Kind.FRAGMENT_DEFINITION,
+      name: parseFragmentName(lexer),
+      variableDefinitions: parseVariableDefinitions(lexer),
+      typeCondition: (expectKeyword(lexer, 'on'), parseNamedType(lexer)),
+      directives: parseDirectives(lexer, false),
+      selectionSet: parseSelectionSet(lexer),
+      loc: loc(lexer, start)
+    };
+  }
+
+  return {
+    kind: _kinds.Kind.FRAGMENT_DEFINITION,
+    name: parseFragmentName(lexer),
+    typeCondition: (expectKeyword(lexer, 'on'), parseNamedType(lexer)),
+    directives: parseDirectives(lexer, false),
+    selectionSet: parseSelectionSet(lexer),
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * FragmentName : Name but not `on`
+ */
+
+
+function parseFragmentName(lexer) {
+  if (lexer.token.value === 'on') {
+    throw unexpected(lexer);
+  }
+
+  return parseName(lexer);
+} // Implements the parsing rules in the Values section.
+
+/**
+ * Value[Const] :
+ *   - [~Const] Variable
+ *   - IntValue
+ *   - FloatValue
+ *   - StringValue
+ *   - BooleanValue
+ *   - NullValue
+ *   - EnumValue
+ *   - ListValue[?Const]
+ *   - ObjectValue[?Const]
+ *
+ * BooleanValue : one of `true` `false`
+ *
+ * NullValue : `null`
+ *
+ * EnumValue : Name but not `true`, `false` or `null`
+ */
+
+
+function parseValueLiteral(lexer, isConst) {
+  var token = lexer.token;
+
+  switch (token.kind) {
+    case _lexer.TokenKind.BRACKET_L:
+      return parseList(lexer, isConst);
+
+    case _lexer.TokenKind.BRACE_L:
+      return parseObject(lexer, isConst);
+
+    case _lexer.TokenKind.INT:
+      lexer.advance();
+      return {
+        kind: _kinds.Kind.INT,
+        value: token.value,
+        loc: loc(lexer, token)
+      };
+
+    case _lexer.TokenKind.FLOAT:
+      lexer.advance();
+      return {
+        kind: _kinds.Kind.FLOAT,
+        value: token.value,
+        loc: loc(lexer, token)
+      };
+
+    case _lexer.TokenKind.STRING:
+    case _lexer.TokenKind.BLOCK_STRING:
+      return parseStringLiteral(lexer);
+
+    case _lexer.TokenKind.NAME:
+      if (token.value === 'true' || token.value === 'false') {
+        lexer.advance();
+        return {
+          kind: _kinds.Kind.BOOLEAN,
+          value: token.value === 'true',
+          loc: loc(lexer, token)
+        };
+      } else if (token.value === 'null') {
+        lexer.advance();
+        return {
+          kind: _kinds.Kind.NULL,
+          loc: loc(lexer, token)
+        };
+      }
+
+      lexer.advance();
+      return {
+        kind: _kinds.Kind.ENUM,
+        value: token.value,
+        loc: loc(lexer, token)
+      };
+
+    case _lexer.TokenKind.DOLLAR:
+      if (!isConst) {
+        return parseVariable(lexer);
+      }
+
+      break;
+  }
+
+  throw unexpected(lexer);
+}
+
+function parseStringLiteral(lexer) {
+  var token = lexer.token;
+  lexer.advance();
+  return {
+    kind: _kinds.Kind.STRING,
+    value: token.value,
+    block: token.kind === _lexer.TokenKind.BLOCK_STRING,
+    loc: loc(lexer, token)
+  };
+}
+
+function parseConstValue(lexer) {
+  return parseValueLiteral(lexer, true);
+}
+
+function parseValueValue(lexer) {
+  return parseValueLiteral(lexer, false);
+}
+/**
+ * ListValue[Const] :
+ *   - [ ]
+ *   - [ Value[?Const]+ ]
+ */
+
+
+function parseList(lexer, isConst) {
+  var start = lexer.token;
+  var item = isConst ? parseConstValue : parseValueValue;
+  return {
+    kind: _kinds.Kind.LIST,
+    values: any(lexer, _lexer.TokenKind.BRACKET_L, item, _lexer.TokenKind.BRACKET_R),
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ObjectValue[Const] :
+ *   - { }
+ *   - { ObjectField[?Const]+ }
+ */
+
+
+function parseObject(lexer, isConst) {
+  var start = lexer.token;
+  expect(lexer, _lexer.TokenKind.BRACE_L);
+  var fields = [];
+
+  while (!skip(lexer, _lexer.TokenKind.BRACE_R)) {
+    fields.push(parseObjectField(lexer, isConst));
+  }
+
+  return {
+    kind: _kinds.Kind.OBJECT,
+    fields: fields,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ObjectField[Const] : Name : Value[?Const]
+ */
+
+
+function parseObjectField(lexer, isConst) {
+  var start = lexer.token;
+  return {
+    kind: _kinds.Kind.OBJECT_FIELD,
+    name: parseName(lexer),
+    value: (expect(lexer, _lexer.TokenKind.COLON), parseValueLiteral(lexer, isConst)),
+    loc: loc(lexer, start)
+  };
+} // Implements the parsing rules in the Directives section.
+
+/**
+ * Directives[Const] : Directive[?Const]+
+ */
+
+
+function parseDirectives(lexer, isConst) {
+  var directives = [];
+
+  while (peek(lexer, _lexer.TokenKind.AT)) {
+    directives.push(parseDirective(lexer, isConst));
+  }
+
+  return directives;
+}
+/**
+ * Directive[Const] : @ Name Arguments[?Const]?
+ */
+
+
+function parseDirective(lexer, isConst) {
+  var start = lexer.token;
+  expect(lexer, _lexer.TokenKind.AT);
+  return {
+    kind: _kinds.Kind.DIRECTIVE,
+    name: parseName(lexer),
+    arguments: parseArguments(lexer, isConst),
+    loc: loc(lexer, start)
+  };
+} // Implements the parsing rules in the Types section.
+
+/**
+ * Type :
+ *   - NamedType
+ *   - ListType
+ *   - NonNullType
+ */
+
+
+function parseTypeReference(lexer) {
+  var start = lexer.token;
+  var type;
+
+  if (skip(lexer, _lexer.TokenKind.BRACKET_L)) {
+    type = parseTypeReference(lexer);
+    expect(lexer, _lexer.TokenKind.BRACKET_R);
+    type = {
+      kind: _kinds.Kind.LIST_TYPE,
+      type: type,
+      loc: loc(lexer, start)
+    };
+  } else {
+    type = parseNamedType(lexer);
+  }
+
+  if (skip(lexer, _lexer.TokenKind.BANG)) {
+    return {
+      kind: _kinds.Kind.NON_NULL_TYPE,
+      type: type,
+      loc: loc(lexer, start)
+    };
+  }
+
+  return type;
+}
+/**
+ * NamedType : Name
+ */
+
+
+function parseNamedType(lexer) {
+  var start = lexer.token;
+  return {
+    kind: _kinds.Kind.NAMED_TYPE,
+    name: parseName(lexer),
+    loc: loc(lexer, start)
+  };
+} // Implements the parsing rules in the Type Definition section.
+
+/**
+ * TypeSystemDefinition :
+ *   - SchemaDefinition
+ *   - TypeDefinition
+ *   - DirectiveDefinition
+ *
+ * TypeDefinition :
+ *   - ScalarTypeDefinition
+ *   - ObjectTypeDefinition
+ *   - InterfaceTypeDefinition
+ *   - UnionTypeDefinition
+ *   - EnumTypeDefinition
+ *   - InputObjectTypeDefinition
+ */
+
+
+function parseTypeSystemDefinition(lexer) {
+  // Many definitions begin with a description and require a lookahead.
+  var keywordToken = peekDescription(lexer) ? lexer.lookahead() : lexer.token;
+
+  if (keywordToken.kind === _lexer.TokenKind.NAME) {
+    switch (keywordToken.value) {
+      case 'schema':
+        return parseSchemaDefinition(lexer);
+
+      case 'scalar':
+        return parseScalarTypeDefinition(lexer);
+
+      case 'type':
+        return parseObjectTypeDefinition(lexer);
+
+      case 'interface':
+        return parseInterfaceTypeDefinition(lexer);
+
+      case 'union':
+        return parseUnionTypeDefinition(lexer);
+
+      case 'enum':
+        return parseEnumTypeDefinition(lexer);
+
+      case 'input':
+        return parseInputObjectTypeDefinition(lexer);
+
+      case 'directive':
+        return parseDirectiveDefinition(lexer);
+    }
+  }
+
+  throw unexpected(lexer, keywordToken);
+}
+
+function peekDescription(lexer) {
+  return peek(lexer, _lexer.TokenKind.STRING) || peek(lexer, _lexer.TokenKind.BLOCK_STRING);
+}
+/**
+ * Description : StringValue
+ */
+
+
+function parseDescription(lexer) {
+  if (peekDescription(lexer)) {
+    return parseStringLiteral(lexer);
+  }
+}
+/**
+ * SchemaDefinition : schema Directives[Const]? { OperationTypeDefinition+ }
+ */
+
+
+function parseSchemaDefinition(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'schema');
+  var directives = parseDirectives(lexer, true);
+  var operationTypes = many(lexer, _lexer.TokenKind.BRACE_L, parseOperationTypeDefinition, _lexer.TokenKind.BRACE_R);
+  return {
+    kind: _kinds.Kind.SCHEMA_DEFINITION,
+    directives: directives,
+    operationTypes: operationTypes,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * OperationTypeDefinition : OperationType : NamedType
+ */
+
+
+function parseOperationTypeDefinition(lexer) {
+  var start = lexer.token;
+  var operation = parseOperationType(lexer);
+  expect(lexer, _lexer.TokenKind.COLON);
+  var type = parseNamedType(lexer);
+  return {
+    kind: _kinds.Kind.OPERATION_TYPE_DEFINITION,
+    operation: operation,
+    type: type,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ScalarTypeDefinition : Description? scalar Name Directives[Const]?
+ */
+
+
+function parseScalarTypeDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  expectKeyword(lexer, 'scalar');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  return {
+    kind: _kinds.Kind.SCALAR_TYPE_DEFINITION,
+    description: description,
+    name: name,
+    directives: directives,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ObjectTypeDefinition :
+ *   Description?
+ *   type Name ImplementsInterfaces? Directives[Const]? FieldsDefinition?
+ */
+
+
+function parseObjectTypeDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  expectKeyword(lexer, 'type');
+  var name = parseName(lexer);
+  var interfaces = parseImplementsInterfaces(lexer);
+  var directives = parseDirectives(lexer, true);
+  var fields = parseFieldsDefinition(lexer);
+  return {
+    kind: _kinds.Kind.OBJECT_TYPE_DEFINITION,
+    description: description,
+    name: name,
+    interfaces: interfaces,
+    directives: directives,
+    fields: fields,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ImplementsInterfaces :
+ *   - implements `&`? NamedType
+ *   - ImplementsInterfaces & NamedType
+ */
+
+
+function parseImplementsInterfaces(lexer) {
+  var types = [];
+
+  if (lexer.token.value === 'implements') {
+    lexer.advance(); // Optional leading ampersand
+
+    skip(lexer, _lexer.TokenKind.AMP);
+
+    do {
+      types.push(parseNamedType(lexer));
+    } while (skip(lexer, _lexer.TokenKind.AMP) || // Legacy support for the SDL?
+    lexer.options.allowLegacySDLImplementsInterfaces && peek(lexer, _lexer.TokenKind.NAME));
+  }
+
+  return types;
+}
+/**
+ * FieldsDefinition : { FieldDefinition+ }
+ */
+
+
+function parseFieldsDefinition(lexer) {
+  // Legacy support for the SDL?
+  if (lexer.options.allowLegacySDLEmptyFields && peek(lexer, _lexer.TokenKind.BRACE_L) && lexer.lookahead().kind === _lexer.TokenKind.BRACE_R) {
+    lexer.advance();
+    lexer.advance();
+    return [];
+  }
+
+  return peek(lexer, _lexer.TokenKind.BRACE_L) ? many(lexer, _lexer.TokenKind.BRACE_L, parseFieldDefinition, _lexer.TokenKind.BRACE_R) : [];
+}
+/**
+ * FieldDefinition :
+ *   - Description? Name ArgumentsDefinition? : Type Directives[Const]?
+ */
+
+
+function parseFieldDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  var name = parseName(lexer);
+  var args = parseArgumentDefs(lexer);
+  expect(lexer, _lexer.TokenKind.COLON);
+  var type = parseTypeReference(lexer);
+  var directives = parseDirectives(lexer, true);
+  return {
+    kind: _kinds.Kind.FIELD_DEFINITION,
+    description: description,
+    name: name,
+    arguments: args,
+    type: type,
+    directives: directives,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ArgumentsDefinition : ( InputValueDefinition+ )
+ */
+
+
+function parseArgumentDefs(lexer) {
+  if (!peek(lexer, _lexer.TokenKind.PAREN_L)) {
+    return [];
+  }
+
+  return many(lexer, _lexer.TokenKind.PAREN_L, parseInputValueDef, _lexer.TokenKind.PAREN_R);
+}
+/**
+ * InputValueDefinition :
+ *   - Description? Name : Type DefaultValue? Directives[Const]?
+ */
+
+
+function parseInputValueDef(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  var name = parseName(lexer);
+  expect(lexer, _lexer.TokenKind.COLON);
+  var type = parseTypeReference(lexer);
+  var defaultValue;
+
+  if (skip(lexer, _lexer.TokenKind.EQUALS)) {
+    defaultValue = parseConstValue(lexer);
+  }
+
+  var directives = parseDirectives(lexer, true);
+  return {
+    kind: _kinds.Kind.INPUT_VALUE_DEFINITION,
+    description: description,
+    name: name,
+    type: type,
+    defaultValue: defaultValue,
+    directives: directives,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * InterfaceTypeDefinition :
+ *   - Description? interface Name Directives[Const]? FieldsDefinition?
+ */
+
+
+function parseInterfaceTypeDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  expectKeyword(lexer, 'interface');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var fields = parseFieldsDefinition(lexer);
+  return {
+    kind: _kinds.Kind.INTERFACE_TYPE_DEFINITION,
+    description: description,
+    name: name,
+    directives: directives,
+    fields: fields,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * UnionTypeDefinition :
+ *   - Description? union Name Directives[Const]? UnionMemberTypes?
+ */
+
+
+function parseUnionTypeDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  expectKeyword(lexer, 'union');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var types = parseUnionMemberTypes(lexer);
+  return {
+    kind: _kinds.Kind.UNION_TYPE_DEFINITION,
+    description: description,
+    name: name,
+    directives: directives,
+    types: types,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * UnionMemberTypes :
+ *   - = `|`? NamedType
+ *   - UnionMemberTypes | NamedType
+ */
+
+
+function parseUnionMemberTypes(lexer) {
+  var types = [];
+
+  if (skip(lexer, _lexer.TokenKind.EQUALS)) {
+    // Optional leading pipe
+    skip(lexer, _lexer.TokenKind.PIPE);
+
+    do {
+      types.push(parseNamedType(lexer));
+    } while (skip(lexer, _lexer.TokenKind.PIPE));
+  }
+
+  return types;
+}
+/**
+ * EnumTypeDefinition :
+ *   - Description? enum Name Directives[Const]? EnumValuesDefinition?
+ */
+
+
+function parseEnumTypeDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  expectKeyword(lexer, 'enum');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var values = parseEnumValuesDefinition(lexer);
+  return {
+    kind: _kinds.Kind.ENUM_TYPE_DEFINITION,
+    description: description,
+    name: name,
+    directives: directives,
+    values: values,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * EnumValuesDefinition : { EnumValueDefinition+ }
+ */
+
+
+function parseEnumValuesDefinition(lexer) {
+  return peek(lexer, _lexer.TokenKind.BRACE_L) ? many(lexer, _lexer.TokenKind.BRACE_L, parseEnumValueDefinition, _lexer.TokenKind.BRACE_R) : [];
+}
+/**
+ * EnumValueDefinition : Description? EnumValue Directives[Const]?
+ *
+ * EnumValue : Name
+ */
+
+
+function parseEnumValueDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  return {
+    kind: _kinds.Kind.ENUM_VALUE_DEFINITION,
+    description: description,
+    name: name,
+    directives: directives,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * InputObjectTypeDefinition :
+ *   - Description? input Name Directives[Const]? InputFieldsDefinition?
+ */
+
+
+function parseInputObjectTypeDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  expectKeyword(lexer, 'input');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var fields = parseInputFieldsDefinition(lexer);
+  return {
+    kind: _kinds.Kind.INPUT_OBJECT_TYPE_DEFINITION,
+    description: description,
+    name: name,
+    directives: directives,
+    fields: fields,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * InputFieldsDefinition : { InputValueDefinition+ }
+ */
+
+
+function parseInputFieldsDefinition(lexer) {
+  return peek(lexer, _lexer.TokenKind.BRACE_L) ? many(lexer, _lexer.TokenKind.BRACE_L, parseInputValueDef, _lexer.TokenKind.BRACE_R) : [];
+}
+/**
+ * TypeSystemExtension :
+ *   - SchemaExtension
+ *   - TypeExtension
+ *
+ * TypeExtension :
+ *   - ScalarTypeExtension
+ *   - ObjectTypeExtension
+ *   - InterfaceTypeExtension
+ *   - UnionTypeExtension
+ *   - EnumTypeExtension
+ *   - InputObjectTypeDefinition
+ */
+
+
+function parseTypeSystemExtension(lexer) {
+  var keywordToken = lexer.lookahead();
+
+  if (keywordToken.kind === _lexer.TokenKind.NAME) {
+    switch (keywordToken.value) {
+      case 'schema':
+        return parseSchemaExtension(lexer);
+
+      case 'scalar':
+        return parseScalarTypeExtension(lexer);
+
+      case 'type':
+        return parseObjectTypeExtension(lexer);
+
+      case 'interface':
+        return parseInterfaceTypeExtension(lexer);
+
+      case 'union':
+        return parseUnionTypeExtension(lexer);
+
+      case 'enum':
+        return parseEnumTypeExtension(lexer);
+
+      case 'input':
+        return parseInputObjectTypeExtension(lexer);
+    }
+  }
+
+  throw unexpected(lexer, keywordToken);
+}
+/**
+ * SchemaExtension :
+ *  - extend schema Directives[Const]? { OperationTypeDefinition+ }
+ *  - extend schema Directives[Const]
+ */
+
+
+function parseSchemaExtension(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'extend');
+  expectKeyword(lexer, 'schema');
+  var directives = parseDirectives(lexer, true);
+  var operationTypes = peek(lexer, _lexer.TokenKind.BRACE_L) ? many(lexer, _lexer.TokenKind.BRACE_L, parseOperationTypeDefinition, _lexer.TokenKind.BRACE_R) : [];
+
+  if (directives.length === 0 && operationTypes.length === 0) {
+    throw unexpected(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.SCHEMA_EXTENSION,
+    directives: directives,
+    operationTypes: operationTypes,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ScalarTypeExtension :
+ *   - extend scalar Name Directives[Const]
+ */
+
+
+function parseScalarTypeExtension(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'extend');
+  expectKeyword(lexer, 'scalar');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+
+  if (directives.length === 0) {
+    throw unexpected(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.SCALAR_TYPE_EXTENSION,
+    name: name,
+    directives: directives,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ObjectTypeExtension :
+ *  - extend type Name ImplementsInterfaces? Directives[Const]? FieldsDefinition
+ *  - extend type Name ImplementsInterfaces? Directives[Const]
+ *  - extend type Name ImplementsInterfaces
+ */
+
+
+function parseObjectTypeExtension(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'extend');
+  expectKeyword(lexer, 'type');
+  var name = parseName(lexer);
+  var interfaces = parseImplementsInterfaces(lexer);
+  var directives = parseDirectives(lexer, true);
+  var fields = parseFieldsDefinition(lexer);
+
+  if (interfaces.length === 0 && directives.length === 0 && fields.length === 0) {
+    throw unexpected(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.OBJECT_TYPE_EXTENSION,
+    name: name,
+    interfaces: interfaces,
+    directives: directives,
+    fields: fields,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * InterfaceTypeExtension :
+ *   - extend interface Name Directives[Const]? FieldsDefinition
+ *   - extend interface Name Directives[Const]
+ */
+
+
+function parseInterfaceTypeExtension(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'extend');
+  expectKeyword(lexer, 'interface');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var fields = parseFieldsDefinition(lexer);
+
+  if (directives.length === 0 && fields.length === 0) {
+    throw unexpected(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.INTERFACE_TYPE_EXTENSION,
+    name: name,
+    directives: directives,
+    fields: fields,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * UnionTypeExtension :
+ *   - extend union Name Directives[Const]? UnionMemberTypes
+ *   - extend union Name Directives[Const]
+ */
+
+
+function parseUnionTypeExtension(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'extend');
+  expectKeyword(lexer, 'union');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var types = parseUnionMemberTypes(lexer);
+
+  if (directives.length === 0 && types.length === 0) {
+    throw unexpected(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.UNION_TYPE_EXTENSION,
+    name: name,
+    directives: directives,
+    types: types,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * EnumTypeExtension :
+ *   - extend enum Name Directives[Const]? EnumValuesDefinition
+ *   - extend enum Name Directives[Const]
+ */
+
+
+function parseEnumTypeExtension(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'extend');
+  expectKeyword(lexer, 'enum');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var values = parseEnumValuesDefinition(lexer);
+
+  if (directives.length === 0 && values.length === 0) {
+    throw unexpected(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.ENUM_TYPE_EXTENSION,
+    name: name,
+    directives: directives,
+    values: values,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * InputObjectTypeExtension :
+ *   - extend input Name Directives[Const]? InputFieldsDefinition
+ *   - extend input Name Directives[Const]
+ */
+
+
+function parseInputObjectTypeExtension(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'extend');
+  expectKeyword(lexer, 'input');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var fields = parseInputFieldsDefinition(lexer);
+
+  if (directives.length === 0 && fields.length === 0) {
+    throw unexpected(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.INPUT_OBJECT_TYPE_EXTENSION,
+    name: name,
+    directives: directives,
+    fields: fields,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * DirectiveDefinition :
+ *   - Description? directive @ Name ArgumentsDefinition? on DirectiveLocations
+ */
+
+
+function parseDirectiveDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  expectKeyword(lexer, 'directive');
+  expect(lexer, _lexer.TokenKind.AT);
+  var name = parseName(lexer);
+  var args = parseArgumentDefs(lexer);
+  expectKeyword(lexer, 'on');
+  var locations = parseDirectiveLocations(lexer);
+  return {
+    kind: _kinds.Kind.DIRECTIVE_DEFINITION,
+    description: description,
+    name: name,
+    arguments: args,
+    locations: locations,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * DirectiveLocations :
+ *   - `|`? DirectiveLocation
+ *   - DirectiveLocations | DirectiveLocation
+ */
+
+
+function parseDirectiveLocations(lexer) {
+  // Optional leading pipe
+  skip(lexer, _lexer.TokenKind.PIPE);
+  var locations = [];
+
+  do {
+    locations.push(parseDirectiveLocation(lexer));
+  } while (skip(lexer, _lexer.TokenKind.PIPE));
+
+  return locations;
+}
+/*
+ * DirectiveLocation :
+ *   - ExecutableDirectiveLocation
+ *   - TypeSystemDirectiveLocation
+ *
+ * ExecutableDirectiveLocation : one of
+ *   `QUERY`
+ *   `MUTATION`
+ *   `SUBSCRIPTION`
+ *   `FIELD`
+ *   `FRAGMENT_DEFINITION`
+ *   `FRAGMENT_SPREAD`
+ *   `INLINE_FRAGMENT`
+ *
+ * TypeSystemDirectiveLocation : one of
+ *   `SCHEMA`
+ *   `SCALAR`
+ *   `OBJECT`
+ *   `FIELD_DEFINITION`
+ *   `ARGUMENT_DEFINITION`
+ *   `INTERFACE`
+ *   `UNION`
+ *   `ENUM`
+ *   `ENUM_VALUE`
+ *   `INPUT_OBJECT`
+ *   `INPUT_FIELD_DEFINITION`
+ */
+
+
+function parseDirectiveLocation(lexer) {
+  var start = lexer.token;
+  var name = parseName(lexer);
+
+  if (_directiveLocation.DirectiveLocation.hasOwnProperty(name.value)) {
+    return name;
+  }
+
+  throw unexpected(lexer, start);
+} // Core parsing utility functions
+
+/**
+ * Returns a location object, used to identify the place in
+ * the source that created a given parsed object.
+ */
+
+
+function loc(lexer, startToken) {
+  if (!lexer.options.noLocation) {
+    return new Loc(startToken, lexer.lastToken, lexer.source);
+  }
+}
+
+function Loc(startToken, endToken, source) {
+  this.start = startToken.start;
+  this.end = endToken.end;
+  this.startToken = startToken;
+  this.endToken = endToken;
+  this.source = source;
+} // Print a simplified form when appearing in JSON/util.inspect.
+
+
+Loc.prototype.toJSON = Loc.prototype.inspect = function toJSON() {
+  return {
+    start: this.start,
+    end: this.end
+  };
+};
+/**
+ * Determines if the next token is of a given kind
+ */
+
+
+function peek(lexer, kind) {
+  return lexer.token.kind === kind;
+}
+/**
+ * If the next token is of the given kind, return true after advancing
+ * the lexer. Otherwise, do not change the parser state and return false.
+ */
+
+
+function skip(lexer, kind) {
+  var match = lexer.token.kind === kind;
+
+  if (match) {
+    lexer.advance();
+  }
+
+  return match;
+}
+/**
+ * If the next token is of the given kind, return that token after advancing
+ * the lexer. Otherwise, do not change the parser state and throw an error.
+ */
+
+
+function expect(lexer, kind) {
+  var token = lexer.token;
+
+  if (token.kind === kind) {
+    lexer.advance();
+    return token;
+  }
+
+  throw (0, _error.syntaxError)(lexer.source, token.start, "Expected ".concat(kind, ", found ").concat((0, _lexer.getTokenDesc)(token)));
+}
+/**
+ * If the next token is a keyword with the given value, return that token after
+ * advancing the lexer. Otherwise, do not change the parser state and return
+ * false.
+ */
+
+
+function expectKeyword(lexer, value) {
+  var token = lexer.token;
+
+  if (token.kind === _lexer.TokenKind.NAME && token.value === value) {
+    lexer.advance();
+    return token;
+  }
+
+  throw (0, _error.syntaxError)(lexer.source, token.start, "Expected \"".concat(value, "\", found ").concat((0, _lexer.getTokenDesc)(token)));
+}
+/**
+ * Helper function for creating an error when an unexpected lexed token
+ * is encountered.
+ */
+
+
+function unexpected(lexer, atToken) {
+  var token = atToken || lexer.token;
+  return (0, _error.syntaxError)(lexer.source, token.start, "Unexpected ".concat((0, _lexer.getTokenDesc)(token)));
+}
+/**
+ * Returns a possibly empty list of parse nodes, determined by
+ * the parseFn. This list begins with a lex token of openKind
+ * and ends with a lex token of closeKind. Advances the parser
+ * to the next lex token after the closing token.
+ */
+
+
+function any(lexer, openKind, parseFn, closeKind) {
+  expect(lexer, openKind);
+  var nodes = [];
+
+  while (!skip(lexer, closeKind)) {
+    nodes.push(parseFn(lexer));
+  }
+
+  return nodes;
+}
+/**
+ * Returns a non-empty list of parse nodes, determined by
+ * the parseFn. This list begins with a lex token of openKind
+ * and ends with a lex token of closeKind. Advances the parser
+ * to the next lex token after the closing token.
+ */
+
+
+function many(lexer, openKind, parseFn, closeKind) {
+  expect(lexer, openKind);
+  var nodes = [parseFn(lexer)];
+
+  while (!skip(lexer, closeKind)) {
+    nodes.push(parseFn(lexer));
+  }
+
+  return nodes;
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/printer.js":
+/*!************************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/printer.js ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.print = print;
+
+var _visitor = __webpack_require__(/*! ./visitor */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/visitor.js");
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * Converts an AST into a string, using one set of reasonable
+ * formatting rules.
+ */
+function print(ast) {
+  return (0, _visitor.visit)(ast, {
+    leave: printDocASTReducer
+  });
+}
+
+var printDocASTReducer = {
+  Name: function Name(node) {
+    return node.value;
+  },
+  Variable: function Variable(node) {
+    return '$' + node.name;
+  },
+  // Document
+  Document: function Document(node) {
+    return join(node.definitions, '\n\n') + '\n';
+  },
+  OperationDefinition: function OperationDefinition(node) {
+    var op = node.operation;
+    var name = node.name;
+    var varDefs = wrap('(', join(node.variableDefinitions, ', '), ')');
+    var directives = join(node.directives, ' ');
+    var selectionSet = node.selectionSet; // Anonymous queries with no directives or variable definitions can use
+    // the query short form.
+
+    return !name && !directives && !varDefs && op === 'query' ? selectionSet : join([op, join([name, varDefs]), directives, selectionSet], ' ');
+  },
+  VariableDefinition: function VariableDefinition(_ref) {
+    var variable = _ref.variable,
+        type = _ref.type,
+        defaultValue = _ref.defaultValue,
+        directives = _ref.directives;
+    return variable + ': ' + type + wrap(' = ', defaultValue) + wrap(' ', join(directives, ' '));
+  },
+  SelectionSet: function SelectionSet(_ref2) {
+    var selections = _ref2.selections;
+    return block(selections);
+  },
+  Field: function Field(_ref3) {
+    var alias = _ref3.alias,
+        name = _ref3.name,
+        args = _ref3.arguments,
+        directives = _ref3.directives,
+        selectionSet = _ref3.selectionSet;
+    return join([wrap('', alias, ': ') + name + wrap('(', join(args, ', '), ')'), join(directives, ' '), selectionSet], ' ');
+  },
+  Argument: function Argument(_ref4) {
+    var name = _ref4.name,
+        value = _ref4.value;
+    return name + ': ' + value;
+  },
+  // Fragments
+  FragmentSpread: function FragmentSpread(_ref5) {
+    var name = _ref5.name,
+        directives = _ref5.directives;
+    return '...' + name + wrap(' ', join(directives, ' '));
+  },
+  InlineFragment: function InlineFragment(_ref6) {
+    var typeCondition = _ref6.typeCondition,
+        directives = _ref6.directives,
+        selectionSet = _ref6.selectionSet;
+    return join(['...', wrap('on ', typeCondition), join(directives, ' '), selectionSet], ' ');
+  },
+  FragmentDefinition: function FragmentDefinition(_ref7) {
+    var name = _ref7.name,
+        typeCondition = _ref7.typeCondition,
+        variableDefinitions = _ref7.variableDefinitions,
+        directives = _ref7.directives,
+        selectionSet = _ref7.selectionSet;
+    return (// Note: fragment variable definitions are experimental and may be changed
+      // or removed in the future.
+      "fragment ".concat(name).concat(wrap('(', join(variableDefinitions, ', '), ')'), " ") + "on ".concat(typeCondition, " ").concat(wrap('', join(directives, ' '), ' ')) + selectionSet
+    );
+  },
+  // Value
+  IntValue: function IntValue(_ref8) {
+    var value = _ref8.value;
+    return value;
+  },
+  FloatValue: function FloatValue(_ref9) {
+    var value = _ref9.value;
+    return value;
+  },
+  StringValue: function StringValue(_ref10, key) {
+    var value = _ref10.value,
+        isBlockString = _ref10.block;
+    return isBlockString ? printBlockString(value, key === 'description') : JSON.stringify(value);
+  },
+  BooleanValue: function BooleanValue(_ref11) {
+    var value = _ref11.value;
+    return value ? 'true' : 'false';
+  },
+  NullValue: function NullValue() {
+    return 'null';
+  },
+  EnumValue: function EnumValue(_ref12) {
+    var value = _ref12.value;
+    return value;
+  },
+  ListValue: function ListValue(_ref13) {
+    var values = _ref13.values;
+    return '[' + join(values, ', ') + ']';
+  },
+  ObjectValue: function ObjectValue(_ref14) {
+    var fields = _ref14.fields;
+    return '{' + join(fields, ', ') + '}';
+  },
+  ObjectField: function ObjectField(_ref15) {
+    var name = _ref15.name,
+        value = _ref15.value;
+    return name + ': ' + value;
+  },
+  // Directive
+  Directive: function Directive(_ref16) {
+    var name = _ref16.name,
+        args = _ref16.arguments;
+    return '@' + name + wrap('(', join(args, ', '), ')');
+  },
+  // Type
+  NamedType: function NamedType(_ref17) {
+    var name = _ref17.name;
+    return name;
+  },
+  ListType: function ListType(_ref18) {
+    var type = _ref18.type;
+    return '[' + type + ']';
+  },
+  NonNullType: function NonNullType(_ref19) {
+    var type = _ref19.type;
+    return type + '!';
+  },
+  // Type System Definitions
+  SchemaDefinition: function SchemaDefinition(_ref20) {
+    var directives = _ref20.directives,
+        operationTypes = _ref20.operationTypes;
+    return join(['schema', join(directives, ' '), block(operationTypes)], ' ');
+  },
+  OperationTypeDefinition: function OperationTypeDefinition(_ref21) {
+    var operation = _ref21.operation,
+        type = _ref21.type;
+    return operation + ': ' + type;
+  },
+  ScalarTypeDefinition: addDescription(function (_ref22) {
+    var name = _ref22.name,
+        directives = _ref22.directives;
+    return join(['scalar', name, join(directives, ' ')], ' ');
+  }),
+  ObjectTypeDefinition: addDescription(function (_ref23) {
+    var name = _ref23.name,
+        interfaces = _ref23.interfaces,
+        directives = _ref23.directives,
+        fields = _ref23.fields;
+    return join(['type', name, wrap('implements ', join(interfaces, ' & ')), join(directives, ' '), block(fields)], ' ');
+  }),
+  FieldDefinition: addDescription(function (_ref24) {
+    var name = _ref24.name,
+        args = _ref24.arguments,
+        type = _ref24.type,
+        directives = _ref24.directives;
+    return name + (args.every(function (arg) {
+      return arg.indexOf('\n') === -1;
+    }) ? wrap('(', join(args, ', '), ')') : wrap('(\n', indent(join(args, '\n')), '\n)')) + ': ' + type + wrap(' ', join(directives, ' '));
+  }),
+  InputValueDefinition: addDescription(function (_ref25) {
+    var name = _ref25.name,
+        type = _ref25.type,
+        defaultValue = _ref25.defaultValue,
+        directives = _ref25.directives;
+    return join([name + ': ' + type, wrap('= ', defaultValue), join(directives, ' ')], ' ');
+  }),
+  InterfaceTypeDefinition: addDescription(function (_ref26) {
+    var name = _ref26.name,
+        directives = _ref26.directives,
+        fields = _ref26.fields;
+    return join(['interface', name, join(directives, ' '), block(fields)], ' ');
+  }),
+  UnionTypeDefinition: addDescription(function (_ref27) {
+    var name = _ref27.name,
+        directives = _ref27.directives,
+        types = _ref27.types;
+    return join(['union', name, join(directives, ' '), types && types.length !== 0 ? '= ' + join(types, ' | ') : ''], ' ');
+  }),
+  EnumTypeDefinition: addDescription(function (_ref28) {
+    var name = _ref28.name,
+        directives = _ref28.directives,
+        values = _ref28.values;
+    return join(['enum', name, join(directives, ' '), block(values)], ' ');
+  }),
+  EnumValueDefinition: addDescription(function (_ref29) {
+    var name = _ref29.name,
+        directives = _ref29.directives;
+    return join([name, join(directives, ' ')], ' ');
+  }),
+  InputObjectTypeDefinition: addDescription(function (_ref30) {
+    var name = _ref30.name,
+        directives = _ref30.directives,
+        fields = _ref30.fields;
+    return join(['input', name, join(directives, ' '), block(fields)], ' ');
+  }),
+  DirectiveDefinition: addDescription(function (_ref31) {
+    var name = _ref31.name,
+        args = _ref31.arguments,
+        locations = _ref31.locations;
+    return 'directive @' + name + (args.every(function (arg) {
+      return arg.indexOf('\n') === -1;
+    }) ? wrap('(', join(args, ', '), ')') : wrap('(\n', indent(join(args, '\n')), '\n)')) + ' on ' + join(locations, ' | ');
+  }),
+  SchemaExtension: function SchemaExtension(_ref32) {
+    var directives = _ref32.directives,
+        operationTypes = _ref32.operationTypes;
+    return join(['extend schema', join(directives, ' '), block(operationTypes)], ' ');
+  },
+  ScalarTypeExtension: function ScalarTypeExtension(_ref33) {
+    var name = _ref33.name,
+        directives = _ref33.directives;
+    return join(['extend scalar', name, join(directives, ' ')], ' ');
+  },
+  ObjectTypeExtension: function ObjectTypeExtension(_ref34) {
+    var name = _ref34.name,
+        interfaces = _ref34.interfaces,
+        directives = _ref34.directives,
+        fields = _ref34.fields;
+    return join(['extend type', name, wrap('implements ', join(interfaces, ' & ')), join(directives, ' '), block(fields)], ' ');
+  },
+  InterfaceTypeExtension: function InterfaceTypeExtension(_ref35) {
+    var name = _ref35.name,
+        directives = _ref35.directives,
+        fields = _ref35.fields;
+    return join(['extend interface', name, join(directives, ' '), block(fields)], ' ');
+  },
+  UnionTypeExtension: function UnionTypeExtension(_ref36) {
+    var name = _ref36.name,
+        directives = _ref36.directives,
+        types = _ref36.types;
+    return join(['extend union', name, join(directives, ' '), types && types.length !== 0 ? '= ' + join(types, ' | ') : ''], ' ');
+  },
+  EnumTypeExtension: function EnumTypeExtension(_ref37) {
+    var name = _ref37.name,
+        directives = _ref37.directives,
+        values = _ref37.values;
+    return join(['extend enum', name, join(directives, ' '), block(values)], ' ');
+  },
+  InputObjectTypeExtension: function InputObjectTypeExtension(_ref38) {
+    var name = _ref38.name,
+        directives = _ref38.directives,
+        fields = _ref38.fields;
+    return join(['extend input', name, join(directives, ' '), block(fields)], ' ');
+  }
+};
+
+function addDescription(cb) {
+  return function (node) {
+    return join([node.description, cb(node)], '\n');
+  };
+}
+/**
+ * Given maybeArray, print an empty string if it is null or empty, otherwise
+ * print all items together separated by separator if provided
+ */
+
+
+function join(maybeArray, separator) {
+  return maybeArray ? maybeArray.filter(function (x) {
+    return x;
+  }).join(separator || '') : '';
+}
+/**
+ * Given array, print each item on its own line, wrapped in an
+ * indented "{ }" block.
+ */
+
+
+function block(array) {
+  return array && array.length !== 0 ? '{\n' + indent(join(array, '\n')) + '\n}' : '';
+}
+/**
+ * If maybeString is not null or empty, then wrap with start and end, otherwise
+ * print an empty string.
+ */
+
+
+function wrap(start, maybeString, end) {
+  return maybeString ? start + maybeString + (end || '') : '';
+}
+
+function indent(maybeString) {
+  return maybeString && '  ' + maybeString.replace(/\n/g, '\n  ');
+}
+/**
+ * Print a block string in the indented block form by adding a leading and
+ * trailing blank line. However, if a block string starts with whitespace and is
+ * a single-line, adding a leading blank line would strip that whitespace.
+ */
+
+
+function printBlockString(value, isDescription) {
+  var escaped = value.replace(/"""/g, '\\"""');
+  return (value[0] === ' ' || value[0] === '\t') && value.indexOf('\n') === -1 ? "\"\"\"".concat(escaped.replace(/"$/, '"\n'), "\"\"\"") : "\"\"\"\n".concat(isDescription ? escaped : indent(escaped), "\n\"\"\"");
+}
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/source.js":
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/source.js ***!
+  \***********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Source = void 0;
+
+var _invariant = _interopRequireDefault(__webpack_require__(/*! ../jsutils/invariant */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/jsutils/invariant.js"));
+
+var _defineToStringTag = _interopRequireDefault(__webpack_require__(/*! ../jsutils/defineToStringTag */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/jsutils/defineToStringTag.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/**
+ * A representation of source input to GraphQL.
+ * `name` and `locationOffset` are optional. They are useful for clients who
+ * store GraphQL documents in source files; for example, if the GraphQL input
+ * starts at line 40 in a file named Foo.graphql, it might be useful for name to
+ * be "Foo.graphql" and location to be `{ line: 40, column: 0 }`.
+ * line and column in locationOffset are 1-indexed
+ */
+var Source = function Source(body, name, locationOffset) {
+  _defineProperty(this, "body", void 0);
+
+  _defineProperty(this, "name", void 0);
+
+  _defineProperty(this, "locationOffset", void 0);
+
+  this.body = body;
+  this.name = name || 'GraphQL request';
+  this.locationOffset = locationOffset || {
+    line: 1,
+    column: 1
+  };
+  !(this.locationOffset.line > 0) ? (0, _invariant.default)(0, 'line in locationOffset is 1-indexed and must be positive') : void 0;
+  !(this.locationOffset.column > 0) ? (0, _invariant.default)(0, 'column in locationOffset is 1-indexed and must be positive') : void 0;
+}; // Conditionally apply `[Symbol.toStringTag]` if `Symbol`s are supported
+
+
+exports.Source = Source;
+(0, _defineToStringTag.default)(Source);
+
+/***/ }),
+
+/***/ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/visitor.js":
+/*!************************************************************************************************!*\
+  !*** ./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/language/visitor.js ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.visit = visit;
+exports.visitInParallel = visitInParallel;
+exports.visitWithTypeInfo = visitWithTypeInfo;
+exports.getVisitFn = getVisitFn;
+exports.BREAK = exports.QueryDocumentKeys = void 0;
+
+var _inspect = _interopRequireDefault(__webpack_require__(/*! ../jsutils/inspect */ "./node_modules/graphql-syntax-highlighter-react/node_modules/graphql/jsutils/inspect.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+var QueryDocumentKeys = {
+  Name: [],
+  Document: ['definitions'],
+  OperationDefinition: ['name', 'variableDefinitions', 'directives', 'selectionSet'],
+  VariableDefinition: ['variable', 'type', 'defaultValue', 'directives'],
+  Variable: ['name'],
+  SelectionSet: ['selections'],
+  Field: ['alias', 'name', 'arguments', 'directives', 'selectionSet'],
+  Argument: ['name', 'value'],
+  FragmentSpread: ['name', 'directives'],
+  InlineFragment: ['typeCondition', 'directives', 'selectionSet'],
+  FragmentDefinition: ['name', // Note: fragment variable definitions are experimental and may be changed
+  // or removed in the future.
+  'variableDefinitions', 'typeCondition', 'directives', 'selectionSet'],
+  IntValue: [],
+  FloatValue: [],
+  StringValue: [],
+  BooleanValue: [],
+  NullValue: [],
+  EnumValue: [],
+  ListValue: ['values'],
+  ObjectValue: ['fields'],
+  ObjectField: ['name', 'value'],
+  Directive: ['name', 'arguments'],
+  NamedType: ['name'],
+  ListType: ['type'],
+  NonNullType: ['type'],
+  SchemaDefinition: ['directives', 'operationTypes'],
+  OperationTypeDefinition: ['type'],
+  ScalarTypeDefinition: ['description', 'name', 'directives'],
+  ObjectTypeDefinition: ['description', 'name', 'interfaces', 'directives', 'fields'],
+  FieldDefinition: ['description', 'name', 'arguments', 'type', 'directives'],
+  InputValueDefinition: ['description', 'name', 'type', 'defaultValue', 'directives'],
+  InterfaceTypeDefinition: ['description', 'name', 'directives', 'fields'],
+  UnionTypeDefinition: ['description', 'name', 'directives', 'types'],
+  EnumTypeDefinition: ['description', 'name', 'directives', 'values'],
+  EnumValueDefinition: ['description', 'name', 'directives'],
+  InputObjectTypeDefinition: ['description', 'name', 'directives', 'fields'],
+  DirectiveDefinition: ['description', 'name', 'arguments', 'locations'],
+  SchemaExtension: ['directives', 'operationTypes'],
+  ScalarTypeExtension: ['name', 'directives'],
+  ObjectTypeExtension: ['name', 'interfaces', 'directives', 'fields'],
+  InterfaceTypeExtension: ['name', 'directives', 'fields'],
+  UnionTypeExtension: ['name', 'directives', 'types'],
+  EnumTypeExtension: ['name', 'directives', 'values'],
+  InputObjectTypeExtension: ['name', 'directives', 'fields']
+};
+exports.QueryDocumentKeys = QueryDocumentKeys;
+var BREAK = {};
+/**
+ * visit() will walk through an AST using a depth first traversal, calling
+ * the visitor's enter function at each node in the traversal, and calling the
+ * leave function after visiting that node and all of its child nodes.
+ *
+ * By returning different values from the enter and leave functions, the
+ * behavior of the visitor can be altered, including skipping over a sub-tree of
+ * the AST (by returning false), editing the AST by returning a value or null
+ * to remove the value, or to stop the whole traversal by returning BREAK.
+ *
+ * When using visit() to edit an AST, the original AST will not be modified, and
+ * a new version of the AST with the changes applied will be returned from the
+ * visit function.
+ *
+ *     const editedAST = visit(ast, {
+ *       enter(node, key, parent, path, ancestors) {
+ *         // @return
+ *         //   undefined: no action
+ *         //   false: skip visiting this node
+ *         //   visitor.BREAK: stop visiting altogether
+ *         //   null: delete this node
+ *         //   any value: replace this node with the returned value
+ *       },
+ *       leave(node, key, parent, path, ancestors) {
+ *         // @return
+ *         //   undefined: no action
+ *         //   false: no action
+ *         //   visitor.BREAK: stop visiting altogether
+ *         //   null: delete this node
+ *         //   any value: replace this node with the returned value
+ *       }
+ *     });
+ *
+ * Alternatively to providing enter() and leave() functions, a visitor can
+ * instead provide functions named the same as the kinds of AST nodes, or
+ * enter/leave visitors at a named key, leading to four permutations of
+ * visitor API:
+ *
+ * 1) Named visitors triggered when entering a node a specific kind.
+ *
+ *     visit(ast, {
+ *       Kind(node) {
+ *         // enter the "Kind" node
+ *       }
+ *     })
+ *
+ * 2) Named visitors that trigger upon entering and leaving a node of
+ *    a specific kind.
+ *
+ *     visit(ast, {
+ *       Kind: {
+ *         enter(node) {
+ *           // enter the "Kind" node
+ *         }
+ *         leave(node) {
+ *           // leave the "Kind" node
+ *         }
+ *       }
+ *     })
+ *
+ * 3) Generic visitors that trigger upon entering and leaving any node.
+ *
+ *     visit(ast, {
+ *       enter(node) {
+ *         // enter any node
+ *       },
+ *       leave(node) {
+ *         // leave any node
+ *       }
+ *     })
+ *
+ * 4) Parallel visitors for entering and leaving nodes of a specific kind.
+ *
+ *     visit(ast, {
+ *       enter: {
+ *         Kind(node) {
+ *           // enter the "Kind" node
+ *         }
+ *       },
+ *       leave: {
+ *         Kind(node) {
+ *           // leave the "Kind" node
+ *         }
+ *       }
+ *     })
+ */
+
+exports.BREAK = BREAK;
+
+function visit(root, visitor) {
+  var visitorKeys = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : QueryDocumentKeys;
+
+  /* eslint-disable no-undef-init */
+  var stack = undefined;
+  var inArray = Array.isArray(root);
+  var keys = [root];
+  var index = -1;
+  var edits = [];
+  var node = undefined;
+  var key = undefined;
+  var parent = undefined;
+  var path = [];
+  var ancestors = [];
+  var newRoot = root;
+  /* eslint-enable no-undef-init */
+
+  do {
+    index++;
+    var isLeaving = index === keys.length;
+    var isEdited = isLeaving && edits.length !== 0;
+
+    if (isLeaving) {
+      key = ancestors.length === 0 ? undefined : path[path.length - 1];
+      node = parent;
+      parent = ancestors.pop();
+
+      if (isEdited) {
+        if (inArray) {
+          node = node.slice();
+        } else {
+          var clone = {};
+
+          for (var k in node) {
+            if (node.hasOwnProperty(k)) {
+              clone[k] = node[k];
+            }
+          }
+
+          node = clone;
+        }
+
+        var editOffset = 0;
+
+        for (var ii = 0; ii < edits.length; ii++) {
+          var editKey = edits[ii][0];
+          var editValue = edits[ii][1];
+
+          if (inArray) {
+            editKey -= editOffset;
+          }
+
+          if (inArray && editValue === null) {
+            node.splice(editKey, 1);
+            editOffset++;
+          } else {
+            node[editKey] = editValue;
+          }
+        }
+      }
+
+      index = stack.index;
+      keys = stack.keys;
+      edits = stack.edits;
+      inArray = stack.inArray;
+      stack = stack.prev;
+    } else {
+      key = parent ? inArray ? index : keys[index] : undefined;
+      node = parent ? parent[key] : newRoot;
+
+      if (node === null || node === undefined) {
+        continue;
+      }
+
+      if (parent) {
+        path.push(key);
+      }
+    }
+
+    var result = void 0;
+
+    if (!Array.isArray(node)) {
+      if (!isNode(node)) {
+        throw new Error('Invalid AST Node: ' + (0, _inspect.default)(node));
+      }
+
+      var visitFn = getVisitFn(visitor, node.kind, isLeaving);
+
+      if (visitFn) {
+        result = visitFn.call(visitor, node, key, parent, path, ancestors);
+
+        if (result === BREAK) {
+          break;
+        }
+
+        if (result === false) {
+          if (!isLeaving) {
+            path.pop();
+            continue;
+          }
+        } else if (result !== undefined) {
+          edits.push([key, result]);
+
+          if (!isLeaving) {
+            if (isNode(result)) {
+              node = result;
+            } else {
+              path.pop();
+              continue;
+            }
+          }
+        }
+      }
+    }
+
+    if (result === undefined && isEdited) {
+      edits.push([key, node]);
+    }
+
+    if (isLeaving) {
+      path.pop();
+    } else {
+      stack = {
+        inArray: inArray,
+        index: index,
+        keys: keys,
+        edits: edits,
+        prev: stack
+      };
+      inArray = Array.isArray(node);
+      keys = inArray ? node : visitorKeys[node.kind] || [];
+      index = -1;
+      edits = [];
+
+      if (parent) {
+        ancestors.push(parent);
+      }
+
+      parent = node;
+    }
+  } while (stack !== undefined);
+
+  if (edits.length !== 0) {
+    newRoot = edits[edits.length - 1][1];
+  }
+
+  return newRoot;
+}
+
+function isNode(maybeNode) {
+  return Boolean(maybeNode && typeof maybeNode.kind === 'string');
+}
+/**
+ * Creates a new visitor instance which delegates to many visitors to run in
+ * parallel. Each visitor will be visited for each node before moving on.
+ *
+ * If a prior visitor edits a node, no following visitors will see that node.
+ */
+
+
+function visitInParallel(visitors) {
+  var skipping = new Array(visitors.length);
+  return {
+    enter: function enter(node) {
+      for (var i = 0; i < visitors.length; i++) {
+        if (!skipping[i]) {
+          var fn = getVisitFn(visitors[i], node.kind,
+          /* isLeaving */
+          false);
+
+          if (fn) {
+            var result = fn.apply(visitors[i], arguments);
+
+            if (result === false) {
+              skipping[i] = node;
+            } else if (result === BREAK) {
+              skipping[i] = BREAK;
+            } else if (result !== undefined) {
+              return result;
+            }
+          }
+        }
+      }
+    },
+    leave: function leave(node) {
+      for (var i = 0; i < visitors.length; i++) {
+        if (!skipping[i]) {
+          var fn = getVisitFn(visitors[i], node.kind,
+          /* isLeaving */
+          true);
+
+          if (fn) {
+            var result = fn.apply(visitors[i], arguments);
+
+            if (result === BREAK) {
+              skipping[i] = BREAK;
+            } else if (result !== undefined && result !== false) {
+              return result;
+            }
+          }
+        } else if (skipping[i] === node) {
+          skipping[i] = null;
+        }
+      }
+    }
+  };
+}
+/**
+ * Creates a new visitor instance which maintains a provided TypeInfo instance
+ * along with visiting visitor.
+ */
+
+
+function visitWithTypeInfo(typeInfo, visitor) {
+  return {
+    enter: function enter(node) {
+      typeInfo.enter(node);
+      var fn = getVisitFn(visitor, node.kind,
+      /* isLeaving */
+      false);
+
+      if (fn) {
+        var result = fn.apply(visitor, arguments);
+
+        if (result !== undefined) {
+          typeInfo.leave(node);
+
+          if (isNode(result)) {
+            typeInfo.enter(result);
+          }
+        }
+
+        return result;
+      }
+    },
+    leave: function leave(node) {
+      var fn = getVisitFn(visitor, node.kind,
+      /* isLeaving */
+      true);
+      var result;
+
+      if (fn) {
+        result = fn.apply(visitor, arguments);
+      }
+
+      typeInfo.leave(node);
+      return result;
+    }
+  };
+}
+/**
+ * Given a visitor instance, if it is leaving or not, and a node kind, return
+ * the function the visitor runtime should call.
+ */
+
+
+function getVisitFn(visitor, kind, isLeaving) {
+  var kindVisitor = visitor[kind];
+
+  if (kindVisitor) {
+    if (!isLeaving && typeof kindVisitor === 'function') {
+      // { Kind() {} }
+      return kindVisitor;
+    }
+
+    var kindSpecificVisitor = isLeaving ? kindVisitor.leave : kindVisitor.enter;
+
+    if (typeof kindSpecificVisitor === 'function') {
+      // { Kind: { enter() {}, leave() {} } }
+      return kindSpecificVisitor;
+    }
+  } else {
+    var specificVisitor = isLeaving ? visitor.leave : visitor.enter;
+
+    if (specificVisitor) {
+      if (typeof specificVisitor === 'function') {
+        // { enter() {}, leave() {} }
+        return specificVisitor;
+      }
+
+      var specificKindVisitor = specificVisitor[kind];
+
+      if (typeof specificKindVisitor === 'function') {
+        // { enter: { Kind() {} }, leave: { Kind() {} } }
+        return specificKindVisitor;
+      }
+    }
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/graphql/jsutils/defineInspect.js":
 /*!*******************************************************!*\
   !*** ./node_modules/graphql/jsutils/defineInspect.js ***!
@@ -1534,6 +6656,635 @@ checkPropTypes.resetWarningCache = function() {
 }
 
 module.exports = checkPropTypes;
+
+
+/***/ }),
+
+/***/ "./node_modules/prop-types/factoryWithTypeCheckers.js":
+/*!************************************************************!*\
+  !*** ./node_modules/prop-types/factoryWithTypeCheckers.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactIs = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
+var assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
+
+var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "./node_modules/prop-types/lib/ReactPropTypesSecret.js");
+var checkPropTypes = __webpack_require__(/*! ./checkPropTypes */ "./node_modules/prop-types/checkPropTypes.js");
+
+var has = Function.call.bind(Object.prototype.hasOwnProperty);
+var printWarning = function() {};
+
+if (true) {
+  printWarning = function(text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+}
+
+function emptyFunctionThatReturnsNull() {
+  return null;
+}
+
+module.exports = function(isValidElement, throwOnDirectAccess) {
+  /* global Symbol */
+  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+
+  /**
+   * Returns the iterator method function contained on the iterable object.
+   *
+   * Be sure to invoke the function with the iterable as context:
+   *
+   *     var iteratorFn = getIteratorFn(myIterable);
+   *     if (iteratorFn) {
+   *       var iterator = iteratorFn.call(myIterable);
+   *       ...
+   *     }
+   *
+   * @param {?object} maybeIterable
+   * @return {?function}
+   */
+  function getIteratorFn(maybeIterable) {
+    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+    if (typeof iteratorFn === 'function') {
+      return iteratorFn;
+    }
+  }
+
+  /**
+   * Collection of methods that allow declaration and validation of props that are
+   * supplied to React components. Example usage:
+   *
+   *   var Props = require('ReactPropTypes');
+   *   var MyArticle = React.createClass({
+   *     propTypes: {
+   *       // An optional string prop named "description".
+   *       description: Props.string,
+   *
+   *       // A required enum prop named "category".
+   *       category: Props.oneOf(['News','Photos']).isRequired,
+   *
+   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       dialog: Props.instanceOf(Dialog).isRequired
+   *     },
+   *     render: function() { ... }
+   *   });
+   *
+   * A more formal specification of how these methods are used:
+   *
+   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
+   *   decl := ReactPropTypes.{type}(.isRequired)?
+   *
+   * Each and every declaration produces a function with the same signature. This
+   * allows the creation of custom validation functions. For example:
+   *
+   *  var MyLink = React.createClass({
+   *    propTypes: {
+   *      // An optional string or URI prop named "href".
+   *      href: function(props, propName, componentName) {
+   *        var propValue = props[propName];
+   *        if (propValue != null && typeof propValue !== 'string' &&
+   *            !(propValue instanceof URI)) {
+   *          return new Error(
+   *            'Expected a string or an URI for ' + propName + ' in ' +
+   *            componentName
+   *          );
+   *        }
+   *      }
+   *    },
+   *    render: function() {...}
+   *  });
+   *
+   * @internal
+   */
+
+  var ANONYMOUS = '<<anonymous>>';
+
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  var ReactPropTypes = {
+    array: createPrimitiveTypeChecker('array'),
+    bool: createPrimitiveTypeChecker('boolean'),
+    func: createPrimitiveTypeChecker('function'),
+    number: createPrimitiveTypeChecker('number'),
+    object: createPrimitiveTypeChecker('object'),
+    string: createPrimitiveTypeChecker('string'),
+    symbol: createPrimitiveTypeChecker('symbol'),
+
+    any: createAnyTypeChecker(),
+    arrayOf: createArrayOfTypeChecker,
+    element: createElementTypeChecker(),
+    elementType: createElementTypeTypeChecker(),
+    instanceOf: createInstanceTypeChecker,
+    node: createNodeChecker(),
+    objectOf: createObjectOfTypeChecker,
+    oneOf: createEnumTypeChecker,
+    oneOfType: createUnionTypeChecker,
+    shape: createShapeTypeChecker,
+    exact: createStrictShapeTypeChecker,
+  };
+
+  /**
+   * inlined Object.is polyfill to avoid requiring consumers ship their own
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+   */
+  /*eslint-disable no-self-compare*/
+  function is(x, y) {
+    // SameValue algorithm
+    if (x === y) {
+      // Steps 1-5, 7-10
+      // Steps 6.b-6.e: +0 != -0
+      return x !== 0 || 1 / x === 1 / y;
+    } else {
+      // Step 6.a: NaN == NaN
+      return x !== x && y !== y;
+    }
+  }
+  /*eslint-enable no-self-compare*/
+
+  /**
+   * We use an Error-like object for backward compatibility as people may call
+   * PropTypes directly and inspect their output. However, we don't use real
+   * Errors anymore. We don't inspect their stack anyway, and creating them
+   * is prohibitively expensive if they are created too often, such as what
+   * happens in oneOfType() for any type before the one that matched.
+   */
+  function PropTypeError(message) {
+    this.message = message;
+    this.stack = '';
+  }
+  // Make `instanceof Error` still work for returned errors.
+  PropTypeError.prototype = Error.prototype;
+
+  function createChainableTypeChecker(validate) {
+    if (true) {
+      var manualPropTypeCallCache = {};
+      var manualPropTypeWarningCount = 0;
+    }
+    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+      componentName = componentName || ANONYMOUS;
+      propFullName = propFullName || propName;
+
+      if (secret !== ReactPropTypesSecret) {
+        if (throwOnDirectAccess) {
+          // New behavior only for users of `prop-types` package
+          var err = new Error(
+            'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+            'Use `PropTypes.checkPropTypes()` to call them. ' +
+            'Read more at http://fb.me/use-check-prop-types'
+          );
+          err.name = 'Invariant Violation';
+          throw err;
+        } else if ( true && typeof console !== 'undefined') {
+          // Old behavior for people using React.PropTypes
+          var cacheKey = componentName + ':' + propName;
+          if (
+            !manualPropTypeCallCache[cacheKey] &&
+            // Avoid spamming the console because they are often not actionable except for lib authors
+            manualPropTypeWarningCount < 3
+          ) {
+            printWarning(
+              'You are manually calling a React.PropTypes validation ' +
+              'function for the `' + propFullName + '` prop on `' + componentName  + '`. This is deprecated ' +
+              'and will throw in the standalone `prop-types` package. ' +
+              'You may be seeing this warning due to a third-party PropTypes ' +
+              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.'
+            );
+            manualPropTypeCallCache[cacheKey] = true;
+            manualPropTypeWarningCount++;
+          }
+        }
+      }
+      if (props[propName] == null) {
+        if (isRequired) {
+          if (props[propName] === null) {
+            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+          }
+          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+        }
+        return null;
+      } else {
+        return validate(props, propName, componentName, location, propFullName);
+      }
+    }
+
+    var chainedCheckType = checkType.bind(null, false);
+    chainedCheckType.isRequired = checkType.bind(null, true);
+
+    return chainedCheckType;
+  }
+
+  function createPrimitiveTypeChecker(expectedType) {
+    function validate(props, propName, componentName, location, propFullName, secret) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== expectedType) {
+        // `propValue` being instance of, say, date/regexp, pass the 'object'
+        // check, but we can offer a more precise error message here rather than
+        // 'of type `object`'.
+        var preciseType = getPreciseType(propValue);
+
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createAnyTypeChecker() {
+    return createChainableTypeChecker(emptyFunctionThatReturnsNull);
+  }
+
+  function createArrayOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
+      }
+      var propValue = props[propName];
+      if (!Array.isArray(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
+      }
+      for (var i = 0; i < propValue.length; i++) {
+        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret);
+        if (error instanceof Error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createElementTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!isValidElement(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createElementTypeTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!ReactIs.isValidElementType(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement type.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createInstanceTypeChecker(expectedClass) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!(props[propName] instanceof expectedClass)) {
+        var expectedClassName = expectedClass.name || ANONYMOUS;
+        var actualClassName = getClassName(props[propName]);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createEnumTypeChecker(expectedValues) {
+    if (!Array.isArray(expectedValues)) {
+      if (true) {
+        if (arguments.length > 1) {
+          printWarning(
+            'Invalid arguments supplied to oneOf, expected an array, got ' + arguments.length + ' arguments. ' +
+            'A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).'
+          );
+        } else {
+          printWarning('Invalid argument supplied to oneOf, expected an array.');
+        }
+      }
+      return emptyFunctionThatReturnsNull;
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      for (var i = 0; i < expectedValues.length; i++) {
+        if (is(propValue, expectedValues[i])) {
+          return null;
+        }
+      }
+
+      var valuesString = JSON.stringify(expectedValues, function replacer(key, value) {
+        var type = getPreciseType(value);
+        if (type === 'symbol') {
+          return String(value);
+        }
+        return value;
+      });
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + String(propValue) + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createObjectOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+      }
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+      }
+      for (var key in propValue) {
+        if (has(propValue, key)) {
+          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+          if (error instanceof Error) {
+            return error;
+          }
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createUnionTypeChecker(arrayOfTypeCheckers) {
+    if (!Array.isArray(arrayOfTypeCheckers)) {
+       true ? printWarning('Invalid argument supplied to oneOfType, expected an instance of array.') : undefined;
+      return emptyFunctionThatReturnsNull;
+    }
+
+    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+      var checker = arrayOfTypeCheckers[i];
+      if (typeof checker !== 'function') {
+        printWarning(
+          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
+          'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.'
+        );
+        return emptyFunctionThatReturnsNull;
+      }
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+        var checker = arrayOfTypeCheckers[i];
+        if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret) == null) {
+          return null;
+        }
+      }
+
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createNodeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!isNode(props[propName])) {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      for (var key in shapeTypes) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          continue;
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createStrictShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      // We need to check all keys in case some are required but missing from
+      // props.
+      var allKeys = assign({}, props[propName], shapeTypes);
+      for (var key in allKeys) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          return new PropTypeError(
+            'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
+            '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
+            '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
+          );
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+
+    return createChainableTypeChecker(validate);
+  }
+
+  function isNode(propValue) {
+    switch (typeof propValue) {
+      case 'number':
+      case 'string':
+      case 'undefined':
+        return true;
+      case 'boolean':
+        return !propValue;
+      case 'object':
+        if (Array.isArray(propValue)) {
+          return propValue.every(isNode);
+        }
+        if (propValue === null || isValidElement(propValue)) {
+          return true;
+        }
+
+        var iteratorFn = getIteratorFn(propValue);
+        if (iteratorFn) {
+          var iterator = iteratorFn.call(propValue);
+          var step;
+          if (iteratorFn !== propValue.entries) {
+            while (!(step = iterator.next()).done) {
+              if (!isNode(step.value)) {
+                return false;
+              }
+            }
+          } else {
+            // Iterator will provide entry [k,v] tuples rather than values.
+            while (!(step = iterator.next()).done) {
+              var entry = step.value;
+              if (entry) {
+                if (!isNode(entry[1])) {
+                  return false;
+                }
+              }
+            }
+          }
+        } else {
+          return false;
+        }
+
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  function isSymbol(propType, propValue) {
+    // Native Symbol.
+    if (propType === 'symbol') {
+      return true;
+    }
+
+    // falsy value can't be a Symbol
+    if (!propValue) {
+      return false;
+    }
+
+    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    if (propValue['@@toStringTag'] === 'Symbol') {
+      return true;
+    }
+
+    // Fallback for non-spec compliant Symbols which are polyfilled.
+    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // Equivalent of `typeof` but with special handling for array and regexp.
+  function getPropType(propValue) {
+    var propType = typeof propValue;
+    if (Array.isArray(propValue)) {
+      return 'array';
+    }
+    if (propValue instanceof RegExp) {
+      // Old webkits (at least until Android 4.0) return 'function' rather than
+      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      // passes PropTypes.object.
+      return 'object';
+    }
+    if (isSymbol(propType, propValue)) {
+      return 'symbol';
+    }
+    return propType;
+  }
+
+  // This handles more types than `getPropType`. Only used for error messages.
+  // See `createPrimitiveTypeChecker`.
+  function getPreciseType(propValue) {
+    if (typeof propValue === 'undefined' || propValue === null) {
+      return '' + propValue;
+    }
+    var propType = getPropType(propValue);
+    if (propType === 'object') {
+      if (propValue instanceof Date) {
+        return 'date';
+      } else if (propValue instanceof RegExp) {
+        return 'regexp';
+      }
+    }
+    return propType;
+  }
+
+  // Returns a string that is postfixed to a warning about an invalid type.
+  // For example, "undefined" or "of type array"
+  function getPostfixForTypeWarning(value) {
+    var type = getPreciseType(value);
+    switch (type) {
+      case 'array':
+      case 'object':
+        return 'an ' + type;
+      case 'boolean':
+      case 'date':
+      case 'regexp':
+        return 'a ' + type;
+      default:
+        return type;
+    }
+  }
+
+  // Returns class name of the object, if any.
+  function getClassName(propValue) {
+    if (!propValue.constructor || !propValue.constructor.name) {
+      return ANONYMOUS;
+    }
+    return propValue.constructor.name;
+  }
+
+  ReactPropTypes.checkPropTypes = checkPropTypes;
+  ReactPropTypes.resetWarningCache = checkPropTypes.resetWarningCache;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/prop-types/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/prop-types/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (true) {
+  var ReactIs = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ "./node_modules/prop-types/factoryWithTypeCheckers.js")(ReactIs.isElement, throwOnDirectAccess);
+} else {}
 
 
 /***/ }),
@@ -26631,6 +32382,216 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/react-is/cjs/react-is.development.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/react-is/cjs/react-is.development.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/** @license React v16.13.1
+ * react-is.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+
+
+if (true) {
+  (function() {
+'use strict';
+
+// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+// nor polyfill, then a plain number is used for performance.
+var hasSymbol = typeof Symbol === 'function' && Symbol.for;
+var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
+var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
+var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
+var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
+var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
+var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+// (unstable) APIs that have been removed. Can we remove the symbols?
+
+var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
+var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
+var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
+var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
+var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
+
+function isValidElementType(type) {
+  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+}
+
+function typeOf(object) {
+  if (typeof object === 'object' && object !== null) {
+    var $$typeof = object.$$typeof;
+
+    switch ($$typeof) {
+      case REACT_ELEMENT_TYPE:
+        var type = object.type;
+
+        switch (type) {
+          case REACT_ASYNC_MODE_TYPE:
+          case REACT_CONCURRENT_MODE_TYPE:
+          case REACT_FRAGMENT_TYPE:
+          case REACT_PROFILER_TYPE:
+          case REACT_STRICT_MODE_TYPE:
+          case REACT_SUSPENSE_TYPE:
+            return type;
+
+          default:
+            var $$typeofType = type && type.$$typeof;
+
+            switch ($$typeofType) {
+              case REACT_CONTEXT_TYPE:
+              case REACT_FORWARD_REF_TYPE:
+              case REACT_LAZY_TYPE:
+              case REACT_MEMO_TYPE:
+              case REACT_PROVIDER_TYPE:
+                return $$typeofType;
+
+              default:
+                return $$typeof;
+            }
+
+        }
+
+      case REACT_PORTAL_TYPE:
+        return $$typeof;
+    }
+  }
+
+  return undefined;
+} // AsyncMode is deprecated along with isAsyncMode
+
+var AsyncMode = REACT_ASYNC_MODE_TYPE;
+var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+var ContextConsumer = REACT_CONTEXT_TYPE;
+var ContextProvider = REACT_PROVIDER_TYPE;
+var Element = REACT_ELEMENT_TYPE;
+var ForwardRef = REACT_FORWARD_REF_TYPE;
+var Fragment = REACT_FRAGMENT_TYPE;
+var Lazy = REACT_LAZY_TYPE;
+var Memo = REACT_MEMO_TYPE;
+var Portal = REACT_PORTAL_TYPE;
+var Profiler = REACT_PROFILER_TYPE;
+var StrictMode = REACT_STRICT_MODE_TYPE;
+var Suspense = REACT_SUSPENSE_TYPE;
+var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+
+function isAsyncMode(object) {
+  {
+    if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+
+      console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
+    }
+  }
+
+  return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+}
+function isConcurrentMode(object) {
+  return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+}
+function isContextConsumer(object) {
+  return typeOf(object) === REACT_CONTEXT_TYPE;
+}
+function isContextProvider(object) {
+  return typeOf(object) === REACT_PROVIDER_TYPE;
+}
+function isElement(object) {
+  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+}
+function isForwardRef(object) {
+  return typeOf(object) === REACT_FORWARD_REF_TYPE;
+}
+function isFragment(object) {
+  return typeOf(object) === REACT_FRAGMENT_TYPE;
+}
+function isLazy(object) {
+  return typeOf(object) === REACT_LAZY_TYPE;
+}
+function isMemo(object) {
+  return typeOf(object) === REACT_MEMO_TYPE;
+}
+function isPortal(object) {
+  return typeOf(object) === REACT_PORTAL_TYPE;
+}
+function isProfiler(object) {
+  return typeOf(object) === REACT_PROFILER_TYPE;
+}
+function isStrictMode(object) {
+  return typeOf(object) === REACT_STRICT_MODE_TYPE;
+}
+function isSuspense(object) {
+  return typeOf(object) === REACT_SUSPENSE_TYPE;
+}
+
+exports.AsyncMode = AsyncMode;
+exports.ConcurrentMode = ConcurrentMode;
+exports.ContextConsumer = ContextConsumer;
+exports.ContextProvider = ContextProvider;
+exports.Element = Element;
+exports.ForwardRef = ForwardRef;
+exports.Fragment = Fragment;
+exports.Lazy = Lazy;
+exports.Memo = Memo;
+exports.Portal = Portal;
+exports.Profiler = Profiler;
+exports.StrictMode = StrictMode;
+exports.Suspense = Suspense;
+exports.isAsyncMode = isAsyncMode;
+exports.isConcurrentMode = isConcurrentMode;
+exports.isContextConsumer = isContextConsumer;
+exports.isContextProvider = isContextProvider;
+exports.isElement = isElement;
+exports.isForwardRef = isForwardRef;
+exports.isFragment = isFragment;
+exports.isLazy = isLazy;
+exports.isMemo = isMemo;
+exports.isPortal = isPortal;
+exports.isProfiler = isProfiler;
+exports.isStrictMode = isStrictMode;
+exports.isSuspense = isSuspense;
+exports.isValidElementType = isValidElementType;
+exports.typeOf = typeOf;
+  })();
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/react-is/index.js":
+/*!****************************************!*\
+  !*** ./node_modules/react-is/index.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+if (false) {} else {
+  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ "./node_modules/react-is/cjs/react-is.development.js");
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/react/cjs/react.development.js":
 /*!*****************************************************!*\
   !*** ./node_modules/react/cjs/react.development.js ***!
@@ -29837,6 +35798,286 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var isOldIE = function isOldIE() {
+  var memo;
+  return function memorize() {
+    if (typeof memo === 'undefined') {
+      // Test for IE <= 9 as proposed by Browserhacks
+      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+      // Tests for existence of standard globals is to allow style-loader
+      // to operate correctly into non-standard environments
+      // @see https://github.com/webpack-contrib/style-loader/issues/177
+      memo = Boolean(window && document && document.all && !window.atob);
+    }
+
+    return memo;
+  };
+}();
+
+var getTarget = function getTarget() {
+  var memo = {};
+  return function memorize(target) {
+    if (typeof memo[target] === 'undefined') {
+      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
+
+      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+        try {
+          // This will throw an exception if access to iframe is blocked
+          // due to cross-origin restrictions
+          styleTarget = styleTarget.contentDocument.head;
+        } catch (e) {
+          // istanbul ignore next
+          styleTarget = null;
+        }
+      }
+
+      memo[target] = styleTarget;
+    }
+
+    return memo[target];
+  };
+}();
+
+var stylesInDom = [];
+
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+
+  for (var i = 0; i < stylesInDom.length; i++) {
+    if (stylesInDom[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+
+  return result;
+}
+
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var index = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3]
+    };
+
+    if (index !== -1) {
+      stylesInDom[index].references++;
+      stylesInDom[index].updater(obj);
+    } else {
+      stylesInDom.push({
+        identifier: identifier,
+        updater: addStyle(obj, options),
+        references: 1
+      });
+    }
+
+    identifiers.push(identifier);
+  }
+
+  return identifiers;
+}
+
+function insertStyleElement(options) {
+  var style = document.createElement('style');
+  var attributes = options.attributes || {};
+
+  if (typeof attributes.nonce === 'undefined') {
+    var nonce =  true ? __webpack_require__.nc : undefined;
+
+    if (nonce) {
+      attributes.nonce = nonce;
+    }
+  }
+
+  Object.keys(attributes).forEach(function (key) {
+    style.setAttribute(key, attributes[key]);
+  });
+
+  if (typeof options.insert === 'function') {
+    options.insert(style);
+  } else {
+    var target = getTarget(options.insert || 'head');
+
+    if (!target) {
+      throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+    }
+
+    target.appendChild(style);
+  }
+
+  return style;
+}
+
+function removeStyleElement(style) {
+  // istanbul ignore if
+  if (style.parentNode === null) {
+    return false;
+  }
+
+  style.parentNode.removeChild(style);
+}
+/* istanbul ignore next  */
+
+
+var replaceText = function replaceText() {
+  var textStore = [];
+  return function replace(index, replacement) {
+    textStore[index] = replacement;
+    return textStore.filter(Boolean).join('\n');
+  };
+}();
+
+function applyToSingletonTag(style, index, remove, obj) {
+  var css = remove ? '' : obj.media ? "@media ".concat(obj.media, " {").concat(obj.css, "}") : obj.css; // For old IE
+
+  /* istanbul ignore if  */
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = replaceText(index, css);
+  } else {
+    var cssNode = document.createTextNode(css);
+    var childNodes = style.childNodes;
+
+    if (childNodes[index]) {
+      style.removeChild(childNodes[index]);
+    }
+
+    if (childNodes.length) {
+      style.insertBefore(cssNode, childNodes[index]);
+    } else {
+      style.appendChild(cssNode);
+    }
+  }
+}
+
+function applyToTag(style, options, obj) {
+  var css = obj.css;
+  var media = obj.media;
+  var sourceMap = obj.sourceMap;
+
+  if (media) {
+    style.setAttribute('media', media);
+  } else {
+    style.removeAttribute('media');
+  }
+
+  if (sourceMap && btoa) {
+    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
+  } // For old IE
+
+  /* istanbul ignore if  */
+
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    while (style.firstChild) {
+      style.removeChild(style.firstChild);
+    }
+
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var singleton = null;
+var singletonCounter = 0;
+
+function addStyle(obj, options) {
+  var style;
+  var update;
+  var remove;
+
+  if (options.singleton) {
+    var styleIndex = singletonCounter++;
+    style = singleton || (singleton = insertStyleElement(options));
+    update = applyToSingletonTag.bind(null, style, styleIndex, false);
+    remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+  } else {
+    style = insertStyleElement(options);
+    update = applyToTag.bind(null, style, options);
+
+    remove = function remove() {
+      removeStyleElement(style);
+    };
+  }
+
+  update(obj);
+  return function updateStyle(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {
+        return;
+      }
+
+      update(obj = newObj);
+    } else {
+      remove();
+    }
+  };
+}
+
+module.exports = function (list, options) {
+  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+  // tags it will allow on a page
+
+  if (!options.singleton && typeof options.singleton !== 'boolean') {
+    options.singleton = isOldIE();
+  }
+
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+
+    if (Object.prototype.toString.call(newList) !== '[object Array]') {
+      return;
+    }
+
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDom[index].references--;
+    }
+
+    var newLastIdentifiers = modulesToDom(newList, options);
+
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+
+      var _index = getIndexByIdentifier(_identifier);
+
+      if (stylesInDom[_index].references === 0) {
+        stylesInDom[_index].updater();
+
+        stylesInDom.splice(_index, 1);
+      }
+    }
+
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
+
+/***/ }),
+
 /***/ "./src/components/DiffInfo.jsx":
 /*!*************************************!*\
   !*** ./src/components/DiffInfo.jsx ***!
@@ -29848,12 +36089,19 @@ if (false) {} else {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
  // export interface DiffInfoProps {}
 
-var DiffInfo = function DiffInfo() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, "DiffInfo here");
+var DiffInfo = function DiffInfo(_ref) {
+  var diff = _ref.diff;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, diff);
 };
 
+DiffInfo.propTypes = {
+  diff: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired
+};
 /* harmony default export */ __webpack_exports__["default"] = (DiffInfo);
 
 /***/ }),
@@ -29869,13 +36117,88 @@ var DiffInfo = function DiffInfo() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _dummyData_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dummyData/data */ "./src/dummyData/data.js");
+/* harmony import */ var _HistoryViewQuery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HistoryViewQuery */ "./src/components/HistoryViewQuery.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
  // export interface HistoryViewProps {}
 
 var HistoryView = function HistoryView() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, "List out the queries performed here");
+  // Use Reudx hook to get list of queries
+  var queryHistory = _dummyData_data__WEBPACK_IMPORTED_MODULE_1__["dummyList"]; // This should probably be a redux hook to set the active query in App state?
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__["useState"](-1),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      activeQuery = _React$useState2[0],
+      setActiveQuery = _React$useState2[1];
+
+  var queries = [];
+
+  var _loop = function _loop(i) {
+    queries.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_HistoryViewQuery__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      key: i,
+      queryNum: i + 1,
+      onClick: function onClick() {
+        return setActiveQuery(i);
+      }
+    }));
+  };
+
+  for (var i = 0; i < queryHistory.length; i += 1) {
+    _loop(i);
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    className: "history-view"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h1", null, "Queries"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h2", null, "ActiveQuery:", activeQuery), queries);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (HistoryView);
+
+/***/ }),
+
+/***/ "./src/components/HistoryViewQuery.jsx":
+/*!*********************************************!*\
+  !*** ./src/components/HistoryViewQuery.jsx ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var HistoryViewQuery = function HistoryViewQuery(_ref) {
+  var queryNum = _ref.queryNum,
+      onClick = _ref.onClick;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-card",
+    onClick: onClick
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Query ".concat(queryNum)));
+};
+
+HistoryViewQuery.propTypes = {
+  queryNum: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number.isRequired,
+  onClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired
+};
+/* harmony default export */ __webpack_exports__["default"] = (HistoryViewQuery);
 
 /***/ }),
 
@@ -29890,12 +36213,41 @@ var HistoryView = function HistoryView() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
  // export interface NavProps {}
 
-var Nav = function Nav() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, "Info nav buttons here");
+var Nav = function Nav(_ref) {
+  var setSelectedInfo = _ref.setSelectedInfo;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    className: "nav"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    className: "nav-button",
+    onClick: function onClick() {
+      return setSelectedInfo('QueryInfo');
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, "Query")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    className: "nav-button",
+    onClick: function onClick() {
+      return setSelectedInfo('ResponseInfo');
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, "Response")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    className: "nav-button",
+    onClick: function onClick() {
+      return setSelectedInfo('StateInfo');
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, "Cache")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    className: "nav-button",
+    onClick: function onClick() {
+      return setSelectedInfo('DiffInfo');
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, "Diff")));
 };
 
+Nav.propTypes = {
+  setSelectedInfo: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired
+};
 /* harmony default export */ __webpack_exports__["default"] = (Nav);
 
 /***/ }),
@@ -29911,12 +36263,25 @@ var Nav = function Nav() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var graphql_syntax_highlighter_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! graphql-syntax-highlighter-react */ "./node_modules/graphql-syntax-highlighter-react/index.js");
+/* harmony import */ var graphql_syntax_highlighter_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(graphql_syntax_highlighter_react__WEBPACK_IMPORTED_MODULE_2__);
+
+
  // export interface QueryInfoProps {}
 
-var QueryInfo = function QueryInfo() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, "QueryInfo here");
+var QueryInfo = function QueryInfo(_ref) {
+  var queryString = _ref.queryString;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](graphql_syntax_highlighter_react__WEBPACK_IMPORTED_MODULE_2__["GraphqlCodeBlock"], {
+    className: "GraphqlCodeBlock",
+    queryBody: queryString
+  });
 };
 
+QueryInfo.propTypes = {
+  queryString: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired
+};
 /* harmony default export */ __webpack_exports__["default"] = (QueryInfo);
 
 /***/ }),
@@ -29932,12 +36297,19 @@ var QueryInfo = function QueryInfo() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
  // export interface ResponseInfoProps {}
 
-var ResponseInfo = function ResponseInfo() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, "ResponseInfo here");
+var ResponseInfo = function ResponseInfo(_ref) {
+  var responseString = _ref.responseString;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, responseString);
 };
 
+ResponseInfo.propTypes = {
+  responseString: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired
+};
 /* harmony default export */ __webpack_exports__["default"] = (ResponseInfo);
 
 /***/ }),
@@ -29953,12 +36325,19 @@ var ResponseInfo = function ResponseInfo() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
  // export interface StateInfoProps {}
 
-var StateInfo = function StateInfo() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, "StateInfo here");
+var StateInfo = function StateInfo(_ref) {
+  var stateSnapshot = _ref.stateSnapshot;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, stateSnapshot);
 };
 
+StateInfo.propTypes = {
+  stateSnapshot: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired
+};
 /* harmony default export */ __webpack_exports__["default"] = (StateInfo);
 
 /***/ }),
@@ -29979,6 +36358,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _HistoryContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HistoryContainer */ "./src/containers/HistoryContainer.jsx");
 /* harmony import */ var _InfoContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./InfoContainer */ "./src/containers/InfoContainer.jsx");
 /* harmony import */ var _util_messageTypes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/messageTypes */ "./src/util/messageTypes.js");
+/* harmony import */ var _styles_main_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles/main.css */ "./src/styles/main.css");
+/* harmony import */ var _styles_main_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_styles_main_css__WEBPACK_IMPORTED_MODULE_5__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -29990,6 +36371,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -30051,10 +36433,18 @@ var App = function App() {
 
   console.log('appCache', cache);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    className: "wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
     className: "main"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    className: "heading"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h1", null, "Hola Monde!!!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", {
     onClick: getCache
-  }, "Get Cache"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_HistoryContainer__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_InfoContainer__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+  }, "Get Cache")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    className: "containers-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", {
+    className: "containers"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_HistoryContainer__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_InfoContainer__WEBPACK_IMPORTED_MODULE_3__["default"], null)))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -30100,6 +36490,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ResponseInfo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/ResponseInfo */ "./src/components/ResponseInfo.jsx");
 /* harmony import */ var _components_StateInfo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/StateInfo */ "./src/components/StateInfo.jsx");
 /* harmony import */ var _components_DiffInfo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/DiffInfo */ "./src/components/DiffInfo.jsx");
+/* harmony import */ var _dummyData_data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../dummyData/data */ "./src/dummyData/data.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -30117,27 +36508,77 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
  // export interface InfoContainerProps {}
 // type infoTypes = {
 //   [infoType: string]: JSX.Element;
 // };
 
 var InfoContainer = function InfoContainer() {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__["useState"](''),
+  // changes the info based on the tab selected
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__["useState"]('QueryInfo'),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       selectedInfo = _React$useState2[0],
-      setSelectedInfo = _React$useState2[1];
+      setSelectedInfo = _React$useState2[1]; // get selected query based on state
 
+
+  var selectedQuery = _dummyData_data__WEBPACK_IMPORTED_MODULE_6__["dummyQuery"];
   var info = {
-    QueryInfo: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_QueryInfo__WEBPACK_IMPORTED_MODULE_2__["default"], null),
-    ResponseInfo: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_ResponseInfo__WEBPACK_IMPORTED_MODULE_3__["default"], null),
-    StateInfo: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_StateInfo__WEBPACK_IMPORTED_MODULE_4__["default"], null),
-    DiffInfo: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_DiffInfo__WEBPACK_IMPORTED_MODULE_5__["default"], null)
+    QueryInfo: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_QueryInfo__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      queryString: selectedQuery.queryString
+    }),
+    ResponseInfo: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_ResponseInfo__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      responseString: selectedQuery.responseString
+    }),
+    StateInfo: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_StateInfo__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      stateSnapshot: selectedQuery.stateSnapshot
+    }),
+    DiffInfo: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_DiffInfo__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      diff: selectedQuery.diff
+    })
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_Nav__WEBPACK_IMPORTED_MODULE_1__["default"], null), info[selectedInfo]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_components_Nav__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    setSelectedInfo: setSelectedInfo
+  }), info[selectedInfo]);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (InfoContainer);
+
+/***/ }),
+
+/***/ "./src/dummyData/data.js":
+/*!*******************************!*\
+  !*** ./src/dummyData/data.js ***!
+  \*******************************/
+/*! exports provided: dummyList, dummyQuery */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dummyList", function() { return dummyList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dummyQuery", function() { return dummyQuery; });
+var dummyList = [{
+  queryString: "\n      query IsUserLoggedIn {\n        isLoggedIn @client\n      }\n    ",
+  responseString: "\n      {\n        \"data\": {},\n        \"loading\": false,\n        \"networkStatus\": 7,\n        \"stale\": false\n      }\n    ",
+  stateSnapshot: "TBD",
+  diff: "TBD"
+}, {
+  queryString: "\n      query GetLaunchList($after: String) {\n        launches(after: $after) {\n          cursor\n          hasMore\n          launches {\n            ...LaunchTile\n            __typename\n          }\n          __typename\n        }\n      }\n      \n      fragment LaunchTile on Launch {\n        __typename\n        id\n        isBooked\n        rocket {\n          id\n          name\n          __typename\n        }\n        mission {\n          name\n          missionPatch\n          __typename\n        }\n      }\n    ",
+  responseString: "\n      {\n        \"data\": {\n          \"launches\": {\n            \"cursor\": \"1560349020\",\n            \"hasMore\": true,\n            \"launches\": [\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"99\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"Starlink-9 (v1.0) & BlackSky Global 5-6\",\n                  \"missionPatch\": \"https://images2.imgbox.com/d2/3b/bQaWiil0_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"98\",\n                \"isBooked\": true,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"ANASIS-II\",\n                  \"missionPatch\": null,\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"97\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"GPS III SV03 (Columbus)\",\n                  \"missionPatch\": null,\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"96\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"Starlink-8 & SkySat 16-18\",\n                  \"missionPatch\": \"https://images2.imgbox.com/d2/3b/bQaWiil0_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"95\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"Starlink 7\",\n                  \"missionPatch\": \"https://images2.imgbox.com/d2/3b/bQaWiil0_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"94\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"CCtCap Demo Mission 2\",\n                  \"missionPatch\": \"https://images2.imgbox.com/ab/79/Wyc9K7fv_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"93\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"Starlink 6\",\n                  \"missionPatch\": \"https://images2.imgbox.com/d2/3b/bQaWiil0_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"92\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"Starlink 5\",\n                  \"missionPatch\": \"https://images2.imgbox.com/d2/3b/bQaWiil0_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"91\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"CRS-20\",\n                  \"missionPatch\": \"https://images2.imgbox.com/15/2b/NAcsTEB6_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"90\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"Starlink 4\",\n                  \"missionPatch\": \"https://images2.imgbox.com/d2/3b/bQaWiil0_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"89\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"Starlink 3\",\n                  \"missionPatch\": \"https://images2.imgbox.com/d2/3b/bQaWiil0_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"88\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"Crew Dragon In Flight Abort Test\",\n                  \"missionPatch\": \"https://images2.imgbox.com/9d/04/DNXjbXDY_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"87\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"Starlink 2\",\n                  \"missionPatch\": \"https://images2.imgbox.com/d2/3b/bQaWiil0_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"86\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"JCSat 18 / Kacific 1\",\n                  \"missionPatch\": \"https://images2.imgbox.com/49/eb/evB1Wi95_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"85\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"CRS-19\",\n                  \"missionPatch\": \"https://images2.imgbox.com/1f/40/3mc9OSdH_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"84\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"Starlink 1\",\n                  \"missionPatch\": \"https://images2.imgbox.com/d2/3b/bQaWiil0_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"83\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"Amos-17\",\n                  \"missionPatch\": \"https://images2.imgbox.com/a0/ab/XUoByiuR_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"82\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"CRS-18\",\n                  \"missionPatch\": \"https://images2.imgbox.com/08/a2/bPpNeIRJ_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"81\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falconheavy\",\n                  \"name\": \"Falcon Heavy\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"STP-2\",\n                  \"missionPatch\": \"https://images2.imgbox.com/18/17/gCjLjHbl_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              },\n              {\n                \"__typename\": \"Launch\",\n                \"id\": \"80\",\n                \"isBooked\": false,\n                \"rocket\": {\n                  \"id\": \"falcon9\",\n                  \"name\": \"Falcon 9\",\n                  \"__typename\": \"Rocket\"\n                },\n                \"mission\": {\n                  \"name\": \"RADARSAT Constellation\",\n                  \"missionPatch\": \"https://images2.imgbox.com/c3/06/2irK3PGj_o.png\",\n                  \"__typename\": \"Mission\"\n                }\n              }\n            ],\n            \"__typename\": \"LaunchConnection\"\n          }\n        },\n        \"loading\": false,\n        \"networkStatus\": 7,\n        \"stale\": false\n      }\n    ",
+  stateSnapshot: "TBD",
+  diff: "TBD"
+}, {
+  queryString: "\n      query LaunchDetails($launchId: ID!) {\n        launch(id: $launchId) {\n          site\n          rocket {\n            type\n            __typename\n          }\n          ...LaunchTile\n          __typename\n        }\n      }\n      fragment LaunchTile on Launch {\n        __typename\n        id\n        isBooked\n        rocket {\n          id\n          name\n          __typename\n        }\n        mission {\n          name\n          missionPatch\n          __typename\n        }\n      }\n    ",
+  responseString: "\n      {\n        \"data\": {\n          \"launch\": {\n            \"site\": \"KSC LC 39A\",\n            \"rocket\": {\n              \"type\": \"FT\",\n              \"__typename\": \"Rocket\",\n              \"id\": \"falcon9\",\n              \"name\": \"Falcon 9\"\n            },\n            \"__typename\": \"Launch\",\n            \"id\": \"99\",\n            \"isBooked\": false,\n            \"mission\": {\n              \"name\": \"Starlink-9 (v1.0) & BlackSky Global 5-6\",\n              \"missionPatch\": \"https://images2.imgbox.com/d2/3b/bQaWiil0_o.png\",\n              \"__typename\": \"Mission\"\n            }\n          }\n        },\n        \"loading\": false,\n        \"networkStatus\": 7,\n        \"stale\": false\n      }\n    ",
+  stateSnapshot: "TBD",
+  diff: "TBD"
+}];
+var dummyQuery = {
+  queryString: "\n    query LaunchDetails($launchId: ID!) {\n      launch(id: $launchId) {\n        site\n        rocket {\n          type\n          __typename\n        }\n        ...LaunchTile\n        __typename\n      }\n    }\n    fragment LaunchTile on Launch {\n      __typename\n      id\n      isBooked\n      rocket {\n        id\n        name\n        __typename\n      }\n      mission {\n        name\n        missionPatch\n        __typename\n      }\n    }\n  ",
+  responseString: "\n    {\n      \"data\": {\n        \"launch\": {\n          \"site\": \"KSC LC 39A\",\n          \"rocket\": {\n            \"type\": \"FT\",\n            \"__typename\": \"Rocket\",\n            \"id\": \"falcon9\",\n            \"name\": \"Falcon 9\"\n          },\n          \"__typename\": \"Launch\",\n          \"id\": \"99\",\n          \"isBooked\": false,\n          \"mission\": {\n            \"name\": \"Starlink-9 (v1.0) & BlackSky Global 5-6\",\n            \"missionPatch\": \"https://images2.imgbox.com/d2/3b/bQaWiil0_o.png\",\n            \"__typename\": \"Mission\"\n          }\n        }\n      },\n      \"loading\": false,\n      \"networkStatus\": 7,\n      \"stale\": false\n    }\n  ",
+  stateSnapshot: "TBD",
+  diff: "TBD"
+};
 
 /***/ }),
 
@@ -30159,6 +36600,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_App__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('root'));
+
+/***/ }),
+
+/***/ "./src/styles/main.css":
+/*!*****************************!*\
+  !*** ./src/styles/main.css ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!./main.css */ "./node_modules/css-loader/dist/cjs.js!./src/styles/main.css");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
 
 /***/ }),
 
