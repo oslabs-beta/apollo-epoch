@@ -454,32 +454,30 @@ export const dummyQuery = {
       }
     }
   `,
-  responseString: `
-    {
-      "data": {
-        "launch": {
-          "site": "KSC LC 39A",
-          "rocket": {
-            "type": "FT",
-            "__typename": "Rocket",
-            "id": "falcon9",
-            "name": "Falcon 9"
-          },
-          "__typename": "Launch",
-          "id": "99",
-          "isBooked": false,
-          "mission": {
-            "name": "Starlink-9 (v1.0) & BlackSky Global 5-6",
-            "missionPatch": "https://images2.imgbox.com/d2/3b/bQaWiil0_o.png",
-            "__typename": "Mission"
-          }
-        }
+  response: {
+    data: {
+      launch: {
+        site: 'KSC LC 39A',
+        rocket: {
+          type: 'FT',
+          __typename: 'Rocket',
+          id: 'falcon9',
+          name: 'Falcon 9',
+        },
+        __typename: 'Launch',
+        id: '99',
+        isBooked: false,
+        mission: {
+          name: 'Starlink-9 (v1.0) & BlackSky Global 5-6',
+          missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+          __typename: 'Mission',
+        },
       },
-      "loading": false,
-      "networkStatus": 7,
-      "stale": false
-    }
-  `,
+    },
+    loading: false,
+    networkStatus: 7,
+    stale: false,
+  },
   stateSnapshot: `TBD`,
   diff: `TBD`,
 };
