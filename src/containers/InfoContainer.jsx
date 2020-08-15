@@ -4,6 +4,7 @@ import QueryInfo from '../components/QueryInfo';
 import ResponseInfo from '../components/ResponseInfo';
 import StateInfo from '../components/StateInfo';
 import DiffInfo from '../components/DiffInfo';
+import { dummyQuery } from '../dummyData/data';
 
 // export interface InfoContainerProps {}
 
@@ -12,16 +13,19 @@ import DiffInfo from '../components/DiffInfo';
 // };
 
 const InfoContainer = () => {
-  const [selectedInfo, setSelectedInfo] = React.useState('');
+  // changes the info based on the tab selected
+  const [selectedInfo, setSelectedInfo] = React.useState('QueryInfo');
+  // get selected query based on state
+  const selectedQuery = dummyQuery;
   const info = {
-    QueryInfo: <QueryInfo />,
-    ResponseInfo: <ResponseInfo />,
-    StateInfo: <StateInfo />,
-    DiffInfo: <DiffInfo />,
+    QueryInfo: <QueryInfo queryString={selectedQuery.queryString} />,
+    ResponseInfo: <ResponseInfo responseString={selectedQuery.responseString} />,
+    StateInfo: <StateInfo stateSnapshot={selectedQuery.stateSnapshot} />,
+    DiffInfo: <DiffInfo diff={selectedQuery.diff} />,
   };
   return (
     <>
-      <Nav />
+      <Nav setSelectedInfo={setSelectedInfo} />
       {/* Use info object to conditionally render out QueryInfo | ResponseInfo | StateInfo | DiffInfo */}
       {info[selectedInfo]}
     </>
