@@ -47,14 +47,16 @@ base0F - Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
 
 const ResponseInfo = ({ response }) => {
   return (
-    <ReactJson
-      src={response}
-      enableClipboard={false}
-      theme="codeschool"
-      displayObjectSize={false}
-      displayDataTypes={false}
-      indentWidth={2}
-    />
+    <div className="response-info">
+      <ReactJson
+        src={response}
+        enableClipboard={false}
+        theme="codeschool"
+        displayObjectSize={false}
+        displayDataTypes={false}
+        indentWidth={2}
+      />
+    </div>
   );
 };
 
