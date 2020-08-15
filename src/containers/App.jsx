@@ -37,12 +37,10 @@ const App = () => {
           <button onClick={getCache}>Get Cache</button>
         </div>
         <div className="containers-wrapper">
-          <div className="containers">
-            {/* // render out history  */}
-            <HistoryContainer />
-            {/* // render out info display */}
-            <InfoContainer />
-          </div>
+          {/* // render out history  */}
+          <HistoryContainer />
+          {/* // render out info display */}
+          <InfoContainer />
         </div>
       </div>
     </div>
