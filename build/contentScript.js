@@ -217,28 +217,36 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _src_util_messageTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/util/messageTypes */ "./src/util/messageTypes.js");
+/* harmony import */ var _src_store_chromeExMessages_messageTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/store/chromeExMessages/messageTypes */ "./src/store/chromeExMessages/messageTypes.js");
 /* harmony import */ var _src_util_contentScriptUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../src/util/contentScriptUtils */ "./src/util/contentScriptUtils.js");
-// chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-//   console.log('listener created');
-//   if (msg.type === 'send cache') {
-//     chrome.runtime.sendMessage({
-//       type: 'cache to background',
-//       payload: chrome.window.__APOLLO_CLIENT__.localState.cache.data.data,
-//     });
-//   }
-// });
 
 
-var epoch = _src_util_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].epoch,
-    contentScript = _src_util_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].contentScript;
-console.log('contentScript Running');
+var epoch = _src_store_chromeExMessages_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].epoch,
+    contentScript = _src_store_chromeExMessages_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].contentScript,
+    clientWindow = _src_store_chromeExMessages_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].clientWindow;
+console.log('contentScript Running'); // Apollo client tracks queries and mutations with ID counts. If those counts have not
+// changed, we're wasting a lot resources firing messages that don't need to go.
+// This function should prevent that extra work.
+
+var counts = function initializeCounts() {
+  var queryCount = 1;
+  var mutationCount = 1;
+  return {
+    getCounts: function getCounts() {
+      return {
+        queryCount: queryCount,
+        mutationCount: mutationCount
+      };
+    },
+    updateCounts: function updateCounts(newQueryCount, newMutationCount) {
+      queryCount = newQueryCount;
+      mutationCount = newMutationCount;
+    }
+  };
+}();
+
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   if (message.type === epoch.sayHello) {
-    // const apollo = '__APOLLO_CLIENT__';
-    // console.log('window', window);
-    // console.log('apollo', window[apollo]);
-    // const cache = window.__APOLLO_CLIENT__.localState.cache.data.data;
     console.log('Got a message from Epoch');
     Object(_src_util_contentScriptUtils__WEBPACK_IMPORTED_MODULE_1__["default"])(sendMessageWithCache);
     sendResponse({
@@ -257,9 +265,8 @@ chrome.runtime.sendMessage({
 window.addEventListener('message', function (event) {
   console.log('windowEvent', event.data);
   if (event.source !== window) return;
-  console.log('contentWindowResponse', event);
 
-  if (event.data && event.data.type === 'FROM_PAGE') {
+  if (event.data && event.data.type === clientWindow.queryUpdate) {
     var cache = JSON.parse(event.data.payload);
     console.log('contentCache', cache);
 
@@ -268,6 +275,7 @@ window.addEventListener('message', function (event) {
         type: contentScript.epochReceived,
         payload: cache
       });
+      counts.updateCounts(cache.queryCount, cache.mutationCount);
       return;
     }
 
@@ -277,8 +285,45 @@ window.addEventListener('message', function (event) {
     });
   }
 });
+window.addEventListener('keyup', function (e) {
+  if (e.key === 'Enter') {
+    var _counts$getCounts = counts.getCounts(),
+        queryCount = _counts$getCounts.queryCount,
+        mutationCount = _counts$getCounts.mutationCount;
 
-var sendMessageWithCache = function sendMessageWithCache() {
+    Object(_src_util_contentScriptUtils__WEBPACK_IMPORTED_MODULE_1__["default"])(sendMessageWithCache, queryCount, mutationCount);
+    chrome.runtime.sendMessage({
+      type: contentScript.messingAround,
+      payload: 'nuttin'
+    });
+  }
+});
+window.addEventListener('click', function (e) {
+  var _counts$getCounts2 = counts.getCounts(),
+      queryCount = _counts$getCounts2.queryCount,
+      mutationCount = _counts$getCounts2.mutationCount;
+
+  Object(_src_util_contentScriptUtils__WEBPACK_IMPORTED_MODULE_1__["default"])(sendMessageWithCache, queryCount, mutationCount);
+  chrome.runtime.sendMessage({
+    type: contentScript.messingAround,
+    payload: 'nuttin'
+  });
+});
+/*
+This script will be injected into the DOM. And posts a window message if
+conditions are met. We listen for that window message in out content script
+The content script and the client application share the DOM but not the same window objects.
+This is how we're able to get the Apollo Cache created by the client application
+into our application. Client App -> Content Script -> Background Script -> Epoch App 
+*/
+
+var sendMessageWithCache = function sendMessageWithCache(queryCount, mutationCount) {
+  var queryIdCounter = window.__APOLLO_CLIENT__.queryManager.queryIdCounter;
+  var mutationIdCounter = window.__APOLLO_CLIENT__.queryManager.mutationIdCounter;
+  console.log('qc, apqc -> ', queryCount, queryIdCounter);
+  console.log('mc, apmc -> ', mutationCount, mutationIdCounter);
+  if (queryIdCounter <= queryCount && mutationIdCounter <= mutationCount) return;
+
   function filterQueryInfo(queryInfoMap) {
     console.log('queryMap', queryInfoMap);
     var filteredQueryInfo = {};
@@ -300,13 +345,11 @@ var sendMessageWithCache = function sendMessageWithCache() {
   }
 
   window.postMessage({
-    type: 'FROM_PAGE',
+    type: '$$$queryUpdate$$$',
     payload: JSON.stringify({
       queries: filterQueryInfo(window.__APOLLO_CLIENT__.queryManager.queries),
-      info: {
-        idCount: window.__APOLLO_CLIENT__.queryManager.queryIdCounter,
-        requestCount: window.__APOLLO_CLIENT__.queryManager.requestIdCounter
-      }
+      queryCount: queryIdCounter,
+      mutationCount: mutationIdCounter
     })
   }, '*');
 };
@@ -1549,6 +1592,36 @@ function getVisitFn(visitor, kind, isLeaving) {
 
 /***/ }),
 
+/***/ "./src/store/chromeExMessages/messageTypes.js":
+/*!****************************************************!*\
+  !*** ./src/store/chromeExMessages/messageTypes.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var sendMessageTypes = {
+  epoch: {
+    initializeConnection: 'initializeConnection',
+    sayHello: 'sayHello'
+  },
+  contentScript: {
+    epochReceived: 'messageReceivedEpoch',
+    messageReceived: 'messageReceived',
+    messingAround: 'justMessin'
+  },
+  background: {
+    cache: 'returningData'
+  },
+  clientWindow: {
+    queryUpdate: '$$$queryUpdate$$$'
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (sendMessageTypes);
+
+/***/ }),
+
 /***/ "./src/util/contentScriptUtils.js":
 /*!****************************************!*\
   !*** ./src/util/contentScriptUtils.js ***!
@@ -1592,33 +1665,6 @@ var runInPageContext = function runInPageContext(method) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (runInPageContext);
-
-/***/ }),
-
-/***/ "./src/util/messageTypes.js":
-/*!**********************************!*\
-  !*** ./src/util/messageTypes.js ***!
-  \**********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var sendMessageTypes = {
-  epoch: {
-    initializeConnection: 'initializeConnection',
-    sayHello: 'sayHello'
-  },
-  contentScript: {
-    epochReceived: 'messageReceivedEpoch',
-    messageReceived: 'messageReceived',
-    messingAround: 'justMessin'
-  },
-  background: {
-    cache: 'returningData'
-  }
-};
-/* harmony default export */ __webpack_exports__["default"] = (sendMessageTypes);
 
 /***/ })
 

@@ -1,4 +1,4 @@
-import sendMessageTypes from '../src/util/messageTypes';
+import sendMessageTypes from '../src/store/chromeExMessages/messageTypes';
 
 const { epoch, contentScript, background } = sendMessageTypes;
 

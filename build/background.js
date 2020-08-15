@@ -217,11 +217,11 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _src_util_messageTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/util/messageTypes */ "./src/util/messageTypes.js");
+/* harmony import */ var _src_store_chromeExMessages_messageTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../src/store/chromeExMessages/messageTypes */ "./src/store/chromeExMessages/messageTypes.js");
 
-var epoch = _src_util_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].epoch,
-    contentScript = _src_util_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].contentScript,
-    background = _src_util_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].background;
+var epoch = _src_store_chromeExMessages_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].epoch,
+    contentScript = _src_store_chromeExMessages_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].contentScript,
+    background = _src_store_chromeExMessages_messageTypes__WEBPACK_IMPORTED_MODULE_0__["default"].background;
 console.log('Background Script Running');
 var connections = {};
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
@@ -297,10 +297,10 @@ chrome.runtime.onConnect.addListener(function (port) {
 
 /***/ }),
 
-/***/ "./src/util/messageTypes.js":
-/*!**********************************!*\
-  !*** ./src/util/messageTypes.js ***!
-  \**********************************/
+/***/ "./src/store/chromeExMessages/messageTypes.js":
+/*!****************************************************!*\
+  !*** ./src/store/chromeExMessages/messageTypes.js ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -318,6 +318,9 @@ var sendMessageTypes = {
   },
   background: {
     cache: 'returningData'
+  },
+  clientWindow: {
+    queryUpdate: '$$$queryUpdate$$$'
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (sendMessageTypes);

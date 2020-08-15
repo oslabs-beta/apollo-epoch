@@ -40,24 +40,7 @@
         }
       }
     ],
-    "object-curly-newline": [
-      "warn",
-      {
-        "ObjectExpression": {
-          "multiline": true,
-          "minProperties": 4
-        },
-        "ObjectPattern": {
-          "multiline": true,
-          "minProperties": 4
-        },
-        "ImportDeclaration": "never",
-        "ExportDeclaration": {
-          "multiline": true,
-          "minProperties": 4
-        }
-      }
-    ],
+
     "import/no-extraneous-dependencies": ["warn"]
   }
 }

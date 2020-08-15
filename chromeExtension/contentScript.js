@@ -1,25 +1,30 @@
-// chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-//   console.log('listener created');
-//   if (msg.type === 'send cache') {
-//     chrome.runtime.sendMessage({
-//       type: 'cache to background',
-//       payload: chrome.window.__APOLLO_CLIENT__.localState.cache.data.data,
-//     });
-//   }
-// });
-
-import sendMessageTypes from '../src/util/messageTypes';
+import sendMessageTypes from '../src/store/chromeExMessages/messageTypes';
 import runInContext from '../src/util/contentScriptUtils';
 
-const { epoch, contentScript } = sendMessageTypes;
+const { epoch, contentScript, clientWindow } = sendMessageTypes;
 console.log('contentScript Running');
+
+// Apollo client tracks queries and mutations with ID counts. If those counts have not
+// changed, we're wasting a lot resources firing messages that don't need to go.
+// This function should prevent that extra work.
+const counts = (function initializeCounts() {
+  let queryCount = 1;
+  let mutationCount = 1;
+
+  return {
+    getCounts() {
+      return { queryCount, mutationCount };
+    },
+
+    updateCounts(newQueryCount, newMutationCount) {
+      queryCount = newQueryCount;
+      mutationCount = newMutationCount;
+    },
+  };
+})();
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === epoch.sayHello) {
-    // const apollo = '__APOLLO_CLIENT__';
-    // console.log('window', window);
-    // console.log('apollo', window[apollo]);
-    // const cache = window.__APOLLO_CLIENT__.localState.cache.data.data;
     console.log('Got a message from Epoch');
     runInContext(sendMessageWithCache);
     sendResponse({ type: contentScript.messingAround, payload: 'nuttin' });
@@ -34,19 +39,48 @@ chrome.runtime.sendMessage({ type: 'helloFromContent', payload: 'HelloPayload' }
 window.addEventListener('message', (event) => {
   console.log('windowEvent', event.data);
   if (event.source !== window) return;
-  console.log('contentWindowResponse', event);
-  if (event.data && event.data.type === 'FROM_PAGE') {
+  if (event.data && event.data.type === clientWindow.queryUpdate) {
     const cache = JSON.parse(event.data.payload);
     console.log('contentCache', cache);
     if (cache) {
       chrome.runtime.sendMessage({ type: contentScript.epochReceived, payload: cache });
+      counts.updateCounts(cache.queryCount, cache.mutationCount);
       return;
     }
     chrome.runtime.sendMessage({ type: contentScript.epochReceived, payload: 'noCache' });
   }
 });
 
-const sendMessageWithCache = () => {
+window.addEventListener('keyup', (e) => {
+  if (e.key === 'Enter') {
+    const { queryCount, mutationCount } = counts.getCounts();
+    runInContext(sendMessageWithCache, queryCount, mutationCount);
+    chrome.runtime.sendMessage({ type: contentScript.messingAround, payload: 'nuttin' });
+  }
+});
+
+window.addEventListener('click', (e) => {
+  const { queryCount, mutationCount } = counts.getCounts();
+  runInContext(sendMessageWithCache, queryCount, mutationCount);
+  chrome.runtime.sendMessage({ type: contentScript.messingAround, payload: 'nuttin' });
+});
+
+/*
+This script will be injected into the DOM. And posts a window message if
+conditions are met. We listen for that window message in out content script
+The content script and the client application share the DOM but not the same window objects.
+This is how we're able to get the Apollo Cache created by the client application
+into our application. Client App -> Content Script -> Background Script -> Epoch App 
+*/
+const sendMessageWithCache = (queryCount, mutationCount) => {
+  const { queryIdCounter } = window.__APOLLO_CLIENT__.queryManager;
+  const { mutationIdCounter } = window.__APOLLO_CLIENT__.queryManager;
+
+  console.log('qc, apqc -> ', queryCount, queryIdCounter);
+  console.log('mc, apmc -> ', mutationCount, mutationIdCounter);
+
+  if (queryIdCounter <= queryCount && mutationIdCounter <= mutationCount) return;
+
   function filterQueryInfo(queryInfoMap) {
     console.log('queryMap', queryInfoMap);
 
@@ -69,13 +103,11 @@ const sendMessageWithCache = () => {
   }
   window.postMessage(
     {
-      type: 'FROM_PAGE',
+      type: '$$$queryUpdate$$$',
       payload: JSON.stringify({
         queries: filterQueryInfo(window.__APOLLO_CLIENT__.queryManager.queries),
-        info: {
-          idCount: window.__APOLLO_CLIENT__.queryManager.queryIdCounter,
-          requestCount: window.__APOLLO_CLIENT__.queryManager.requestIdCounter,
-        },
+        queryCount: queryIdCounter,
+        mutationCount: mutationIdCounter,
       }),
     },
     '*'

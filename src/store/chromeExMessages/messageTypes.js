@@ -6,6 +6,7 @@ const sendMessageTypes = {
     messingAround: 'justMessin',
   },
   background: { cache: 'returningData' },
+  clientWindow: { queryUpdate: '$$$queryUpdate$$$' },
 };
 
 export default sendMessageTypes;
