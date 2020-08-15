@@ -20,6 +20,7 @@ import sendMessageTypes from '../chromeExMessages/messageTypes';
 
 const initializePort = ({ dispatch }) => (next) => (action) => {
   console.log('middleAction', action);
+  console.log('actionType', action.type);
   if (action.type !== connectToBackground.type) return next(action);
   const { onSuccess } = action.payload;
 

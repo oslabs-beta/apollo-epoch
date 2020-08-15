@@ -41419,6 +41419,7 @@ var initializePort = function initializePort(_ref) {
   return function (next) {
     return function (action) {
       console.log('middleAction', action);
+      console.log('actionType', action.type);
       if (action.type !== _chromeExMessages_initializeActions__WEBPACK_IMPORTED_MODULE_1__["connectToBackground"].type) return next(action);
       var onSuccess = action.payload.onSuccess;
       console.log('successWill call', onSuccess);
