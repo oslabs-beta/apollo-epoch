@@ -19,7 +19,7 @@ const InfoContainer = () => {
   const selectedQuery = dummyQuery;
   const info = {
     QueryInfo: <QueryInfo queryString={selectedQuery.queryString} />,
-    ResponseInfo: <ResponseInfo responseString={selectedQuery.responseString} />,
+    ResponseInfo: <ResponseInfo response={selectedQuery.response} />,
     StateInfo: <StateInfo stateSnapshot={selectedQuery.stateSnapshot} />,
     DiffInfo: <DiffInfo diff={selectedQuery.diff} />,
   };
