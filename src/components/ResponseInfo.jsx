@@ -48,18 +48,22 @@ base0F - Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
 const ResponseInfo = ({ response }) => {
   return (
     <div className="response-info">
-      <ReactJson
-        src={response}
-        enableClipboard={false}
-        theme="codeschool"
-        displayObjectSize={false}
-        displayDataTypes={false}
-        indentWidth={2}
-      />
+      {!response && <h2>No Response to Render</h2>}
+      {response && (
+        <ReactJson
+          src={response}
+          enableClipboard={false}
+          theme="codeschool"
+          displayObjectSize={false}
+          displayDataTypes={false}
+          indentWidth={2}
+        />
+      )}
     </div>
   );
 };
 
+// eslint-disable-next-line react/forbid-prop-types
 ResponseInfo.propTypes = { response: PropTypes.object.isRequired };
 
 export default ResponseInfo;

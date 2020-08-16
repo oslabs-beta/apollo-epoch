@@ -6,7 +6,12 @@ import '../styles/graphQLCodeBlock.css';
 // export interface QueryInfoProps {}
 
 const QueryInfo = ({ queryString }) => {
-  return <GraphqlCodeBlock className="GraphqlCodeBlock" queryBody={queryString} />;
+  return (
+    <div>
+      {!queryString && <h2>No Query String to Render</h2>}
+      {queryString && <GraphqlCodeBlock className="GraphqlCodeBlock" queryBody={queryString} />}
+    </div>
+  );
 };
 
 QueryInfo.propTypes = { queryString: PropTypes.string.isRequired };

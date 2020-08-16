@@ -1,12 +1,10 @@
+/* eslint-disable react/button-has-type */
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import HistoryContainer from './HistoryContainer';
 import InfoContainer from './InfoContainer';
 import { initializeBackgroundConnection, fetchApollo } from '../store/entities/apollo';
-import sendMessageTypes from '../store/messagesAndActionTypes/messageTypes';
 import '../styles/main.css';
-
-const { epoch, contentScript, background } = sendMessageTypes;
 
 const App = () => {
   // eslint-disable-next-line no-shadow
