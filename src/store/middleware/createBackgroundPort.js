@@ -10,7 +10,6 @@ will be triggered once on app initialization and should create a superPort with 
 tabId closed over and the ability to dispatch actions when messages are received from 
 the backend. 
 */
-import { print } from 'graphql/language/printer';
 import {
   connectToBackground,
   connectionSuccess,
@@ -55,14 +54,6 @@ const initializePort = ({ dispatch }) => (next) => (action) => {
       }
 
       if (message.type === background.apolloReceivedManual) {
-        console.log('APP CACHE!!', message.payload);
-        const documents = Object.keys(message.payload);
-
-        documents.forEach((doc) => {
-          const qString = print(message.payload[doc].document);
-          console.log('qString', qString);
-        });
-
         dispatch({ type: receivedApolloManual, payload: message.payload });
       }
 
