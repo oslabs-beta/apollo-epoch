@@ -83,6 +83,11 @@ window.addEventListener('message', (event) => {
     return;
   }
 
+  if (event.data && event.data.type === clientWindow.log) {
+    chrome.runtime.sendMessage({ type: contentScript.log, payload: event.data.payload });
+    return;
+  }
+
   if (event.data && event.data.type === clientWindow.queryUpdate) {
     const apolloData = JSON.parse(event.data.payload);
 
@@ -156,8 +161,8 @@ This is how we're able to get the Apollo Cache created by the client application
 into our application. Client App -> Content Script -> Background Script -> Epoch App 
 */
 const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch) => {
-  const apolloData = window.____APOLLO_CLIENT__;
-
+  const apolloData = window.__APOLLO_CLIENT__;
+  console.log('WINDOW TEST', apolloData);
   if (!apolloData) {
     window.postMessage({ type: '$$$noApollo$$$' });
     return;
@@ -182,8 +187,8 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
     },
     '*'
   );
-  console.log('initializeType', typeof initialize);
-  console.log('manualType', typeof manualFetch);
+  console.log('initializeType', initialize);
+  console.log('manualType', manualFetch);
   if (
     queryIdCounter <= queryCount &&
     mutationIdCounter <= mutationCount &&

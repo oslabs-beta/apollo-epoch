@@ -35,45 +35,46 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   if (message.type === contentScript.log) {
     const portId = sender.tab.id;
-    if (connections[portId]) {
-      connections[portId].postMessage({ type: background.log, payload: message.payload });
+    if (!connections[portId]) {
+      console.log(`No Epoch Panel Connection Id ${portId} for Content Log`, message.payload);
+      return;
     }
-
-    console.log(`No Epoch Panel Connection Id ${portId} for Content Log`, message.payload);
+    connections[portId].postMessage({ type: background.log, payload: message.payload });
   }
 
   if (message.type === contentScript.apolloReceived) {
     const apolloData = message.payload;
 
     const portId = sender.tab.id;
-    if (connections[portId]) {
-      connections[portId].postMessage({ type: background.apolloReceived, payload: apolloData });
+    if (!connections[portId]) {
+      console.log(`No Epoch Panel ${portId} to send Apollo Data -> `, apolloData);
+      return;
     }
-    console.log(`No Epoch Panel ${portId} to send Apollo Data -> `, apolloData);
+    connections[portId].postMessage({ type: background.apolloReceived, payload: apolloData });
   }
 
   if (message.type === contentScript.apolloReceivedManual) {
     const apolloData = message.payload;
 
     const portId = sender.tab.id;
-    if (connections[portId]) {
-      connections[portId].postMessage({
-        type: background.apolloReceivedManual,
-        payload: apolloData,
-      });
+    if (!connections[portId]) {
+      console.log(`No Epoch Panel ${portId} to send Apollo Data -> `, apolloData);
+      return;
     }
-    console.log(`No Epoch Panel ${portId} to send Apollo Data -> `, apolloData);
+    connections[portId].postMessage({
+      type: background.apolloReceivedManual,
+      payload: apolloData,
+    });
   }
 
   if (message.type === contentScript.noApolloClient) {
     const portId = sender.tab.id;
-    if (connections[portId]) {
-      connections[portId].postMessage({
-        type: background.noApolloClient,
-      });
+    if (!connections[portId]) {
+      console.log(`No Epoch Panel Connection Id ${portId} for No Apollo Client Log`);
     }
-
-    console.log(`No Epoch Panel Connection Id ${portId} for No Apollo Client Log`);
+    connections[portId].postMessage({
+      type: background.noApolloClient,
+    });
   }
 });
 
@@ -86,12 +87,13 @@ EPOCH PANEL COMMUNICATION
 chrome.runtime.onConnect.addListener((port) => {
   // create Listener that will save connection instance (port) for later use AND respond
   // to messages sent via that connection instance -- in case Multiple Apollo tabs in use
-  const epochListener = (message, sender, sendResponse) => {
+  const epochListener = (message) => {
+    console.log('messageObj', message);
     const { payload: tabId, type } = message;
 
     if (type === epoch.saveConnection) {
       connections[tabId] = port;
-      sendResponse({
+      connections[tabId].postMessage({
         type: background.log,
         payload: { title: `Background Save Connection Under ${tabId}` },
       });
@@ -105,6 +107,8 @@ chrome.runtime.onConnect.addListener((port) => {
     }
 
     if (type === epoch.fetchApolloData) {
+      console.log('tabId', message.payload);
+      console.log('tabId', message.type);
       chrome.tabs.sendMessage(Number(tabId), message, (response) => {
         connections[tabId].postMessage(response);
       });
