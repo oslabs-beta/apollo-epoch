@@ -94,6 +94,7 @@ function callBackgroundCase(state, action) {
 }
 
 function fetchApolloCase(state, action) {
+  console.log('reduceTabId', chrome.devtools.inspectedWindow.tabId);
   superPort.connection.postMessage({
     type: sendMessageTypes.epoch.fetchApolloData,
     payload: chrome.devtools.inspectedWindow.tabId,

@@ -20,7 +20,6 @@ import sendMessageTypes from '../messagesAndActionTypes/messageTypes';
 import { log, error } from '../messagesAndActionTypes/loggerActions';
 
 const initializePort = ({ dispatch }) => (next) => (action) => {
-  console.log('actionType', action.type);
   if (action.type !== connectToBackground.type) return next(action);
   const { onSuccess } = action.payload;
 
