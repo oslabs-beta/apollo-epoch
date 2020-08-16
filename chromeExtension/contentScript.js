@@ -161,15 +161,21 @@ This is how we're able to get the Apollo Cache created by the client application
 into our application. Client App -> Content Script -> Background Script -> Epoch App 
 */
 const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch) => {
-  const apolloData = window.__APOLLO_CLIENT__;
+  const apolloData = window.__APOLLO_CLIENT__.queryManager;
   console.log('WINDOW TEST', apolloData);
   if (!apolloData) {
     window.postMessage({ type: '$$$noApollo$$$' });
     return;
   }
 
-  const { queryIdCounter } = apolloData.queryManager;
-  const { mutationIdCounter } = apolloData.queryManager;
+  // Get and format Data we need from window Obj
+  const { queryIdCounter, mutationIdCounter, queries, mutationStore, link, cache } = apolloData;
+
+  let graphQlUri;
+  let cacheInstance;
+
+  if (link && link.options) graphQlUri = link.options.uri;
+  if (cache && cache.data) cacheInstance = cache.data.data;
 
   // Debugging
   window.postMessage(
@@ -197,34 +203,60 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
   )
     return;
 
+  // Get necessary query data
   function filterQueryInfo(queryInfoMap) {
     console.log('queryMap', queryInfoMap);
 
-    const filteredQueryInfo = {};
+    const filteredQueryInfo = [];
 
     queryInfoMap.forEach((value, key) => {
       const queryObj = value;
-      filteredQueryInfo[key] = {
+
+      let lastResult;
+      if (queryObj && queryObj.observableQuery) lastResult = queryObj.observableQuery.lastResult;
+
+      filteredQueryInfo.push({
+        id: `Q${key}${queryIdCounter}`, // prevents duplicate Ids in Epoch
         document: value.document,
         graphQLErrors: value.graphQLErrors,
         networkError: value.networkError,
         networkStatus: value.networkStatus,
         variables: value.variables,
-      };
-      if (queryObj && queryObj.observableQuery) {
-        filteredQueryInfo[key].lastResult = queryObj.observableQuery.lastResult;
-      }
+        lastResult,
+      });
     });
     return filteredQueryInfo;
   }
+
+  function filterMutationInfo(mutationStoreObj) {
+    const mutationIds = Object.keys(mutationStoreObj);
+
+    return mutationIds.reduce((filteredMutations, id) => {
+      const mutationObj = mutationStoreObj[id];
+      // eslint-disable-next-line no-param-reassign
+      filteredMutations.push({
+        id: `M${id}${mutationIdCounter}`, // prevents duplicate Ids in Epoch
+        document: mutationObj.mutation,
+        error: mutationObj.error,
+        variables: mutationObj.variables,
+      });
+      return filteredMutations;
+    }, []);
+  }
+
   window.postMessage(
     {
       type: '$$$queryUpdate$$$',
       payload: JSON.stringify({
         manual: manualFetch,
-        queries: filterQueryInfo(apolloData.queryManager.queries),
+        graphQlUri,
+        queries: filterQueryInfo(queries), // array of Query objs
+        mutations: filterMutationInfo(mutationStore), // array of Mutation objs
+        cache: cacheInstance,
         queryCount: queryIdCounter,
         mutationCount: mutationIdCounter,
+        prevQueryCount: queryCount,
+        prevMutationCount: mutationCount,
       }),
     },
     '*'
