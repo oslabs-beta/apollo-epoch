@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import HistoryContainer from './HistoryContainer';
 import InfoContainer from './InfoContainer';
-import { initializeBackgroundConnection, postBackgroundMessage } from '../store/entities/apollo';
-import sendMessageTypes from '../store/chromeExMessages/messageTypes';
+import { initializeBackgroundConnection, fetchApollo } from '../store/entities/apollo';
+import sendMessageTypes from '../store/messagesAndActionTypes/messageTypes';
 import '../styles/main.css';
 
 const { epoch, contentScript, background } = sendMessageTypes;
@@ -21,12 +21,7 @@ const App = () => {
   }, []);
 
   const getCache = () => {
-    dispatch(
-      postBackgroundMessage({
-        type: epoch.sayHello,
-        payload: chrome.devtools.inspectedWindow.tabId,
-      })
-    );
+    dispatch(fetchApollo());
   };
 
   return (
