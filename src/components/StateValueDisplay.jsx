@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactJson from 'react-json-view';
+import { epochTheme } from '../styles/themes/EpochTheme';
 
 const StateValueDisplay = ({ stateValue }) => {
   return (
@@ -8,7 +9,7 @@ const StateValueDisplay = ({ stateValue }) => {
       <ReactJson
         src={stateValue}
         enableClipboard={false}
-        theme="codeschool"
+        theme={epochTheme}
         displayObjectSize={false}
         displayDataTypes={false}
         indentWidth={2}
@@ -18,6 +19,7 @@ const StateValueDisplay = ({ stateValue }) => {
 };
 
 StateValueDisplay.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
   stateValue: PropTypes.object.isRequired,
 };
 
