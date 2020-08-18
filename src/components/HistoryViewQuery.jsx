@@ -1,16 +1,20 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const HistoryViewQuery = ({ queryNum, onClick }) => {
+const HistoryViewQuery = ({ timelineObj, onClick }) => {
+  const { type, id } = timelineObj;
   return (
     <div className="query-card" onClick={onClick}>
-      <p>{`Query ${queryNum}`}</p>
+      <p>{`${type} ${id}`}</p>
     </div>
   );
 };
 
 HistoryViewQuery.propTypes = {
-  queryNum: PropTypes.number.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  timelineObj: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

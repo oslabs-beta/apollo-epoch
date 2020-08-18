@@ -8,15 +8,18 @@ import { epochTheme } from '../styles/themes/EpochTheme';
 const ResponseInfo = ({ response }) => {
   return (
     <div className="response-info">
-      <ReactJson
-        src={response}
-        enableClipboard={false}
-        theme={epochTheme}
-        displayObjectSize={false}
-        displayDataTypes={false}
-        indentWidth={2}
-        name={false}
-      />
+      {!response && <h2>No Response to Render</h2>}
+      {response && (
+        <ReactJson
+          src={response}
+          enableClipboard={false}
+          theme={epochTheme}
+          name={false}
+          displayObjectSize={false}
+          displayDataTypes={false}
+          indentWidth={2}
+        />
+      )}
     </div>
   );
 };
