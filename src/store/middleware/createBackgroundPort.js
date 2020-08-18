@@ -10,16 +10,15 @@ will be triggered once on app initialization and should create a superPort with 
 tabId closed over and the ability to dispatch actions when messages are received from 
 the backend. 
 */
-import { print } from 'graphql/language/printer';
 import {
   connectToBackground,
   connectionSuccess,
   connectionFailure,
-} from '../chromeExMessages/initializeActions';
-import sendMessageTypes from '../chromeExMessages/messageTypes';
+} from '../messagesAndActionTypes/initializeActions';
+import sendMessageTypes from '../messagesAndActionTypes/messageTypes';
+import { log, error } from '../messagesAndActionTypes/loggerActions';
 
 const initializePort = ({ dispatch }) => (next) => (action) => {
-  console.log('actionType', action.type);
   if (action.type !== connectToBackground.type) return next(action);
   const { onSuccess } = action.payload;
 
@@ -27,35 +26,45 @@ const initializePort = ({ dispatch }) => (next) => (action) => {
 
   const SuperPort = function (dispatchFunction) {
     const { epoch, contentScript, background } = sendMessageTypes;
-    const { apolloActions } = action.payload;
     const { tabId } = chrome.devtools.inspectedWindow;
     const dispatch = dispatchFunction;
+    const { apolloActions } = action.payload;
+    const { receivedApollo, receivedApolloManual, noApollo, initializeCache } = apolloActions;
     const backgroundConnection = chrome.runtime.connect();
-    console.log('tabId', tabId);
-    backgroundConnection.postMessage({
-      type: epoch.initializeConnection,
-      payload: tabId,
-    });
 
     backgroundConnection.onMessage.addListener((message, sender, sendResponse) => {
-      console.log('message obj', message);
-      if (message.type === contentScript.epochReceived) {
-        dispatch({
-          type: apolloActions.log,
-          payload: { label: 'Content Script Opening Payload ->', payload: message.payload },
-        });
-        dispatch({ type: apolloActions.log, payload: { label: 'Sender Info ->', data: sender } });
+      /*
+      Backgroung.noApolloClient
+      background.apolloReceivedManual
+      background.apolloReceived
+      background.log
+      contentScript.initializeCacheCheck
+      conntentScript.log
+      */
+      if (message.type === contentScript.initialCacheCheck) {
+        dispatch({ type: initializeCache });
       }
 
-      if (message.type === background.cache) {
-        console.log('APP CACHE!!', message.payload);
-        const documents = Object.keys(message.payload);
-
-        documents.forEach((doc) => {
-          const qString = print(message.payload[doc].document);
-          console.log('qString', qString);
-        });
+      if (message.type === background.log || message.type === contentScript.log) {
+        dispatch(log(message.payload));
       }
+
+      if (message.type === background.noApolloClient) {
+        dispatch({ type: noApollo });
+      }
+
+      if (message.type === background.apolloReceivedManual) {
+        dispatch({ type: receivedApolloManual, payload: message.payload });
+      }
+
+      if (message.type === background.apolloReceived) {
+        dispatch({ type: receivedApollo, payload: message.payload });
+      }
+    });
+
+    backgroundConnection.postMessage({
+      type: epoch.saveConnection,
+      payload: tabId,
     });
 
     this.connection = backgroundConnection;
@@ -68,6 +77,9 @@ const initializePort = ({ dispatch }) => (next) => (action) => {
     if (onSuccess) dispatch({ type: onSuccess, payload: superPort });
   } catch (err) {
     dispatch(connectionFailure('Sorry'));
+    dispatch(
+      error({ title: 'Error Connecting to Background Script', message: err.message, error: err })
+    );
   }
 };
 
