@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtensionReloader = require('webpack-chrome-extension-reloader');
 const common = require('./webpack.common');
 
-const src = path.resolve(__dirname, 'testSetup');
+const src = path.resolve(__dirname, 'chromeExtension');
 const destination = path.resolve(__dirname, 'build');
 
 module.exports = merge(common, {

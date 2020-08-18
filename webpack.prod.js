@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 
-const src = path.resolve(__dirname, 'testSetup');
+const src = path.resolve(__dirname, 'chromeExtension');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -23,7 +23,7 @@ module.exports = merge(common, {
       new TerserPlugin(),
       new HtmlWebpackPlugin({
         filename: 'panel.html',
-        template: `${src}/chromeExtension/panelProd.html`,
+        template: `${src}/panelProd.html`,
         minify: {
           removeAttributeQuotes: true,
           collapseWhitespace: true,
