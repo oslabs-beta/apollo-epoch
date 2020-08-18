@@ -57,10 +57,15 @@ body {
 
 .containers-wrapper {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: auto 1fr;
   /* grid-template-rows: 3em 30em; */
   grid-template-areas: 'history-view info-container';
   width: 100vw;
+}
+
+.info-container {
+  border: 1px solid var(--dark-border);
+  height: 80vh;
 }
 
 /* .containers {
@@ -74,6 +79,7 @@ body {
   justify-content: space-between;
 
   max-height: 80vh;
+  max-width: 10rem;
   border: 1px solid var(--dark-border);
 }
 
@@ -89,14 +95,7 @@ body {
 
 .query-cards {
   max-height: 70vh;
-  overflow-y: scroll;
-}
-
-.info-container {
-  display: flex;
-  flex-direction: column;
-  height: 80vh;
-  border: 1px solid var(--dark-border);
+  overflow-y: auto;
 }
 
 .diff-info {
@@ -139,6 +138,24 @@ body {
 
 .nav-button:hover {
   background-color: var(--nav-buttons-hover);
+}
+
+.state-sidebar {
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.cache-display {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: 'state-sidebar cache-display';
+  height: 70vh;
+  padding-top: 0;
+}
+
+.react-json-view {
+  max-height: 69.5vh;
+  overflow-y: auto;
 }
 
 .time-buttons {
