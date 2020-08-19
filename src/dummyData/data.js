@@ -1,3 +1,6 @@
+import { diff, formatters } from 'jsondiffpatch';
+import ReactHtmlParser from 'react-html-parser';
+
 export const dummyList = [
   {
     queryString: `
@@ -4567,3 +4570,547 @@ export const dummyQuery = {
   },
   diff: `TBD`,
 };
+
+export const diff1 = {
+  'Rocket:falcon9': { id: 'falcon9', __typename: 'Rocket', name: 'Falcon 9' },
+  'Launch:100': {
+    id: '100',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink-10 (v1.0) & SkySat 19-21',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:99': {
+    id: '99',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink-9 (v1.0) & BlackSky Global 5-6',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:98': {
+    id: '98',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: { __typename: 'Mission', name: 'ANASIS-II', missionPatch: null },
+  },
+  'Launch:97': {
+    id: '97',
+    __typename: 'Launch',
+    isBooked: true,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: { __typename: 'Mission', name: 'GPS III SV03 (Columbus)', missionPatch: null },
+  },
+  'Launch:96': {
+    id: '96',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink-8 & SkySat 16-18',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:95': {
+    id: '95',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink 7',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:94': {
+    id: '94',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'CCtCap Demo Mission 2',
+      missionPatch: 'https://images2.imgbox.com/ab/79/Wyc9K7fv_o.png',
+    },
+  },
+  'Launch:93': {
+    id: '93',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink 6',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:92': {
+    id: '92',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink 5',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:91': {
+    id: '91',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'CRS-20',
+      missionPatch: 'https://images2.imgbox.com/15/2b/NAcsTEB6_o.png',
+    },
+  },
+  'Launch:90': {
+    id: '90',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink 4',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:89': {
+    id: '89',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink 3',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:88': {
+    id: '88',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Crew Dragon In Flight Abort Test',
+      missionPatch: 'https://images2.imgbox.com/9d/04/DNXjbXDY_o.png',
+    },
+  },
+  'Launch:87': {
+    id: '87',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink 2',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:86': {
+    id: '86',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'JCSat 18 / Kacific 1',
+      missionPatch: 'https://images2.imgbox.com/49/eb/evB1Wi95_o.png',
+    },
+  },
+  'Launch:85': {
+    id: '85',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'CRS-19',
+      missionPatch: 'https://images2.imgbox.com/1f/40/3mc9OSdH_o.png',
+    },
+  },
+  'Launch:84': {
+    id: '84',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink 1',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:83': {
+    id: '83',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Amos-17',
+      missionPatch: 'https://images2.imgbox.com/a0/ab/XUoByiuR_o.png',
+    },
+  },
+  'Launch:82': {
+    id: '82',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'CRS-18',
+      missionPatch: 'https://images2.imgbox.com/08/a2/bPpNeIRJ_o.png',
+    },
+  },
+  'Rocket:falconheavy': { id: 'falconheavy', __typename: 'Rocket', name: 'Falcon Heavy' },
+  'Launch:81': {
+    id: '81',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falconheavy' },
+    mission: {
+      __typename: 'Mission',
+      name: 'STP-2',
+      missionPatch: 'https://images2.imgbox.com/18/17/gCjLjHbl_o.png',
+    },
+  },
+  ROOT_QUERY: {
+    __typename: 'Query',
+    launches: {
+      __typename: 'LaunchConnection',
+      cursor: '1561433400',
+      hasMore: true,
+      launches: [
+        { __ref: 'Launch:100' },
+        { __ref: 'Launch:99' },
+        { __ref: 'Launch:98' },
+        { __ref: 'Launch:97' },
+        { __ref: 'Launch:96' },
+        { __ref: 'Launch:95' },
+        { __ref: 'Launch:94' },
+        { __ref: 'Launch:93' },
+        { __ref: 'Launch:92' },
+        { __ref: 'Launch:91' },
+        { __ref: 'Launch:90' },
+        { __ref: 'Launch:89' },
+        { __ref: 'Launch:88' },
+        { __ref: 'Launch:87' },
+        { __ref: 'Launch:86' },
+        { __ref: 'Launch:85' },
+        { __ref: 'Launch:84' },
+        { __ref: 'Launch:83' },
+        { __ref: 'Launch:82' },
+        { __ref: 'Launch:81' },
+      ],
+    },
+  },
+};
+
+export const diff2 = {
+  'Rocket:falcon9': { id: 'falcon9', __typename: 'Rocket', name: 'Falcon 9', type: 'FT' },
+  'Launch:100': {
+    id: '100',
+    __typename: 'Launch',
+    isBooked: true,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink-10 (v1.0) & SkySat 19-21',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+    site: 'CCAFS SLC 40',
+  },
+  'Launch:99': {
+    id: '99',
+    __typename: 'Launch',
+    isBooked: true,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink-9 (v1.0) & BlackSky Global 5-6',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+    site: 'KSC LC 39A',
+  },
+  'Launch:98': {
+    id: '98',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: { __typename: 'Mission', name: 'ANASIS-II', missionPatch: null },
+  },
+  'Launch:97': {
+    id: '97',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: { __typename: 'Mission', name: 'GPS III SV03 (Columbus)', missionPatch: null },
+    site: 'CCAFS SLC 40',
+  },
+  'Launch:96': {
+    id: '96',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink-8 & SkySat 16-18',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:95': {
+    id: '95',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink 7',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+    site: 'CCAFS SLC 40',
+  },
+  'Launch:94': {
+    id: '94',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'CCtCap Demo Mission 2',
+      missionPatch: 'https://images2.imgbox.com/ab/79/Wyc9K7fv_o.png',
+    },
+  },
+  'Launch:93': {
+    id: '93',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink 6',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:92': {
+    id: '92',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink 5',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:91': {
+    id: '91',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'CRS-20',
+      missionPatch: 'https://images2.imgbox.com/15/2b/NAcsTEB6_o.png',
+    },
+  },
+  'Launch:90': {
+    id: '90',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink 4',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:89': {
+    id: '89',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink 3',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:88': {
+    id: '88',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Crew Dragon In Flight Abort Test',
+      missionPatch: 'https://images2.imgbox.com/9d/04/DNXjbXDY_o.png',
+    },
+  },
+  'Launch:87': {
+    id: '87',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink 2',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:86': {
+    id: '86',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'JCSat 18 / Kacific 1',
+      missionPatch: 'https://images2.imgbox.com/49/eb/evB1Wi95_o.png',
+    },
+  },
+  'Launch:85': {
+    id: '85',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'CRS-19',
+      missionPatch: 'https://images2.imgbox.com/1f/40/3mc9OSdH_o.png',
+    },
+  },
+  'Launch:84': {
+    id: '84',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Starlink 1',
+      missionPatch: 'https://images2.imgbox.com/d2/3b/bQaWiil0_o.png',
+    },
+  },
+  'Launch:83': {
+    id: '83',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'Amos-17',
+      missionPatch: 'https://images2.imgbox.com/a0/ab/XUoByiuR_o.png',
+    },
+  },
+  'Launch:82': {
+    id: '82',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falcon9' },
+    mission: {
+      __typename: 'Mission',
+      name: 'CRS-18',
+      missionPatch: 'https://images2.imgbox.com/08/a2/bPpNeIRJ_o.png',
+    },
+  },
+  'Rocket:falconheavy': { id: 'falconheavy', __typename: 'Rocket', name: 'Falcon Heavy' },
+  'Launch:81': {
+    id: '81',
+    __typename: 'Launch',
+    isBooked: false,
+    rocket: { __ref: 'Rocket:falconheavy' },
+    mission: {
+      __typename: 'Mission',
+      name: 'STP-2',
+      missionPatch: 'https://images2.imgbox.com/18/17/gCjLjHbl_o.png',
+    },
+  },
+  ROOT_QUERY: {
+    __typename: 'Query',
+    launches: {
+      __typename: 'LaunchConnection',
+      cursor: '1561433400',
+      hasMore: true,
+      launches: [
+        { __ref: 'Launch:100' },
+        { __ref: 'Launch:99' },
+        { __ref: 'Launch:98' },
+        { __ref: 'Launch:97' },
+        { __ref: 'Launch:96' },
+        { __ref: 'Launch:95' },
+        { __ref: 'Launch:94' },
+        { __ref: 'Launch:93' },
+        { __ref: 'Launch:92' },
+        { __ref: 'Launch:91' },
+        { __ref: 'Launch:90' },
+        { __ref: 'Launch:89' },
+        { __ref: 'Launch:88' },
+        { __ref: 'Launch:87' },
+        { __ref: 'Launch:86' },
+        { __ref: 'Launch:85' },
+        { __ref: 'Launch:84' },
+        { __ref: 'Launch:83' },
+        { __ref: 'Launch:82' },
+        { __ref: 'Launch:81' },
+      ],
+    },
+    me: { __ref: 'User:7' },
+    'launch({"id":"97"})': { __ref: 'Launch:97' },
+    'launch({"id":"100"})': { __ref: 'Launch:100' },
+    'launch({"id":"99"})': { __ref: 'Launch:99' },
+    'launch({"id":"95"})': { __ref: 'Launch:95' },
+  },
+  'User:7': {
+    id: '7',
+    __typename: 'User',
+    email: 'test@test.test',
+    trips: [{ __ref: 'Launch:100' }, { __ref: 'Launch:99' }],
+  },
+  ROOT_MUTATION: {
+    __typename: 'Mutation',
+    'cancelTrip({"launchId":"97"})': {
+      __typename: 'TripUpdateResponse',
+      success: true,
+      message: 'trip cancelled',
+      launches: [{ __ref: 'Launch:97' }],
+    },
+    'bookTrips({"launchIds":["100","99"]})': {
+      __typename: 'TripUpdateResponse',
+      success: true,
+      message: 'trips booked successfully',
+      launches: [{ __ref: 'Launch:100' }, { __ref: 'Launch:99' }],
+    },
+  },
+};
+
+export const diff3 = {
+  testArr: [1, 2, 3],
+  testNum: 99,
+  testBool: true,
+  testStr: 'hello',
+};
+
+export const diff4 = {
+  testArr: [1, 2, 5],
+  testNum: 100,
+  testBool: true,
+  testStr: 'hello',
+};
+
+export const nullDiff = {};
+
+export const delta = diff(diff1, diff2);
+// string of html with comparisons
+export const diffHtml = formatters.html.format(delta, diff1);
