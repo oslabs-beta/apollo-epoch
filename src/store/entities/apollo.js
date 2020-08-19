@@ -76,6 +76,7 @@ const manualFetchType = 'Manual Fetch';
 const initialState = {
   hasDunderApollo: false,
   activeQuery: {},
+  prevQuery: {},
   chromeTabId: '',
   graphQlUri: '',
   queryIds: [],
@@ -104,6 +105,7 @@ const RECEIVED_MANUAL_FETCH = 'apolloReceivedManual';
 const RECEIVED_APOLLO = 'apolloReceived';
 const INITIALIZED_CACHE_CHECK = 'initializedCache';
 const SET_ACTIVE_QUERY = 'setActiveQuery';
+const SET_PREV_QUERY = 'setPrevQuery';
 
 /*----------------
   ACTION CREATORS
@@ -118,6 +120,7 @@ export const receivedManualFetch = createAction(RECEIVED_MANUAL_FETCH); // paylo
 export const receivedApollo = createAction(RECEIVED_APOLLO); // payload apolloObj
 export const initializeCache = createAction(INITIALIZED_CACHE_CHECK);
 export const setActiveQuery = createAction(SET_ACTIVE_QUERY); // payload should be an ID from the timeline
+export const setPrevQuery = createAction(SET_PREV_QUERY); // payload should be an ID from the timeline
 
 /*--------------
   REDUCER
@@ -132,6 +135,7 @@ const apolloReducer = createReducer(initialState, {
   [RECEIVED_APOLLO]: receivedApolloCase,
   [INITIALIZED_CACHE_CHECK]: initializedCacheCase,
   [SET_ACTIVE_QUERY]: setActiveQueryCase,
+  [SET_PREV_QUERY]: setPrevQueryCase,
 });
 
 /*--------------
@@ -265,6 +269,29 @@ function setActiveQueryCase(state, action) {
   if (typeIndicator === 'Q') state.activeQuery = state.queries[activeId];
   if (typeIndicator === 'M') state.activeQuery = state.mutations[activeId];
   if (typeIndicator === 'F') state.activeQuery = state.manualFetches[activeId];
+
+  // Find previous Query
+  const { timeline } = state;
+  if (timeline.length <= 1) return;
+  for (let i = 0; i < timeline.length; i += 1) {
+    if (activeId === timeline[i]) {
+      const prevId = timeline[i - 1];
+      const prevTypeIndicator = prevId[0];
+      if (prevTypeIndicator === 'Q') state.prevQuery = state.queries[prevId];
+      if (prevTypeIndicator === 'M') state.prevQuery = state.mutations[prevId];
+      if (prevTypeIndicator === 'F') state.prevQuery = state.manualFetches[prevId];
+      return;
+    }
+  }
+}
+
+function setPrevQueryCase(state, action) {
+  const prevQueryId = action.payload;
+  if (!prevQueryId) return;
+  const typeIndicator = prevQueryId[0];
+  if (typeIndicator === 'Q') state.activeQuery = state.queries[prevQueryId];
+  if (typeIndicator === 'M') state.activeQuery = state.mutations[prevQueryId];
+  if (typeIndicator === 'F') state.activeQuery = state.manualFetches[prevQueryId];
 }
 
 export default apolloReducer;
