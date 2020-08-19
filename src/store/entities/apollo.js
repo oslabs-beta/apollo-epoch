@@ -277,9 +277,9 @@ function setActiveQueryCase(state, action) {
     if (activeId === timeline[i]) {
       const prevId = timeline[i - 1];
       const prevTypeIndicator = prevId[0];
-      if (prevTypeIndicator === 'Q') state.prevQuery = state.queries[activeId];
-      if (prevTypeIndicator === 'M') state.prevQuery = state.mutations[activeId];
-      if (prevTypeIndicator === 'F') state.prevQuery = state.manualFetches[activeId];
+      if (prevTypeIndicator === 'Q') state.prevQuery = state.queries[prevId];
+      if (prevTypeIndicator === 'M') state.prevQuery = state.mutations[prevId];
+      if (prevTypeIndicator === 'F') state.prevQuery = state.manualFetches[prevId];
       return;
     }
   }
