@@ -10,10 +10,6 @@ const Nav = ({ setSelectedInfo }) => {
     if (activeButton) {
       const active = document.getElementById(activeButton);
       active.classList.add('nav-button-active');
-      for (const button of ['query-button', 'response-button', 'cache-button', 'diff-button']) {
-        if (button !== activeButton)
-          document.getElementById(button).classList.remove('nav-button-active');
-      }
     }
   }, [activeButton]);
   return (
@@ -22,6 +18,8 @@ const Nav = ({ setSelectedInfo }) => {
         className="nav-button"
         id="query-button"
         onClick={() => {
+          if (activeButton)
+            document.getElementById(activeButton).classList.add('nav-button-active');
           changeActiveButton('query-button');
           setSelectedInfo('QueryInfo');
         }}

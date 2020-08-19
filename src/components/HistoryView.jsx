@@ -15,14 +15,7 @@ const HistoryView = () => {
   const [activeQuery, changeActiveQuery] = React.useState(activeTimelineObj);
   React.useEffect(() => {
     if (activeQuery.id) {
-      // console.log(`useEffect of HistoryView activeQuery:> `, activeQuery);
-      // console.log('here is the current array of queries ', queries);
       document.getElementById(activeQuery.id).classList.add('active-query');
-      for (let i = 0; i < queries.length; i++) {
-        if (queries[i].key && queries[i].key !== activeQuery.id) {
-          document.getElementById(queries[i].key).classList.remove('active-query');
-        }
-      }
     }
   }, [activeQuery]);
   for (let i = 0; i < queryHistory.length; i += 1) {
@@ -33,6 +26,8 @@ const HistoryView = () => {
         id={timelineObj.id}
         timelineObj={timelineObj}
         onClick={() => {
+          if (activeQuery.id)
+            document.getElementById(activeQuery.id).classList.remove('active-query');
           changeActiveQuery(timelineObj);
           dispatch(setActiveQuery(timelineObj.id));
         }}
