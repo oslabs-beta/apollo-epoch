@@ -272,9 +272,16 @@ function setActiveQueryCase(state, action) {
 
   // Find previous Query
   const { timeline } = state;
-  if (timeline.length <= 1) return;
+  if (timeline.length <= 1) {
+    state.prevQuery = {};
+    return;
+  }
   for (let i = 0; i < timeline.length; i += 1) {
     if (activeId === timeline[i]) {
+      if (i < 1) {
+        state.prevQuery = {};
+        return;
+      }
       const prevId = timeline[i - 1];
       const prevTypeIndicator = prevId[0];
       if (prevTypeIndicator === 'Q') state.prevQuery = state.queries[prevId];
