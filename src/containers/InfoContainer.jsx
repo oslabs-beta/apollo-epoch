@@ -27,8 +27,10 @@ const InfoContainer = () => {
   return (
     <div className="info-container">
       <Nav setSelectedInfo={setSelectedInfo} />
-      {/* Use info object to conditionally render out QueryInfo | ResponseInfo | StateInfo | DiffInfo */}
-      <div className="info-display">{info[selectedInfo]}</div>
+      <div className="inner-info-wrapper">
+        {/* Use info object to conditionally render out QueryInfo | ResponseInfo | StateInfo | DiffInfo */}
+        <div className="info-display">{info[selectedInfo]}</div>
+      </div>
     </div>
   );
 };

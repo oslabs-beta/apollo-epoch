@@ -84,8 +84,11 @@ body {
 }
 
 .info-container {
-  border: 1px solid var(--dark-border);
   height: 80vh;
+}
+.inner-info-wrapper {
+  border-bottom: 1px solid var(--dark-border);
+  height: 70vh;
 }
 
 /* .containers {
@@ -137,11 +140,14 @@ body {
   background-color: var(--secondary-bg-hover);
 }
 
+.active-query {
+  background-color: var(--secondary-bg-hover);
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 1% 2.5%;
+  align-items: flex-start;
   height: 10vh;
 }
 
@@ -149,11 +155,36 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 75%;
   width: 25%;
+
   text-align: center;
   background-color: var(--nav-buttons);
-  border: 1px solid var(--light-border);
+  border-top: 1px solid var(--light-border);
+  border-left: 1px solid var(--light-border);
+  border-right: 1px solid var(--light-border);
+  border-radius: 10px 10px 0px 0px;
+  position: relative;
+}
+
+.nav-button-active {
+  background-color: var(--main-bg);
+}
+
+.arrow {
+  border-color: transparent transparent #fff #fff;
+  border-style: solid;
+  border-width: 23px 23px 23px 23px;
+  height: 0;
+  width: 0;
+  position: absolute;
+  bottom: 0px;
+  right: -43px;
+}
+
+.button-arrow {
+  display: flex;
+  align-items: flex-end;
 }
 
 .nav-button:hover {
@@ -197,7 +228,7 @@ body {
 }
 
 .GraphqlCodeBlock {
-  margin: 10px 0 0 10px;
+  padding: 10px 0 0 10px;
 }
 
 .backward-button {

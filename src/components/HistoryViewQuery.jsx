@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const HistoryViewQuery = ({ timelineObj, onClick }) => {
   const { type, id } = timelineObj;
   return (
-    <div className="query-card" onClick={onClick}>
+    <div className="query-card" onClick={onClick} id={id}>
       <p>{`${type} ${id}`}</p>
     </div>
   );

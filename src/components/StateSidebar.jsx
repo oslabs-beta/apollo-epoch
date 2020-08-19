@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const StateSidebar = ({ keyList, onClick }) => {
   const keyListDisplay = keyList.map((key, index) => {
     return (
-      <div className="key-display" key={`key${index}`} onClick={() => onClick(key)}>
+      <div className="key-display" key={`key${index}`} id={key} onClick={() => onClick(key)}>
         {key}
       </div>
     );
