@@ -15,9 +15,29 @@
   --nav-buttons-hover: #2c666e6d;
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(251, 5, 5, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
 body {
   background-color: var(--main-bg);
   color: var(--text-color);
+}
+
+.getCache {
+  width: 200px;
+  height: 300px;
+  align-self: flex-end;
 }
 
 .info-container,
@@ -64,8 +84,11 @@ body {
 }
 
 .info-container {
-  border: 1px solid var(--dark-border);
   height: 80vh;
+}
+.inner-info-wrapper {
+  border-bottom: 1px solid var(--dark-border);
+  height: 70vh;
 }
 
 /* .containers {
@@ -79,7 +102,7 @@ body {
   justify-content: space-between;
 
   max-height: 80vh;
-  max-width: 10rem;
+  width: 10rem;
   border: 1px solid var(--dark-border);
 }
 
@@ -132,11 +155,14 @@ body {
   background-color: var(--secondary-bg-hover);
 }
 
+.active-query {
+  background-color: var(--secondary-bg-hover);
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 1% 2.5%;
+  align-items: flex-start;
   height: 10vh;
 }
 
@@ -144,11 +170,36 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 75%;
   width: 25%;
+
   text-align: center;
   background-color: var(--nav-buttons);
-  border: 1px solid var(--light-border);
+  border-top: 1px solid var(--light-border);
+  border-left: 1px solid var(--light-border);
+  border-right: 1px solid var(--light-border);
+  border-radius: 10px 10px 0px 0px;
+  position: relative;
+}
+
+.nav-button-active {
+  background-color: var(--main-bg);
+}
+
+.arrow {
+  border-color: transparent transparent #fff #fff;
+  border-style: solid;
+  border-width: 23px 23px 23px 23px;
+  height: 0;
+  width: 0;
+  position: absolute;
+  bottom: 0px;
+  right: -43px;
+}
+
+.button-arrow {
+  display: flex;
+  align-items: flex-end;
 }
 
 .nav-button:hover {
@@ -157,7 +208,9 @@ body {
 
 .state-sidebar {
   max-height: 100vh;
+  width: 20vw;
   overflow-y: auto;
+  padding-left: 10px;
 }
 
 .cache-display {
@@ -173,6 +226,11 @@ body {
   overflow-y: auto;
 }
 
+.GraphqlCodeBlock {
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
 .time-buttons {
   display: flex;
   align-self: flex-end;
@@ -185,7 +243,7 @@ body {
 }
 
 .GraphqlCodeBlock {
-  margin: 10px 0 0 10px;
+  padding: 10px 0 0 10px;
 }
 
 .backward-button {

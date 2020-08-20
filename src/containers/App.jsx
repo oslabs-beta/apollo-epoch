@@ -27,7 +27,6 @@ const App = () => {
       <div className="main">
         <div className="heading">
           <h1>Hola Monde!!!</h1>
-          <button onClick={getCache}>Get Cache</button>
         </div>
         <div className="containers-wrapper">
           {/* // render out history  */}
@@ -35,6 +34,9 @@ const App = () => {
           {/* // render out info display */}
           <InfoContainer />
         </div>
+        <button className="getCache" onClick={getCache}>
+          Get Cache
+        </button>
       </div>
     </div>
   );
