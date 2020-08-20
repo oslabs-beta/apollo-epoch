@@ -2,7 +2,6 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
 import { createSelector } from 'reselect';
 import { print } from 'graphql/language/printer';
-import { array } from 'prop-types';
 import { connectToBackground } from '../messagesAndActionTypes/initializeActions';
 import sendMessageTypes from '../messagesAndActionTypes/messageTypes';
 
@@ -76,6 +75,7 @@ const manualFetchType = 'Manual Fetch';
 
 const initialState = {
   hasDunderApollo: false,
+  loadingApollo: false,
   activeQuery: {},
   prevQuery: {},
   chromeTabId: '',
@@ -147,7 +147,13 @@ function startingUpCase(state, action) {
 }
 
 function initializePortCase(state, action) {
+  console.log('Port Initialized');
+  state.loadingApollo = true;
   superPort = action.payload;
+  superPort.connection.postMessage({
+    type: sendMessageTypes.epoch.initialize,
+    payload: chrome.devtools.inspectedWindow.tabId,
+  });
 }
 
 function callBackgroundCase(state, action) {
@@ -165,6 +171,7 @@ function fetchApolloCase(state, action) {
 function noApolloCase(state, action) {
   console.log('No Apollo Case');
   state.hasDunderApollo = false;
+  state.loadingApollo = false;
 }
 
 function receivedApolloCase(state, action) {
@@ -293,6 +300,7 @@ function processApolloData(state, apolloData) {
     } = apolloObj;
 
     state.hasDunderApollo = true;
+    state.loadingApollo = false;
     state.graphQlUri = graphQlUri;
     console.log(`CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`);
     console.log(
