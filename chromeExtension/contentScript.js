@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import sendMessageTypes from '../src/store/messagesAndActionTypes/messageTypes';
-import runInContext from '../src/util/contentScriptUtils';
+import injectAndRunInDom from '../src/util/contentScriptUtils';
 
 /*
 MESSAGE PARAMETERS
@@ -10,6 +10,7 @@ All Data Transfer Messages in Shape of : { type: senderType, payload: dataObj}
 All informational messages can be log messages sans data (data property on payload will print as undefined)
 */
 
+const timeout = 10; // ms to wait for Apollo to update
 const { epoch, contentScript, clientWindow } = sendMessageTypes;
 console.log('contentScript Running');
 
@@ -56,13 +57,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log(epoch.initialize);
 
     const { queryCount, mutationCount } = counts.getCounts();
-    runInContext(sendMessageWithCache, queryCount, mutationCount, true); // pass true for initialize param
+    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, true); // pass true for initialize param
     sendResponse({ type: contentScript.initialCacheCheck }); // this response triggers exponential backoff check in Epoch Panel
   }
 
   if (message.type === epoch.fetchApolloData) {
     const { queryCount, mutationCount } = counts.getCounts();
-    runInContext(sendMessageWithCache, queryCount, mutationCount, false, true); // pass true for manual to flag response data
+    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, false, true); // pass true for manual to flag response data
     sendResponse({ type: contentScript.log, payload: { title: 'Manual Fetch Triggered' } }); // should trigger response based on hasApollo in Redux
   }
 });
@@ -114,7 +115,11 @@ window.addEventListener('message', (event) => {
 window.addEventListener('keyup', (e) => {
   if (e.key === 'Enter') {
     const { queryCount, mutationCount } = counts.getCounts();
-    runInContext(sendMessageWithCache, queryCount, mutationCount);
+
+    // Get Cache AFTER Apollo updates
+    setTimeout(() => {
+      injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount);
+    }, timeout);
 
     // Debug
     chrome.runtime.sendMessage({
@@ -132,7 +137,11 @@ window.addEventListener('keyup', (e) => {
 
 window.addEventListener('click', (e) => {
   const { queryCount, mutationCount } = counts.getCounts();
-  runInContext(sendMessageWithCache, queryCount, mutationCount);
+
+  // Get Cache AFTER Apollo updates
+  setTimeout(() => {
+    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount);
+  }, timeout);
 
   // Debug
   chrome.runtime.sendMessage({
@@ -170,6 +179,7 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
 
   // Get and format Data we need from window Obj
   const { queryIdCounter, mutationIdCounter, queries, mutationStore, link, cache } = apolloData;
+  const { store: mutations } = mutationStore;
 
   let graphQlUri;
   let cacheInstance;
@@ -251,7 +261,7 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
         manual: manualFetch,
         graphQlUri,
         queries: filterQueryInfo(queries), // array of Query objs
-        mutations: filterMutationInfo(mutationStore), // array of Mutation objs
+        mutations: filterMutationInfo(mutations), // array of Mutation objs
         cache: cacheInstance,
         queryCount: queryIdCounter,
         mutationCount: mutationIdCounter,
@@ -262,3 +272,5 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
     '*'
   );
 };
+
+injectAndRunInDom(sendMessageWithCache, 1, 1, true); // pass true for initialize param
