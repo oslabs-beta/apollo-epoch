@@ -33,14 +33,6 @@ const initializePort = ({ dispatch }) => (next) => (action) => {
     const backgroundConnection = chrome.runtime.connect();
 
     backgroundConnection.onMessage.addListener((message, sender, sendResponse) => {
-      /*
-      Backgroung.noApolloClient
-      background.apolloReceivedManual
-      background.apolloReceived
-      background.log
-      contentScript.initializeCacheCheck
-      conntentScript.log
-      */
       if (message.type === contentScript.initialCacheCheck) {
         dispatch({ type: initializeCache });
       }

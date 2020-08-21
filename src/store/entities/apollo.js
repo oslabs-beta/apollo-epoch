@@ -75,6 +75,7 @@ const manualFetchType = 'Manual Fetch';
 
 const initialState = {
   hasDunderApollo: false,
+  loadingApollo: false,
   activeQuery: {},
   prevQuery: {},
   chromeTabId: '',
@@ -146,7 +147,13 @@ function startingUpCase(state, action) {
 }
 
 function initializePortCase(state, action) {
+  console.log('Port Initialized');
+  state.loadingApollo = true;
   superPort = action.payload;
+  superPort.connection.postMessage({
+    type: sendMessageTypes.epoch.initialize,
+    payload: chrome.devtools.inspectedWindow.tabId,
+  });
 }
 
 function callBackgroundCase(state, action) {
@@ -164,81 +171,12 @@ function fetchApolloCase(state, action) {
 function noApolloCase(state, action) {
   console.log('No Apollo Case');
   state.hasDunderApollo = false;
+  state.loadingApollo = false;
 }
 
 function receivedApolloCase(state, action) {
   const apolloData = action.payload;
-  const {
-    graphQlUri,
-    queries,
-    mutations,
-    cache,
-    queryCount,
-    mutationCount,
-    prevQueryCount,
-    prevMutationCount,
-  } = apolloData;
-
-  state.hasDunderApollo = true;
-  state.graphQlUri = graphQlUri;
-  console.log(`CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`);
-  console.log(
-    `CurrM: ${mutationCount}, PrevM: ${prevMutationCount}, StateM: ${state.mutationIdCounter}`
-  );
-
-  // Debug
-  if (state.queryIdCounter !== prevQueryCount || state.mutationIdCounter !== prevMutationCount) {
-    console.log('*****QUERIES / MUTATIONS MISSED*****');
-    console.log(`CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`);
-    console.log(
-      `CurrM: ${mutationCount}, PrevM: ${prevMutationCount}, StateM: ${state.mutationIdCounter}`
-    );
-  }
-
-  let mutationsToGrab = mutationCount - prevMutationCount;
-  if (mutationsToGrab && mutationsToGrab <= mutations.length) {
-    while (mutationsToGrab > 0) {
-      const { id, document, error, variables } = mutations.pop();
-      const stateMutationObj = {
-        id,
-        type: mutationType,
-        queryString: print(document),
-        variables,
-        cacheSnapshot: cache,
-        diff: 'Magic Diff Formula Magic Result Inserted Here',
-      };
-      state.timeline.push(id);
-      state.mutationIds.push(id);
-      state.mutations[id] = stateMutationObj;
-      mutationsToGrab -= 1;
-    }
-  }
-  state.mutationIdCounter = mutationCount;
-
-  let queriesToGrab = queryCount - prevQueryCount;
-  if (queriesToGrab && queriesToGrab <= queries.length) {
-    while (queriesToGrab > 0) {
-      console.log('received Q Case queries ->', queries);
-      console.log('query items ->', queries.length);
-      const queryObj = queries.pop();
-      console.log('q in question -> ', queryObj);
-      const { id, document, lastResult, variables } = queryObj;
-      const stateQueryObj = {
-        id,
-        type: queryType,
-        queryString: print(document),
-        variables,
-        response: lastResult,
-        cacheSnapshot: cache,
-        diff: 'Magic Diff Formula Magic Result Inserted Here',
-      };
-      state.timeline.push(id);
-      state.queryIds.push(id);
-      state.queries[id] = stateQueryObj;
-      queriesToGrab -= 1;
-    }
-  }
-  state.queryIdCounter = queryCount;
+  state = processApolloData(state, apolloData);
 }
 
 function receivedManualFetchCase(state, action) {
@@ -345,6 +283,91 @@ export const getTimeline = createSelector(
 /*--------------
 HELPERS
 ---------------*/
-function createQueryString(document) {
-  return print(document);
+function processApolloData(state, apolloData) {
+  // We can receive this data in two ways, an array of apollo objects (epoch initialized after client app already running)
+  // Or a single object (normal course of busn, or epoch already initialized when client app loaded)
+
+  function processCacheObj(apolloObj) {
+    const {
+      graphQlUri,
+      queries,
+      mutations,
+      cache,
+      queryCount,
+      mutationCount,
+      prevQueryCount,
+      prevMutationCount,
+    } = apolloObj;
+
+    state.hasDunderApollo = true;
+    state.loadingApollo = false;
+    state.graphQlUri = graphQlUri;
+    console.log(`CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`);
+    console.log(
+      `CurrM: ${mutationCount}, PrevM: ${prevMutationCount}, StateM: ${state.mutationIdCounter}`
+    );
+
+    // Debug
+    if (state.queryIdCounter !== prevQueryCount || state.mutationIdCounter !== prevMutationCount) {
+      console.log('*****QUERIES / MUTATIONS MISSED*****');
+      console.log(
+        `CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`
+      );
+      console.log(
+        `CurrM: ${mutationCount}, PrevM: ${prevMutationCount}, StateM: ${state.mutationIdCounter}`
+      );
+    }
+
+    let mutationsToGrab = mutationCount - prevMutationCount;
+    if (mutationsToGrab && mutationsToGrab <= mutations.length) {
+      while (mutationsToGrab > 0) {
+        const { id, document, error, variables } = mutations.pop();
+        console.log('mutationDocument', document);
+        const stateMutationObj = {
+          id,
+          type: mutationType,
+          queryString: print(document),
+          variables,
+          cacheSnapshot: cache,
+          diff: 'Magic Diff Formula Magic Result Inserted Here',
+        };
+        state.timeline.push(id);
+        state.mutationIds.push(id);
+        state.mutations[id] = stateMutationObj;
+        mutationsToGrab -= 1;
+      }
+    }
+    state.mutationIdCounter = mutationCount;
+
+    let queriesToGrab = queryCount - prevQueryCount;
+    if (queriesToGrab && queriesToGrab <= queries.length) {
+      while (queriesToGrab > 0) {
+        console.log('received Q Case queries ->', queries);
+        console.log('query items ->', queries.length);
+        const queryObj = queries.pop();
+        console.log('q in question -> ', queryObj);
+        const { id, document, lastResult, variables } = queryObj;
+        const stateQueryObj = {
+          id,
+          type: queryType,
+          queryString: print(document),
+          variables,
+          response: lastResult,
+          cacheSnapshot: cache,
+          diff: 'Magic Diff Formula Magic Result Inserted Here',
+        };
+        state.timeline.push(id);
+        state.queryIds.push(id);
+        state.queries[id] = stateQueryObj;
+        queriesToGrab -= 1;
+      }
+    }
+    state.queryIdCounter = queryCount;
+  }
+  if (Array.isArray(apolloData)) {
+    apolloData.forEach((apolloObj) => processCacheObj(apolloObj));
+  } else {
+    processCacheObj(apolloData);
+  }
+  return state;
 }

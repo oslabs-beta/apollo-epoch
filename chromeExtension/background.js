@@ -11,7 +11,42 @@ All informational messages can be log messages sans data (data property on paylo
 const { epoch, contentScript, background } = sendMessageTypes;
 
 console.log('Background Script Initialized');
-const connections = {};
+const connections = {}; // {tabId, epochPort}
+const preEpochCaches = {}; // {tabId, cacheResponses: [cacheObj]};
+const graphQlUrls = {}; // {tabId, graphQlUrl} --> Avoids multiple instance of same URL
+const noApollos = new Set(); // {tabId}
+const computeGraphQlUrlArray = () => {
+  const tabIds = Object.keys(graphQlUrls);
+  return tabIds.map((tabId) => graphQlUrls[tabId]); // accounts for multiple tab instances
+};
+
+/*
+---------------------------
+NETWORK REQUEST LISTENERS
+---------------------------
+*/
+
+const networkListener = (requestDetails) => {
+  const { tabId: portId } = requestDetails;
+  console.log('Net Req Details -> ', requestDetails);
+
+  if (!portId) {
+    console.log('No Tab on Request -> ', requestDetails);
+    return;
+  }
+
+  if (!connections[portId]) {
+    console.log(`No Epoch Panel ${portId} to send Apollo Data -> `, requestDetails);
+    return;
+  }
+
+  connections[portId].postMessage({
+    type: background.log,
+    payload: { title: 'webRequestListen', data: requestDetails },
+  });
+};
+
+chrome.webRequest.onBeforeRequest.addListener(networkListener, { urls: computeGraphQlUrlArray() });
 
 /*
 --------------------------------
@@ -44,13 +79,36 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   if (message.type === contentScript.apolloReceived) {
     const apolloData = message.payload;
-
     const portId = sender.tab.id;
+    const { graphQlUri } = apolloData;
+
+    // Ensure our network listeners are always up to date
+    if (graphQlUri && graphQlUri !== graphQlUrls[portId]) {
+      graphQlUrls[portId] = graphQlUri;
+
+      // Update URL filter list in webRequest Listeners
+      chrome.webRequest.onBeforeRequest.removeListener(networkListener);
+      chrome.webRequest.onBeforeRequest.addListener(networkListener, {
+        urls: computeGraphQlUrlArray(),
+      });
+    }
+
+    // Handle no Epoch Panel Initialized. Takes into account multiple tabs
     if (!connections[portId]) {
+      if (!preEpochCaches[portId]) preEpochCaches[portId] = [];
+      preEpochCaches[portId].push(apolloData);
+
       console.log(`No Epoch Panel ${portId} to send Apollo Data -> `, apolloData);
       return;
     }
-    connections[portId].postMessage({ type: background.apolloReceived, payload: apolloData });
+
+    // Handles Transfer of Data to Epoch. Passes current cache or cache history depending on when Epoch was initialized
+    let allApolloData = apolloData;
+    if (preEpochCaches[portId]) {
+      allApolloData = [...preEpochCaches[portId], apolloData];
+      delete preEpochCaches[portId];
+    }
+    connections[portId].postMessage({ type: background.apolloReceived, payload: allApolloData });
   }
 
   if (message.type === contentScript.apolloReceivedManual) {
@@ -69,7 +127,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   if (message.type === contentScript.noApolloClient) {
     const portId = sender.tab.id;
+
+    // Handle when content script loads and there's no Epoch panel Open
     if (!connections[portId]) {
+      noApollos.add(portId);
       console.log(`No Epoch Panel Connection Id ${portId} for No Apollo Client Log`);
     }
     connections[portId].postMessage({
