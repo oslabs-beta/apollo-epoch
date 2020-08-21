@@ -23,16 +23,17 @@ const DiffInfo = () => {
   return (
     <div className="diff-info">
       <div className="unchanged-toggle-div">
-        <button
-          type="button"
-          className="unchanged-toggle"
-          style={{ color: unchanged ? 'green' : 'red' }}
+        <input
+          type="checkbox"
+          id="switch"
           onClick={() => {
+            console.log('Clicked on checkbox');
             setUnchanged(!unchanged);
           }}
-        >
-          Show Unchanged
-        </button>
+        />
+
+        <label htmlFor="switch">Toggle</label>
+        <p>Full Cache</p>
       </div>
       {ReactHtmlParser(diffHtml)}
     </div>

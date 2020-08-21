@@ -22,7 +22,11 @@ const StateSidebar = ({ keyList, onClick }) => {
     );
   });
 
-  return <div className="state-sidebar">{keyListDisplay}</div>;
+  return (
+    <div className="state-sidebar">
+      <div className="keylist-wrapper">{keyListDisplay}</div>
+    </div>
+  );
 };
 
 StateSidebar.propTypes = {

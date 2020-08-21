@@ -32,13 +32,13 @@ const HistoryView = () => {
 
   return (
     <div className="history-view">
-      <h1>Queries</h1>
-      {activeTimelineObj.type && (
+      <h1>Timeline</h1>
+      {/* {activeTimelineObj.type && (
         <h2>
           ActiveQuery:
           {` ${activeTimelineObj.type} ${activeTimelineObj.id}`}
         </h2>
-      )}
+      )} */}
       <div className="query-cards">{queries}</div>
     </div>
   );
