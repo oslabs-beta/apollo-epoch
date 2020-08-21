@@ -11,7 +11,7 @@ All informational messages can be log messages sans data (data property on paylo
 */
 
 const timeout = 10; // ms to wait for Apollo to update
-const { epoch, contentScript, clientWindow } = sendMessageTypes;
+const { epoch, contentScript, clientWindow, background } = sendMessageTypes;
 console.log('contentScript Running');
 
 /*
@@ -65,6 +65,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const { queryCount, mutationCount } = counts.getCounts();
     injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, false, true); // pass true for manual to flag response data
     sendResponse({ type: contentScript.log, payload: { title: 'Manual Fetch Triggered' } }); // should trigger response based on hasApollo in Redux
+  }
+
+  // Only happens on network request
+  if (message.type === background.fetchFullApolloData) {
+    const { queryCount, mutationCount } = counts.getCounts();
+    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount);
+  }
+
+  // Only happens on network responses
+  if (message.type === background.fetchFullApolloData) {
+    const { queryCount, mutationCount } = counts.getCounts();
+    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, false, true); // fire manually to bypass counts check
   }
 });
 
@@ -223,7 +235,17 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
       const queryObj = value;
 
       let lastResult;
-      if (queryObj && queryObj.observableQuery) lastResult = queryObj.observableQuery.lastResult;
+      let name;
+      let loading;
+      let data;
+      let error;
+      if (queryObj && queryObj.observableQuery) {
+        lastResult = queryObj.observableQuery.lastResult;
+        name = queryObj.observableQuery.queryName;
+        loading = lastResult.loading;
+        data = lastResult.data;
+        error = lastResult.error;
+      }
 
       filteredQueryInfo.push({
         id: `Q${key}${queryIdCounter}`, // prevents duplicate Ids in Epoch
@@ -232,7 +254,10 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
         networkError: value.networkError,
         networkStatus: value.networkStatus,
         variables: value.variables,
-        lastResult,
+        name,
+        data,
+        error,
+        loading,
       });
     });
     return filteredQueryInfo;
@@ -247,7 +272,9 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
       filteredMutations.push({
         id: `M${id}${mutationIdCounter}`, // prevents duplicate Ids in Epoch
         document: mutationObj.mutation,
+        name: mutationObj.mutation.definitions[0].name.value,
         error: mutationObj.error,
+        loading: mutationObj.loading,
         variables: mutationObj.variables,
       });
       return filteredMutations;

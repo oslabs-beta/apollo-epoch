@@ -28,13 +28,17 @@ import sendMessageTypes from '../messagesAndActionTypes/messageTypes';
     networkError: value.networkError,
     networkStatus: value.networkStatus,
     variables: value.variables,
-    lastResult,    
+    data: lastResult.data,
+    name: lastResult.name,
+    error: lastResult.error,
+    loading: lastResult.loading    
   }
 
   Mutation Data Obj {
       id: `M${id}${mutationIdCounter}`, // prevents duplicate Ids in Epoch
       document: mutationObj.mutation,
       error: mutationObj.error,
+      loading: mutationObj.loading
       variables: mutationObj.variables,     
   }
   ----------------------------------------
@@ -42,11 +46,13 @@ import sendMessageTypes from '../messagesAndActionTypes/messageTypes';
   queryObj: {
     id: (Q + cacheId + qCount)
     type,
+    name, 
     queryString,
     variables,
-    response
+    response,
+    error,
     cacheSnapshot,
-    diff,
+    loading,
 }
 
   mutationsObj: {
@@ -54,15 +60,15 @@ import sendMessageTypes from '../messagesAndActionTypes/messageTypes';
     type,
     queryString,
     variables,
+    errorObj
+    loading
     cacheSnapshot,
-    diff,
 }
 
   manualFetchObj: {
     id: (F + fetchCounter)
     type,
     cacheSnapshot,
-    diff,
 }
 
 
@@ -321,15 +327,17 @@ function processApolloData(state, apolloData) {
     let mutationsToGrab = mutationCount - prevMutationCount;
     if (mutationsToGrab && mutationsToGrab <= mutations.length) {
       while (mutationsToGrab > 0) {
-        const { id, document, error, variables } = mutations.pop();
-        console.log('mutationDocument', document);
+        const { id, document, error, loading, variables, name } = mutations.pop();
+        console.log(`mutation ${id} Loading State`, loading);
         const stateMutationObj = {
           id,
           type: mutationType,
           queryString: print(document),
           variables,
+          name,
+          error,
+          loading,
           cacheSnapshot: cache,
-          diff: 'Magic Diff Formula Magic Result Inserted Here',
         };
         state.timeline.push(id);
         state.mutationIds.push(id);
@@ -346,15 +354,17 @@ function processApolloData(state, apolloData) {
         console.log('query items ->', queries.length);
         const queryObj = queries.pop();
         console.log('q in question -> ', queryObj);
-        const { id, document, lastResult, variables } = queryObj;
+        const { id, document, variables, data, error, name, loading } = queryObj;
         const stateQueryObj = {
           id,
           type: queryType,
+          name,
           queryString: print(document),
           variables,
-          response: lastResult,
+          response: data,
+          error,
           cacheSnapshot: cache,
-          diff: 'Magic Diff Formula Magic Result Inserted Here',
+          loading,
         };
         state.timeline.push(id);
         state.queryIds.push(id);
