@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { diff, formatters } from 'jsondiffpatch';
 import ReactHtmlParser from 'react-html-parser';
 import { useSelector } from 'react-redux';
-import TimeButtons from './TimeButtons';
 // import { diff1, diff2, diff3, diff4, diffHtml, nullDiff } from '../dummyData/data';
 import '../styles/diff.css';
 
@@ -36,7 +35,6 @@ const DiffInfo = () => {
         </button>
       </div>
       {ReactHtmlParser(diffHtml)}
-      <TimeButtons />
     </div>
   );
 };
