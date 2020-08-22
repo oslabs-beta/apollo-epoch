@@ -7,9 +7,10 @@
 :root {
   --main-bg: #0a090c;
   --secondary-bg-hover: #19930928;
-  --tertiary-bg-hover: #3ea44c;
+  --tertiary-bg-hover: #60b0ea;
   --text-color: #f0edee;
   --light-border: #90ddf0;
+  --active-query-back: #266575;
   --dark-border: #08637a;
   --nav-buttons: #20909f;
   --nav-buttons-hover: #2c666e6d;
@@ -149,7 +150,7 @@ body {
 }
 
 .unchanged-green {
-  color: green;
+  color: var(--tertiary-bg-hover);
 }
 
 .unchanged-red {
@@ -184,12 +185,12 @@ body {
 }
 
 .query-card:hover {
-  background-color: var(--secondary-bg-hover);
+  background-color: var(--active-query-back);
   cursor: pointer;
 }
 
 .active-query {
-  background-color: var(--secondary-bg-hover);
+  background-color: var(--active-query-back);
 }
 
 .nav {
@@ -253,7 +254,7 @@ body {
   padding-bottom: 10px;
   width: 20vw;
   overflow-y: auto;
-  background-color: var(--secondary-bg-hover);
+  background-color: var(--active-query-back);
 }
 
 .keylist-wrapper {
@@ -343,7 +344,7 @@ label:after {
 }
 
 input:checked + label {
-  background: #bada55;
+    background: var(--tertiary-bg-hover);
 }
 
 input:checked + label:after {
