@@ -21,7 +21,7 @@ const QueryInfo = ({ queryString, variables }) => {
         <>
           <br />
           <p>Variables</p>
-          <br />
+
           <ReactJson
             src={variables}
             enableClipboard={false}
