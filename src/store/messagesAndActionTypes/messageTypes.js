@@ -5,6 +5,7 @@ const sendMessageTypes = {
     saveConnection: 'saveConnection',
     initialize: 'epochPanelOpened',
     fetchApolloData: 'fetchApolloData',
+    fetchApolloDataForNetQuery: 'fetchDataForNetQuery',
   },
   contentScript: {
     initialize: 'contentScriptInitialized',

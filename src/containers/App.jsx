@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import HistoryContainer from './HistoryContainer';
 import InfoContainer from './InfoContainer';
 import SphereLoader from '../components/SphereLoader/SphereLoader';
-import getNetworkResponses from '../util/networkListener';
 import { initializeBackgroundConnection, fetchApollo } from '../store/entities/apollo';
+import { initializeNetworkListener } from '../store/messagesAndActionTypes/initializeActions';
 import '../styles/main.css';
 
 const App = () => {
@@ -17,8 +17,8 @@ const App = () => {
       'Initializing Background Connection on Tab: ',
       chrome.devtools.inspectedWindow.tabId
     );
-    getNetworkResponses();
     dispatch(initializeBackgroundConnection());
+    dispatch(initializeNetworkListener());
   }, []);
 
   const getCache = () => {

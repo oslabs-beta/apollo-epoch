@@ -236,15 +236,9 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
 
       let lastResult;
       let name;
-      let loading;
-      let data;
-      let error;
       if (queryObj && queryObj.observableQuery) {
         lastResult = queryObj.observableQuery.lastResult;
         name = queryObj.observableQuery.queryName;
-        loading = lastResult.loading;
-        data = lastResult.data;
-        error = lastResult.error;
       }
 
       filteredQueryInfo.push({
@@ -255,9 +249,7 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
         networkStatus: value.networkStatus,
         variables: value.variables,
         name,
-        data,
-        error,
-        loading,
+        lastResult,
       });
     });
     return filteredQueryInfo;

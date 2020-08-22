@@ -27,6 +27,8 @@ NETWORK REQUEST LISTENERS
 ---------------------------
 */
 
+// Need to Keep coverage for NON user initiated queries
+
 const networkListener = (requestDetails) => {
   const { tabId: portId } = requestDetails;
   console.log('Net Req Details -> ', requestDetails);
@@ -40,7 +42,7 @@ const networkListener = (requestDetails) => {
   if (requestDetails.method === 'POST') networkStore[requestDetails.requestId] = 'awaitingObject';
 
   // Get cache snapshot in case this request was not triggered by user (if it was ID counts should be the same)
-  chrome.tabs.sendMessage(requestDetails.tabId, { type: background });
+  // chrome.tabs.sendMessage(requestDetails.tabId, { type: background });
 
   if (!connections[portId]) {
     console.log(`No Epoch Panel ${portId} to send Apollo Data -> `, requestDetails);
@@ -100,6 +102,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (graphQlUri && graphQlUri !== graphQlUrls[portId]) {
       graphQlUrls[portId] = graphQlUri;
 
+      /*
+      --------------
+        TO DELETE - SELECTIVELY - Keep addition of array to some
+      --------------
+      */
+      // ------------------------------------------------------------------
       // Update URL filter list in webRequest Listeners
       chrome.webRequest.onBeforeRequest.removeListener(networkListener);
       chrome.webRequest.onBeforeRequest.addListener(networkListener, {
@@ -110,6 +118,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         urls: computeGraphQlUrlArray(),
       });
     }
+    // --------------------------------------------------------------------
 
     // Handle no Epoch Panel Initialized. Takes into account multiple tabs
     if (!connections[portId]) {

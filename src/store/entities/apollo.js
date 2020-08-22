@@ -3,6 +3,7 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 import { createSelector } from 'reselect';
 import { print } from 'graphql/language/printer';
 import { connectToBackground } from '../messagesAndActionTypes/initializeActions';
+import { composeNetworkQuery } from '../messagesAndActionTypes/networkActions';
 import sendMessageTypes from '../messagesAndActionTypes/messageTypes';
 
 /*---------------------------
@@ -67,6 +68,7 @@ import sendMessageTypes from '../messagesAndActionTypes/messageTypes';
 
   manualFetchObj: {
     id: (F + fetchCounter)
+    name: id,
     type,
     cacheSnapshot,
 }
@@ -97,6 +99,7 @@ const initialState = {
   fetchCounter: 0,
   timeline: [], // an ordered list of query and mutation Ids
   typeNameDocumentCache: {},
+  networkHoldingRoom: {},
 };
 
 /*--------------
@@ -113,6 +116,7 @@ const RECEIVED_APOLLO = 'apolloReceived';
 const INITIALIZED_CACHE_CHECK = 'initializedCache';
 const SET_ACTIVE_QUERY = 'setActiveQuery';
 const SET_PREV_QUERY = 'setPrevQuery';
+const RECEIVED_NETWORK_QUERY = 'receivedNetworkQuery';
 
 /*----------------
   ACTION CREATORS
@@ -128,6 +132,7 @@ export const receivedApollo = createAction(RECEIVED_APOLLO); // payload apolloOb
 export const initializeCache = createAction(INITIALIZED_CACHE_CHECK);
 export const setActiveQuery = createAction(SET_ACTIVE_QUERY); // payload should be an ID from the timeline
 export const setPrevQuery = createAction(SET_PREV_QUERY); // payload should be an ID from the timeline
+export const receivedNetworkQuery = createAction(RECEIVED_NETWORK_QUERY); // payload is HAR object from Net Request
 
 /*--------------
   REDUCER
@@ -143,6 +148,7 @@ const apolloReducer = createReducer(initialState, {
   [INITIALIZED_CACHE_CHECK]: initializedCacheCase,
   [SET_ACTIVE_QUERY]: setActiveQueryCase,
   [SET_PREV_QUERY]: setPrevQueryCase,
+  [RECEIVED_NETWORK_QUERY]: receivedNetworkQueryCase,
 });
 
 /*--------------
@@ -190,12 +196,11 @@ function receivedManualFetchCase(state, action) {
   state.hasDunderApollo = true;
   state.fetchCounter += 1;
   const fetchId = `F${state.fetchCounter}`;
-  const diff = 'Magic Diff Formula Magic Result Inserted Here';
   const fetchObj = {
     id: fetchId,
     type: manualFetchType,
+    name: fetchId,
     cacheSnapshot: apolloData.cache,
-    diff,
   };
   state.timeline.push(fetchId);
   state.manualFetchIds.push(fetchId);
@@ -245,6 +250,25 @@ function setPrevQueryCase(state, action) {
   if (typeIndicator === 'F') state.activeQuery = state.manualFetches[prevQueryId];
 }
 
+function receivedNetworkQueryCase(state, action) {
+  console.log('Cleaning up network request for ', action.payload.hydratedQuery.name);
+  console.log('Hydrated Query Obj ->', action.payload.hydratedQuery);
+  const { queryKey, hydratedQuery } = action.payload;
+  const { id } = hydratedQuery;
+  const typeIndicator = id[0];
+  if (typeIndicator === 'Q') {
+    state.queryIds.push(id);
+    state.queries[id] = hydratedQuery;
+  }
+  if (typeIndicator === 'M') {
+    state.mutationIds.push(id);
+    state.mutations[id] = hydratedQuery;
+  }
+  state.timeline.push(id);
+  delete state.networkHoldingRoom[queryKey];
+  console.log('networkHoldingRoom Clean', state.networkHoldingRoom);
+}
+
 export default apolloReducer;
 
 /*--------------------
@@ -263,6 +287,12 @@ export const initializeBackgroundConnection = () =>
       noApollo: NO_APOLLO,
       initializeCache: INITIALIZED_CACHE_CHECK,
     },
+  });
+
+export const passHarToCompose = (filteredHar) =>
+  composeNetworkQuery({
+    data: filteredHar,
+    onSuccess: RECEIVED_NETWORK_QUERY,
   });
 
 /*-----------
@@ -339,9 +369,14 @@ function processApolloData(state, apolloData) {
           loading,
           cacheSnapshot: cache,
         };
-        state.timeline.push(id);
-        state.mutationIds.push(id);
-        state.mutations[id] = stateMutationObj;
+        if (stateMutationObj.loading) {
+          console.log('Network Mutation', stateMutationObj.name);
+          state.networkHoldingRoom[stateMutationObj.queryString] = stateMutationObj;
+        } else {
+          state.timeline.push(id);
+          state.mutationIds.push(id);
+          state.mutations[id] = stateMutationObj;
+        }
         mutationsToGrab -= 1;
       }
     }
@@ -354,21 +389,27 @@ function processApolloData(state, apolloData) {
         console.log('query items ->', queries.length);
         const queryObj = queries.pop();
         console.log('q in question -> ', queryObj);
-        const { id, document, variables, data, error, name, loading } = queryObj;
+        const { id, document, variables, name, lastResult } = queryObj;
         const stateQueryObj = {
           id,
           type: queryType,
           name,
           queryString: print(document),
           variables,
-          response: data,
-          error,
           cacheSnapshot: cache,
-          loading,
         };
-        state.timeline.push(id);
-        state.queryIds.push(id);
-        state.queries[id] = stateQueryObj;
+
+        if (!lastResult || lastResult.loading) {
+          console.log('Network Query ->', stateQueryObj.name);
+          state.networkHoldingRoom[stateQueryObj.queryString] = stateQueryObj;
+        } else {
+          const { error, data } = lastResult;
+          stateQueryObj.error = error;
+          stateQueryObj.response = data;
+          state.timeline.push(id);
+          state.queryIds.push(id);
+          state.queries[id] = stateQueryObj;
+        }
         queriesToGrab -= 1;
       }
     }
