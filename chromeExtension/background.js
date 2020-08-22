@@ -12,6 +12,7 @@ const { epoch, contentScript, background } = sendMessageTypes;
 
 console.log('Background Script Initialized');
 const connections = {}; // {tabId, epochPort}
+const networkStore = {}; // catches queries and mutations that are awaiting network responses
 const preEpochCaches = {}; // {tabId, cacheResponses: [cacheObj]};
 const graphQlUrls = {}; // {tabId, graphQlUrl} --> Avoids multiple instance of same URL
 const noApollos = new Set(); // {tabId}
@@ -26,6 +27,8 @@ NETWORK REQUEST LISTENERS
 ---------------------------
 */
 
+// Need to Keep coverage for NON user initiated queries
+
 const networkListener = (requestDetails) => {
   const { tabId: portId } = requestDetails;
   console.log('Net Req Details -> ', requestDetails);
@@ -34,6 +37,12 @@ const networkListener = (requestDetails) => {
     console.log('No Tab on Request -> ', requestDetails);
     return;
   }
+
+  // Create queryCatcher (DOES NOT ACCOUNT FOR BATCH REQUESTS)
+  if (requestDetails.method === 'POST') networkStore[requestDetails.requestId] = 'awaitingObject';
+
+  // Get cache snapshot in case this request was not triggered by user (if it was ID counts should be the same)
+  // chrome.tabs.sendMessage(requestDetails.tabId, { type: background });
 
   if (!connections[portId]) {
     console.log(`No Epoch Panel ${portId} to send Apollo Data -> `, requestDetails);
@@ -46,7 +55,14 @@ const networkListener = (requestDetails) => {
   });
 };
 
+const networkResponseListener = (responseDetails) => {
+  console.log('Response to Most Recent Request', responseDetails);
+};
+
 chrome.webRequest.onBeforeRequest.addListener(networkListener, { urls: computeGraphQlUrlArray() });
+chrome.webRequest.onCompleted.addListener(networkResponseListener, {
+  urls: computeGraphQlUrlArray(),
+});
 
 /*
 --------------------------------
@@ -93,12 +109,23 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (graphQlUri && graphQlUri !== graphQlUrls[portId]) {
       graphQlUrls[portId] = graphQlUri;
 
+      /*
+      --------------
+        TO DELETE - SELECTIVELY - Keep addition of array to some
+      --------------
+      */
+      // ------------------------------------------------------------------
       // Update URL filter list in webRequest Listeners
       chrome.webRequest.onBeforeRequest.removeListener(networkListener);
       chrome.webRequest.onBeforeRequest.addListener(networkListener, {
         urls: computeGraphQlUrlArray(),
       });
+      chrome.webRequest.onCompleted.removeListener(networkResponseListener);
+      chrome.webRequest.onCompleted.addListener(networkResponseListener, {
+        urls: computeGraphQlUrlArray(),
+      });
     }
+    // --------------------------------------------------------------------
 
     // Handle no Epoch Panel Initialized. Takes into account multiple tabs
     if (!connections[portId]) {
@@ -198,3 +225,12 @@ chrome.runtime.onConnect.addListener((port) => {
     });
   });
 });
+
+/*
+-------------------------------------
+HELPER FUNCTION
+-------------------------------------
+*/
+
+// Checks is query / mutations are network requests and saves them if they are
+function gateKeeper(apolloData) {}

@@ -5,6 +5,7 @@ import HistoryContainer from './HistoryContainer';
 import InfoContainer from './InfoContainer';
 import SphereLoader from '../components/SphereLoader/SphereLoader';
 import { initializeBackgroundConnection, fetchApollo } from '../store/entities/apollo';
+import { initializeNetworkListener } from '../store/messagesAndActionTypes/initializeActions';
 import '../styles/main.css';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
       chrome.devtools.inspectedWindow.tabId
     );
     dispatch(initializeBackgroundConnection());
+    dispatch(initializeNetworkListener());
   }, []);
 
   const getCache = () => {

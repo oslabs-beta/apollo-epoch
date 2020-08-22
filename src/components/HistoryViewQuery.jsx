@@ -4,10 +4,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const HistoryViewQuery = ({ timelineObj, onClick, active }) => {
-  const { type, id } = timelineObj;
+  const { type, id, name } = timelineObj;
   return (
-    <div className={`query-card ${active && 'active-query'}`} onClick={onClick} active={active}>
-      <p>{`${type} ${id}`}</p>
+    <div className={`query-card ${active && 'active-query'}`} onClick={onClick} active={active} id={id}>
+      <p>{`${type} ${name}`}</p>
     </div>
   );
 };

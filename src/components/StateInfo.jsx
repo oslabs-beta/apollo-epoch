@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import StateSidebar from './StateSidebar';
 import StateValueDisplay from './StateValueDisplay';
-import { dummyQuery } from '../dummyData/data';
 
 // export interface StateInfoProps {}
 
@@ -16,6 +15,7 @@ const StateInfo = ({ stateSnapshot }) => {
   );
 };
 
+// eslint-disable-next-line react/forbid-prop-types
 StateInfo.propTypes = { stateSnapshot: PropTypes.object.isRequired };
 
 export default StateInfo;
