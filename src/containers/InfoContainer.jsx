@@ -5,7 +5,6 @@ import QueryInfo from '../components/QueryInfo';
 import ResponseInfo from '../components/ResponseInfo';
 import StateInfo from '../components/StateInfo';
 import DiffInfo from '../components/DiffInfo';
-import { dummyQuery } from '../dummyData/data';
 
 // export interface InfoContainerProps {}
 

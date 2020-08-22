@@ -270,6 +270,7 @@ function receivedNetworkQueryCase(state, action) {
   state.timeline.push(id);
   delete state.networkHoldingRoom[queryKey];
   console.log('networkHoldingRoom Clean', state.networkHoldingRoom);
+}
 
 function clearApolloDataCase(state, action) {
   console.log('Re-initializing state');

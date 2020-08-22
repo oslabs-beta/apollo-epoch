@@ -9,8 +9,13 @@ const StateInfo = ({ stateSnapshot }) => {
   const [activeKey, setActiveKey] = React.useState(null);
   return (
     <div className="cache-display">
-      <StateSidebar keyList={Object.keys(stateSnapshot)} onClick={setActiveKey} />
-      {activeKey !== null && <StateValueDisplay stateValue={stateSnapshot[activeKey]} />}
+      {!stateSnapshot && <h2>No Cache</h2>}
+      {stateSnapshot && (
+        <>
+          <StateSidebar keyList={Object.keys(stateSnapshot)} onClick={setActiveKey} />
+          {activeKey !== null && <StateValueDisplay stateValue={stateSnapshot[activeKey]} />}
+        </>
+      )}
     </div>
   );
 };
