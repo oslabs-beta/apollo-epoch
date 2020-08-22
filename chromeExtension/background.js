@@ -68,7 +68,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     if (connections[portId]) {
       connections[portId].postMessage({
-        type: contentScript.clearData,
+        type: background.clearData,
       });
     }
 

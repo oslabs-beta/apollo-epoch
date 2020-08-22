@@ -47,7 +47,7 @@ const initializePort = ({ dispatch }) => (next) => (action) => {
         dispatch(log(message.payload));
       }
 
-      if (message.type === contentScript.clearData) {
+      if (message.type === background.clearData) {
         dispatch({ type: clearApolloData });
       }
 
