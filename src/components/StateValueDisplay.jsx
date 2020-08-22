@@ -10,6 +10,7 @@ const StateValueDisplay = ({ stateValue }) => {
         src={stateValue}
         enableClipboard={false}
         theme={epochTheme}
+        name={false}
         displayObjectSize={false}
         displayDataTypes={false}
         indentWidth={2}
