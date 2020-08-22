@@ -65,6 +65,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         payload: { title: `Background connected to content and Epoch Panel Instance ${portId}` },
       });
     }
+
+    if (connections[portId]) {
+      connections[portId].postMessage({
+        type: contentScript.clearData,
+      });
+    }
+
     sendResponse({ type: 'Background Connected to Content' });
   }
 

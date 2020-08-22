@@ -19,7 +19,9 @@ const InfoContainer = () => {
   // get selected query based on state
   const selectedQuery = useSelector((state) => state.apollo.activeQuery);
   const info = {
-    QueryInfo: <QueryInfo queryString={selectedQuery.queryString} />,
+    QueryInfo: (
+      <QueryInfo queryString={selectedQuery.queryString} variables={selectedQuery.variables} />
+    ),
     ResponseInfo: <ResponseInfo response={selectedQuery.response} />,
     StateInfo: <StateInfo stateSnapshot={selectedQuery.cacheSnapshot} />,
     DiffInfo: <DiffInfo diff={selectedQuery.diff} />,

@@ -12,6 +12,7 @@ const sendMessageTypes = {
     apolloReceivedManual: 'apolloDataReceivedManual',
     noApolloClient: 'noApollo',
     initialCacheCheck: 'checkingForCache',
+    clearData: 'clearApolloData',
     log: LOG,
     error: ERROR,
   },
