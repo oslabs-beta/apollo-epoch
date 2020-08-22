@@ -13,21 +13,16 @@ const HistoryView = () => {
   const activeTimelineObj = useSelector((state) => state.apollo.activeQuery);
   const queries = [];
   const [activeQuery, changeActiveQuery] = React.useState(activeTimelineObj);
-  React.useEffect(() => {
-    if (activeQuery.id) {
-      document.getElementById(activeQuery.id).classList.add('active-query');
-    }
-  }, [activeQuery]);
+
   for (let i = 0; i < queryHistory.length; i += 1) {
     const timelineObj = queryHistory[i];
     queries.push(
       <HistoryViewQuery
         key={timelineObj.id}
         id={timelineObj.id}
+        active={activeQuery.id === timelineObj.id}
         timelineObj={timelineObj}
         onClick={() => {
-          if (activeQuery.id)
-            document.getElementById(activeQuery.id).classList.remove('active-query');
           changeActiveQuery(timelineObj);
           dispatch(setActiveQuery(timelineObj.id));
         }}
@@ -37,13 +32,13 @@ const HistoryView = () => {
 
   return (
     <div className="history-view">
-      <h1>Queries</h1>
-      {activeTimelineObj.type && (
+      <h1>Timeline</h1>
+      {/* {activeTimelineObj.type && (
         <h2>
           ActiveQuery:
           {` ${activeTimelineObj.type} ${activeTimelineObj.id}`}
         </h2>
-      )}
+      )} */}
       <div className="query-cards">{queries}</div>
     </div>
   );

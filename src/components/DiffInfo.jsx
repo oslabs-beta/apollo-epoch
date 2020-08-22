@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { diff, formatters } from 'jsondiffpatch';
 import ReactHtmlParser from 'react-html-parser';
 import { useSelector } from 'react-redux';
-import TimeButtons from './TimeButtons';
 // import { diff1, diff2, diff3, diff4, diffHtml, nullDiff } from '../dummyData/data';
 import '../styles/diff.css';
 
@@ -24,19 +23,19 @@ const DiffInfo = () => {
   return (
     <div className="diff-info">
       <div className="unchanged-toggle-div">
-        <button
-          type="button"
-          className="unchanged-toggle"
-          style={{ color: unchanged ? 'green' : 'red' }}
+        <input
+          type="checkbox"
+          id="switch"
           onClick={() => {
+            console.log('Clicked on checkbox');
             setUnchanged(!unchanged);
           }}
-        >
-          Show Unchanged
-        </button>
+        />
+
+        <label htmlFor="switch">Toggle</label>
+        <p>Full Cache</p>
       </div>
       {ReactHtmlParser(diffHtml)}
-      <TimeButtons />
     </div>
   );
 };
