@@ -117,6 +117,7 @@ const INITIALIZED_CACHE_CHECK = 'initializedCache';
 const SET_ACTIVE_QUERY = 'setActiveQuery';
 const SET_PREV_QUERY = 'setPrevQuery';
 const RECEIVED_NETWORK_QUERY = 'receivedNetworkQuery';
+const CLEAR_APOLLO_DATA = 'clearApolloData';
 
 /*----------------
   ACTION CREATORS
@@ -133,6 +134,7 @@ export const initializeCache = createAction(INITIALIZED_CACHE_CHECK);
 export const setActiveQuery = createAction(SET_ACTIVE_QUERY); // payload should be an ID from the timeline
 export const setPrevQuery = createAction(SET_PREV_QUERY); // payload should be an ID from the timeline
 export const receivedNetworkQuery = createAction(RECEIVED_NETWORK_QUERY); // payload is HAR object from Net Request
+export const clearApolloData = createAction(CLEAR_APOLLO_DATA);
 
 /*--------------
   REDUCER
@@ -149,6 +151,7 @@ const apolloReducer = createReducer(initialState, {
   [SET_ACTIVE_QUERY]: setActiveQueryCase,
   [SET_PREV_QUERY]: setPrevQueryCase,
   [RECEIVED_NETWORK_QUERY]: receivedNetworkQueryCase,
+  [CLEAR_APOLLO_DATA]: clearApolloDataCase,
 });
 
 /*--------------
@@ -267,6 +270,26 @@ function receivedNetworkQueryCase(state, action) {
   state.timeline.push(id);
   delete state.networkHoldingRoom[queryKey];
   console.log('networkHoldingRoom Clean', state.networkHoldingRoom);
+
+function clearApolloDataCase(state, action) {
+  console.log('Re-initializing state');
+  state.hasDunderApollo = false;
+  state.loadingApollo = false;
+  state.activeQuery = {};
+  state.prevQuery = {};
+  state.chromeTabId = '';
+  state.graphQlUri = '';
+  state.queryIds = [];
+  state.queries = {};
+  state.queryIdCounter = 1;
+  state.mutationIds = [];
+  state.mutations = {};
+  state.mutationIdCounter = 1;
+  state.manualFetches = {}; // store manual cacheFetches in Timeline
+  state.manualFetchIds = [];
+  state.fetchCounter = 0;
+  state.timeline = []; // an ordered list of query and mutation Ids
+  state.typeNameDocumentCache = {};
 }
 
 export default apolloReducer;
@@ -282,6 +305,7 @@ export const initializeBackgroundConnection = () =>
     onStart: STARTING_UP,
     onSuccess: PORT_INITIALIZED,
     apolloActions: {
+      clearApolloData: CLEAR_APOLLO_DATA,
       receivedApollo: RECEIVED_APOLLO,
       receivedApolloManual: RECEIVED_MANUAL_FETCH,
       noApollo: NO_APOLLO,

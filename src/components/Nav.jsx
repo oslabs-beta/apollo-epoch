@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
@@ -5,21 +7,12 @@ import PropTypes from 'prop-types';
 
 const Nav = ({ setSelectedInfo }) => {
   const [activeButton, changeActiveButton] = React.useState();
-
-  React.useEffect(() => {
-    if (activeButton) {
-      const active = document.getElementById(activeButton);
-      active.classList.add('nav-button-active');
-    }
-  }, [activeButton]);
   return (
     <div className="nav">
       <div
-        className="nav-button"
+        className={`nav-button ${activeButton === 'query-button' && 'nav-button-active'}`}
         id="query-button"
         onClick={() => {
-          if (activeButton)
-            document.getElementById(activeButton).classList.add('nav-button-active');
           changeActiveButton('query-button');
           setSelectedInfo('QueryInfo');
         }}
@@ -27,7 +20,7 @@ const Nav = ({ setSelectedInfo }) => {
         <p>Query</p>
       </div>
       <div
-        className="nav-button"
+        className={`nav-button ${activeButton === 'response-button' && 'nav-button-active'}`}
         id="response-button"
         onClick={() => {
           changeActiveButton('response-button');
@@ -37,7 +30,7 @@ const Nav = ({ setSelectedInfo }) => {
         <p>Response</p>
       </div>
       <div
-        className="nav-button"
+        className={`nav-button ${activeButton === 'cache-button' && 'nav-button-active'}`}
         id="cache-button"
         onClick={() => {
           changeActiveButton('cache-button');
@@ -47,7 +40,7 @@ const Nav = ({ setSelectedInfo }) => {
         <p>Cache</p>
       </div>
       <div
-        className="nav-button"
+        className={`nav-button ${activeButton === 'diff-button' && 'nav-button-active'}`}
         id="diff-button"
         onClick={() => {
           changeActiveButton('diff-button');

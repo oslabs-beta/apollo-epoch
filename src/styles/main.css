@@ -6,8 +6,8 @@
 
 :root {
   --main-bg: #0a090c;
-  --secondary-bg-hover: #a487de61;
-  --secondary-bg: #2c2240;
+  --secondary-bg-hover: #19930928;
+  --tertiary-bg-hover: #3ea44c;
   --text-color: #f0edee;
   --light-border: #90ddf0;
   --dark-border: #08637a;
@@ -20,7 +20,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background-color: rgba(251, 5, 5, 0.3);
+  background-color: rgba(5, 218, 251, 0.3);
   border-radius: 10px;
 }
 
@@ -38,12 +38,21 @@ body {
   width: 200px;
   height: 300px;
   align-self: flex-end;
+  background-color: var(--nav-buttons);
+  border: initial;
+  color: var(--text-color);
+}
+
+.getCache:hover {
+  background-color: var(--nav-buttons-hover);
+  cursor: pointer;
 }
 
 .info-container,
 .history-view,
 .nav,
 .containers-wrapper,
+.key-display,
 .history-view *,
 .nav * {
   transition: 0.3s;
@@ -86,15 +95,30 @@ body {
 .info-container {
   height: 80vh;
 }
-.inner-info-wrapper {
-  border-bottom: 1px solid var(--dark-border);
-  height: 70vh;
+
+.key-display {
+  width: 100%;
+  text-align: center;
 }
 
-/* .containers {
-  display: flex;
-  width: 100vw;
-} */
+.key-display:hover {
+  background-color: var(--tertiary-bg-hover);
+  cursor: pointer;
+}
+
+.active-key {
+  background-color: var(--tertiary-bg-hover);
+}
+
+.inner-info-wrapper {
+  border-bottom: 1px solid var(--dark-border);
+  height: 73vh;
+}
+
+.inner-info-wrapper h2 {
+  padding-top: 10px;
+  padding-left: 10px;
+}
 
 .history-view {
   display: flex;
@@ -104,10 +128,7 @@ body {
   max-height: 80vh;
   width: 10rem;
   border: 1px solid var(--dark-border);
-}
-
-.history-view h2 {
-  padding: 10px;
+  border-radius: 10px 10px 0px 0px;
 }
 
 .history-view h1 {
@@ -127,6 +148,14 @@ body {
   overflow-y: auto;
 }
 
+.unchanged-green {
+  color: green;
+}
+
+.unchanged-red {
+  color: red;
+}
+
 /* THE FOLLOWING TWO CSS LINES CONTROL DIFF INFO FONT */
 .jsondiffpatch-delta {
   font-size: 0.8em;
@@ -137,7 +166,10 @@ body {
 }
 
 .react-json-view {
-  font-family: 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Courier, monospace;
+  font-family: 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Courier,
+    monospace;
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 .query-card {
@@ -153,6 +185,7 @@ body {
 
 .query-card:hover {
   background-color: var(--secondary-bg-hover);
+  cursor: pointer;
 }
 
 .active-query {
@@ -163,14 +196,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  height: 10vh;
+  height: 7vh;
 }
 
 .nav-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 75%;
+  height: 96%;
   width: 25%;
 
   text-align: center;
@@ -184,6 +217,10 @@ body {
 
 .nav-button-active {
   background-color: var(--main-bg);
+}
+
+.info-display h2 {
+  padding-left: 10px;
 }
 
 .arrow {
@@ -204,30 +241,41 @@ body {
 
 .nav-button:hover {
   background-color: var(--nav-buttons-hover);
+  cursor: pointer;
 }
 
 .state-sidebar {
-  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 73vh;
+  padding-bottom: 10px;
   width: 20vw;
   overflow-y: auto;
-  padding-left: 10px;
+  background-color: var(--secondary-bg-hover);
+}
+
+.keylist-wrapper {
+  height: 90%;
+  width: 100%;
 }
 
 .cache-display {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-areas: 'state-sidebar cache-display';
-  height: 70vh;
+  height: 73vh;
   padding-top: 0;
 }
 
 .react-json-view {
-  max-height: 69.5vh;
+  max-height: 72.5vh;
   overflow-y: auto;
 }
 
 .GraphqlCodeBlock {
-  max-height: 65vh;
+  max-height: 68vh;
   overflow-y: auto;
 }
 
@@ -248,6 +296,63 @@ body {
 
 .backward-button {
   transform: rotateY(180deg);
+}
+
+.getCache {
+  width: 75px;
+  height: 25px;
+}
+
+.unchanged-toggle-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2rem;
+  width: 15%;
+}
+
+/* toggle  */
+
+input[type='checkbox'] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 40px;
+  height: 20px;
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+
+label:after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 15px;
+  height: 15px;
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+input:checked + label {
+  background: #bada55;
+}
+
+input:checked + label:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+label:active:after {
+  width: 13px;
 }
 
 @media only screen and (max-width: 500px) {

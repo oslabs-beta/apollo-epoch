@@ -3,10 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const HistoryViewQuery = ({ timelineObj, onClick }) => {
-  const { type, name, id } = timelineObj;
+const HistoryViewQuery = ({ timelineObj, onClick, active }) => {
+  const { type, id, name } = timelineObj;
   return (
-    <div className="query-card" onClick={onClick} id={id}>
+    <div className={`query-card ${active && 'active-query'}`} onClick={onClick} active={active} id={id}>
       <p>{`${type} ${name}`}</p>
     </div>
   );
@@ -16,6 +16,7 @@ HistoryViewQuery.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   timelineObj: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
+  active: PropTypes.bool.isRequired,
 };
 
 export default HistoryViewQuery;

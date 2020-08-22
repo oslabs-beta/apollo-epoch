@@ -21,6 +21,7 @@ const sendMessageTypes = {
     apolloReceivedManual: 'apolloDataReceivedManual',
     noApolloClient: 'noApollo',
     fetchFullApolloData: 'onNetworkRequest',
+    clearData: 'clearApolloData',
     log: LOG,
     error: ERROR,
   },
