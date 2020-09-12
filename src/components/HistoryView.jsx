@@ -1,5 +1,19 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {
+  Grid,
+  Typography,
+  Button,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControlLabel,
+  Checkbox,
+  Chip,
+  Paper,
+} from '@material-ui/core/';
 import { dummyList } from '../dummyData/data';
 import HistoryViewQuery from './HistoryViewQuery';
 import { getTimeline, setActiveQuery } from '../store/entities/apollo';
@@ -34,14 +48,12 @@ const HistoryView = () => {
 
   return (
     <div className="history-view">
-      <h1>Timeline</h1>
-      {/* {activeTimelineObj.type && (
-        <h2>
-          ActiveQuery:
-          {` ${activeTimelineObj.type} ${activeTimelineObj.id}`}
-        </h2>
-      )} */}
-      <div className="query-cards">{queries}</div>
+      <Grid container>
+        <Grid item xs={12}>
+          <Typography variant="h6">Timeline</Typography>
+          <div className="query-cards">{queries}</div>
+        </Grid>
+      </Grid>
     </div>
   );
 };

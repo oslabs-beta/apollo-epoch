@@ -82,6 +82,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       });
     }
 
+    // No reason for these to split...when we have testing (because Matt's afraid) fix?
     if (connections[portId]) {
       connections[portId].postMessage({
         type: background.clearData,

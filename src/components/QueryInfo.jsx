@@ -30,6 +30,7 @@ const QueryInfo = ({ queryString, variables }) => {
             displayObjectSize={false}
             displayDataTypes={false}
             indentWidth={2}
+            collapsed={false}
           />
         </>
       )}
