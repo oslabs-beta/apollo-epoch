@@ -5,6 +5,7 @@ const sendMessageTypes = {
     saveConnection: 'saveConnection',
     initialize: 'epochPanelOpened',
     fetchApolloData: 'fetchApolloData',
+    fetchApolloDataForNetQuery: 'fetchDataForNetQuery',
   },
   contentScript: {
     initialize: 'contentScriptInitialized',
@@ -19,6 +20,8 @@ const sendMessageTypes = {
     apolloReceived: 'apolloDataReceived',
     apolloReceivedManual: 'apolloDataReceivedManual',
     noApolloClient: 'noApollo',
+    fetchFullApolloData: 'onNetworkRequest',
+    clearData: 'clearApolloData',
     log: LOG,
     error: ERROR,
   },
