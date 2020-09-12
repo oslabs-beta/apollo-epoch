@@ -1,10 +1,13 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { diff, formatters } from 'jsondiffpatch';
 import ReactHtmlParser from 'react-html-parser';
 import { useSelector } from 'react-redux';
+import { Switch, Typography } from '@material-ui/core/';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 // import { diff1, diff2, diff3, diff4, diffHtml, nullDiff } from '../dummyData/data';
 import '../styles/diff.css';
+
+const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
 
 // export interface DiffInfoProps {}
 
@@ -19,21 +22,19 @@ const DiffInfo = () => {
   const diffHtml = formatters.html.format(delta, prevQuery.cacheSnapshot);
   // conditionally render changes or not based on unchanged bool
   formatters.html.showUnchanged(unchanged);
+  const handleChange = () => {
+    console.log('Clicked on checkbox');
+    setUnchanged(!unchanged);
+  };
 
   return (
     <div className="diff-info">
       <div className="unchanged-toggle-div">
-        <input
-          type="checkbox"
-          id="switch"
-          onClick={() => {
-            console.log('Clicked on checkbox');
-            setUnchanged(!unchanged);
-          }}
-        />
+        <ThemeProvider theme={epochTheme}>
+          <Switch checked={unchanged} color="primary" onClick={handleChange} name="switch" />
+        </ThemeProvider>
 
-        <label htmlFor="switch">Toggle</label>
-        <p>Full Cache</p>
+        <Typography>Full Cache</Typography>
       </div>
       {ReactHtmlParser(diffHtml)}
     </div>
