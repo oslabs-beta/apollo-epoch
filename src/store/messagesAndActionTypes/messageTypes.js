@@ -6,6 +6,8 @@ const sendMessageTypes = {
     initialize: 'epochPanelOpened',
     fetchApolloData: 'fetchApolloData',
     fetchApolloDataForNetQuery: 'fetchDataForNetQuery',
+    getFiberTree: '$$$getFiberTree$$$',
+    tardis: 'initiateTimeJump',
   },
   contentScript: {
     initialize: 'contentScriptInitialized',

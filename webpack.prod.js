@@ -12,7 +12,11 @@ module.exports = merge(common, {
   mode: 'production',
   output: {
     filename: (pathData) => {
-      if (pathData.chunk.name === 'background' || pathData.chunk.name === 'contentScript')
+      if (
+        pathData.chunk.name === 'background' ||
+        pathData.chunk.name === 'contentScript' ||
+        pathData.chunk.name === 'fiberInjection'
+      )
         return '[name].js';
       return '[name].[contentHash].bundle.js';
     },

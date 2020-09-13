@@ -7,9 +7,22 @@ const destination = path.resolve(__dirname, 'build');
 
 module.exports = {
   entry: {
+    vendors: `./src/vendors.js`,
     index: `./src/index.js`,
     background: `${src}/background.js`,
     contentScript: `${src}/contentScript.js`,
+    fiberInjection: `./src/fiberInjection/index.js`,
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          // chunks: 'all',
+        },
+      },
+    },
   },
   output: { path: destination },
   module: {
