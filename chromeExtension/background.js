@@ -21,6 +21,28 @@ const computeGraphQlUrlArray = () => {
   return tabIds.map((tabId) => graphQlUrls[tabId]); // accounts for multiple tab instances
 };
 
+/*--------------------------
+  TEST INJECTION
+---------------------------*/
+function injectFiberCrap(tabId) {
+  console.log('CALLED INJECT FIBER CRAP!!!');
+  console.log(chrome.runtime.getURL('fiberInjection.js'));
+  chrome.tabs.executeScript(tabId, {
+    code: `
+    // Function will attach script to the dom 
+    const injectScript = (file, tag) => {
+      const htmlBody = document.getElementsByTagName(tag)[0];
+      const script = document.createElement('script');
+      script.setAttribute('type', 'text/javascript');
+      script.setAttribute('src', file);
+      console.log('THIS IS MY SCRIPT ->', script);
+      htmlBody.appendChild(script);
+    };
+    injectScript(chrome.runtime.getURL('fiberInjection.js'), 'body');
+  `,
+  });
+}
+
 /*
 ---------------------------
 NETWORK REQUEST LISTENERS
@@ -75,6 +97,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log('Content Script Initialized');
 
     const portId = sender.tab.id;
+    injectFiberCrap(portId);
     if (connections[portId]) {
       connections[portId].postMessage({
         type: background.log,

@@ -13,6 +13,8 @@ const epochHookObj = {
   testFunction: eatMyShorts,
 };
 
+console.log('INJECTED SCRIPT EPOCH IS HERE');
+
 window.addEventListener('message', (event) => {
   if (event.source !== window) return;
   const epochHook = window[epochHookProp];
