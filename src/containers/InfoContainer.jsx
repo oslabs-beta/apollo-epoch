@@ -62,10 +62,10 @@ const InfoContainer = () => {
       <ThemeProvider theme={epochTheme}>
         <AppBar position="static">
           <Tabs value={value} onChange={handleChange} variant="scrollable">
-            <Tab label="Query" {...a11yProps(0)} />
-            <Tab label="Response" {...a11yProps(1)} />
-            <Tab label="Cache" {...a11yProps(2)} />
-            <Tab label="Diff" {...a11yProps(3)} />
+            <Tab label="Query" {...a11yProps(0)} style={{ minWidth: '25%' }} />
+            <Tab label="Response" {...a11yProps(1)} style={{ minWidth: '25%' }} />
+            <Tab label="Cache" {...a11yProps(2)} style={{ minWidth: '25%' }} />
+            <Tab label="Diff" {...a11yProps(3)} style={{ minWidth: '25%' }} />
           </Tabs>
         </AppBar>
       </ThemeProvider>

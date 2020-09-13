@@ -89,9 +89,9 @@ body {
 }
 
 .active-panel {
-  max-height: 70vh;
+  max-height: 80vh;
   width: 100%;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .key-display {
@@ -139,9 +139,9 @@ body {
 }
 
 .diff-info {
-  height: 70vh;
   overflow-x: auto;
   overflow-y: auto;
+  height: 80vh;
 }
 
 .unchanged-green {
@@ -246,8 +246,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 73vh;
   width: 20vw;
+  height: 80vh;
   overflow-y: auto;
   background-color: var(--active-query-back);
 }
@@ -261,16 +261,21 @@ body {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-areas: 'state-sidebar cache-display';
-  height: 72vh;
   padding-top: 0;
 }
 
-.react-json-view {
-  max-height: 72vh;
+.state-value {
+  overflow-x: auto;
+  overflow-y: auto;
+  height: 80vh;
 }
 
+/* .react-json-view {
+  max-height: 80vh;
+} */
+
 .GraphqlCodeBlock {
-  max-height: 68vh;
+  max-height: 78vh;
   overflow-y: auto;
 }
 
