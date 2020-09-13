@@ -18,5 +18,6 @@
       "js": ["contentScript.js"]
     }
   ],
+  "web_accessible_resources": ["fiberInjection.js"],
   "permissions": ["storage", "activeTab", "<all_urls>", "tabs", "webRequest"]
 }

@@ -64,6 +64,7 @@ module.exports = {
         { from: `${src}/devtools.html`, to: destination },
         { from: `${src}/devtools.js`, to: destination },
         { from: `${src}/popup.html`, to: destination },
+        // { from: `./src/fiberInjection/index.js`, to: destination },
       ],
     }),
   ],

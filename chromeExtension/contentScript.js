@@ -144,6 +144,10 @@ window.addEventListener('keyup', (e) => {
         },
       },
     });
+    /*
+      TEST TEST TEST
+    */
+    window.postMessage({ type: '$$$getFiberTree$$$', tabId: 10 }, '*');
   }
 });
 

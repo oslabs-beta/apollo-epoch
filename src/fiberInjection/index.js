@@ -4,7 +4,6 @@
  Creates windowListener that will receive messages from Epoch App / Content Script
 */
 
-import sendMessageTypes from '../store/messagesAndActionTypes/messageTypes';
 import componentStore from './componentStore';
 
 const epochHookProp = '__APOLLO_EPOCH_FIBER_HOOK';
@@ -14,20 +13,22 @@ const epochHookObj = {
 };
 
 console.log('INJECTED SCRIPT EPOCH IS HERE');
+console.log('INJECTED SCRIPT EPOCH IS HERE');
 
 window.addEventListener('message', (event) => {
   if (event.source !== window) return;
+  console.log('LOGGING MESSAGES IN DOM LISTENER');
   const epochHook = window[epochHookProp];
 
-  if (event.data && event.data.type === sendMessageTypes.epoch.getFiberTree) {
-    // webpack should insert messageString above
+  if (event.data && event.data.type === '$$$getFiberTree$$$') {
+    console.log('GETTING ROOT FIBER');
     const { tabId } = event.data;
     const devTools = window.__REACT_DEVTOOLS_GLOBAL_HOOK__;
     const fiberRoot = devTools.getFiberRoots(1).values().next().value;
-    epochHook[tabId] = fiberRoot;
+    epochHook.componentStore[tabId] = fiberRoot;
   }
 
-  if (event.data && event.data.type === sendMessageTypes.epoch.tardis) {
+  if (event.data && event.data.type === 'initiateTimeJump') {
     const { tabId } = event.data;
     epochHook.testFunction();
     console.log('rootFiber ->', epochHook.componentStore[tabId]);
