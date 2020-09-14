@@ -18,32 +18,32 @@ stateObj = {classComponentState, hooksStates: [hookStateObj]} - classComponent S
 
 */
 
-function TabStore() {
-  const tabStore = {};
+// function TabStore() {
+//   const tabStore = {};
 
-  Object.defineProperties(this, {
-    tabStore: {
-      get() {
-        return tabStore;
-      },
-    },
-  });
-}
+//   Object.defineProperties(this, {
+//     tabStore: {
+//       get() {
+//         return tabStore;
+//       },
+//     },
+//   });
+// }
 
-TabStore.prototype.addComponentStore = function (tabId) {
-  if (this.tabStore[tabId]) return `Component Store already exists for Tab Id: ${tabId}`;
-  this.tabStore[tabId] = new ComponentStore();
-  return this.tabStore[tabId];
-};
+// TabStore.prototype.addComponentStore = function (tabId) {
+//   if (this.tabStore[tabId]) return `Component Store already exists for Tab Id: ${tabId}`;
+//   this.tabStore[tabId] = new ComponentStore();
+//   return this.tabStore[tabId];
+// };
 
-TabStore.prototype.getComponentStore = function (tabId) {
-  if (!tabId || !this.tabStore.tabId) return undefined; // stupid linting rule
-  return this.tabStore[tabId];
-};
+// TabStore.prototype.getComponentStore = function (tabId) {
+//   if (!tabId || !this.tabStore.tabId) return undefined; // stupid linting rule
+//   return this.tabStore[tabId];
+// };
 
-TabStore.prototype.deleteComponentStore = function (tabId) {
-  delete this.tabStore(tabId);
-};
+// TabStore.prototype.deleteComponentStore = function (tabId) {
+//   delete this.tabStore(tabId);
+// };
 
 function ComponentStore() {
   let nextComponentId = 0;
@@ -67,9 +67,16 @@ function ComponentStore() {
   });
 }
 
-ComponentStore.prototype.addComponent = function (stateObj, actualComponent, treeId) {
+ComponentStore.prototype.addComponent = function (stateDataStructure, actualComponent, treeId) {
+  // Create stateObj -- cover Hooks Cases (array of states), and class cases (state Obj)
+  let stateObj;
+  if (Array.isArray(stateDataStructure)) stateObj = { hooksStates: stateDataStructure };
+  else {
+    stateObj = { classComponentState: stateDataStructure };
+  }
+
   const componentId = `${treeId}${this.nextComponentId}`;
-  this.component[componentId] = { stateObj, actualComponent };
+  this.components[componentId] = { stateObj, actualComponent };
   this.nextComponentId += 1;
   return componentId;
 };
@@ -79,4 +86,4 @@ ComponentStore.prototype.getComponent = function (componentId) {
 };
 
 console.log('COMPONENT STORE IS INJECTED!');
-export default TabStore;
+export default ComponentStore;

@@ -22,12 +22,9 @@ const computeGraphQlUrlArray = () => {
 };
 
 /*--------------------------
-  TEST INJECTION
+   INJECT TIMETRAVEL
 ---------------------------*/
-function injectFiberCrap(tabId) {
-  console.log('CALLED INJECT FIBER CRAP!!!');
-  const file = chrome.runtime.getURL('fiberInjection.js');
-  console.log('FILE->', file);
+function injectTimeTravel(tabId) {
   chrome.tabs.executeScript(tabId, {
     code: `
     // Function will attach script to the dom 
@@ -35,16 +32,10 @@ function injectFiberCrap(tabId) {
       const htmlBody = document.getElementsByTagName(tag)[0];
       const script = document.createElement('script');
       script.setAttribute('type', 'text/javascript');
-      const newFile = chrome.runtime.getURL('fiberInjection.js');
-      script.setAttribute('src', newFile);
-      console.log('File ->' , newFile);
-      console.log('THIS IS MY SCRIPT ->', script);
-      console.log('Document ->', document);
-      console.log('DocumentRoot ->', document.documentElement);
-      console.log('BODY', htmlBody);
+      script.setAttribute('src', file);
       htmlBody.appendChild(script);
     };
-    injectScript(console.log('testMe'), 'body');
+    injectScript(chrome.runtime.getURL('fiberInjection.js'), 'body');
   `,
   });
 }
@@ -103,7 +94,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log('Content Script Initialized');
 
     const portId = sender.tab.id;
-    injectFiberCrap(portId); // TEST MOVE THIS LATER AND ADD LOGIC TO MAKE SURE ONLY ONE!!
+    injectTimeTravel(portId); // TEST MOVE THIS LATER AND ADD LOGIC TO MAKE SURE ONLY ONE!!
     if (connections[portId]) {
       connections[portId].postMessage({
         type: background.log,

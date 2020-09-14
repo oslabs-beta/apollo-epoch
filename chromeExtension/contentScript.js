@@ -49,6 +49,9 @@ chrome.runtime.sendMessage(
   { type: contentScript.initialize, payload: { title: 'Content Script Initialized' } },
   (response) => {
     console.log('Background connected to Content -> ', response.type);
+    setTimeout(() => {
+      window.postMessage({ type: contentScript.initializeComponentStore }, '*');
+    }, timeout);
   }
 );
 
@@ -85,9 +88,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 CLIENT WINDOW COMMUNICATION
 ----------------------------
 */
-
-// On initialization, this will be sent
-window.postMessage({ type: contentScript.initializeComponentStore }, '*');
 
 window.addEventListener('message', (event) => {
   console.log('windowEvent', event.data);

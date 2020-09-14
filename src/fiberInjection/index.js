@@ -4,12 +4,12 @@
  Creates windowListener that will receive messages from Epoch App / Content Script
 */
 
-import TabStore from './componentStore';
+import ComponentStore from './componentStore';
 import CustomFiberTree from './CustomFiberTree';
 
 const epochHookProp = '__APOLLO_EPOCH_FIBER_HOOK';
 const epochHookObj = {
-  tabbedComponentStores: null,
+  componentStore: new ComponentStore(),
   testFunction: eatMyShorts,
 };
 
@@ -17,29 +17,35 @@ console.log('INJECTED SCRIPT EPOCH IS HERE');
 
 window.addEventListener('message', (event) => {
   if (event.source !== window) return;
-  console.log('LOGGING MESSAGES IN DOM LISTENER');
   const epochHook = window[epochHookProp];
 
   if (event.data && event.data.type === '$$$initializeComponentStoreScript$$$') {
     console.log('Initializing Component Store');
-    const { tabId } = event.data;
 
-    if (!epochHook.tabbedComponentStores) epochHook.tabbedComponentStores = new TabStore();
-
-    const componentStore = epochHook.tabbedComponentStores.addComponentStore(tabId);
+    const { componentStore } = epochHook;
 
     const devTools = window.__REACT_DEVTOOLS_GLOBAL_HOOK__;
     const hostRootFiber = devTools.getFiberRoots(1).values().next().value;
+    console.log('STARTING FIBER TREE');
     const initialFiberSnapshot = new CustomFiberTree(hostRootFiber, componentStore, 'initialState');
-    window.postMessage({ type: '$$$saveSnapshot$$$', payload: initialFiberSnapshot }, '*');
+    console.log('INITIAL FIBER TREE CREATED -> ', initialFiberSnapshot);
+    window.postMessage(
+      { type: '$$$saveSnapshot$$$', payload: JSON.stringify(initialFiberSnapshot) },
+      '*'
+    );
   }
 
   if (event.data && event.data.type === '$$$getFiberTree$$$') {
     console.log('GETTING ROOT FIBER');
-    const { tabId } = event.data;
+    const { componentStore } = epochHook;
     const devTools = window.__REACT_DEVTOOLS_GLOBAL_HOOK__;
-    const fiberRoot = devTools.getFiberRoots(1).values().next().value;
-    epochHook.componentStore[tabId] = fiberRoot;
+    const hostRootFiber = devTools.getFiberRoots(1).values().next().value;
+    const initialFiberSnapshot = new CustomFiberTree(hostRootFiber, componentStore, 'initialState');
+    console.log('USER FIBER TREE CREATED -> ', initialFiberSnapshot);
+    window.postMessage(
+      { type: '$$$saveSnapshot$$$', payload: JSON.stringify(initialFiberSnapshot) },
+      '*'
+    );
   }
 
   if (event.data && event.data.type === 'initiateTimeJump') {
