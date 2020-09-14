@@ -15,6 +15,8 @@ const sendMessageTypes = {
     apolloReceivedManual: 'apolloDataReceivedManual',
     noApolloClient: 'noApollo',
     initialCacheCheck: 'checkingForCache',
+    fiberTreeReceived: 'receivedCustomStateTree',
+    initializeComponentStore: '$$$initializeComponentStoreScript$$$',
     log: LOG,
     error: ERROR,
   },
@@ -27,7 +29,12 @@ const sendMessageTypes = {
     log: LOG,
     error: ERROR,
   },
-  clientWindow: { queryUpdate: '$$$queryUpdate$$$', noApolloClient: '$$$noApollo$$$', log: LOG }, // ensure no window message conflicts
+  clientWindow: {
+    queryUpdate: '$$$queryUpdate$$$',
+    noApolloClient: '$$$noApollo$$$',
+    snapShotCompleted: '$$$saveSnapshot$$$',
+    log: LOG,
+  }, // ensure no window message conflicts
 };
 
 export default sendMessageTypes;

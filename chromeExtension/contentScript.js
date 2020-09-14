@@ -81,10 +81,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 /*
----------------------------
-CLIENT APP LISTENERS
----------------------------
+----------------------------
+CLIENT WINDOW COMMUNICATION
+----------------------------
 */
+
+// On initialization, this will be sent
+window.postMessage({ type: contentScript.initializeComponentStore }, '*');
 
 window.addEventListener('message', (event) => {
   console.log('windowEvent', event.data);
@@ -120,6 +123,13 @@ window.addEventListener('message', (event) => {
     chrome.runtime.sendMessage({
       type: contentScript.log,
       payload: { title: 'Counts Updated', data: 'But No Cache Object Avail on Window' },
+    });
+  }
+
+  if (event.data && event.data.type === clientWindow.snapShotCompleted) {
+    chrome.runtime.sendMessage({
+      type: contentScript.fiberTreeReceived,
+      payload: event.data.payload,
     });
   }
 });

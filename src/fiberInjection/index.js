@@ -4,21 +4,35 @@
  Creates windowListener that will receive messages from Epoch App / Content Script
 */
 
-import componentStore from './componentStore';
+import TabStore from './componentStore';
+import CustomFiberTree from './CustomFiberTree';
 
 const epochHookProp = '__APOLLO_EPOCH_FIBER_HOOK';
 const epochHookObj = {
-  componentStore,
+  tabbedComponentStores: null,
   testFunction: eatMyShorts,
 };
 
-console.log('INJECTED SCRIPT EPOCH IS HERE');
 console.log('INJECTED SCRIPT EPOCH IS HERE');
 
 window.addEventListener('message', (event) => {
   if (event.source !== window) return;
   console.log('LOGGING MESSAGES IN DOM LISTENER');
   const epochHook = window[epochHookProp];
+
+  if (event.data && event.data.type === '$$$initializeComponentStoreScript$$$') {
+    console.log('Initializing Component Store');
+    const { tabId } = event.data;
+
+    if (!epochHook.tabbedComponentStores) epochHook.tabbedComponentStores = new TabStore();
+
+    const componentStore = epochHook.tabbedComponentStores.addComponentStore(tabId);
+
+    const devTools = window.__REACT_DEVTOOLS_GLOBAL_HOOK__;
+    const hostRootFiber = devTools.getFiberRoots(1).values().next().value;
+    const initialFiberSnapshot = new CustomFiberTree(hostRootFiber, componentStore, 'initialState');
+    window.postMessage({ type: '$$$saveSnapshot$$$', payload: initialFiberSnapshot }, '*');
+  }
 
   if (event.data && event.data.type === '$$$getFiberTree$$$') {
     console.log('GETTING ROOT FIBER');

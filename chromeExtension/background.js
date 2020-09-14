@@ -200,6 +200,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       type: background.noApolloClient,
     });
   }
+
+  if (message.type === contentScript.fiberTreeReceived) {
+    console.log('Fiber Tree From Client App -> ', message.payload);
+  }
 });
 
 /*
