@@ -38,9 +38,10 @@ window.addEventListener('message', (event) => {
   if (event.data && event.data.type === '$$$getFiberTree$$$') {
     console.log('GETTING ROOT FIBER');
     const { componentStore } = epochHook;
+    const apolloActionId = event.data.payload;
     const devTools = window.__REACT_DEVTOOLS_GLOBAL_HOOK__;
     const hostRootFiber = devTools.getFiberRoots(1).values().next().value;
-    const initialFiberSnapshot = new CustomFiberTree(hostRootFiber, componentStore, 'initialState');
+    const initialFiberSnapshot = new CustomFiberTree(hostRootFiber, componentStore, apolloActionId);
     console.log('USER FIBER TREE CREATED -> ', initialFiberSnapshot);
     window.postMessage(
       { type: '$$$saveSnapshot$$$', payload: JSON.stringify(initialFiberSnapshot) },

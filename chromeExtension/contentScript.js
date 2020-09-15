@@ -70,6 +70,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     sendResponse({ type: contentScript.log, payload: { title: 'Manual Fetch Triggered' } }); // should trigger response based on hasApollo in Redux
   }
 
+  if (message.type === epoch.getFiberTree) {
+    window.postMessage(message, '*');
+  }
+
   // Only happens on network request
   if (message.type === background.fetchFullApolloData) {
     const { queryCount, mutationCount } = counts.getCounts();
@@ -154,10 +158,6 @@ window.addEventListener('keyup', (e) => {
         },
       },
     });
-    /*
-      TEST TEST TEST
-    */
-    window.postMessage({ type: '$$$getFiberTree$$$', tabId: 10 }, '*');
   }
 });
 

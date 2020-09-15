@@ -167,7 +167,7 @@ function initializePortCase(state, action) {
   superPort = action.payload;
   superPort.connection.postMessage({
     type: sendMessageTypes.epoch.initialize,
-    payload: chrome.devtools.inspectedWindow.tabId,
+    payload: { tabId: chrome.devtools.inspectedWindow.tabId },
   });
 }
 
@@ -179,7 +179,7 @@ function fetchApolloCase(state, action) {
   console.log('reduceTabId', chrome.devtools.inspectedWindow.tabId);
   superPort.connection.postMessage({
     type: sendMessageTypes.epoch.fetchApolloData,
-    payload: chrome.devtools.inspectedWindow.tabId,
+    payload: { tabId: chrome.devtools.inspectedWindow.tabId },
   });
 }
 
@@ -208,6 +208,10 @@ function receivedManualFetchCase(state, action) {
   state.timeline.push(fetchId);
   state.manualFetchIds.push(fetchId);
   state.manualFetches[fetchId] = fetchObj;
+  superPort.connection.postMessage({
+    type: sendMessageTypes.epoch.getFiberTree,
+    payload: { tabId: chrome.devtools.inspectedWindow.tabId, data: fetchId },
+  });
 }
 
 function initializedCacheCase(state, action) {
@@ -238,8 +242,7 @@ function setActiveQueryCase(state, action) {
       const prevTypeIndicator = prevId[0];
       if (prevTypeIndicator === 'Q') state.prevQuery = state.queries[prevId];
       if (prevTypeIndicator === 'M') state.prevQuery = state.mutations[prevId];
-      if (prevTypeIndicator === 'F')
-        state.prevQuery = state.manualFetches[prevId];
+      if (prevTypeIndicator === 'F') state.prevQuery = state.manualFetches[prevId];
       return;
     }
   }
@@ -251,15 +254,11 @@ function setPrevQueryCase(state, action) {
   const typeIndicator = prevQueryId[0];
   if (typeIndicator === 'Q') state.activeQuery = state.queries[prevQueryId];
   if (typeIndicator === 'M') state.activeQuery = state.mutations[prevQueryId];
-  if (typeIndicator === 'F')
-    state.activeQuery = state.manualFetches[prevQueryId];
+  if (typeIndicator === 'F') state.activeQuery = state.manualFetches[prevQueryId];
 }
 
 function receivedNetworkQueryCase(state, action) {
-  console.log(
-    'Cleaning up network request for ',
-    action.payload.hydratedQuery.name
-  );
+  console.log('Cleaning up network request for ', action.payload.hydratedQuery.name);
   console.log('Hydrated Query Obj ->', action.payload.hydratedQuery);
   const { queryKey, hydratedQuery } = action.payload;
   const { id } = hydratedQuery;
@@ -274,6 +273,10 @@ function receivedNetworkQueryCase(state, action) {
   }
   state.timeline.push(id);
   delete state.networkHoldingRoom[queryKey];
+  superPort.connection.postMessage({
+    type: sendMessageTypes.epoch.getFiberTree,
+    payload: { tabId: chrome.devtools.inspectedWindow.tabId, data: id },
+  });
   console.log('networkHoldingRoom Clean', state.networkHoldingRoom);
 }
 
@@ -368,18 +371,13 @@ function processApolloData(state, apolloData) {
     state.hasDunderApollo = true;
     state.loadingApollo = false;
     state.graphQlUri = graphQlUri;
-    console.log(
-      `CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`
-    );
+    console.log(`CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`);
     console.log(
       `CurrM: ${mutationCount}, PrevM: ${prevMutationCount}, StateM: ${state.mutationIdCounter}`
     );
 
     // Debug
-    if (
-      state.queryIdCounter !== prevQueryCount ||
-      state.mutationIdCounter !== prevMutationCount
-    ) {
+    if (state.queryIdCounter !== prevQueryCount || state.mutationIdCounter !== prevMutationCount) {
       console.log('*****QUERIES / MUTATIONS MISSED*****');
       console.log(
         `CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`
@@ -392,14 +390,7 @@ function processApolloData(state, apolloData) {
     let mutationsToGrab = mutationCount - prevMutationCount;
     if (mutationsToGrab && mutationsToGrab <= mutations.length) {
       while (mutationsToGrab > 0) {
-        const {
-          id,
-          document,
-          error,
-          loading,
-          variables,
-          name,
-        } = mutations.pop();
+        const { id, document, error, loading, variables, name } = mutations.pop();
         console.log(`mutation ${id} Loading State`, loading);
         const stateMutationObj = {
           id,
@@ -413,13 +404,15 @@ function processApolloData(state, apolloData) {
         };
         if (stateMutationObj.loading) {
           console.log('Network Mutation', stateMutationObj.name);
-          state.networkHoldingRoom[
-            stateMutationObj.queryString
-          ] = stateMutationObj;
+          state.networkHoldingRoom[stateMutationObj.queryString] = stateMutationObj;
         } else {
           state.timeline.push(id);
           state.mutationIds.push(id);
           state.mutations[id] = stateMutationObj;
+          superPort.connection.postMessage({
+            type: sendMessageTypes.epoch.getFiberTree,
+            payload: { tabId: chrome.devtools.inspectedWindow.tabId, data: id },
+          });
         }
         mutationsToGrab -= 1;
       }
@@ -453,12 +446,17 @@ function processApolloData(state, apolloData) {
           state.timeline.push(id);
           state.queryIds.push(id);
           state.queries[id] = stateQueryObj;
+          superPort.connection.postMessage({
+            type: sendMessageTypes.epoch.getFiberTree,
+            payload: { tabId: chrome.devtools.inspectedWindow.tabId, data: id },
+          });
         }
         queriesToGrab -= 1;
       }
     }
     state.queryIdCounter = queryCount;
   }
+  // Happens when epoch panel is initiated after site has made some queries/mutations
   if (Array.isArray(apolloData)) {
     apolloData.forEach((apolloObj) => processCacheObj(apolloObj));
   } else {

@@ -66,7 +66,7 @@ const initializePort = ({ dispatch }) => (next) => (action) => {
 
     backgroundConnection.postMessage({
       type: epoch.saveConnection,
-      payload: tabId,
+      payload: { tabId },
     });
 
     this.connection = backgroundConnection;

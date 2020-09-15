@@ -193,7 +193,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message.type === contentScript.fiberTreeReceived) {
-    console.log('Fiber Tree From Client App -> ', message.payload);
+    console.log('Fiber Tree From Client App');
   }
 });
 
@@ -208,7 +208,8 @@ chrome.runtime.onConnect.addListener((port) => {
   // to messages sent via that connection instance -- in case Multiple Apollo tabs in use
   const epochListener = (message) => {
     console.log('messageObj', message);
-    const { payload: tabId, type } = message;
+    const { payload, type } = message;
+    const { tabId, data } = payload;
 
     if (type === epoch.saveConnection) {
       connections[tabId] = port;
@@ -226,9 +227,16 @@ chrome.runtime.onConnect.addListener((port) => {
     }
 
     if (type === epoch.fetchApolloData) {
+      chrome.tabs.sendMessage(Number(tabId), message, (response) => {
+        connections[tabId].postMessage(response);
+      });
+    }
+
+    if (type === epoch.getFiberTree) {
       console.log('tabId', message.payload);
       console.log('tabId', message.type);
-      chrome.tabs.sendMessage(Number(tabId), message, (response) => {
+      const newMessage = { type, payload: data }; // Strip out tabId from payload -- No longer necessary
+      chrome.tabs.sendMessage(Number(tabId), newMessage, (response) => {
         connections[tabId].postMessage(response);
       });
     }
