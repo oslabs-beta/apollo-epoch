@@ -29,24 +29,26 @@ const initializePort = ({ dispatch }) => (next) => (action) => {
     const { tabId } = chrome.devtools.inspectedWindow;
     const dispatch = dispatchFunction;
     const { apolloActions } = action.payload;
-    const { receivedApollo, receivedApolloManual, noApollo, initializeCache } = apolloActions;
+    const {
+      receivedApollo,
+      receivedApolloManual,
+      noApollo,
+      initializeCache,
+      clearApolloData,
+    } = apolloActions;
     const backgroundConnection = chrome.runtime.connect();
 
     backgroundConnection.onMessage.addListener((message, sender, sendResponse) => {
-      /*
-      Backgroung.noApolloClient
-      background.apolloReceivedManual
-      background.apolloReceived
-      background.log
-      contentScript.initializeCacheCheck
-      conntentScript.log
-      */
       if (message.type === contentScript.initialCacheCheck) {
         dispatch({ type: initializeCache });
       }
 
       if (message.type === background.log || message.type === contentScript.log) {
         dispatch(log(message.payload));
+      }
+
+      if (message.type === background.clearData) {
+        dispatch({ type: clearApolloData });
       }
 
       if (message.type === background.noApolloClient) {
@@ -64,7 +66,7 @@ const initializePort = ({ dispatch }) => (next) => (action) => {
 
     backgroundConnection.postMessage({
       type: epoch.saveConnection,
-      payload: tabId,
+      payload: { tabId },
     });
 
     this.connection = backgroundConnection;

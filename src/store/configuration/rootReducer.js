@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
+// import { enableMapSet } from 'immer';
 import apolloReducer from '../entities/apollo';
 
+// enableMapSet();
 /*
 This will combine our slice reducers into a single rootReducer that can be
 handled by the configure store function which creates our store. We can optionally

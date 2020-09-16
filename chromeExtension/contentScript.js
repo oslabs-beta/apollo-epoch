@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import sendMessageTypes from '../src/store/messagesAndActionTypes/messageTypes';
-import runInContext from '../src/util/contentScriptUtils';
+import injectAndRunInDom from '../src/util/contentScriptUtils';
 
 /*
 MESSAGE PARAMETERS
@@ -10,7 +10,8 @@ All Data Transfer Messages in Shape of : { type: senderType, payload: dataObj}
 All informational messages can be log messages sans data (data property on payload will print as undefined)
 */
 
-const { epoch, contentScript, clientWindow } = sendMessageTypes;
+const timeout = 10; // ms to wait for Apollo to update
+const { epoch, contentScript, clientWindow, background } = sendMessageTypes;
 console.log('contentScript Running');
 
 /*
@@ -48,6 +49,9 @@ chrome.runtime.sendMessage(
   { type: contentScript.initialize, payload: { title: 'Content Script Initialized' } },
   (response) => {
     console.log('Background connected to Content -> ', response.type);
+    setTimeout(() => {
+      window.postMessage({ type: contentScript.initializeComponentStore }, '*');
+    }, timeout);
   }
 );
 
@@ -56,21 +60,37 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log(epoch.initialize);
 
     const { queryCount, mutationCount } = counts.getCounts();
-    runInContext(sendMessageWithCache, queryCount, mutationCount, true); // pass true for initialize param
+    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, true); // pass true for initialize param
     sendResponse({ type: contentScript.initialCacheCheck }); // this response triggers exponential backoff check in Epoch Panel
   }
 
   if (message.type === epoch.fetchApolloData) {
     const { queryCount, mutationCount } = counts.getCounts();
-    runInContext(sendMessageWithCache, queryCount, mutationCount, false, true); // pass true for manual to flag response data
+    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, false, true); // pass true for manual to flag response data
     sendResponse({ type: contentScript.log, payload: { title: 'Manual Fetch Triggered' } }); // should trigger response based on hasApollo in Redux
+  }
+
+  if (message.type === epoch.getFiberTree) {
+    window.postMessage(message, '*');
+  }
+
+  // Only happens on network request
+  if (message.type === background.fetchFullApolloData) {
+    const { queryCount, mutationCount } = counts.getCounts();
+    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount);
+  }
+
+  // Only happens on network responses
+  if (message.type === background.fetchFullApolloData) {
+    const { queryCount, mutationCount } = counts.getCounts();
+    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, false, true); // fire manually to bypass counts check
   }
 });
 
 /*
----------------------------
-CLIENT APP LISTENERS
----------------------------
+----------------------------
+CLIENT WINDOW COMMUNICATION
+----------------------------
 */
 
 window.addEventListener('message', (event) => {
@@ -109,12 +129,23 @@ window.addEventListener('message', (event) => {
       payload: { title: 'Counts Updated', data: 'But No Cache Object Avail on Window' },
     });
   }
+
+  if (event.data && event.data.type === clientWindow.snapShotCompleted) {
+    chrome.runtime.sendMessage({
+      type: contentScript.fiberTreeReceived,
+      payload: event.data.payload,
+    });
+  }
 });
 
 window.addEventListener('keyup', (e) => {
   if (e.key === 'Enter') {
     const { queryCount, mutationCount } = counts.getCounts();
-    runInContext(sendMessageWithCache, queryCount, mutationCount);
+
+    // Get Cache AFTER Apollo updates
+    setTimeout(() => {
+      injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount);
+    }, timeout);
 
     // Debug
     chrome.runtime.sendMessage({
@@ -132,7 +163,11 @@ window.addEventListener('keyup', (e) => {
 
 window.addEventListener('click', (e) => {
   const { queryCount, mutationCount } = counts.getCounts();
-  runInContext(sendMessageWithCache, queryCount, mutationCount);
+
+  // Get Cache AFTER Apollo updates
+  setTimeout(() => {
+    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount);
+  }, timeout);
 
   // Debug
   chrome.runtime.sendMessage({
@@ -170,6 +205,7 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
 
   // Get and format Data we need from window Obj
   const { queryIdCounter, mutationIdCounter, queries, mutationStore, link, cache } = apolloData;
+  const { store: mutations } = mutationStore;
 
   let graphQlUri;
   let cacheInstance;
@@ -213,7 +249,11 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
       const queryObj = value;
 
       let lastResult;
-      if (queryObj && queryObj.observableQuery) lastResult = queryObj.observableQuery.lastResult;
+      let name;
+      if (queryObj && queryObj.observableQuery) {
+        lastResult = queryObj.observableQuery.lastResult;
+        name = queryObj.observableQuery.queryName;
+      }
 
       filteredQueryInfo.push({
         id: `Q${key}${queryIdCounter}`, // prevents duplicate Ids in Epoch
@@ -222,6 +262,7 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
         networkError: value.networkError,
         networkStatus: value.networkStatus,
         variables: value.variables,
+        name,
         lastResult,
       });
     });
@@ -237,7 +278,9 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
       filteredMutations.push({
         id: `M${id}${mutationIdCounter}`, // prevents duplicate Ids in Epoch
         document: mutationObj.mutation,
+        name: mutationObj.mutation.definitions[0].name.value,
         error: mutationObj.error,
+        loading: mutationObj.loading,
         variables: mutationObj.variables,
       });
       return filteredMutations;
@@ -251,7 +294,7 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
         manual: manualFetch,
         graphQlUri,
         queries: filterQueryInfo(queries), // array of Query objs
-        mutations: filterMutationInfo(mutationStore), // array of Mutation objs
+        mutations: filterMutationInfo(mutations), // array of Mutation objs
         cache: cacheInstance,
         queryCount: queryIdCounter,
         mutationCount: mutationIdCounter,
@@ -262,3 +305,5 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
     '*'
   );
 };
+
+injectAndRunInDom(sendMessageWithCache, 1, 1, true); // pass true for initialize param

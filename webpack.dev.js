@@ -19,7 +19,6 @@ module.exports = merge(common, {
       entries: {
         contentScript: 'contentScript',
         background: 'background',
-        extensionPage: 'bundle',
       },
     }),
   ],

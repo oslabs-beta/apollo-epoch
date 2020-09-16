@@ -1,19 +1,45 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { GraphqlCodeBlock } from 'graphql-syntax-highlighter-react';
+import ReactJson from 'react-json-view';
+import { epochTheme } from '../styles/themes/EpochTheme';
 import '../styles/graphQLCodeBlock.css';
 
 // export interface QueryInfoProps {}
 
-const QueryInfo = ({ queryString }) => {
+const QueryInfo = ({ queryString, variables }) => {
   return (
     <div>
       {!queryString && <h2>No Query String to Render</h2>}
-      {queryString && <GraphqlCodeBlock className="GraphqlCodeBlock" queryBody={queryString} />}
+      {queryString && (
+        <>
+          <p>Query String</p>
+          <GraphqlCodeBlock className="GraphqlCodeBlock" queryBody={queryString} />
+        </>
+      )}
+      {queryString && (
+        <>
+          <br />
+          <p>Variables</p>
+
+          <ReactJson
+            src={variables}
+            enableClipboard={false}
+            theme={epochTheme}
+            name={false}
+            displayObjectSize={false}
+            displayDataTypes={false}
+            indentWidth={2}
+          />
+        </>
+      )}
     </div>
   );
 };
 
-QueryInfo.propTypes = { queryString: PropTypes.string.isRequired };
+QueryInfo.propTypes = {
+  queryString: PropTypes.string.isRequired,
+  variables: PropTypes.object.isRequired,
+};
 
 export default QueryInfo;

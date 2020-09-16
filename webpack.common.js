@@ -10,6 +10,7 @@ module.exports = {
     index: `./src/index.js`,
     background: `${src}/background.js`,
     contentScript: `${src}/contentScript.js`,
+    fiberInjection: `./src/fiberInjection/index.js`,
   },
   output: { path: destination },
   module: {
@@ -63,6 +64,7 @@ module.exports = {
         { from: `${src}/devtools.html`, to: destination },
         { from: `${src}/devtools.js`, to: destination },
         { from: `${src}/popup.html`, to: destination },
+        // { from: `./src/fiberInjection/index.js`, to: destination },
       ],
     }),
   ],

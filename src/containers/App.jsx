@@ -3,19 +3,22 @@ import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import HistoryContainer from './HistoryContainer';
 import InfoContainer from './InfoContainer';
+import SphereLoader from '../components/SphereLoader/SphereLoader';
 import { initializeBackgroundConnection, fetchApollo } from '../store/entities/apollo';
+import { initializeNetworkListener } from '../store/messagesAndActionTypes/initializeActions';
 import '../styles/main.css';
 
 const App = () => {
-  // eslint-disable-next-line no-shadow
-  const state = useSelector((state) => state);
-  console.log('state', state);
   const dispatch = useDispatch();
+  const loadingApollo = useSelector((state) => state.apollo.loadingApollo);
 
   React.useEffect(() => {
-    console.log('Use Effect Fired');
-    console.log('TabID in Effect', chrome.devtools.inspectedWindow.tabId);
+    console.log(
+      'Initializing Background Connection on Tab: ',
+      chrome.devtools.inspectedWindow.tabId
+    );
     dispatch(initializeBackgroundConnection());
+    dispatch(initializeNetworkListener());
   }, []);
 
   const getCache = () => {
@@ -26,8 +29,12 @@ const App = () => {
     <div className="wrapper">
       <div className="main">
         <div className="heading">
-          <h1>Hola Monde!!!</h1>
-          <button onClick={getCache}>Get Cache</button>
+          {loadingApollo && (
+            <div className="loader">
+              <h2>Detecting Apollo</h2>
+              <SphereLoader />
+            </div>
+          )}
         </div>
         <div className="containers-wrapper">
           {/* // render out history  */}
@@ -35,6 +42,9 @@ const App = () => {
           {/* // render out info display */}
           <InfoContainer />
         </div>
+        <button className="getCache" onClick={getCache}>
+          Get Cache
+        </button>
       </div>
     </div>
   );

@@ -5,6 +5,9 @@ const sendMessageTypes = {
     saveConnection: 'saveConnection',
     initialize: 'epochPanelOpened',
     fetchApolloData: 'fetchApolloData',
+    fetchApolloDataForNetQuery: 'fetchDataForNetQuery',
+    getFiberTree: '$$$getFiberTree$$$',
+    tardis: 'initiateTimeJump',
   },
   contentScript: {
     initialize: 'contentScriptInitialized',
@@ -12,6 +15,8 @@ const sendMessageTypes = {
     apolloReceivedManual: 'apolloDataReceivedManual',
     noApolloClient: 'noApollo',
     initialCacheCheck: 'checkingForCache',
+    fiberTreeReceived: 'receivedCustomStateTree',
+    initializeComponentStore: '$$$initializeComponentStoreScript$$$',
     log: LOG,
     error: ERROR,
   },
@@ -19,10 +24,17 @@ const sendMessageTypes = {
     apolloReceived: 'apolloDataReceived',
     apolloReceivedManual: 'apolloDataReceivedManual',
     noApolloClient: 'noApollo',
+    fetchFullApolloData: 'onNetworkRequest',
+    clearData: 'clearApolloData',
     log: LOG,
     error: ERROR,
   },
-  clientWindow: { queryUpdate: '$$$queryUpdate$$$', noApolloClient: '$$$noApollo$$$', log: LOG }, // ensure no window message conflicts
+  clientWindow: {
+    queryUpdate: '$$$queryUpdate$$$',
+    noApolloClient: '$$$noApollo$$$',
+    snapShotCompleted: '$$$saveSnapshot$$$',
+    log: LOG,
+  }, // ensure no window message conflicts
 };
 
 export default sendMessageTypes;
