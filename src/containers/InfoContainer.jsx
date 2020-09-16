@@ -44,6 +44,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     overflowY: 'auto',
   },
+  tabLabel: {
+    fontSize: '.7rem',
+    minWidth: '25%',
+  },
 }));
 
 const InfoContainer = () => {
@@ -60,12 +64,22 @@ const InfoContainer = () => {
   return (
     <div className="info-container">
       <ThemeProvider theme={epochTheme}>
-        <AppBar position="static">
-          <Tabs value={value} onChange={handleChange} variant="scrollable">
-            <Tab label="Query" {...a11yProps(0)} style={{ minWidth: '25%' }} />
-            <Tab label="Response" {...a11yProps(1)} style={{ minWidth: '25%' }} />
-            <Tab label="Cache" {...a11yProps(2)} style={{ minWidth: '25%' }} />
-            <Tab label="Diff" {...a11yProps(3)} style={{ minWidth: '25%' }} />
+        <AppBar position="static" style={{ height: '2rem' }}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            variant="scrollable"
+            style={{ height: '1rem' }}
+            TabIndicatorProps={{
+              style: {
+                top: '0px',
+              },
+            }}
+          >
+            <Tab label="Query" className={classes.tabLabel} {...a11yProps(0)} />
+            <Tab label="Response" className={classes.tabLabel} {...a11yProps(1)} />
+            <Tab label="Cache" className={classes.tabLabel} {...a11yProps(2)} />
+            <Tab label="Diff" className={classes.tabLabel} {...a11yProps(3)} />
           </Tabs>
         </AppBar>
       </ThemeProvider>

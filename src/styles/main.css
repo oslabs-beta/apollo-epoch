@@ -122,7 +122,7 @@ body {
   max-height: 80vh;
   width: 100%;
   border: 1px solid var(--dark-border);
-  border-radius: 10px 10px 0px 0px;
+  /* border-radius: 10px 10px 0px 0px; */
   text-align: center;
 }
 
@@ -133,6 +133,10 @@ body {
 }
 
 .query-cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   min-height: 75vh;
   max-height: 75vh;
   overflow-y: auto;
@@ -173,10 +177,29 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 3vh;
+  height: 6vh;
 
   /* border: 4px dotted var(--dark-border); */
+}
+
+.query-card-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  height: 6vh;
+  /* border: 4px dotted var(--dark-border); */
+}
+
+.time-stamp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--nav-buttons);
+  height: 20px;
+  width: 50px;
   text-align: center;
+  border-radius: 5px;
 }
 
 .query-card:hover {
@@ -355,6 +378,17 @@ label:active:after {
   /* border: 1px solid white; */
   max-height: 80vh;
   width: 100%;
+}
+
+.MuiTab-wrapper-62 {
+  border: 1px solid var(--nav-buttons);
+  height: 1rem;
+}
+
+.MuiTabs-scrollable-51 {
+  border: 0px solid purple;
+  height: 2rem;
+  padding: 0;
 }
 
 @media only screen and (max-width: 400px) {

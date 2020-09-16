@@ -68,18 +68,18 @@ const App = () => {
           <div className="info-container-wrapper">
             <Grid item xs={12}>
               <Grid container>
-                <Grid item xs={12} sm={4} md={3} className="grid-item-history">
+                <Grid item xs={12} sm={5} md={4} className="grid-item-history">
                   {/* // render out history  */}
                   <HistoryContainer />
                 </Grid>
-                <Grid item xs={12} sm={8} md={9}>
+                <Grid item xs={12} sm={7} md={8}>
                   <InfoContainer />
                 </Grid>
               </Grid>
             </Grid>
             <div className="button-container">
               <Grid container>
-                <Grid item sm={4} md={3}>
+                <Grid item sm={5} md={4}>
                   <ThemeProvider theme={epochTheme}>
                     <Button
                       className="getCache"
@@ -91,7 +91,7 @@ const App = () => {
                     </Button>
                   </ThemeProvider>
                 </Grid>
-                <Grid item sm={8} md={9} />
+                <Grid item sm={7} md={8} />
               </Grid>
             </div>
           </div>
