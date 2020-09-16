@@ -26,7 +26,9 @@ const listenToNetwork = ({ dispatch }) => (next) => (action) => {
       function obtainResponseData(responseObj) {
         return new Promise((resolve, reject) => {
           console.log('calling get Content');
-          responseObj.getContent((data) => resolve(data));
+          // Timeout prevents problems in dev on local database. Net requests are returned too fast for this to grab
+          // a query out of the network holding area
+          responseObj.getContent((data) => setTimeout(() => resolve(data), 10, data));
         });
       }
       console.log('responseHAR', responseHar);

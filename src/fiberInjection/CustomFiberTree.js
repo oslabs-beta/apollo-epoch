@@ -134,9 +134,10 @@ function serializeState(unserializedState) {
 // These will instantiate CustomFiberNodes AND save unserialized data to the component store
 // Hooks states are stored as a linked list in the reactFiber on the memoizedState property
 // The queue should be the component in which the hooks reside
-function createHooksNode(reactFiber, componentStore, treeId) {
+// Individual hooksFibers also have a memoized state property which appears to be another linked list to ... don't know yet
+function createHooksNode(hooksFiber, componentStore, treeId) {
   console.log('Creating Hooks Node');
-  let { memoizedState } = reactFiber;
+  let { memoizedState } = hooksFiber;
   const hookStateObjsForComponentStore = [];
   const treeHooksStates = [];
   const initialComponent = memoizedState.queue;
@@ -165,7 +166,7 @@ function createHooksNode(reactFiber, componentStore, treeId) {
     initialComponent,
     treeId
   );
-  return new CustomFiberNode(componentId, treeHooksStates, reactFiber);
+  return new CustomFiberNode(componentId, treeHooksStates, hooksFiber);
 }
 
 function createClassNode(reactFiber, componentStore, treeId) {
