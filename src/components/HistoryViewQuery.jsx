@@ -19,18 +19,15 @@ const HistoryViewQuery = ({ timelineObj, onClick, active }) => {
       <div className="query-card-text">
         <div>{`${typeAbbrevs[type]}: ${name}`}</div>
         <ThemeProvider theme={epochTheme}>
-          <div
-            className="time-stamp"
-            role="presentation"
-            style={{
-              fontSize: '2px',
-              maxWidth: '50px',
-              maxHeight: '20px',
-              minWidth: '50px',
-              minHeight: '20px',
-            }}
-          >
-            <p>No Time</p>
+          <div className="button-switcher-container">
+            <div className="button-switcher">
+              <div className="time-stamp">
+                <p>No Time</p>
+              </div>
+              <div className="jump-button">
+                <p>Jump</p>
+              </div>
+            </div>
           </div>
         </ThemeProvider>
       </div>

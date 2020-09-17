@@ -9,7 +9,7 @@ import '../styles/graphQLCodeBlock.css';
 
 const QueryInfo = ({ queryString, variables }) => {
   return (
-    <div>
+    <div className="query-info">
       {!queryString && <h2>No Query String to Render</h2>}
       {queryString && (
         <>
