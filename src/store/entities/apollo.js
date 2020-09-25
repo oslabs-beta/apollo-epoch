@@ -238,8 +238,7 @@ function setActiveQueryCase(state, action) {
       const prevTypeIndicator = prevId[0];
       if (prevTypeIndicator === 'Q') state.prevQuery = state.queries[prevId];
       if (prevTypeIndicator === 'M') state.prevQuery = state.mutations[prevId];
-      if (prevTypeIndicator === 'F')
-        state.prevQuery = state.manualFetches[prevId];
+      if (prevTypeIndicator === 'F') state.prevQuery = state.manualFetches[prevId];
       return;
     }
   }
@@ -251,15 +250,11 @@ function setPrevQueryCase(state, action) {
   const typeIndicator = prevQueryId[0];
   if (typeIndicator === 'Q') state.activeQuery = state.queries[prevQueryId];
   if (typeIndicator === 'M') state.activeQuery = state.mutations[prevQueryId];
-  if (typeIndicator === 'F')
-    state.activeQuery = state.manualFetches[prevQueryId];
+  if (typeIndicator === 'F') state.activeQuery = state.manualFetches[prevQueryId];
 }
 
 function receivedNetworkQueryCase(state, action) {
-  console.log(
-    'Cleaning up network request for ',
-    action.payload.hydratedQuery.name
-  );
+  console.log('Cleaning up network request for ', action.payload.hydratedQuery.name);
   console.log('Hydrated Query Obj ->', action.payload.hydratedQuery);
   const { queryKey, hydratedQuery } = action.payload;
   const { id } = hydratedQuery;
@@ -368,18 +363,13 @@ function processApolloData(state, apolloData) {
     state.hasDunderApollo = true;
     state.loadingApollo = false;
     state.graphQlUri = graphQlUri;
-    console.log(
-      `CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`
-    );
+    console.log(`CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`);
     console.log(
       `CurrM: ${mutationCount}, PrevM: ${prevMutationCount}, StateM: ${state.mutationIdCounter}`
     );
 
     // Debug
-    if (
-      state.queryIdCounter !== prevQueryCount ||
-      state.mutationIdCounter !== prevMutationCount
-    ) {
+    if (state.queryIdCounter !== prevQueryCount || state.mutationIdCounter !== prevMutationCount) {
       console.log('*****QUERIES / MUTATIONS MISSED*****');
       console.log(
         `CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`
@@ -392,14 +382,7 @@ function processApolloData(state, apolloData) {
     let mutationsToGrab = mutationCount - prevMutationCount;
     if (mutationsToGrab && mutationsToGrab <= mutations.length) {
       while (mutationsToGrab > 0) {
-        const {
-          id,
-          document,
-          error,
-          loading,
-          variables,
-          name,
-        } = mutations.pop();
+        const { id, document, error, loading, variables, name } = mutations.pop();
         console.log(`mutation ${id} Loading State`, loading);
         const stateMutationObj = {
           id,
@@ -413,9 +396,7 @@ function processApolloData(state, apolloData) {
         };
         if (stateMutationObj.loading) {
           console.log('Network Mutation', stateMutationObj.name);
-          state.networkHoldingRoom[
-            stateMutationObj.queryString
-          ] = stateMutationObj;
+          state.networkHoldingRoom[stateMutationObj.queryString] = stateMutationObj;
         } else {
           state.timeline.push(id);
           state.mutationIds.push(id);
