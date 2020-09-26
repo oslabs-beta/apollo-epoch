@@ -132,12 +132,22 @@ describe('apolloReducer', () => {
           loading: false,
           cacheSnapshot: {},
         },
+        {
+          id: 'M3',
+          type: 'mutType3',
+          queryString: 'fake mutation3',
+          variables: null,
+          name: '',
+          error: '',
+          loading: false,
+          cacheSnapshot: {},
+        },
       ], // array of Mutation objs
       cache: {},
-      queryCount: 2,
-      mutationCount: 2,
-      prevQueryCount: 0,
-      prevMutationCount: 0,
+      queryCount: 3,
+      mutationCount: 4,
+      prevQueryCount: 1,
+      prevMutationCount: 1,
     };
 
     const action = {
@@ -145,9 +155,50 @@ describe('apolloReducer', () => {
       payload: fakeApolloData,
     };
 
-    it('adds stores queries and mutations in the timeline correctly', () => {
-      epochStore(state, action);
-      console.log('state after RECEIED_APOLLO', state);
+    it('adds queries and mutations to state along with IDs and updates the timeline', () => {
+      const {
+        timeline,
+        queryIds,
+        mutationIds,
+        queries,
+        mutations,
+        queryIdCounter,
+        mutationIdCounter,
+      } = epochStore(state, action);
+
+      expect(timeline.length).toBe(5);
+      expect(queryIds.length).toBe(2);
+      expect(mutationIds.length).toBe(3);
+      expect(queryIds[1]).toBe('Q1');
+      expect(mutationIds[2]).toBe('M1');
+      expect(Object.keys(queries).length).toBe(2);
+      expect(Object.keys(mutations).length).toBe(3);
+      expect(queryIdCounter).toBe(3);
+      expect(mutationIdCounter).toBe(4);
+    });
+
+    it('returns a new state object different than the previous', () => {
+      const newState = epochStore(state, action);
+      expect(newState).not.toBe(state);
+    });
+  });
+
+  describe('CLEAR_APOLLO_DATA', () => {
+    const action = {
+      type: 'clearApolloData',
+    };
+
+    it('resets state back to deault values', () => {
+      state.queryIdCounter = 5;
+      state.mutationIdCounter = 2;
+      const { queryIdCounter, mutationIdCounter } = epochStore(state, action);
+      expect(queryIdCounter).toBe(1);
+      expect(mutationIdCounter).toBe(1);
+    });
+
+    it('returns a new state object different from the previous', () => {
+      const newState = epochStore(state, action);
+      expect(newState).not.toBe(state);
     });
   });
 });
