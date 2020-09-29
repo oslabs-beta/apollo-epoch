@@ -3,6 +3,7 @@ import {getApolloContext} from '@apollo/client/react/context/ApolloContext';
 import EpochStore from './store/EpochStore';
 import {getEpochRefTag} from './utils';
 import {refTags} from './refTags';
+import CustomFiberTree from './CustomFiberTree';
 
 const ApolloEpochDevHook = ({rootId}) => {
   const epochHookProp = '__APOLLO_EPOCH_FIBER_HOOK__';
@@ -16,6 +17,7 @@ const ApolloEpochDevHook = ({rootId}) => {
     set(value) {
       hostRootFiber._epochCurrent = value;
       console.log('rootFiber Was Swapped to -> ', value);
+      const newCustomTree = new CustomFiberTree(value, epochStore, 'randomKey') // not storing this anywhere right now...looking at side effect storage in epoch store
       return value;
     }
   });
