@@ -1,12 +1,11 @@
 /* eslint-disable react/button-has-type */
 import * as React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { Grid, Typography, Button } from '@material-ui/core/';
+import { Grid } from '@material-ui/core/';
 import HistoryContainer from './HistoryContainer';
 import InfoContainer from './InfoContainer';
-import SphereLoader from '../components/SphereLoader/SphereLoader';
-import { initializeBackgroundConnection, fetchApollo } from '../store/entities/apollo';
+import { initializeBackgroundConnection } from '../store/entities/apollo';
 import { initializeNetworkListener } from '../store/messagesAndActionTypes/initializeActions';
 import '../styles/main.css';
 
@@ -20,7 +19,7 @@ const breakpointValues = {
 
 const devtoolTheme = createMuiTheme({ breakpoints: { values: breakpointValues } });
 
-const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
+// const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,10 +46,6 @@ const App = () => {
     dispatch(initializeBackgroundConnection());
     dispatch(initializeNetworkListener());
   }, []);
-
-  const getCache = () => {
-    dispatch(fetchApollo());
-  };
 
   return (
     <div className={classes.root}>
