@@ -25,6 +25,7 @@ const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } })
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    minHeight: '100vh',
   },
   paper: {
     padding: theme.spacing(2),
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const loadingApollo = useSelector((state) => state.apollo.loadingApollo);
+  // const loadingApollo = useSelector((state) => state.apollo.loadingApollo);
 
   React.useEffect(() => {
     console.log(
@@ -55,7 +56,7 @@ const App = () => {
     <div className={classes.root}>
       <ThemeProvider theme={devtoolTheme}>
         <Grid container>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <div className="heading">
               {loadingApollo && (
                 <div className="loader">
@@ -64,7 +65,7 @@ const App = () => {
                 </div>
               )}
             </div>
-          </Grid>
+          </Grid> */}
           <div className="info-container-wrapper">
             <Grid item xs={12}>
               <Grid container>
@@ -77,23 +78,6 @@ const App = () => {
                 </Grid>
               </Grid>
             </Grid>
-            <div className="button-container">
-              <Grid container>
-                <Grid item sm={4}>
-                  <ThemeProvider theme={epochTheme}>
-                    <Button
-                      className="getCache"
-                      onClick={getCache}
-                      variant="contained"
-                      color="primary"
-                    >
-                      <Typography variant="h7">Get Cache</Typography>
-                    </Button>
-                  </ThemeProvider>
-                </Grid>
-                <Grid item sm={8} />
-              </Grid>
-            </div>
           </div>
         </Grid>
       </ThemeProvider>

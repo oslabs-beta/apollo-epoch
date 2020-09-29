@@ -84,7 +84,8 @@ body {
 }
 
 .info-container {
-  max-height: 80vh;
+  max-height: 100vh;
+  min-height: 100vh;
   width: 100%;
 }
 
@@ -119,11 +120,14 @@ body {
 }
 
 .history-view {
-  max-height: 80vh;
+  max-height: 100vh;
+  min-height: 100vh;
   width: 100%;
   border: 1px solid var(--dark-border);
   border-radius: 10px 10px 0px 0px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .history-view h1 {
@@ -133,8 +137,7 @@ body {
 }
 
 .query-cards {
-  min-height: 75vh;
-  max-height: 75vh;
+  flex: 1;
   overflow-y: auto;
 }
 
@@ -162,8 +165,7 @@ body {
 }
 
 .react-json-view {
-  font-family: 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Courier,
-    monospace;
+  font-family: 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Courier, monospace;
   padding-top: 10px;
   padding-left: 10px;
 }
@@ -348,7 +350,7 @@ label:active:after {
 
 .info-container-wrapper {
   /* border: 1px solid white; */
-  max-height: 80vh;
+  max-height: 100vh;
   width: 100%;
 }
 

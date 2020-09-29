@@ -6,6 +6,7 @@ import QueryInfo from '../components/QueryInfo';
 import ResponseInfo from '../components/ResponseInfo';
 import StateInfo from '../components/StateInfo';
 import DiffInfo from '../components/DiffInfo';
+import SphereLoader from '../components/SphereLoader/SphereLoader';
 
 const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
 
@@ -56,6 +57,7 @@ const InfoContainer = () => {
 
   // get selected query based on state
   const selectedQuery = useSelector((state) => state.apollo.activeQuery);
+  const loadingApollo = useSelector((state) => state.apollo.loadingApollo);
 
   return (
     <div className="info-container">
@@ -69,20 +71,31 @@ const InfoContainer = () => {
           </Tabs>
         </AppBar>
       </ThemeProvider>
-      <div className="active-panel">
-        <TabPanel value={value} index={0}>
-          <QueryInfo queryString={selectedQuery.queryString} variables={selectedQuery.variables} />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <ResponseInfo response={selectedQuery.response} />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <StateInfo stateSnapshot={selectedQuery.cacheSnapshot} />
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          <DiffInfo diff={selectedQuery.diff} />
-        </TabPanel>
-      </div>
+      {loadingApollo && (
+        <div className="loader">
+          <h2>Waiting for data from Apollo Client</h2>
+          <SphereLoader />
+        </div>
+      )}
+      {!loadingApollo && (
+        <div className="active-panel">
+          <TabPanel value={value} index={0}>
+            <QueryInfo
+              queryString={selectedQuery.queryString}
+              variables={selectedQuery.variables}
+            />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <ResponseInfo response={selectedQuery.response} />
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <StateInfo stateSnapshot={selectedQuery.cacheSnapshot} />
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            <DiffInfo diff={selectedQuery.diff} />
+          </TabPanel>
+        </div>
+      )}
     </div>
   );
 };
