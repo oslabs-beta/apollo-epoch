@@ -64,11 +64,11 @@ const App = () => {
           <div className="info-container-wrapper">
             <Grid item xs={12}>
               <Grid container>
-                <Grid item xs={12} sm={4} className="grid-item-history">
+                <Grid item xs={12} sm={5} md={4} className="grid-item-history">
                   {/* // render out history  */}
                   <HistoryContainer />
                 </Grid>
-                <Grid item xs={12} sm={8}>
+                <Grid item xs={12} sm={7} md={8}>
                   <InfoContainer />
                 </Grid>
               </Grid>

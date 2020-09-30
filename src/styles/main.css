@@ -90,14 +90,14 @@ body {
 }
 
 .active-panel {
-  max-height: 70vh;
+  max-height: 74.5vh;
   width: 100%;
-  overflow: auto;
 }
 
 .key-display {
   width: 100%;
   text-align: center;
+  font-size: 12px;
 }
 
 .key-display:hover {
@@ -124,7 +124,7 @@ body {
   min-height: 100vh;
   width: 100%;
   border: 1px solid var(--dark-border);
-  border-radius: 10px 10px 0px 0px;
+  /* border-radius: 10px 10px 0px 0px; */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -142,9 +142,9 @@ body {
 }
 
 .diff-info {
-  height: 70vh;
   overflow-x: auto;
   overflow-y: auto;
+  height: 80vh;
 }
 
 .unchanged-green {
@@ -164,6 +164,12 @@ body {
   font-size: 1em;
 }
 
+.response-info {
+  min-height: 74.5vh;
+  max-height: 74.5vh;
+  overflow-y: auto;
+}
+
 .react-json-view {
   font-family: 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Courier, monospace;
   padding-top: 10px;
@@ -175,11 +181,89 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 3vh;
+  height: 6vh;
 
   /* border: 4px dotted var(--dark-border); */
-  text-align: center;
 }
+
+.query-card-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  height: 6vh;
+  /* border: 4px dotted var(--dark-border); */
+}
+
+.time-stamp,
+.jump-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--nav-buttons);
+  height: 20px;
+  width: 50px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.time-stamp,
+.jump-button,
+.button-switcher,
+.button-switcher-container {
+  font-size: '2px';
+  max-width: '50px';
+  max-height: '20px';
+  min-width: '50px';
+  min-height: '20px';
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.button-switcher {
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.button-switcher-container:hover .button-switcher {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.time-stamp,
+.jump-button {
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.time-stamp {
+  margin-bottom: 20px;
+}
+
+.jump-button {
+  margin-top: -40px; /*embarrassed to have to use negative margin....*/
+  background-color: var(--light-border);
+}
+
+.jump-button {
+  transform: rotateY(180deg);
+}
+
+/* .button-switcher:hover .time-stamp {
+  display: none;
+}
+
+.button-switcher:hover .jump-button {
+  display: block;
+} */
 
 .query-card:hover {
   background-color: var(--active-query-back);
@@ -248,14 +332,14 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 73vh;
   width: 20vw;
+  min-height: 74.5vh;
+  max-height: 74.5vh;
   overflow-y: auto;
   background-color: var(--active-query-back);
 }
 
 .keylist-wrapper {
-  height: 100%;
   width: 100%;
 }
 
@@ -263,16 +347,26 @@ body {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-areas: 'state-sidebar cache-display';
-  height: 72vh;
   padding-top: 0;
 }
 
-.react-json-view {
-  max-height: 72vh;
+.state-value {
+  max-height: 74.5vh;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+/* .react-json-view {
+  max-height: 80vh;
+} */
+
+.query-info {
+  max-height: 74.5vh;
+  overflow-y: auto;
 }
 
 .GraphqlCodeBlock {
-  max-height: 68vh;
+  max-height: 74.5vh;
   overflow-y: auto;
 }
 
@@ -352,6 +446,17 @@ label:active:after {
   /* border: 1px solid white; */
   max-height: 100vh;
   width: 100%;
+}
+
+.MuiTab-wrapper-62 {
+  border: 1px solid var(--nav-buttons);
+  height: 1rem;
+}
+
+.MuiTabs-scrollable-51 {
+  border: 0px solid purple;
+  height: 2rem;
+  padding: 0;
 }
 
 @media only screen and (max-width: 400px) {
