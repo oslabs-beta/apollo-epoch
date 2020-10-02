@@ -15,7 +15,6 @@ import {
   Paper,
 } from '@material-ui/core/';
 import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { dummyList } from '../dummyData/data';
 import HistoryViewQuery from './HistoryViewQuery';
 import { getTimeline, setActiveQuery, fetchApollo } from '../store/entities/apollo';
 

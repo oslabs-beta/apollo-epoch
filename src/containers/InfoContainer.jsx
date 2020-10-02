@@ -51,9 +51,13 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '2rem',
     minWidth: '25%',
   },
-  tabPanel: {
-    minHeight: '100vh',
+  tabsRoot: {
+    minHeight: '2rem',
+    height: '2rem',
   },
+  // tabPanel: {
+  //   minHeight: '100vh',
+  // },
 }));
 
 const InfoContainer = () => {
@@ -73,10 +77,10 @@ const InfoContainer = () => {
       <ThemeProvider theme={epochTheme}>
         <AppBar position="static" style={{ height: '2rem' }}>
           <Tabs
+            className={classes.tabsRoot}
             value={value}
             onChange={handleChange}
             variant="scrollable"
-            style={{ height: '2rem' }}
             TabIndicatorProps={{
               style: {
                 top: '0px',
