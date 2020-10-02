@@ -47,7 +47,12 @@ const useStyles = makeStyles((theme) => ({
   },
   tabLabel: {
     fontSize: '.7rem',
+    minHeight: '2rem',
+    maxHeight: '2rem',
     minWidth: '25%',
+  },
+  tabPanel: {
+    minHeight: '100vh',
   },
 }));
 
@@ -71,7 +76,7 @@ const InfoContainer = () => {
             value={value}
             onChange={handleChange}
             variant="scrollable"
-            style={{ height: '1rem' }}
+            style={{ height: '2rem' }}
             TabIndicatorProps={{
               style: {
                 top: '0px',
@@ -93,19 +98,19 @@ const InfoContainer = () => {
       )}
       {!loadingApollo && (
         <div className="active-panel">
-          <TabPanel value={value} index={0}>
+          <TabPanel value={value} index={0} className={classes.tabPanel}>
             <QueryInfo
               queryString={selectedQuery.queryString}
               variables={selectedQuery.variables}
             />
           </TabPanel>
-          <TabPanel value={value} index={1}>
+          <TabPanel value={value} index={1} className={classes.tabPanel}>
             <ResponseInfo response={selectedQuery.response} />
           </TabPanel>
-          <TabPanel value={value} index={2}>
+          <TabPanel value={value} index={2} className={classes.tabPanel}>
             <StateInfo stateSnapshot={selectedQuery.cacheSnapshot} />
           </TabPanel>
-          <TabPanel value={value} index={3}>
+          <TabPanel value={value} index={3} className={classes.tabPanel}>
             <DiffInfo diff={selectedQuery.diff} />
           </TabPanel>
         </div>
