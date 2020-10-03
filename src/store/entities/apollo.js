@@ -249,10 +249,9 @@ function setPrevQueryCase(state, action) {
   const prevQueryId = action.payload;
   if (!prevQueryId) return;
   const typeIndicator = prevQueryId[0];
-  if (typeIndicator === 'Q') state.activeQuery = state.queries[prevQueryId];
-  if (typeIndicator === 'M') state.activeQuery = state.mutations[prevQueryId];
-  if (typeIndicator === 'F')
-    state.activeQuery = state.manualFetches[prevQueryId];
+  if (typeIndicator === 'Q') state.prevQuery = state.queries[prevQueryId];
+  if (typeIndicator === 'M') state.prevQuery = state.mutations[prevQueryId];
+  if (typeIndicator === 'F') state.prevQuery = state.manualFetches[prevQueryId];
 }
 
 function receivedNetworkQueryCase(state, action) {

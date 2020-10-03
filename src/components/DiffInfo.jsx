@@ -5,11 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Switch, Typography } from '@material-ui/core/';
 import { ThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import { getTimeline, setActiveQuery, fetchApollo } from '../store/entities/apollo'; // Per Redux Docs, defining outside component perserves memoized memory state
+import { getTimeline, setPrevQuery } from '../store/entities/apollo'; // Per Redux Docs, defining outside component perserves memoized memory state
 
 // import { diff1, diff2, diff3, diff4, diffHtml, nullDiff } from '../dummyData/data';
 import '../styles/diff.css';
@@ -45,14 +43,18 @@ const useStyles = makeStyles((theme) => ({
 
 const DiffInfo = () => {
   const classes = useStyles();
-  const queryHistory = useSelector(getTimelineData);
+  const dispatch = useDispatch();
   const [unchanged, setUnchanged] = React.useState(false);
   const { activeQuery, prevQuery } = useSelector((state) => state.apollo);
+  const queryHistory = useSelector(getTimelineData).filter((q) => q.id !== activeQuery.id);
   console.log('aQ and pQ cacheSS ->', activeQuery.cacheSnapshot, prevQuery.cacheSnapshot);
 
   const [diffQuery, changeDiffQuery] = React.useState();
 
-  const handleChangeDiff = (event) => changeDiffQuery(event.target.value);
+  const handleChangeDiff = (event) => {
+    changeDiffQuery(event.target.value);
+    dispatch(setPrevQuery(event.target.value));
+  };
 
   // calc diff using jsondiffpatch
   const delta = diff(prevQuery.cacheSnapshot, activeQuery.cacheSnapshot);
@@ -94,7 +96,7 @@ const DiffInfo = () => {
               <option aria-label="None" value="" />
               {queryHistory.map((qid) => (
                 <option value={qid.id} key={qid.id}>
-                  {`${typeAbbrevs[qid.type]}: ${qid.name}`}
+                  {`${qid.id}: ${qid.name}`}
                 </option>
               ))}
             </Select>

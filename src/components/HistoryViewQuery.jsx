@@ -17,7 +17,7 @@ const HistoryViewQuery = ({ timelineObj, onClick, active }) => {
       id={id}
     >
       <div className="query-card-text">
-        <div>{`${typeAbbrevs[type]}: ${name}`}</div>
+        <div>{`${id}: ${name}`}</div>
         <ThemeProvider theme={epochTheme}>
           <div className="button-switcher-container">
             <div className="button-switcher">
