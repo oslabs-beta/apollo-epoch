@@ -78,6 +78,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const { queryCount, mutationCount } = counts.getCounts();
     injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, false, true); // fire manually to bypass counts check
   }
+
+  // Create State Snapshot when Q/M/Manual Fetch is stored in Redux
+  if (message.type === epoch.createSnapshot) {
+    window.postMessage({ type: epoch.createSnapshot, payload: message.payload }, '*');
+  }
+
+  // Initiate Apollo State Change (payload should be Apollo Action Id)
+  if (message.type === epoch.epochShift) {
+    window.postMessage({ type: epoch.epochShift, payload: message.payload }, '*');
+  }
 });
 
 /*
