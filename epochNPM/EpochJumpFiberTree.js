@@ -171,7 +171,7 @@ function createHooksNode(hooksFiber, componentStore, refList, commitLog, commitR
       if(currentHook.memoizedState && currentHook.memoizedState.current && currentHook.memoizedState.current.client) {
         console.log('INSIDE QUERY HOOK IF -> ', currentHook.memoizedState);
 
-        // accounts for ref.current not assigned synchronously
+        // // accounts for ref.current not assigned synchronously
         const epochProp = currentHook.memoizedState.current.epoch; 
         if(!epochProp) setEpochRefProp(currentHook.memoizedState, refList, refTags.queryRef);
 
@@ -179,13 +179,13 @@ function createHooksNode(hooksFiber, componentStore, refList, commitLog, commitR
         refList.addRef(initialComponent, currentHook.memoizedState, refId, tag);
         commitLog.addRefState(commitRecord, currentHook.memoizedState);
 
-        //currentHook.memoizedState.current = undefined;
+        currentHook.memoizedState.current = undefined;
       }
 
       // covers Deep Memo Hooks (these will overwrite the "current" property when their key property doesn't match the query data from the query hook)
       if(currentHook.memoizedState && currentHook.memoizedState.current && currentHook.memoizedState.current.key) {
         refList.addRef(initialComponent, currentHook.memoizedState, 'deepMemo', refTags.deepMemoRef);
-       // currentHook.memoizedState.current = undefined;
+       currentHook.memoizedState.current = undefined;
       }
 
       currentHook = currentHook.next !== currentHook ? currentHook.next : null;

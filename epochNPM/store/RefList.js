@@ -22,22 +22,24 @@ function EpochRefList() {
 };
 
 EpochRefList.prototype.addRef = function(component, ref, refId, tag) {
+ // console.log('LIST REF -> ', ref);
   if(this.circularReference.has(ref)) {
     console.log('Ref ALREADY IN LIST -> ', ref);
     return ref;
   }
+  console.log('CONTINUING ANYWAY -> ', ref);
   
   const newRefNode = new RefNode(refId, component, ref, tag);
-  console.log('ADDING REF TO LIST -> ', newRefNode)
-  console.log('Head Node -> ', this.head);
+  //console.log('ADDING REF TO LIST -> ', newRefNode)
+  //console.log('Head Node -> ', this.head);
   if(!this.head) {
-    console.log('Adding head Node');
+    //console.log('Adding head Node');
     this.head = newRefNode;
     this.tail = this.head;
     this.circularReference.add(ref);
     return newRefNode
   }
-  console.log('Adding to End of list');
+  //console.log('Adding to End of list');
   this.tail.next = newRefNode;
   this.tail = newRefNode;
   this.circularReference.add(ref);

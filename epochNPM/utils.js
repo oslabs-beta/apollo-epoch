@@ -12,3 +12,12 @@ export function getEpochRefTag(stackTrace) {
 
   return epochRefTag;
 }
+
+export function setEpochRefProp(epochRef, refList, epochRefTag) {
+  const actionName = epochRef.current.currentObservable.queryName;
+      
+        epochRef.current.epoch = {
+          refId: `${actionName}${refList.claimRefId()}`,
+          tag: epochRefTag
+        };
+}
