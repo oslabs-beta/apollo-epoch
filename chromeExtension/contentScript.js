@@ -288,6 +288,7 @@ const sendMessageWithCache = (
         networkError: value.networkError,
         networkStatus: value.networkStatus,
         variables: value.variables,
+        isNetwork: false,
         name,
         lastResult,
       });
@@ -309,6 +310,7 @@ const sendMessageWithCache = (
         error: mutationObj.error,
         loading: mutationObj.loading,
         variables: mutationObj.variables,
+        isNetwork: false,
       });
       return filteredMutations;
     }, []);

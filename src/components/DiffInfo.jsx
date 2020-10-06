@@ -21,18 +21,22 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
+    // border: `1px dotted white`,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
   select: {
     color: 'white',
+    // border: `1px dotted white`,
+
     '&:before': {
       borderColor: 'white',
     },
     '&:after': {
       borderColor: 'white',
     },
+    // height: '1rem',
   },
   icon: {
     fill: 'white',
@@ -75,7 +79,7 @@ const DiffInfo = () => {
         <ThemeProvider theme={epochTheme}>
           <Switch checked={unchanged} color="primary" onClick={handleChange} name="switch" />
 
-          <Typography>Full Cache</Typography>
+          <Typography variant="p">Full Cache</Typography>
           <FormControl variant="filled" className={classes.formControl}>
             <InputLabel htmlFor="filled-age-native-simple" className={classes.select}>
               Diff From
