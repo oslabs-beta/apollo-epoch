@@ -14,9 +14,11 @@ import {
   Chip,
   Paper,
 } from '@material-ui/core/';
-import { dummyList } from '../dummyData/data';
+import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import HistoryViewQuery from './HistoryViewQuery';
-import { getTimeline, setActiveQuery } from '../store/entities/apollo';
+import { getTimeline, setActiveQuery, fetchApollo } from '../store/entities/apollo';
+
+const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
 
 // export interface HistoryViewProps {}
 const getTimelineData = getTimeline; // Per Redux Docs, defining outside component perserves memoized memory state
@@ -27,6 +29,10 @@ const HistoryView = () => {
   const activeTimelineObj = useSelector((state) => state.apollo.activeQuery);
   const queries = [];
   const [activeQuery, changeActiveQuery] = React.useState(activeTimelineObj);
+
+  const getCache = () => {
+    dispatch(fetchApollo());
+  };
 
   for (let i = 0; i < queryHistory.length; i += 1) {
     const timelineObj = queryHistory[i];
@@ -48,12 +54,15 @@ const HistoryView = () => {
 
   return (
     <div className="history-view">
-      <Grid container>
-        <Grid item xs={12}>
-          <Typography variant="h6">Timeline</Typography>
-          <div className="query-cards">{queries}</div>
-        </Grid>
-      </Grid>
+      <Typography variant="h6">Timeline</Typography>
+      <div className="query-cards">{queries}</div>
+      <div className="button-container">
+        <ThemeProvider theme={epochTheme}>
+          <Button className="getCache" onClick={getCache} variant="contained" color="primary">
+            <Typography variant="h7">Get Cache</Typography>
+          </Button>
+        </ThemeProvider>
+      </div>
     </div>
   );
 };

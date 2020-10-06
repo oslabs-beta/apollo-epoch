@@ -46,7 +46,10 @@ BACKGROUND COMMUNICATION
 */
 // On content script initialization this will be sent
 chrome.runtime.sendMessage(
-  { type: contentScript.initialize, payload: { title: 'Content Script Initialized' } },
+  {
+    type: contentScript.initialize,
+    payload: { title: 'Content Script Initialized' },
+  },
   (response) => {
     console.log('Background connected to Content -> ', response.type);
   }
@@ -63,8 +66,17 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   if (message.type === epoch.fetchApolloData) {
     const { queryCount, mutationCount } = counts.getCounts();
-    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, false, true); // pass true for manual to flag response data
-    sendResponse({ type: contentScript.log, payload: { title: 'Manual Fetch Triggered' } }); // should trigger response based on hasApollo in Redux
+    injectAndRunInDom(
+      sendMessageWithCache,
+      queryCount,
+      mutationCount,
+      false,
+      true
+    ); // pass true for manual to flag response data
+    sendResponse({
+      type: contentScript.log,
+      payload: { title: 'Manual Fetch Triggered' },
+    }); // should trigger response based on hasApollo in Redux
   }
 
   // Only happens on network request
@@ -76,7 +88,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   // Only happens on network responses
   if (message.type === background.fetchFullApolloData) {
     const { queryCount, mutationCount } = counts.getCounts();
-    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, false, true); // fire manually to bypass counts check
+    injectAndRunInDom(
+      sendMessageWithCache,
+      queryCount,
+      mutationCount,
+      false,
+      true
+    ); // fire manually to bypass counts check
   }
 });
 
@@ -97,7 +115,10 @@ window.addEventListener('message', (event) => {
   }
 
   if (event.data && event.data.type === clientWindow.log) {
-    chrome.runtime.sendMessage({ type: contentScript.log, payload: event.data.payload });
+    chrome.runtime.sendMessage({
+      type: contentScript.log,
+      payload: event.data.payload,
+    });
     return;
   }
 
@@ -113,13 +134,19 @@ window.addEventListener('message', (event) => {
         return;
       }
 
-      chrome.runtime.sendMessage({ type: contentScript.apolloReceived, payload: apolloData });
+      chrome.runtime.sendMessage({
+        type: contentScript.apolloReceived,
+        payload: apolloData,
+      });
       counts.updateCounts(apolloData.queryCount, apolloData.mutationCount);
       return;
     }
     chrome.runtime.sendMessage({
       type: contentScript.log,
-      payload: { title: 'Counts Updated', data: 'But No Cache Object Avail on Window' },
+      payload: {
+        title: 'Counts Updated',
+        data: 'But No Cache Object Avail on Window',
+      },
     });
   }
 });
@@ -181,7 +208,12 @@ The content script and the client application share the DOM but not the same win
 This is how we're able to get the Apollo Cache created by the client application
 into our application. Client App -> Content Script -> Background Script -> Epoch App 
 */
-const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch) => {
+const sendMessageWithCache = (
+  queryCount,
+  mutationCount,
+  initialize,
+  manualFetch
+) => {
   const apolloData = window.__APOLLO_CLIENT__.queryManager;
   console.log('WINDOW TEST', apolloData);
   if (!apolloData) {
@@ -190,7 +222,14 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
   }
 
   // Get and format Data we need from window Obj
-  const { queryIdCounter, mutationIdCounter, queries, mutationStore, link, cache } = apolloData;
+  const {
+    queryIdCounter,
+    mutationIdCounter,
+    queries,
+    mutationStore,
+    link,
+    cache,
+  } = apolloData;
   const { store: mutations } = mutationStore;
 
   let graphQlUri;
@@ -242,12 +281,14 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
       }
 
       filteredQueryInfo.push({
-        id: `Q${key}${queryIdCounter}`, // prevents duplicate Ids in Epoch
+        // id: `Q${key}${queryIdCounter}`, // prevents duplicate Ids in Epoch
+        id: `Q${key}`,
         document: value.document,
         graphQLErrors: value.graphQLErrors,
         networkError: value.networkError,
         networkStatus: value.networkStatus,
         variables: value.variables,
+        isNetwork: false,
         name,
         lastResult,
       });
@@ -262,12 +303,14 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
       const mutationObj = mutationStoreObj[id];
       // eslint-disable-next-line no-param-reassign
       filteredMutations.push({
-        id: `M${id}${mutationIdCounter}`, // prevents duplicate Ids in Epoch
+        // id: `M${id}${mutationIdCounter}`, // prevents duplicate Ids in Epoch
+        id: `M${id}`,
         document: mutationObj.mutation,
         name: mutationObj.mutation.definitions[0].name.value,
         error: mutationObj.error,
         loading: mutationObj.loading,
         variables: mutationObj.variables,
+        isNetwork: false,
       });
       return filteredMutations;
     }, []);

@@ -2,7 +2,9 @@
 import { composeNetworkQuery } from '../messagesAndActionTypes/networkActions';
 import { ERROR } from '../messagesAndActionTypes/loggerActions';
 
-const formFinalNetworkQuery = ({ getState, dispatch }) => (next) => async (action) => {
+const formFinalNetworkQuery = ({ getState, dispatch }) => (next) => async (
+  action
+) => {
   if (action.type !== composeNetworkQuery.type) return next(action);
 
   try {
@@ -28,14 +30,22 @@ const formFinalNetworkQuery = ({ getState, dispatch }) => (next) => async (actio
 
     networkQuery.response = JSON.parse(responseData);
     networkQuery.cacheSnapshot = networkCache;
+    networkQuery.isNetwork = true;
 
     console.log('networkHoldingRoom in compose', state.networkHoldingRoom);
 
-    dispatch({ type: onSuccess, payload: { queryKey, hydratedQuery: networkQuery } });
+    dispatch({
+      type: onSuccess,
+      payload: { queryKey, hydratedQuery: networkQuery },
+    });
   } catch (e) {
     dispatch({
       type: ERROR,
-      payload: { title: 'Problem Hydrating Network Query Object', message: e.message, error: e },
+      payload: {
+        title: 'Problem Hydrating Network Query Object',
+        message: e.message,
+        error: e,
+      },
     });
   }
 };

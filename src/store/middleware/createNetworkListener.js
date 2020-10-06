@@ -16,37 +16,46 @@ const listenToNetwork = ({ dispatch }) => (next) => (action) => {
   try {
     console.log('Creating Network Listener');
 
-    chrome.devtools.network.onRequestFinished.addListener(async (responseHar) => {
-      if (responseHar.request.method !== 'POST') return;
+    chrome.devtools.network.onRequestFinished.addListener(
+      async (responseHar) => {
+        if (responseHar.request.method !== 'POST') return;
 
-      const { request } = responseHar;
-      const requestPayload = JSON.parse(request.postData.text);
-      const queryKey = requestPayload.query;
+        const { request } = responseHar;
+        const requestPayload = JSON.parse(request.postData.text);
+        const queryKey = requestPayload.query;
 
-      function obtainResponseData(responseObj) {
-        return new Promise((resolve, reject) => {
-          console.log('calling get Content');
-          responseObj.getContent((data) => resolve(data));
-        });
+        function obtainResponseData(responseObj) {
+          return new Promise((resolve, reject) => {
+            console.log('calling get Content');
+            responseObj.getContent((data) => resolve(data));
+          });
+        }
+        console.log('responseHAR', responseHar);
+        const responseData = await obtainResponseData(responseHar);
+
+        const filteredHar = {
+          url: request.url,
+          queryKey,
+          responseData,
+        };
+
+        dispatch(passHarToCompose(filteredHar));
       }
-      console.log('responseHAR', responseHar);
-      const responseData = await obtainResponseData(responseHar);
-
-      const filteredHar = {
-        url: request.url,
-        queryKey,
-        responseData,
-      };
-
-      dispatch(passHarToCompose(filteredHar));
-    });
+    );
 
     // Debug
-    dispatch({ type: LOG, payload: { title: 'Epoch Side Network Listener Initialized' } });
+    dispatch({
+      type: LOG,
+      payload: { title: 'Epoch Side Network Listener Initialized' },
+    });
   } catch (e) {
     dispatch({
       type: ERROR,
-      payload: { title: 'Network Listener Failed to Initialize', message: e.message, error: e },
+      payload: {
+        title: 'Network Listener Failed to Initialize',
+        message: e.message,
+        error: e,
+      },
     });
   }
 };

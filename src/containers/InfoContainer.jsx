@@ -6,6 +6,7 @@ import QueryInfo from '../components/QueryInfo';
 import ResponseInfo from '../components/ResponseInfo';
 import StateInfo from '../components/StateInfo';
 import DiffInfo from '../components/DiffInfo';
+import SphereLoader from '../components/SphereLoader/SphereLoader';
 
 const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
 
@@ -46,8 +47,17 @@ const useStyles = makeStyles((theme) => ({
   },
   tabLabel: {
     fontSize: '.7rem',
+    minHeight: '2rem',
+    maxHeight: '2rem',
     minWidth: '25%',
   },
+  tabsRoot: {
+    minHeight: '2rem',
+    height: '2rem',
+  },
+  // tabPanel: {
+  //   minHeight: '100vh',
+  // },
 }));
 
 const InfoContainer = () => {
@@ -60,16 +70,17 @@ const InfoContainer = () => {
 
   // get selected query based on state
   const selectedQuery = useSelector((state) => state.apollo.activeQuery);
+  const loadingApollo = useSelector((state) => state.apollo.loadingApollo);
 
   return (
     <div className="info-container">
       <ThemeProvider theme={epochTheme}>
         <AppBar position="static" style={{ height: '2rem' }}>
           <Tabs
+            className={classes.tabsRoot}
             value={value}
             onChange={handleChange}
             variant="scrollable"
-            style={{ height: '1rem' }}
             TabIndicatorProps={{
               style: {
                 top: '0px',
@@ -83,20 +94,31 @@ const InfoContainer = () => {
           </Tabs>
         </AppBar>
       </ThemeProvider>
-      <div className="active-panel">
-        <TabPanel value={value} index={0}>
-          <QueryInfo queryString={selectedQuery.queryString} variables={selectedQuery.variables} />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <ResponseInfo response={selectedQuery.response} />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <StateInfo stateSnapshot={selectedQuery.cacheSnapshot} />
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          <DiffInfo diff={selectedQuery.diff} />
-        </TabPanel>
-      </div>
+      {loadingApollo && (
+        <div className="loader">
+          <h2>Waiting for data from Apollo Client</h2>
+          <SphereLoader />
+        </div>
+      )}
+      {!loadingApollo && (
+        <div className="active-panel">
+          <TabPanel value={value} index={0} className={classes.tabPanel}>
+            <QueryInfo
+              queryString={selectedQuery.queryString}
+              variables={selectedQuery.variables}
+            />
+          </TabPanel>
+          <TabPanel value={value} index={1} className={classes.tabPanel}>
+            <ResponseInfo response={selectedQuery.response} />
+          </TabPanel>
+          <TabPanel value={value} index={2} className={classes.tabPanel}>
+            <StateInfo stateSnapshot={selectedQuery.cacheSnapshot} />
+          </TabPanel>
+          <TabPanel value={value} index={3} className={classes.tabPanel}>
+            <DiffInfo diff={selectedQuery.diff} />
+          </TabPanel>
+        </div>
+      )}
     </div>
   );
 };
