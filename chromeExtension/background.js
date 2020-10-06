@@ -209,6 +209,22 @@ chrome.runtime.onConnect.addListener((port) => {
         connections[tabId].postMessage(response);
       });
     }
+
+    if (type === epoch.createSnapshot) {
+      const { tabId: snapTabId, data } = message.payload;
+      const newMessage = { type, payload: data };
+      chrome.tabs.sendMessage(Number(snapTabId), newMessage, (response) => {
+        connections[snapTabId].postMessage(response);
+      });
+    }
+
+    if (type === epoch.epochShift) {
+      const { tabId: shiftTabId, data } = message.payload;
+      const newMessage = { type, payload: data };
+      chrome.tabs.sendMessage(Number(shiftTabId), newMessage, (response) => {
+        connections[tabId].postMessage(response);
+      });
+    }
   };
 
   // Actually start listening by assigning listen handler to port Object as listener

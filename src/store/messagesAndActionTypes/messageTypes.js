@@ -6,6 +6,8 @@ const sendMessageTypes = {
     initialize: 'epochPanelOpened',
     fetchApolloData: 'fetchApolloData',
     fetchApolloDataForNetQuery: 'fetchDataForNetQuery',
+    createSnapshot: '$$$takeStateSnapshot$$$',
+    epochShift: '$$$epochShift$$$',
   },
   contentScript: {
     initialize: 'contentScriptInitialized',
