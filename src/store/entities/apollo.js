@@ -249,10 +249,9 @@ function setPrevQueryCase(state, action) {
   const prevQueryId = action.payload;
   if (!prevQueryId) return;
   const typeIndicator = prevQueryId[0];
-  if (typeIndicator === 'Q') state.activeQuery = state.queries[prevQueryId];
-  if (typeIndicator === 'M') state.activeQuery = state.mutations[prevQueryId];
-  if (typeIndicator === 'F')
-    state.activeQuery = state.manualFetches[prevQueryId];
+  if (typeIndicator === 'Q') state.prevQuery = state.queries[prevQueryId];
+  if (typeIndicator === 'M') state.prevQuery = state.mutations[prevQueryId];
+  if (typeIndicator === 'F') state.prevQuery = state.manualFetches[prevQueryId];
 }
 
 function receivedNetworkQueryCase(state, action) {
@@ -399,6 +398,7 @@ function processApolloData(state, apolloData) {
           loading,
           variables,
           name,
+          isNetwork,
         } = mutations.pop();
         console.log(`mutation ${id} Loading State`, loading);
         const stateMutationObj = {
@@ -410,6 +410,7 @@ function processApolloData(state, apolloData) {
           error,
           loading,
           cacheSnapshot: cache,
+          isNetwork,
         };
         if (stateMutationObj.loading) {
           console.log('Network Mutation', stateMutationObj.name);
@@ -433,7 +434,14 @@ function processApolloData(state, apolloData) {
         console.log('query items ->', queries.length);
         const queryObj = queries.pop();
         console.log('q in question -> ', queryObj);
-        const { id, document, variables, name, lastResult } = queryObj;
+        const {
+          id,
+          document,
+          variables,
+          name,
+          lastResult,
+          isNetwork,
+        } = queryObj;
         const stateQueryObj = {
           id,
           type: queryType,
@@ -441,6 +449,7 @@ function processApolloData(state, apolloData) {
           queryString: print(document),
           variables,
           cacheSnapshot: cache,
+          isNetwork,
         };
 
         if (!lastResult || lastResult.loading) {

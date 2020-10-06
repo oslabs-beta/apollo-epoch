@@ -3,11 +3,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import networkIcon from '../static/flux_capacitor.png';
 
 const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
 
 const HistoryViewQuery = ({ timelineObj, onClick, active }) => {
-  const { type, id, name } = timelineObj;
+  const { type, id, name, isNetwork } = timelineObj;
   const typeAbbrevs = { Query: 'Q', Mutation: 'M', 'Manual Fetch': 'MF' };
   return (
     <div
@@ -17,7 +18,8 @@ const HistoryViewQuery = ({ timelineObj, onClick, active }) => {
       id={id}
     >
       <div className="query-card-text">
-        <div>{`${typeAbbrevs[type]}: ${name}`}</div>
+        <div>{`${id}: ${name}`}</div>
+        {isNetwork && <img src={networkIcon} alt="network" className="network-icon" />}
         <ThemeProvider theme={epochTheme}>
           <div className="button-switcher-container">
             <div className="button-switcher">
