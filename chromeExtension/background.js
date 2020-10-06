@@ -82,6 +82,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       });
     }
 
+    // No reason for these to split...when we have testing (because Matt's afraid) fix?
     if (connections[portId]) {
       connections[portId].postMessage({
         type: background.clearData,
@@ -205,6 +206,22 @@ chrome.runtime.onConnect.addListener((port) => {
       console.log('tabId', message.payload);
       console.log('tabId', message.type);
       chrome.tabs.sendMessage(Number(tabId), message, (response) => {
+        connections[tabId].postMessage(response);
+      });
+    }
+
+    if (type === epoch.createSnapshot) {
+      const { tabId: snapTabId, data } = message.payload;
+      const newMessage = { type, payload: data };
+      chrome.tabs.sendMessage(Number(snapTabId), newMessage, (response) => {
+        connections[snapTabId].postMessage(response);
+      });
+    }
+
+    if (type === epoch.epochShift) {
+      const { tabId: shiftTabId, data } = message.payload;
+      const newMessage = { type, payload: data };
+      chrome.tabs.sendMessage(Number(shiftTabId), newMessage, (response) => {
         connections[tabId].postMessage(response);
       });
     }

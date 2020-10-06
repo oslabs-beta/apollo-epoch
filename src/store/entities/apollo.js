@@ -108,7 +108,7 @@ const initialState = {
 
 const STARTING_UP = 'startingUp'; // For debugging
 const PORT_INITIALIZED = 'portInitialized';
-const POST_BACKGROUND_MESSAGE = 'callBackground';
+const EPOCH_SHIFT = 'initiateEpochShift';
 const NO_APOLLO = 'noApolloClient';
 const FETCH_APOLLO = 'fetchApolloData';
 const RECEIVED_MANUAL_FETCH = 'apolloReceivedManual';
@@ -125,7 +125,7 @@ const CLEAR_APOLLO_DATA = 'clearApolloData';
 // eslint-disable-next-line import/prefer-default-export
 export const startingUp = createAction(STARTING_UP); // no payload
 export const initializedPort = createAction(PORT_INITIALIZED); // superPortObj
-export const postBackgroundMessage = createAction(POST_BACKGROUND_MESSAGE); // messageObj: {type, payload}
+export const initiateEpochShift = createAction(EPOCH_SHIFT); // payload: {apolloActionId}
 export const noApollo = createAction(NO_APOLLO);
 export const fetchApollo = createAction(FETCH_APOLLO); // should post message
 export const receivedManualFetch = createAction(RECEIVED_MANUAL_FETCH); // payload apolloObj
@@ -141,7 +141,7 @@ export const clearApolloData = createAction(CLEAR_APOLLO_DATA);
 ----------------*/
 const apolloReducer = createReducer(initialState, {
   [PORT_INITIALIZED]: initializePortCase,
-  [POST_BACKGROUND_MESSAGE]: callBackgroundCase,
+  [EPOCH_SHIFT]: initiateEpochShiftCase,
   [STARTING_UP]: startingUpCase,
   [NO_APOLLO]: noApolloCase,
   [FETCH_APOLLO]: fetchApolloCase,
@@ -171,8 +171,11 @@ function initializePortCase(state, action) {
   });
 }
 
-function callBackgroundCase(state, action) {
-  superPort.connection.postMessage(action.payload);
+function initiateEpochShiftCase(state, action) {
+  superPort.connection.postMessage({
+    type: sendMessageTypes.epoch.epochShift,
+    payload: { tabId: chrome.devtools.inspectedWindow.tabId, data: action.payload },
+  });
 }
 
 function fetchApolloCase(state, action) {
@@ -208,6 +211,13 @@ function receivedManualFetchCase(state, action) {
   state.timeline.push(fetchId);
   state.manualFetchIds.push(fetchId);
   state.manualFetches[fetchId] = fetchObj;
+  superPort.connection.postMessage({
+    type: sendMessageTypes.epoch.createSnapshot,
+    payload: {
+      tabId: chrome.devtools.inspectedWindow.tabId,
+      data: { id: fetchId, timeStamp: Date.now() },
+    },
+  });
 }
 
 function initializedCacheCase(state, action) {
@@ -238,8 +248,7 @@ function setActiveQueryCase(state, action) {
       const prevTypeIndicator = prevId[0];
       if (prevTypeIndicator === 'Q') state.prevQuery = state.queries[prevId];
       if (prevTypeIndicator === 'M') state.prevQuery = state.mutations[prevId];
-      if (prevTypeIndicator === 'F')
-        state.prevQuery = state.manualFetches[prevId];
+      if (prevTypeIndicator === 'F') state.prevQuery = state.manualFetches[prevId];
       return;
     }
   }
@@ -255,10 +264,7 @@ function setPrevQueryCase(state, action) {
 }
 
 function receivedNetworkQueryCase(state, action) {
-  console.log(
-    'Cleaning up network request for ',
-    action.payload.hydratedQuery.name
-  );
+  console.log('Cleaning up network request for ', action.payload.hydratedQuery.name);
   console.log('Hydrated Query Obj ->', action.payload.hydratedQuery);
   const { queryKey, hydratedQuery } = action.payload;
   const { id } = hydratedQuery;
@@ -273,6 +279,10 @@ function receivedNetworkQueryCase(state, action) {
   }
   state.timeline.push(id);
   delete state.networkHoldingRoom[queryKey];
+  superPort.connection.postMessage({
+    type: sendMessageTypes.epoch.createSnapshot,
+    payload: { tabId: chrome.devtools.inspectedWindow.tabId, data: { id, timeStamp: Date.now() } },
+  });
   console.log('networkHoldingRoom Clean', state.networkHoldingRoom);
 }
 
@@ -367,18 +377,13 @@ function processApolloData(state, apolloData) {
     state.hasDunderApollo = true;
     state.loadingApollo = false;
     state.graphQlUri = graphQlUri;
-    console.log(
-      `CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`
-    );
+    console.log(`CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`);
     console.log(
       `CurrM: ${mutationCount}, PrevM: ${prevMutationCount}, StateM: ${state.mutationIdCounter}`
     );
 
     // Debug
-    if (
-      state.queryIdCounter !== prevQueryCount ||
-      state.mutationIdCounter !== prevMutationCount
-    ) {
+    if (state.queryIdCounter !== prevQueryCount || state.mutationIdCounter !== prevMutationCount) {
       console.log('*****QUERIES / MUTATIONS MISSED*****');
       console.log(
         `CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`
@@ -391,15 +396,7 @@ function processApolloData(state, apolloData) {
     let mutationsToGrab = mutationCount - prevMutationCount;
     if (mutationsToGrab && mutationsToGrab <= mutations.length) {
       while (mutationsToGrab > 0) {
-        const {
-          id,
-          document,
-          error,
-          loading,
-          variables,
-          name,
-          isNetwork,
-        } = mutations.pop();
+        const { id, document, error, loading, variables, name, isNetwork } = mutations.pop();
         console.log(`mutation ${id} Loading State`, loading);
         const stateMutationObj = {
           id,
@@ -414,13 +411,18 @@ function processApolloData(state, apolloData) {
         };
         if (stateMutationObj.loading) {
           console.log('Network Mutation', stateMutationObj.name);
-          state.networkHoldingRoom[
-            stateMutationObj.queryString
-          ] = stateMutationObj;
+          state.networkHoldingRoom[stateMutationObj.queryString] = stateMutationObj;
         } else {
           state.timeline.push(id);
           state.mutationIds.push(id);
           state.mutations[id] = stateMutationObj;
+          superPort.connection.postMessage({
+            type: sendMessageTypes.epoch.createSnapshot,
+            payload: {
+              tabId: chrome.devtools.inspectedWindow.tabId,
+              data: { id, timeStamp: Date.now() },
+            },
+          });
         }
         mutationsToGrab -= 1;
       }
@@ -434,14 +436,7 @@ function processApolloData(state, apolloData) {
         console.log('query items ->', queries.length);
         const queryObj = queries.pop();
         console.log('q in question -> ', queryObj);
-        const {
-          id,
-          document,
-          variables,
-          name,
-          lastResult,
-          isNetwork,
-        } = queryObj;
+        const { id, document, variables, name, lastResult, isNetwork } = queryObj;
         const stateQueryObj = {
           id,
           type: queryType,
@@ -462,6 +457,13 @@ function processApolloData(state, apolloData) {
           state.timeline.push(id);
           state.queryIds.push(id);
           state.queries[id] = stateQueryObj;
+          superPort.connection.postMessage({
+            type: sendMessageTypes.epoch.createSnapshot,
+            payload: {
+              tabId: chrome.devtools.inspectedWindow.tabId,
+              data: { id, timeStamp: Date.now() },
+            },
+          });
         }
         queriesToGrab -= 1;
       }
