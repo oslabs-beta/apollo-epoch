@@ -1,12 +1,17 @@
 /*
  This module creates a custom Fiber Tree class that will store data from the current React Fiber Tree
- 70ms(?) after an apollo query or mutation. All the data in this tree will be serializable and passable
+ after an apollo query or mutation. All the data in this tree will be serializable and passable
  by message to the Epoch app. It will contain ID references to unserializable react component instances stored in the 
  DOM in the Component Store. 
  
  On user initiated time jumps, these trees will be traversed, those component references used to access
  that unserialized component data and state changing functions will be called to update their user facing
  rendered states. 
+
+ ----All the above is true for full React State time travel -- our current MVP is such that...
+ We are ONLY dealing with the Apollo Cache. This structure is used to traverse the fiber
+ tree and log ref data (which makes it bones for future functionality). To extend our app to include 
+ total react state time travel, this will be required. 
 
 ------------------
   Data Structure
@@ -33,8 +38,8 @@
 
   }
 */
-import {refTags} from './refTags';
-import {setEpochRefProp} from './utils';
+import { refTags } from '../refTags';
+import { setEpochRefProp } from '../utils';
 
 export default class CustomFiberTree {
   constructor(rootFiber, epochStore, commitRecord, apolloActionId) {
@@ -44,9 +49,9 @@ export default class CustomFiberTree {
     this.commitRecord = commitRecord;
     this.treeId = apolloActionId;
     this.circularFiberReference = new Set();
-   // console.log('HOST ROOT FIBER IN TREE ->', rootFiber);
+    // console.log('HOST ROOT FIBER IN TREE ->', rootFiber);
     this.rootFiber = this.traverseFiberTree(rootFiber, null);
-   // console.log('RootFiber in Tree -> ', this.rootFiber);
+    // console.log('RootFiber in Tree -> ', this.rootFiber);
 
     // after finishing traversal rest all this so it's not hanging around
     this.componentStore = null;
@@ -64,7 +69,14 @@ export default class CustomFiberTree {
     }
 
     if (memoizedState && (tag === 0 || tag === 1 || tag === 2 || tag === 10)) {
-      customFiberNode = createHooksNode(reactFiber, this.componentStore, this.refList, this.commitLog, this.commitRecord, this.treeId);
+      customFiberNode = createHooksNode(
+        reactFiber,
+        this.componentStore,
+        this.refList,
+        this.commitLog,
+        this.commitRecord,
+        this.treeId
+      );
     }
 
     if (!customFiberNode && (tag === 0 || tag === 1 || tag === 2 || tag === 3)) {
@@ -132,6 +144,7 @@ function CustomFiberNode(componentId, unserializedState, reactFiber) {
 /*---------------------
       HELPERS
 ---------------------*/
+// unfinished -- unneccessary for BASIC CACHE time travel.
 function serializeState(unserializedState) {
   // console.log('FLATTENING YOUR STATE! ->', unserializedState);
   return 'PLACEHOLDER STATE OBJ';
@@ -151,7 +164,6 @@ function createHooksNode(hooksFiber, componentStore, refList, commitLog, commitR
   // Look to refactor this if ALL the queues are the same ref
   if (initialComponent) {
     while (currentHook) {
-
       // covers useStateHooks
       if (
         currentHook.memoizedState &&
@@ -168,24 +180,37 @@ function createHooksNode(hooksFiber, componentStore, refList, commitLog, commitR
       }
 
       // covers apollo Query Hooks (which create Refs...these are useRef hooks)
-      if(currentHook.memoizedState && currentHook.memoizedState.current && currentHook.memoizedState.current.client) {
+      if (
+        currentHook.memoizedState &&
+        currentHook.memoizedState.current &&
+        currentHook.memoizedState.current.client
+      ) {
         console.log('INSIDE QUERY HOOK IF -> ', currentHook.memoizedState);
 
         // accounts for ref.current not assigned synchronously
-        const epochProp = currentHook.memoizedState.current.epoch; 
-        if(!epochProp) setEpochRefProp(currentHook.memoizedState, refList, refTags.queryRef);
+        const epochProp = currentHook.memoizedState.current.epoch;
+        if (!epochProp) setEpochRefProp(currentHook.memoizedState, refList, refTags.queryRef);
 
-        const {tag, refId} = currentHook.memoizedState.current.epoch;
+        const { tag, refId } = currentHook.memoizedState.current.epoch;
         refList.addRef(initialComponent, currentHook.memoizedState, refId, tag);
         commitLog.addRefState(commitRecord, currentHook.memoizedState);
 
-        //currentHook.memoizedState.current = undefined;
+        // currentHook.memoizedState.current = undefined;
       }
 
       // covers Deep Memo Hooks (these will overwrite the "current" property when their key property doesn't match the query data from the query hook)
-      if(currentHook.memoizedState && currentHook.memoizedState.current && currentHook.memoizedState.current.key) {
-        refList.addRef(initialComponent, currentHook.memoizedState, 'deepMemo', refTags.deepMemoRef);
-       // currentHook.memoizedState.current = undefined;
+      if (
+        currentHook.memoizedState &&
+        currentHook.memoizedState.current &&
+        currentHook.memoizedState.current.key
+      ) {
+        refList.addRef(
+          initialComponent,
+          currentHook.memoizedState,
+          'deepMemo',
+          refTags.deepMemoRef
+        );
+        // currentHook.memoizedState.current = undefined;
       }
 
       currentHook = currentHook.next !== currentHook ? currentHook.next : null;

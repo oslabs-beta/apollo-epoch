@@ -1,4 +1,10 @@
 /*
+This also stores useRef states associated with the useQuery and Deep Memo Apollo Hooks.
+Currently those states are not needed for basic Apollo cache time travel. The bones are here 
+for a more indepth implementation should anyone want to extend functionality.
+*/
+
+/*
 ------------------
 Data Structure
 ------------------

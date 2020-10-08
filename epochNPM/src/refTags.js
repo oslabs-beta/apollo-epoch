@@ -6,11 +6,11 @@
 export const apolloFunctions = {
   query: 'useBaseQuery',
   mutation: 'useMutation',
-  deepMemo: 'useDeepMemo'
-}
+  deepMemo: 'useDeepMemo',
+};
 
 export const refTags = {
-    queryRef: 1,
-    mutationRef: 2,
-    deepMemoRef: 3,
-  }
+  queryRef: 1,
+  mutationRef: 2,
+  deepMemoRef: 3,
+};

@@ -1,6 +1,7 @@
 /*
 TEMP ________
-
+This is in place should we want to extend the app into full React State time travel
+It is currently NOT IN USE for basic Apollo cache time travel.
 */
 
 /*
@@ -57,5 +58,5 @@ ComponentStore.prototype.getComponent = function (componentId) {
   return this.historicalComponents[componentId];
 };
 
-console.log('COMPONENT STORE IS INJECTED!');
+// console.log('COMPONENT STORE IS INJECTED!');
 export default ComponentStore;
