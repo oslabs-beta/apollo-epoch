@@ -10,7 +10,7 @@ import { initiateEpochShift } from '../store/entities/apollo';
 const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
 
 const HistoryViewQuery = ({ timelineObj, onClick, active }) => {
-  const { id, name, isNetwork } = timelineObj;
+  const { id, name, isNetwork, timingData } = timelineObj;
   const dispatch = useDispatch();
 
   const epochShift = (apolloActionId) => {
@@ -31,7 +31,13 @@ const HistoryViewQuery = ({ timelineObj, onClick, active }) => {
           <div className="button-switcher-container">
             <div className="button-switcher">
               <div className="time-stamp">
-                <p>No Time</p>
+                {timingData && (
+                  <p>
+                    {Math.floor(timingData)}
+                    ms
+                  </p>
+                )}
+                {!timingData && <p>Cache</p>}
               </div>
               <div
                 className="jump-button"

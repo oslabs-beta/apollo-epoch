@@ -16,32 +16,31 @@ const listenToNetwork = ({ dispatch }) => (next) => (action) => {
   try {
     console.log('Creating Network Listener');
 
-    chrome.devtools.network.onRequestFinished.addListener(
-      async (responseHar) => {
-        if (responseHar.request.method !== 'POST') return;
+    chrome.devtools.network.onRequestFinished.addListener(async (responseHar) => {
+      if (responseHar.request.method !== 'POST') return;
 
-        const { request } = responseHar;
-        const requestPayload = JSON.parse(request.postData.text);
-        const queryKey = requestPayload.query;
+      const { request } = responseHar;
+      const requestPayload = JSON.parse(request.postData.text);
+      const queryKey = requestPayload.query;
 
-        function obtainResponseData(responseObj) {
-          return new Promise((resolve, reject) => {
-            console.log('calling get Content');
-            responseObj.getContent((data) => resolve(data));
-          });
-        }
-        console.log('responseHAR', responseHar);
-        const responseData = await obtainResponseData(responseHar);
-
-        const filteredHar = {
-          url: request.url,
-          queryKey,
-          responseData,
-        };
-
-        dispatch(passHarToCompose(filteredHar));
+      function obtainResponseData(responseObj) {
+        return new Promise((resolve, reject) => {
+          console.log('calling get Content');
+          responseObj.getContent((data) => resolve(data));
+        });
       }
-    );
+      console.log('responseHAR', responseHar);
+      const responseData = await obtainResponseData(responseHar);
+
+      const filteredHar = {
+        url: request.url,
+        queryKey,
+        responseData,
+        timingData: responseHar.time,
+      };
+
+      dispatch(passHarToCompose(filteredHar));
+    });
 
     // Debug
     dispatch({
