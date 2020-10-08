@@ -26,30 +26,34 @@ const HistoryViewQuery = ({ timelineObj, onClick, active }) => {
     >
       <div className="query-card-text">
         <div>{`${id}: ${name}`}</div>
-        {isNetwork && <img src={networkIcon} alt="network" className="network-icon" />}
-        <ThemeProvider theme={epochTheme}>
-          <div className="button-switcher-container">
-            <div className="button-switcher">
-              <div className="time-stamp">
-                {timingData && (
-                  <p>
-                    {Math.floor(timingData)}
-                    ms
-                  </p>
-                )}
-                {!timingData && <p>Cache</p>}
+        <div className="network-icon-and-jump">
+          {isNetwork && <img src={networkIcon} alt="network" className="network-icon" />}
+          <ThemeProvider theme={epochTheme}>
+            {id[0] !== 'F' && (
+              <div className="button-switcher-container">
+                <div className="button-switcher">
+                  <div className="time-stamp">
+                    {timingData && (
+                      <p>
+                        {Math.floor(timingData)}
+                        ms
+                      </p>
+                    )}
+                    {!timingData && <p>Cache</p>}
+                  </div>
+                  <div
+                    className="jump-button"
+                    onClick={() => {
+                      epochShift(id);
+                    }}
+                  >
+                    <p>Jump</p>
+                  </div>
+                </div>
               </div>
-              <div
-                className="jump-button"
-                onClick={() => {
-                  epochShift(id);
-                }}
-              >
-                <p>Jump</p>
-              </div>
-            </div>
-          </div>
-        </ThemeProvider>
+            )}
+          </ThemeProvider>
+        </div>
       </div>
     </div>
   );
