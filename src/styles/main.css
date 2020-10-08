@@ -411,8 +411,15 @@ body {
 }
 
 .network-icon {
+  margin-right: 5px;
   height: 100%;
-  width: auto;
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.network-icon-and-jump {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .info-container-wrapper {
