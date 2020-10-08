@@ -66,13 +66,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   if (message.type === epoch.fetchApolloData) {
     const { queryCount, mutationCount } = counts.getCounts();
-    injectAndRunInDom(
-      sendMessageWithCache,
-      queryCount,
-      mutationCount,
-      false,
-      true
-    ); // pass true for manual to flag response data
+    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, false, true); // pass true for manual to flag response data
     sendResponse({
       type: contentScript.log,
       payload: { title: 'Manual Fetch Triggered' },
@@ -88,13 +82,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   // Only happens on network responses
   if (message.type === background.fetchFullApolloData) {
     const { queryCount, mutationCount } = counts.getCounts();
-    injectAndRunInDom(
-      sendMessageWithCache,
-      queryCount,
-      mutationCount,
-      false,
-      true
-    ); // fire manually to bypass counts check
+    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, false, true); // fire manually to bypass counts check
   }
 
   // Create State Snapshot when Q/M/Manual Fetch is stored in Redux
@@ -218,12 +206,7 @@ The content script and the client application share the DOM but not the same win
 This is how we're able to get the Apollo Cache created by the client application
 into our application. Client App -> Content Script -> Background Script -> Epoch App 
 */
-const sendMessageWithCache = (
-  queryCount,
-  mutationCount,
-  initialize,
-  manualFetch
-) => {
+const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch) => {
   const apolloData = window.__APOLLO_CLIENT__.queryManager;
   console.log('WINDOW TEST', apolloData);
   if (!apolloData) {
@@ -232,14 +215,7 @@ const sendMessageWithCache = (
   }
 
   // Get and format Data we need from window Obj
-  const {
-    queryIdCounter,
-    mutationIdCounter,
-    queries,
-    mutationStore,
-    link,
-    cache,
-  } = apolloData;
+  const { queryIdCounter, mutationIdCounter, queries, mutationStore, link, cache } = apolloData;
   const { store: mutations } = mutationStore;
 
   let graphQlUri;
@@ -299,6 +275,7 @@ const sendMessageWithCache = (
         networkStatus: value.networkStatus,
         variables: value.variables,
         isNetwork: false,
+        timingData: null,
         name,
         lastResult,
       });
@@ -321,6 +298,7 @@ const sendMessageWithCache = (
         loading: mutationObj.loading,
         variables: mutationObj.variables,
         isNetwork: false,
+        timingData: null,
       });
       return filteredMutations;
     }, []);

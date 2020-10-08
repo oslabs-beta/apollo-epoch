@@ -51,12 +51,9 @@ const DiffInfo = () => {
   const [unchanged, setUnchanged] = React.useState(false);
   const { activeQuery, prevQuery } = useSelector((state) => state.apollo);
   const queryHistory = useSelector(getTimelineData).filter((q) => q.id !== activeQuery.id);
-  console.log('aQ and pQ cacheSS ->', activeQuery.cacheSnapshot, prevQuery.cacheSnapshot);
-
-  const [diffQuery, changeDiffQuery] = React.useState();
+  console.log('aQ and pQ  ->', activeQuery, prevQuery);
 
   const handleChangeDiff = (event) => {
-    changeDiffQuery(event.target.value);
     dispatch(setPrevQuery(event.target.value));
   };
 
@@ -71,8 +68,6 @@ const DiffInfo = () => {
     setUnchanged(!unchanged);
   };
 
-  const typeAbbrevs = { Query: 'Q', Mutation: 'M', 'Manual Fetch': 'MF' };
-
   return (
     <div className="diff-info">
       <div className="unchanged-toggle-div">
@@ -86,7 +81,7 @@ const DiffInfo = () => {
             </InputLabel>
             <Select
               native
-              value={diffQuery}
+              value={prevQuery.id}
               onChange={handleChangeDiff}
               className={classes.select}
               inputProps={{
@@ -99,7 +94,7 @@ const DiffInfo = () => {
             >
               <option aria-label="None" value="" />
               {queryHistory.map((qid) => (
-                <option value={qid.id} key={qid.id}>
+                <option value={qid.id} key={qid.id} className={classes.select}>
                   {`${qid.id}: ${qid.name}`}
                 </option>
               ))}

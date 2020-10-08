@@ -2,9 +2,7 @@
 import { composeNetworkQuery } from '../messagesAndActionTypes/networkActions';
 import { ERROR } from '../messagesAndActionTypes/loggerActions';
 
-const formFinalNetworkQuery = ({ getState, dispatch }) => (next) => async (
-  action
-) => {
+const formFinalNetworkQuery = ({ getState, dispatch }) => (next) => async (action) => {
   if (action.type !== composeNetworkQuery.type) return next(action);
 
   try {
@@ -12,7 +10,7 @@ const formFinalNetworkQuery = ({ getState, dispatch }) => (next) => async (
     console.log('state', state);
 
     const { onSuccess, data } = action.payload;
-    const { url, queryKey, responseData } = data;
+    const { url, queryKey, responseData, timingData } = data;
 
     if (url !== state.graphQlUri) return;
     console.log('har obj -> ', action.payload);
@@ -31,6 +29,7 @@ const formFinalNetworkQuery = ({ getState, dispatch }) => (next) => async (
     networkQuery.response = JSON.parse(responseData);
     networkQuery.cacheSnapshot = networkCache;
     networkQuery.isNetwork = true;
+    networkQuery.timingData = timingData;
 
     console.log('networkHoldingRoom in compose', state.networkHoldingRoom);
 
