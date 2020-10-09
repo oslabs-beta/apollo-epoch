@@ -1,4 +1,9 @@
 
+/*
+A linked list of refStates, their components, AND the added properties we create
+when we detect that a ref is a query or deep memo ref. 
+*/
+
 function RefNode(refId, component, ref, tag) {
   this.epochRefId = refId;
   this.component = component;

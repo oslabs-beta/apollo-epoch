@@ -1,0 +1,32 @@
+{
+  "name": "apollo-epoch",
+  "version": "1.0.0",
+  "description": "A component for use with the Apollo Epoch chrome extension to enable time travel debugging for the Apollo cache",
+  "main": "index.jsx",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oslabs-beta/apollo-epoch.git"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "@apollo/client": "^3.0.0",
+    "lodash": "^4.17.0"
+  },
+  "keywords": [
+    "apollo",
+    "epoch",
+    "time",
+    "travel",
+    "debugging"
+  ],
+  "author": "Chris Ma, Johnathan Ramirez, Matt Severyn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oslabs-beta/apollo-epoch/issues"
+  },
+  "homepage": "https://github.com/oslabs-beta/apollo-epoch#readme"
+}
