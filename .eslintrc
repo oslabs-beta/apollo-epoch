@@ -7,11 +7,12 @@
     "plugin:prettier/recommended",
     "plugin:react/recommended"
   ],
-  "plugins": ["prettier", "react"],
+  "plugins": ["prettier", "react", "jest"],
   "env": {
     "browser": true,
     "webextensions": true,
-    "es6": true
+    "es6": true,
+    "jest": true
   },
 
   "rules": {
