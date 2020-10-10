@@ -3,12 +3,13 @@ import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core/';
-import HistoryContainer from './HistoryContainer';
+import HistoryView from '../components/HistoryView';
 import InfoContainer from './InfoContainer';
 import { initializeBackgroundConnection } from '../store/entities/apollo';
 import { initializeNetworkListener } from '../store/messagesAndActionTypes/initializeActions';
 import '../styles/main.css';
 
+// defined breakpoints for desktop, tablet, mobile views
 const breakpointValues = {
   xs: 0,
   sm: 400,
@@ -19,8 +20,7 @@ const breakpointValues = {
 
 const devtoolTheme = createMuiTheme({ breakpoints: { values: breakpointValues } });
 
-// const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
-
+// material UI styling
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -33,16 +33,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// main App container renders out the InfoContainer and the HistoryView (left sidebar)
 const App = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  // const loadingApollo = useSelector((state) => state.apollo.loadingApollo);
 
+  // upon rendering this component, dispatch action to Redux to connect to the background script and start listening for network requests to the graphQL endpoint
   React.useEffect(() => {
-    console.log(
-      'Initializing Background Connection on Tab: ',
-      chrome.devtools.inspectedWindow.tabId
-    );
     dispatch(initializeBackgroundConnection());
     dispatch(initializeNetworkListener());
   }, []);
@@ -51,22 +48,11 @@ const App = () => {
     <div className={classes.root}>
       <ThemeProvider theme={devtoolTheme}>
         <Grid container>
-          {/* <Grid item xs={12}>
-            <div className="heading">
-              {loadingApollo && (
-                <div className="loader">
-                  <h2>Detecting Apollo</h2>
-                  <SphereLoader />
-                </div>
-              )}
-            </div>
-          </Grid> */}
           <div className="info-container-wrapper">
             <Grid item xs={12}>
               <Grid container>
                 <Grid item xs={12} sm={5} md={4} className="grid-item-history">
-                  {/* // render out history  */}
-                  <HistoryContainer />
+                  <HistoryView />
                 </Grid>
                 <Grid item xs={12} sm={7} md={8}>
                   <InfoContainer />

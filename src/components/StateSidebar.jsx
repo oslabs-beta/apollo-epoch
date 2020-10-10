@@ -4,6 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// this component displays a list of the keys for a given query/mutation
 const StateSidebar = ({ keyList, onClick }) => {
   const [activeKey, changeActiveKey] = React.useState();
   const keyListDisplay = keyList.map((key, index) => {
@@ -12,6 +13,7 @@ const StateSidebar = ({ keyList, onClick }) => {
         className={`key-display ${activeKey === key ? 'active-key' : ''}`}
         key={`key${index}`}
         id={key}
+        // this callback function changes the currently selected key so that the corresponding data will be shown
         onClick={() => {
           changeActiveKey(key);
           onClick(key);

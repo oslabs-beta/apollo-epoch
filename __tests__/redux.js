@@ -81,7 +81,7 @@ describe('apolloReducer', () => {
     });
   });
 
-  describe('RECEIVED_APOLLO', () => {
+  xdescribe('RECEIVED_APOLLO', () => {
     const fakeApolloData = {
       manual: false,
       graphQlUri: 'http://localhost:3001',
@@ -97,6 +97,8 @@ describe('apolloReducer', () => {
             error: '',
             response: 'response 1',
           },
+          isNetwork: false,
+          timingData: 0,
         },
         {
           id: 'Q2',
@@ -109,6 +111,8 @@ describe('apolloReducer', () => {
             error: '',
             response: 'response 2',
           },
+          isNetwork: false,
+          timingData: 0,
         },
       ], // array of Query objs
       mutations: [
@@ -121,6 +125,8 @@ describe('apolloReducer', () => {
           error: '',
           loading: false,
           cacheSnapshot: {},
+          isNetwork: true,
+          timingData: 50,
         },
         {
           id: 'M2',
@@ -131,6 +137,8 @@ describe('apolloReducer', () => {
           error: '',
           loading: false,
           cacheSnapshot: {},
+          isNetwork: true,
+          timingData: 50,
         },
         {
           id: 'M3',
@@ -141,6 +149,8 @@ describe('apolloReducer', () => {
           error: '',
           loading: false,
           cacheSnapshot: {},
+          isNetwork: true,
+          timingData: 50,
         },
       ], // array of Mutation objs
       cache: {},

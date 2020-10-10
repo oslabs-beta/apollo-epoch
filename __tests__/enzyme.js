@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -10,15 +12,15 @@ import HistoryView from '../src/components/HistoryView';
 import StateSidebar from '../src/components/StateSidebar';
 import ResponseInfo from '../src/components/ResponseInfo';
 import HistoryViewQuery from '../src/components/HistoryViewQuery';
-// import DiffInfo from '../src/components/DiffInfo';
 
+// required for testing of react hook useEffect
 React.useLayoutEffect = React.useEffect;
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
   useLayoutEffect: jest.requireActual('react').useEffect,
 }));
-// import QueryInfo from '../src/components/QueryInfo';
 
+// setting up mock redux store for testing
 configure({ adapter: new Adapter() });
 const mockStore = configureStore([]);
 
@@ -170,8 +172,29 @@ describe('React unit tests', () => {
   });
 
   describe('HistoryViewQuery', () => {
+    let store;
     let wrapper;
     const mockOnClick = jest.fn();
+    const apollo = {
+      hasDunderApollo: false,
+      loadingApollo: false,
+      activeQuery: {},
+      prevQuery: {},
+      chromeTabId: '',
+      graphQlUri: '',
+      queryIds: [],
+      queries: {},
+      queryIdCounter: 1,
+      mutationIds: [],
+      mutations: {},
+      mutationIdCounter: 1,
+      manualFetches: {}, // store manual cacheFetches in Timeline
+      manualFetchIds: [],
+      fetchCounter: 0,
+      timeline: [], // an ordered list of query and mutation Ids
+      typeNameDocumentCache: {},
+      networkHoldingRoom: {},
+    };
 
     const props = {
       timelineObj: {
@@ -182,13 +205,21 @@ describe('React unit tests', () => {
         response: {},
         type: 'Query',
         variables: {},
+        timingData: 0,
+        isNetwork: false,
       },
       onClick: mockOnClick,
       active: false,
     };
 
     beforeAll(() => {
-      wrapper = shallow(<HistoryViewQuery {...props} />);
+      store = mockStore({ apollo });
+
+      wrapper = mount(
+        <Provider store={store}>
+          <HistoryView {...props} />
+        </Provider>
+      );
     });
 
     it('It should render without errors', () => {
@@ -196,7 +227,7 @@ describe('React unit tests', () => {
       expect(component).toMatchSnapshot();
     });
 
-    it('It should contain a single div with the "query-card" class', () => {
+    xit('It should contain a single div with the "query-card" class', () => {
       const queryCard = wrapper.find('.query-card');
       expect(queryCard.length).toBe(1);
     });
@@ -206,49 +237,4 @@ describe('React unit tests', () => {
       expect(activeQuery.length).toBe(0);
     });
   });
-
-  // xdescribe('DiffInfo', () => {
-  //   let store;
-  //   let wrapper;
-  //   const apollo = {
-  //     hasDunderApollo: false,
-  //     loadingApollo: false,
-  //     activeQuery: {},
-  //     prevQuery: {},
-  //     chromeTabId: '',
-  //     graphQlUri: '',
-  //     queryIds: [],
-  //     queries: {},
-  //     queryIdCounter: 1,
-  //     mutationIds: [],
-  //     mutations: {},
-  //     mutationIdCounter: 1,
-  //     manualFetches: {}, // store manual cacheFetches in Timeline
-  //     manualFetchIds: [],
-  //     fetchCounter: 0,
-  //     timeline: [], // an ordered list of query and mutation Ids
-  //     typeNameDocumentCache: {},
-  //     networkHoldingRoom: {},
-  //   };
-
-  //   beforeEach(() => {
-  //     store = mockStore({ apollo });
-
-  //     wrapper = mount(
-  //       <Provider store={store}>
-  //         <DiffInfo />
-  //       </Provider>
-  //     );
-  //   });
-
-  //   it('It should render without errors', () => {
-  //     const component = toJson(wrapper);
-  //     expect(component).toMatchSnapshot();
-  //   });
-
-  //   it('It should contain a single div with the "diff-info" class', () => {
-  //     const historyView = wrapper.find('.diff-info');
-  //     expect(historyView.length).toBe(1);
-  //   });
-  // });
 });

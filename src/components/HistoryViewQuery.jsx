@@ -9,10 +9,12 @@ import { initiateEpochShift } from '../store/entities/apollo';
 
 const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
 
+// this component displays a specific query/mutation inside of the left sidebar of the extension
 const HistoryViewQuery = ({ timelineObj, onClick, active }) => {
   const { id, name, isNetwork, timingData } = timelineObj;
   const dispatch = useDispatch();
 
+  // clicking buttons with this callback initiate a time jump to the associated query/mutation
   const epochShift = (apolloActionId) => {
     dispatch(initiateEpochShift({ apolloActionId }));
   };
