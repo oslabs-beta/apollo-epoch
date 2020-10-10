@@ -5,8 +5,7 @@ import ReactJson from 'react-json-view';
 import { epochTheme } from '../styles/themes/EpochTheme';
 import '../styles/graphQLCodeBlock.css';
 
-// export interface QueryInfoProps {}
-
+// this component displays the query in a collapsible view inside of the InfoContainer
 const QueryInfo = ({ queryString, variables }) => {
   return (
     <div className="query-info">
@@ -40,6 +39,7 @@ const QueryInfo = ({ queryString, variables }) => {
 
 QueryInfo.propTypes = {
   queryString: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
   variables: PropTypes.object.isRequired,
 };
 

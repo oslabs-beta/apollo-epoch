@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactJson from 'react-json-view';
 import { epochTheme } from '../styles/themes/EpochTheme';
 
+// this component displays a collapsible view of the data associated with the currently selected cache key (from the StateSidebar)
 const StateValueDisplay = ({ stateValue }) => {
   return (
     <div className="state-value">
