@@ -1,47 +1,54 @@
 {
-  "root": true,
-  "parser": "babel-eslint",
-  "extends": [
-    "eslint:recommended",
-    "airbnb",
-    "plugin:prettier/recommended",
-    "plugin:react/recommended"
-  ],
-  "plugins": ["prettier", "react", "jest"],
-  "env": {
-    "browser": true,
-    "webextensions": true,
-    "es6": true,
-    "jest": true
-  },
-
-  "rules": {
-    "prettier/prettier": "error",
-    "import/prefer-default-export": "error",
-    "no-unused-vars": "warn",
-    "consistent-return": "warn",
-    "no-use-before-define": [
-      "warn",
-      {
-        "functions": false
-      }
+    "root": true,
+    "parser": "babel-eslint",
+    "extends": [
+        "eslint:recommended",
+        "airbnb",
+        "plugin:prettier/recommended",
+        "plugin:react/recommended"
     ],
-    "no-console": [
-      "warn",
-      {
-        "allow": ["error"]
-      }
+    "plugins": [
+        "prettier",
+        "react",
+        "jest"
     ],
-    "array-element-newline": [
-      "error",
-      {
-        "ArrayExpression": "consistent",
-        "ArrayPattern": {
-          "minItems": 3
-        }
-      }
-    ],
-
-    "import/no-extraneous-dependencies": ["warn"]
-  }
+    "env": {
+        "browser": true,
+        "webextensions": true,
+        "es6": true,
+        "jest": true
+    },
+    "rules": {
+        "prettier/prettier": "error",
+        "import/prefer-default-export": "error",
+        "no-unused-vars": "warn",
+        "consistent-return": "warn",
+        "no-use-before-define": [
+            "warn",
+            {
+                "functions": false
+            }
+        ],
+        "no-console": [
+            "warn",
+            {
+                "allow": [
+                    "error"
+                ]
+            }
+        ],
+        "array-element-newline": [
+            "error",
+            {
+                "ArrayExpression": "consistent",
+                "ArrayPattern": {
+                    "minItems": 3
+                }
+            }
+        ],
+        "import/no-extraneous-dependencies": [
+            "warn"
+        ],
+        "[object Object]": 0
+    }
 }
