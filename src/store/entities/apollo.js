@@ -162,7 +162,6 @@ function startingUpCase(state, action) {
 }
 
 function initializePortCase(state, action) {
-  console.log('Port Initialized');
   state.loadingApollo = true;
   superPort = action.payload;
   superPort.connection.postMessage({
@@ -179,7 +178,6 @@ function initiateEpochShiftCase(state, action) {
 }
 
 function fetchApolloCase(state, action) {
-  console.log('reduceTabId', chrome.devtools.inspectedWindow.tabId);
   superPort.connection.postMessage({
     type: sendMessageTypes.epoch.fetchApolloData,
     payload: chrome.devtools.inspectedWindow.tabId,
@@ -187,7 +185,6 @@ function fetchApolloCase(state, action) {
 }
 
 function noApolloCase(state, action) {
-  console.log('No Apollo Case');
   state.hasDunderApollo = false;
   state.loadingApollo = false;
 }
@@ -264,8 +261,6 @@ function setPrevQueryCase(state, action) {
 }
 
 function receivedNetworkQueryCase(state, action) {
-  console.log('Cleaning up network request for ', action.payload.hydratedQuery.name);
-  console.log('Hydrated Query Obj ->', action.payload.hydratedQuery);
   const { queryKey, hydratedQuery } = action.payload;
   const { id } = hydratedQuery;
   const typeIndicator = id[0];
@@ -283,11 +278,9 @@ function receivedNetworkQueryCase(state, action) {
     type: sendMessageTypes.epoch.createSnapshot,
     payload: { tabId: chrome.devtools.inspectedWindow.tabId, data: { id, timeStamp: Date.now() } },
   });
-  console.log('networkHoldingRoom Clean', state.networkHoldingRoom);
 }
 
 function clearApolloDataCase(state, action) {
-  console.log('Re-initializing state');
   state.hasDunderApollo = false;
   state.loadingApollo = false;
   state.activeQuery = {};
@@ -339,7 +332,6 @@ export const passHarToCompose = (filteredHar) =>
 -------------*/
 export const getTimeline = createSelector(
   (state) => {
-    console.log('selector State', state);
     return state.apollo.timeline;
   },
   (state) => state.apollo.queries,
@@ -377,27 +369,23 @@ function processApolloData(state, apolloData) {
     state.hasDunderApollo = true;
     state.loadingApollo = false;
     state.graphQlUri = graphQlUri;
-    console.log(`CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`);
-    console.log(
-      `CurrM: ${mutationCount}, PrevM: ${prevMutationCount}, StateM: ${state.mutationIdCounter}`
-    );
 
     // Debug
-    if (state.queryIdCounter !== prevQueryCount || state.mutationIdCounter !== prevMutationCount) {
-      console.log('*****QUERIES / MUTATIONS MISSED*****');
-      console.log(
-        `CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`
-      );
-      console.log(
-        `CurrM: ${mutationCount}, PrevM: ${prevMutationCount}, StateM: ${state.mutationIdCounter}`
-      );
-    }
+    // if (state.queryIdCounter !== prevQueryCount || state.mutationIdCounter !== prevMutationCount) {
+    //   console.log('*****QUERIES / MUTATIONS MISSED*****');
+    //   console.log(
+    //     `CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`
+    //   );
+    //   console.log(
+    //     `CurrM: ${mutationCount}, PrevM: ${prevMutationCount}, StateM: ${state.mutationIdCounter}`
+    //   );
+    // }
 
     let mutationsToGrab = mutationCount - prevMutationCount;
     if (mutationsToGrab && mutationsToGrab <= mutations.length) {
       while (mutationsToGrab > 0) {
         const { id, document, error, loading, variables, name, isNetwork } = mutations.pop();
-        console.log(`mutation ${id} Loading State`, loading);
+
         const stateMutationObj = {
           id,
           type: mutationType,
@@ -410,7 +398,6 @@ function processApolloData(state, apolloData) {
           isNetwork,
         };
         if (stateMutationObj.loading) {
-          console.log('Network Mutation', stateMutationObj.name);
           state.networkHoldingRoom[stateMutationObj.queryString] = stateMutationObj;
         } else {
           state.timeline.push(id);
@@ -432,10 +419,7 @@ function processApolloData(state, apolloData) {
     let queriesToGrab = queryCount - prevQueryCount;
     if (queriesToGrab && queriesToGrab <= queries.length) {
       while (queriesToGrab > 0) {
-        console.log('received Q Case queries ->', queries);
-        console.log('query items ->', queries.length);
         const queryObj = queries.pop();
-        console.log('q in question -> ', queryObj);
         const { id, document, variables, name, lastResult, isNetwork } = queryObj;
         const stateQueryObj = {
           id,
@@ -448,7 +432,6 @@ function processApolloData(state, apolloData) {
         };
 
         if (!lastResult || lastResult.loading) {
-          console.log('Network Query ->', stateQueryObj.name);
           state.networkHoldingRoom[stateQueryObj.queryString] = stateQueryObj;
         } else {
           const { error, data } = lastResult;

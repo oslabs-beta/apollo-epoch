@@ -43,7 +43,7 @@ const ApolloEpochDevHook = ({ rootId }) => {
     },
     set(value) {
       hostRootFiber._epochCurrent = value;
-      // console.log('rootFiber Was Swapped to -> ', value);
+
       const commitId = Date.now();
       const commitRecord = epochStore.commitLog.initializeCommitRecord(commitId, apolloClient);
       const newCustomTree = new CustomFiberTree(value, epochStore, commitRecord, 'randomKey'); // not storing this anywhere right now...looking at side effect storage in epoch store
@@ -97,8 +97,7 @@ const ApolloEpochDevHook = ({ rootId }) => {
       if (event.data.type === '$$$takeStateSnapshot$$$') {
         const lastCommitId = `${epochStore.commitLog.lastCommit}`;
         const clientClone = epochStore.commitLog.commits[lastCommitId].clientSnap;
-        // console.log('CLONED CLIENT -> ',clientClone);
-        // console.log('ADDING ACTION ID TIME')
+
         const { id: apolloActionId, timeStamp } = event.data.payload;
         epochStore.clientSnaps.addHistoricalClient(clientClone, apolloActionId);
         epochStore.commitLog.apolloActionIds[apolloActionId] = timeStamp;
@@ -107,8 +106,6 @@ const ApolloEpochDevHook = ({ rootId }) => {
       if (event.data.type === '$$$epochShift$$$') {
         const { apolloActionId } = event.data.payload;
         const historicalClient = epochStore.clientSnaps.getHistoricalClient(apolloActionId);
-        // console.log('CURRENT CLIENT -> ', epochStore.currentApolloClient);
-        // console.log(`${apolloActionId} Historical Client -> `, historicalClient);
 
         historicalClient.zzzUPDATESUCCESS = { type: 'SUCCESS', AAID: apolloActionId };
         const jumpRecord = epochShift(
@@ -116,14 +113,11 @@ const ApolloEpochDevHook = ({ rootId }) => {
           historicalClient,
           hostRootFiber.current
         );
-        // console.log('CURRENT CLIENT POST SHIFT -> ', epochStore.currentApolloClient);
-        // console.log('APOLLO WINDOW POST SHIFT -> ', window.__APOLLO_CLIENT__);
-        // console.log('JUMP RECORD -> ', jumpRecord);
       }
     }
   });
 
-  return <>{/* console.log('Apollo Context -> ', context) */}</>;
+  return <></>;
 };
 
 export default ApolloEpochDevHook;

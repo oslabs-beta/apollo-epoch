@@ -12,7 +12,6 @@ All informational messages can be log messages sans data (data property on paylo
 
 const timeout = 10; // ms to wait for Apollo to update
 const { epoch, contentScript, clientWindow, background } = sendMessageTypes;
-console.log('contentScript Running');
 
 /*
 -----------------------
@@ -103,7 +102,6 @@ CLIENT APP LISTENERS
 */
 
 window.addEventListener('message', (event) => {
-  console.log('windowEvent', event.data);
   if (event.source !== window) return;
   if (event.data && event.data.type === clientWindow.noApolloClient) {
     chrome.runtime.sendMessage({
@@ -208,7 +206,6 @@ into our application. Client App -> Content Script -> Background Script -> Epoch
 */
 const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch) => {
   const apolloData = window.__APOLLO_CLIENT__.queryManager;
-  console.log('WINDOW TEST', apolloData);
   if (!apolloData) {
     window.postMessage({ type: '$$$noApollo$$$' });
     return;
@@ -240,8 +237,7 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
     },
     '*'
   );
-  console.log('initializeType', initialize);
-  console.log('manualType', manualFetch);
+
   if (
     queryIdCounter <= queryCount &&
     mutationIdCounter <= mutationCount &&
@@ -252,8 +248,6 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
 
   // Get necessary query data
   function filterQueryInfo(queryInfoMap) {
-    console.log('queryMap', queryInfoMap);
-
     const filteredQueryInfo = [];
 
     queryInfoMap.forEach((value, key) => {

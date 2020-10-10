@@ -12,57 +12,8 @@ const { epoch, contentScript, background } = sendMessageTypes;
 
 console.log('Background Script Initialized');
 const connections = {}; // {tabId, epochPort}
-const networkStore = {}; // catches queries and mutations that are awaiting network responses
 const preEpochCaches = {}; // {tabId, cacheResponses: [cacheObj]};
-const graphQlUrls = {}; // {tabId, graphQlUrl} --> Avoids multiple instance of same URL
 const noApollos = new Set(); // {tabId}
-const computeGraphQlUrlArray = () => {
-  const tabIds = Object.keys(graphQlUrls);
-  return tabIds.map((tabId) => graphQlUrls[tabId]); // accounts for multiple tab instances
-};
-
-/*
----------------------------
-NETWORK REQUEST LISTENERS
----------------------------
-*/
-
-// Need to Keep coverage for NON user initiated queries
-
-const networkListener = (requestDetails) => {
-  const { tabId: portId } = requestDetails;
-  console.log('Net Req Details -> ', requestDetails);
-
-  if (!portId) {
-    console.log('No Tab on Request -> ', requestDetails);
-    return;
-  }
-
-  // Create queryCatcher (DOES NOT ACCOUNT FOR BATCH REQUESTS)
-  if (requestDetails.method === 'POST') networkStore[requestDetails.requestId] = 'awaitingObject';
-
-  // Get cache snapshot in case this request was not triggered by user (if it was ID counts should be the same)
-  // chrome.tabs.sendMessage(requestDetails.tabId, { type: background });
-
-  if (!connections[portId]) {
-    console.log(`No Epoch Panel ${portId} to send Apollo Data -> `, requestDetails);
-    return;
-  }
-
-  connections[portId].postMessage({
-    type: background.log,
-    payload: { title: 'webRequestListen', data: requestDetails },
-  });
-};
-
-const networkResponseListener = (responseDetails) => {
-  console.log('Response to Most Recent Request', responseDetails);
-};
-
-chrome.webRequest.onBeforeRequest.addListener(networkListener, { urls: computeGraphQlUrlArray() });
-chrome.webRequest.onCompleted.addListener(networkResponseListener, {
-  urls: computeGraphQlUrlArray(),
-});
 
 /*
 --------------------------------
@@ -72,8 +23,6 @@ CONTENT SCRIPT COMMUNICATION
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === contentScript.initialize) {
-    console.log('Content Script Initialized');
-
     const portId = sender.tab.id;
     if (connections[portId]) {
       connections[portId].postMessage({
@@ -104,29 +53,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === contentScript.apolloReceived) {
     const apolloData = message.payload;
     const portId = sender.tab.id;
-    const { graphQlUri } = apolloData;
-
-    // Ensure our network listeners are always up to date
-    if (graphQlUri && graphQlUri !== graphQlUrls[portId]) {
-      graphQlUrls[portId] = graphQlUri;
-
-      /*
-      --------------
-        TO DELETE - SELECTIVELY - Keep addition of array to some
-      --------------
-      */
-      // ------------------------------------------------------------------
-      // Update URL filter list in webRequest Listeners
-      chrome.webRequest.onBeforeRequest.removeListener(networkListener);
-      chrome.webRequest.onBeforeRequest.addListener(networkListener, {
-        urls: computeGraphQlUrlArray(),
-      });
-      chrome.webRequest.onCompleted.removeListener(networkResponseListener);
-      chrome.webRequest.onCompleted.addListener(networkResponseListener, {
-        urls: computeGraphQlUrlArray(),
-      });
-    }
-    // --------------------------------------------------------------------
 
     // Handle no Epoch Panel Initialized. Takes into account multiple tabs
     if (!connections[portId]) {
@@ -184,7 +110,6 @@ chrome.runtime.onConnect.addListener((port) => {
   // create Listener that will save connection instance (port) for later use AND respond
   // to messages sent via that connection instance -- in case Multiple Apollo tabs in use
   const epochListener = (message) => {
-    console.log('messageObj', message);
     const { payload: tabId, type } = message;
 
     if (type === epoch.saveConnection) {
@@ -203,8 +128,6 @@ chrome.runtime.onConnect.addListener((port) => {
     }
 
     if (type === epoch.fetchApolloData) {
-      console.log('tabId', message.payload);
-      console.log('tabId', message.type);
       chrome.tabs.sendMessage(Number(tabId), message, (response) => {
         connections[tabId].postMessage(response);
       });
@@ -242,12 +165,3 @@ chrome.runtime.onConnect.addListener((port) => {
     });
   });
 });
-
-/*
--------------------------------------
-HELPER FUNCTION
--------------------------------------
-*/
-
-// Checks is query / mutations are network requests and saves them if they are
-function gateKeeper(apolloData) {}
