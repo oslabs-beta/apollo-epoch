@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import StateSidebar from './StateSidebar';
 import StateValueDisplay from './StateValueDisplay';
 
-// export interface StateInfoProps {}
-
+// this component displays a list of the keys inside the cache for a given query/mutation
+// selecting a key will render the data for that key
 const StateInfo = ({ stateSnapshot }) => {
   const [activeKey, setActiveKey] = React.useState(null);
   return (

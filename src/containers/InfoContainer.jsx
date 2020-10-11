@@ -1,4 +1,7 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/forbid-prop-types */
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { AppBar, Tabs, Tab, Typography, Box } from '@material-ui/core/';
@@ -10,6 +13,7 @@ import SphereLoader from '../components/SphereLoader/SphereLoader';
 
 const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
 
+// material UI component for TabPanel
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -121,6 +125,12 @@ const InfoContainer = () => {
       )}
     </div>
   );
+};
+
+TabPanel.propTypes = {
+  children: PropTypes.array.isRequired,
+  value: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default InfoContainer;
