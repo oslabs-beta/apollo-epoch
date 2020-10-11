@@ -107,12 +107,15 @@ const ApolloEpochDevHook = ({ rootId }) => {
         const { apolloActionId } = event.data.payload;
         const historicalClient = epochStore.clientSnaps.getHistoricalClient(apolloActionId);
 
-        historicalClient.zzzUPDATESUCCESS = { type: 'SUCCESS', AAID: apolloActionId };
+        // historicalClient.zzzUPDATESUCCESS = { type: 'SUCCESS', AAID: apolloActionId }; // Testing only
         const jumpRecord = epochShift(
           epochStore.currentApolloClient,
           historicalClient,
           hostRootFiber.current
         );
+
+        // Trigger Update Entry in Epoch
+        window.postMessage({ type: '$$$completedEpochShift$$$', payload: apolloActionId }, '*');
       }
     }
   });

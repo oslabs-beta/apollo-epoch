@@ -12,6 +12,7 @@ import sendMessageTypes from '../messagesAndActionTypes/messageTypes';
  FROM CLIENT APP
    Apollo Data Obj {
       manual: manualFetch,
+      epochShift: apolloActionId -- populated when cache is grabbed from a time jump (epoch shift)
       graphQlUri,
       queries: [queryDataObjs]
       mutations: [mutationDataObjs]
@@ -199,10 +200,11 @@ function receivedManualFetchCase(state, action) {
   state.hasDunderApollo = true;
   state.fetchCounter += 1;
   const fetchId = `F${state.fetchCounter}`;
+  const name = apolloData.epochShift ? `Epoch Shift to ${apolloData.epochShift}` : 'Manual Fetch';
   const fetchObj = {
     id: fetchId,
     type: manualFetchType,
-    name: fetchId,
+    name,
     cacheSnapshot: apolloData.cache,
   };
   state.timeline.push(fetchId);

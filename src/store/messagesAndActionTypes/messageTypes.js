@@ -27,7 +27,12 @@ const sendMessageTypes = {
     log: LOG,
     error: ERROR,
   },
-  clientWindow: { queryUpdate: '$$$queryUpdate$$$', noApolloClient: '$$$noApollo$$$', log: LOG }, // ensure no window message conflicts
+  clientWindow: {
+    queryUpdate: '$$$queryUpdate$$$',
+    noApolloClient: '$$$noApollo$$$',
+    log: LOG,
+    epochShiftComplete: '$$$completedEpochShift$$$',
+  }, // ensure no window message conflicts
 };
 
 export default sendMessageTypes;
