@@ -4,7 +4,7 @@ import EpochJumpRecord from './store/EpochStore';
 
 const timeJumpLite = true;
 
-function epochShift(apolloClient, historicalClient, rootFiber) {
+function epochShift(apolloClient, historicalClient, rootFiber, apolloActionId) {
   // //TESTING ONLY
   const epochJumpRecord = new EpochJumpRecord(apolloClient);
 
@@ -17,7 +17,6 @@ function epochShift(apolloClient, historicalClient, rootFiber) {
   // TESTING ONLY
   const commitId = Date.now();
   const commitRecord = epochJumpRecord.commitLog.initializeCommitRecord(commitId, apolloClient);
-  const { apolloActionId } = historicalClient.zzzUPDATESUCCESS;
   const jumpTree = new EpochJumpTree(rootFiber, epochJumpRecord, commitRecord, apolloActionId);
 
   return epochJumpRecord;

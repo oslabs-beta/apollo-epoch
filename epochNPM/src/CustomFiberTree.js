@@ -38,8 +38,8 @@
 
   }
 */
-import { refTags } from '../refTags';
-import { setEpochRefProp } from '../utils';
+import { refTags } from './refTags';
+import { setEpochRefProp } from './utils';
 
 export default class CustomFiberTree {
   constructor(rootFiber, epochStore, commitRecord, apolloActionId) {
@@ -49,9 +49,7 @@ export default class CustomFiberTree {
     this.commitRecord = commitRecord;
     this.treeId = apolloActionId;
     this.circularFiberReference = new Set();
-    // console.log('HOST ROOT FIBER IN TREE ->', rootFiber);
     this.rootFiber = this.traverseFiberTree(rootFiber, null);
-    // console.log('RootFiber in Tree -> ', this.rootFiber);
 
     // after finishing traversal rest all this so it's not hanging around
     this.componentStore = null;
@@ -82,8 +80,6 @@ export default class CustomFiberTree {
     if (!customFiberNode && (tag === 0 || tag === 1 || tag === 2 || tag === 3)) {
       customFiberNode = createStatelessNode(reactFiber, this.treeId);
     }
-    // console.log('CURRENT REACT FIBER -> ', reactFiber);
-    // console.log('CURRENT CUSTOM FIBER NODE ->', customFiberNode);
     return customFiberNode;
   }
 
@@ -133,7 +129,6 @@ function CustomFiberNode(componentId, unserializedState, reactFiber) {
   this.elementType = elementType ? elementType.name : 'No Type';
   this.isStatefulComponent = false;
   this.tag = tag;
-  // console.log('ELEMENT TYPE IN CUSTOM FIBER NODE ->', elementType);
 
   if (unserializedState) {
     this.componentData.serializedState = serializeState(unserializedState);
@@ -146,7 +141,6 @@ function CustomFiberNode(componentId, unserializedState, reactFiber) {
 ---------------------*/
 // unfinished -- unneccessary for BASIC CACHE time travel.
 function serializeState(unserializedState) {
-  // console.log('FLATTENING YOUR STATE! ->', unserializedState);
   return 'PLACEHOLDER STATE OBJ';
 }
 
@@ -155,7 +149,6 @@ function serializeState(unserializedState) {
 // The queue should be the component in which the hooks reside
 // Individual hooksFibers also have a memoized state property which appears to be another linked list to ... don't know yet
 function createHooksNode(hooksFiber, componentStore, refList, commitLog, commitRecord, treeId) {
-  // console.log('Creating Hooks Node');
   let { memoizedState: currentHook } = hooksFiber;
   const hookStateObjsForComponentStore = [];
   const treeHooksStates = [];
@@ -185,8 +178,6 @@ function createHooksNode(hooksFiber, componentStore, refList, commitLog, commitR
         currentHook.memoizedState.current &&
         currentHook.memoizedState.current.client
       ) {
-        console.log('INSIDE QUERY HOOK IF -> ', currentHook.memoizedState);
-
         // accounts for ref.current not assigned synchronously
         const epochProp = currentHook.memoizedState.current.epoch;
         if (!epochProp) setEpochRefProp(currentHook.memoizedState, refList, refTags.queryRef);
@@ -226,7 +217,6 @@ function createHooksNode(hooksFiber, componentStore, refList, commitLog, commitR
 }
 
 function createClassNode(reactFiber, componentStore, treeId) {
-  // console.log('Creating Class Node');
   const { stateNode } = reactFiber;
   const componentId = componentStore.addComponent(stateNode.state, stateNode, treeId);
 
@@ -234,6 +224,5 @@ function createClassNode(reactFiber, componentStore, treeId) {
 }
 
 function createStatelessNode(reactFiber, treeId) {
-  // console.log('Creating Stateless Node');
   return new CustomFiberNode(`${treeId}'Stateless'`, 'stateless', reactFiber);
 }

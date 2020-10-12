@@ -12,6 +12,7 @@ import sendMessageTypes from '../messagesAndActionTypes/messageTypes';
  FROM CLIENT APP
    Apollo Data Obj {
       manual: manualFetch,
+      epochShift: apolloActionId -- populated when cache is grabbed from a time jump (epoch shift)
       graphQlUri,
       queries: [queryDataObjs]
       mutations: [mutationDataObjs]
@@ -84,6 +85,7 @@ const manualFetchType = 'Manual Fetch';
 const initialState = {
   hasDunderApollo: false,
   loadingApollo: false,
+  timeTravelPossible: false,
   activeQuery: {},
   prevQuery: {},
   chromeTabId: '',
@@ -108,6 +110,7 @@ const initialState = {
 
 const STARTING_UP = 'startingUp'; // For debugging
 const PORT_INITIALIZED = 'portInitialized';
+const TOGGLE_TIME_TRAVEL = 'toggleTimeTravel';
 const EPOCH_SHIFT = 'initiateEpochShift';
 const NO_APOLLO = 'noApolloClient';
 const FETCH_APOLLO = 'fetchApolloData';
@@ -125,6 +128,7 @@ const CLEAR_APOLLO_DATA = 'clearApolloData';
 // eslint-disable-next-line import/prefer-default-export
 export const startingUp = createAction(STARTING_UP); // no payload
 export const initializedPort = createAction(PORT_INITIALIZED); // superPortObj
+export const toggleTimeTravel = createAction(TOGGLE_TIME_TRAVEL); // payload: boolean from client App
 export const initiateEpochShift = createAction(EPOCH_SHIFT); // payload: {apolloActionId}
 export const noApollo = createAction(NO_APOLLO);
 export const fetchApollo = createAction(FETCH_APOLLO); // should post message
@@ -141,6 +145,7 @@ export const clearApolloData = createAction(CLEAR_APOLLO_DATA);
 ----------------*/
 const apolloReducer = createReducer(initialState, {
   [PORT_INITIALIZED]: initializePortCase,
+  [TOGGLE_TIME_TRAVEL]: toggleTimeTravelCase,
   [EPOCH_SHIFT]: initiateEpochShiftCase,
   [STARTING_UP]: startingUpCase,
   [NO_APOLLO]: noApolloCase,
@@ -162,13 +167,17 @@ function startingUpCase(state, action) {
 }
 
 function initializePortCase(state, action) {
-  console.log('Port Initialized');
   state.loadingApollo = true;
   superPort = action.payload;
   superPort.connection.postMessage({
     type: sendMessageTypes.epoch.initialize,
     payload: chrome.devtools.inspectedWindow.tabId,
   });
+}
+
+function toggleTimeTravelCase(state, action) {
+  console.log('TIME TRAVEL POSSIBLE EPOCH -> ', action.payload);
+  state.timeTravelPossible = action.payload;
 }
 
 function initiateEpochShiftCase(state, action) {
@@ -179,7 +188,6 @@ function initiateEpochShiftCase(state, action) {
 }
 
 function fetchApolloCase(state, action) {
-  console.log('reduceTabId', chrome.devtools.inspectedWindow.tabId);
   superPort.connection.postMessage({
     type: sendMessageTypes.epoch.fetchApolloData,
     payload: chrome.devtools.inspectedWindow.tabId,
@@ -187,7 +195,6 @@ function fetchApolloCase(state, action) {
 }
 
 function noApolloCase(state, action) {
-  console.log('No Apollo Case');
   state.hasDunderApollo = false;
   state.loadingApollo = false;
 }
@@ -202,10 +209,11 @@ function receivedManualFetchCase(state, action) {
   state.hasDunderApollo = true;
   state.fetchCounter += 1;
   const fetchId = `F${state.fetchCounter}`;
+  const name = apolloData.epochShift ? `Epoch Shift to ${apolloData.epochShift}` : 'Manual Fetch';
   const fetchObj = {
     id: fetchId,
     type: manualFetchType,
-    name: fetchId,
+    name,
     cacheSnapshot: apolloData.cache,
   };
   state.timeline.push(fetchId);
@@ -264,8 +272,6 @@ function setPrevQueryCase(state, action) {
 }
 
 function receivedNetworkQueryCase(state, action) {
-  console.log('Cleaning up network request for ', action.payload.hydratedQuery.name);
-  console.log('Hydrated Query Obj ->', action.payload.hydratedQuery);
   const { queryKey, hydratedQuery } = action.payload;
   const { id } = hydratedQuery;
   const typeIndicator = id[0];
@@ -283,11 +289,9 @@ function receivedNetworkQueryCase(state, action) {
     type: sendMessageTypes.epoch.createSnapshot,
     payload: { tabId: chrome.devtools.inspectedWindow.tabId, data: { id, timeStamp: Date.now() } },
   });
-  console.log('networkHoldingRoom Clean', state.networkHoldingRoom);
 }
 
 function clearApolloDataCase(state, action) {
-  console.log('Re-initializing state');
   state.hasDunderApollo = false;
   state.loadingApollo = false;
   state.activeQuery = {};
@@ -325,6 +329,7 @@ export const initializeBackgroundConnection = () =>
       receivedApolloManual: RECEIVED_MANUAL_FETCH,
       noApollo: NO_APOLLO,
       initializeCache: INITIALIZED_CACHE_CHECK,
+      toggleTimeTravel: TOGGLE_TIME_TRAVEL,
     },
   });
 
@@ -339,7 +344,6 @@ export const passHarToCompose = (filteredHar) =>
 -------------*/
 export const getTimeline = createSelector(
   (state) => {
-    console.log('selector State', state);
     return state.apollo.timeline;
   },
   (state) => state.apollo.queries,
@@ -377,27 +381,23 @@ function processApolloData(state, apolloData) {
     state.hasDunderApollo = true;
     state.loadingApollo = false;
     state.graphQlUri = graphQlUri;
-    console.log(`CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`);
-    console.log(
-      `CurrM: ${mutationCount}, PrevM: ${prevMutationCount}, StateM: ${state.mutationIdCounter}`
-    );
 
     // Debug
-    if (state.queryIdCounter !== prevQueryCount || state.mutationIdCounter !== prevMutationCount) {
-      console.log('*****QUERIES / MUTATIONS MISSED*****');
-      console.log(
-        `CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`
-      );
-      console.log(
-        `CurrM: ${mutationCount}, PrevM: ${prevMutationCount}, StateM: ${state.mutationIdCounter}`
-      );
-    }
+    // if (state.queryIdCounter !== prevQueryCount || state.mutationIdCounter !== prevMutationCount) {
+    //   console.log('*****QUERIES / MUTATIONS MISSED*****');
+    //   console.log(
+    //     `CurrQ: ${queryCount}, PrevQ: ${prevQueryCount}, StateQ: ${state.queryIdCounter}`
+    //   );
+    //   console.log(
+    //     `CurrM: ${mutationCount}, PrevM: ${prevMutationCount}, StateM: ${state.mutationIdCounter}`
+    //   );
+    // }
 
     let mutationsToGrab = mutationCount - prevMutationCount;
     if (mutationsToGrab && mutationsToGrab <= mutations.length) {
       while (mutationsToGrab > 0) {
         const { id, document, error, loading, variables, name, isNetwork } = mutations.pop();
-        console.log(`mutation ${id} Loading State`, loading);
+
         const stateMutationObj = {
           id,
           type: mutationType,
@@ -410,7 +410,6 @@ function processApolloData(state, apolloData) {
           isNetwork,
         };
         if (stateMutationObj.loading) {
-          console.log('Network Mutation', stateMutationObj.name);
           state.networkHoldingRoom[stateMutationObj.queryString] = stateMutationObj;
         } else {
           state.timeline.push(id);
@@ -432,10 +431,7 @@ function processApolloData(state, apolloData) {
     let queriesToGrab = queryCount - prevQueryCount;
     if (queriesToGrab && queriesToGrab <= queries.length) {
       while (queriesToGrab > 0) {
-        console.log('received Q Case queries ->', queries);
-        console.log('query items ->', queries.length);
         const queryObj = queries.pop();
-        console.log('q in question -> ', queryObj);
         const { id, document, variables, name, lastResult, isNetwork } = queryObj;
         const stateQueryObj = {
           id,
@@ -448,7 +444,6 @@ function processApolloData(state, apolloData) {
         };
 
         if (!lastResult || lastResult.loading) {
-          console.log('Network Query ->', stateQueryObj.name);
           state.networkHoldingRoom[stateQueryObj.queryString] = stateQueryObj;
         } else {
           const { error, data } = lastResult;
