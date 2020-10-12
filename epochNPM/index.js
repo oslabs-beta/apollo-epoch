@@ -113,11 +113,11 @@ const ApolloEpochDevHook = ({ rootId }) => {
         const { apolloActionId } = event.data.payload;
         const historicalClient = epochStore.clientSnaps.getHistoricalClient(apolloActionId);
 
-        // historicalClient.zzzUPDATESUCCESS = { type: 'SUCCESS', AAID: apolloActionId }; // Testing only
         const jumpRecord = epochShift(
           epochStore.currentApolloClient,
           historicalClient,
-          hostRootFiber.current
+          hostRootFiber.current,
+          apolloActionId
         );
 
         // Trigger Update Entry in Epoch

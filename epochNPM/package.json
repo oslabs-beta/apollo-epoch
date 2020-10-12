@@ -1,6 +1,6 @@
 {
   "name": "apollo-epoch",
-  "version": "1.0.0",
+  "version": "0.1.2",
   "description": "A component for use with the Apollo Epoch chrome extension to enable time travel debugging for the Apollo cache",
   "main": "index.js",
   "scripts": {
