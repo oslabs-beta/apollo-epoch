@@ -3,7 +3,7 @@ import { LOG, ERROR } from './loggerActions';
 const sendMessageTypes = {
   epoch: {
     saveConnection: 'saveConnection',
-    initialize: 'epochPanelOpened',
+    initialize: '$$$epochPanelOpened$$$',
     fetchApolloData: 'fetchApolloData',
     fetchApolloDataForNetQuery: 'fetchDataForNetQuery',
     createSnapshot: '$$$takeStateSnapshot$$$',
@@ -32,6 +32,7 @@ const sendMessageTypes = {
     noApolloClient: '$$$noApollo$$$',
     log: LOG,
     epochShiftComplete: '$$$completedEpochShift$$$',
+    timeTravelPossible: '$$$timeTravelPossible$$$',
   }, // ensure no window message conflicts
 };
 

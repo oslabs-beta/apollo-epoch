@@ -56,11 +56,10 @@ chrome.runtime.sendMessage(
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === epoch.initialize) {
-    console.log(epoch.initialize);
-
     const { queryCount, mutationCount } = counts.getCounts();
+    window.postMessage({ type: epoch.initialize }, '*'); // Query Client App to indicate whether or not time travel is activated
     injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, true); // pass true for initialize param
-    sendResponse({ type: contentScript.initialCacheCheck }); // this response triggers exponential backoff check in Epoch Panel (not yet implemented)
+    // sendResponse({ type: contentScript.initialCacheCheck }); // this response triggers exponential backoff check in Epoch Panel (not yet implemented)
   }
 
   if (message.type === epoch.fetchApolloData) {
@@ -106,6 +105,14 @@ window.addEventListener('message', (event) => {
   if (event.data && event.data.type === clientWindow.noApolloClient) {
     chrome.runtime.sendMessage({
       type: contentScript.noApolloClient,
+    });
+    return;
+  }
+
+  if (event.data && event.data.type === clientWindow.timeTravelPossible) {
+    chrome.runtime.sendMessage({
+      type: clientWindow.timeTravelPossible,
+      payload: event.data.payload,
     });
     return;
   }

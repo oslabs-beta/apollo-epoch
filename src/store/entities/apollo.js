@@ -85,6 +85,7 @@ const manualFetchType = 'Manual Fetch';
 const initialState = {
   hasDunderApollo: false,
   loadingApollo: false,
+  timeTravelPossible: false,
   activeQuery: {},
   prevQuery: {},
   chromeTabId: '',
@@ -109,6 +110,7 @@ const initialState = {
 
 const STARTING_UP = 'startingUp'; // For debugging
 const PORT_INITIALIZED = 'portInitialized';
+const TOGGLE_TIME_TRAVEL = 'toggleTimeTravel';
 const EPOCH_SHIFT = 'initiateEpochShift';
 const NO_APOLLO = 'noApolloClient';
 const FETCH_APOLLO = 'fetchApolloData';
@@ -126,6 +128,7 @@ const CLEAR_APOLLO_DATA = 'clearApolloData';
 // eslint-disable-next-line import/prefer-default-export
 export const startingUp = createAction(STARTING_UP); // no payload
 export const initializedPort = createAction(PORT_INITIALIZED); // superPortObj
+export const toggleTimeTravel = createAction(TOGGLE_TIME_TRAVEL); // payload: boolean from client App
 export const initiateEpochShift = createAction(EPOCH_SHIFT); // payload: {apolloActionId}
 export const noApollo = createAction(NO_APOLLO);
 export const fetchApollo = createAction(FETCH_APOLLO); // should post message
@@ -142,6 +145,7 @@ export const clearApolloData = createAction(CLEAR_APOLLO_DATA);
 ----------------*/
 const apolloReducer = createReducer(initialState, {
   [PORT_INITIALIZED]: initializePortCase,
+  [TOGGLE_TIME_TRAVEL]: toggleTimeTravelCase,
   [EPOCH_SHIFT]: initiateEpochShiftCase,
   [STARTING_UP]: startingUpCase,
   [NO_APOLLO]: noApolloCase,
@@ -169,6 +173,11 @@ function initializePortCase(state, action) {
     type: sendMessageTypes.epoch.initialize,
     payload: chrome.devtools.inspectedWindow.tabId,
   });
+}
+
+function toggleTimeTravelCase(state, action) {
+  console.log('TIME TRAVEL POSSIBLE EPOCH -> ', action.payload);
+  state.timeTravelPossible = action.payload;
 }
 
 function initiateEpochShiftCase(state, action) {
@@ -320,6 +329,7 @@ export const initializeBackgroundConnection = () =>
       receivedApolloManual: RECEIVED_MANUAL_FETCH,
       noApollo: NO_APOLLO,
       initializeCache: INITIALIZED_CACHE_CHECK,
+      toggleTimeTravel: TOGGLE_TIME_TRAVEL,
     },
   });
 

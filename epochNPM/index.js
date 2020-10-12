@@ -2,6 +2,7 @@
 /* eslint-disable import/no-unresolved */
 import React, { useContext } from 'react';
 import { getApolloContext } from '@apollo/client/react/context/ApolloContext';
+import { canUseWeakMap } from '@apollo/client/utilities/common/canUse';
 import EpochStore from './src/store/EpochStore';
 import { getEpochRefTag } from './src/utils';
 import { refTags } from './src/refTags';
@@ -27,6 +28,7 @@ const ApolloEpochDevHook = ({ rootId }) => {
 
   const apolloContext = useContext(getApolloContext());
   const apolloClient = apolloContext.client;
+  const timeTravelPossible = !canUseWeakMap;
 
   const epochHookProp = '__APOLLO_EPOCH_FIBER_HOOK__';
   if (!window[epochHookProp]) window[epochHookProp] = new EpochStore(apolloClient);
@@ -94,6 +96,10 @@ const ApolloEpochDevHook = ({ rootId }) => {
   window.addEventListener('message', (event) => {
     if (event.source !== window) return;
     if (event.data) {
+      if (event.data.type === '$$$epochPanelOpened$$$') {
+        window.postMessage({ type: '$$$timeTravelPossible$$$', payload: timeTravelPossible }, '*');
+      }
+
       if (event.data.type === '$$$takeStateSnapshot$$$') {
         const lastCommitId = `${epochStore.commitLog.lastCommit}`;
         const clientClone = epochStore.commitLog.commits[lastCommitId].clientSnap;
@@ -120,7 +126,7 @@ const ApolloEpochDevHook = ({ rootId }) => {
     }
   });
 
-  return <></>;
+  return null;
 };
 
 export default ApolloEpochDevHook;

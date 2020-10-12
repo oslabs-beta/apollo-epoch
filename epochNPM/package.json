@@ -2,7 +2,7 @@
   "name": "apollo-epoch",
   "version": "1.0.0",
   "description": "A component for use with the Apollo Epoch chrome extension to enable time travel debugging for the Apollo cache",
-  "main": "index.jsx",
+  "main": "index.js",
   "scripts": {
     "test": "echo \\\"Error: no test specified\\\" && exit 1"
   },

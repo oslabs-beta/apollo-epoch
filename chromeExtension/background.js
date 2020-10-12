@@ -8,7 +8,7 @@ All Data Transfer Messages in Shape of : { type: senderType, payload: dataObj}
 All informational messages can be log messages sans data (data property on payload will print as undefined)
 */
 
-const { epoch, contentScript, background } = sendMessageTypes;
+const { epoch, contentScript, background, clientWindow } = sendMessageTypes;
 
 console.log('Background Script Initialized');
 const connections = {}; // {tabId, epochPort}
@@ -48,6 +48,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       return;
     }
     connections[portId].postMessage({ type: background.log, payload: message.payload });
+  }
+
+  if (message.type === clientWindow.timeTravelPossible) {
+    const portId = sender.tab.id;
+    if (!connections[portId]) {
+      console.log(`No Epoch Panel Connection Id ${portId} for Content Log`, message.payload);
+      return;
+    }
+    connections[portId].postMessage(message);
   }
 
   if (message.type === contentScript.apolloReceived) {
