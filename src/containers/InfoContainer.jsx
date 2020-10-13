@@ -68,7 +68,6 @@ const useStyles = makeStyles((theme) => ({
 const InfoContainer = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [timeTravelEnabled, toggleTimeTravel] = React.useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -77,6 +76,10 @@ const InfoContainer = () => {
   // get selected query based on state
   const selectedQuery = useSelector((state) => state.apollo.activeQuery);
   const loadingApollo = useSelector((state) => state.apollo.loadingApollo);
+  const timeTravelPossible = useSelector((state) => state.apollo.timeTravelPossible);
+  
+  const [timeTravelEnabled, toggleTimeTravel] = React.useState(timeTravelPossible);
+  
   return (
     <div>
     {timeTravelEnabled?(<div className="info-container">

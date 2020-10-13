@@ -2,6 +2,7 @@
 /* eslint-disable import/no-unresolved */
 import React, { useContext } from 'react';
 import { getApolloContext } from '@apollo/client/react/context/ApolloContext';
+import { canUseWeakMap } from '@apollo/client/utilities/common/canUse';
 import EpochStore from './src/store/EpochStore';
 import { getEpochRefTag } from './src/utils';
 import { refTags } from './src/refTags';
@@ -27,6 +28,7 @@ const ApolloEpochDevHook = ({ rootId }) => {
 
   const apolloContext = useContext(getApolloContext());
   const apolloClient = apolloContext.client;
+  const timeTravelPossible = !canUseWeakMap;
 
   const epochHookProp = '__APOLLO_EPOCH_FIBER_HOOK__';
   if (!window[epochHookProp]) window[epochHookProp] = new EpochStore(apolloClient);
@@ -43,7 +45,7 @@ const ApolloEpochDevHook = ({ rootId }) => {
     },
     set(value) {
       hostRootFiber._epochCurrent = value;
-      // console.log('rootFiber Was Swapped to -> ', value);
+
       const commitId = Date.now();
       const commitRecord = epochStore.commitLog.initializeCommitRecord(commitId, apolloClient);
       const newCustomTree = new CustomFiberTree(value, epochStore, commitRecord, 'randomKey'); // not storing this anywhere right now...looking at side effect storage in epoch store
@@ -94,11 +96,14 @@ const ApolloEpochDevHook = ({ rootId }) => {
   window.addEventListener('message', (event) => {
     if (event.source !== window) return;
     if (event.data) {
+      if (event.data.type === '$$$epochPanelOpened$$$') {
+        window.postMessage({ type: '$$$timeTravelPossible$$$', payload: timeTravelPossible }, '*');
+      }
+
       if (event.data.type === '$$$takeStateSnapshot$$$') {
         const lastCommitId = `${epochStore.commitLog.lastCommit}`;
         const clientClone = epochStore.commitLog.commits[lastCommitId].clientSnap;
-        // console.log('CLONED CLIENT -> ',clientClone);
-        // console.log('ADDING ACTION ID TIME')
+
         const { id: apolloActionId, timeStamp } = event.data.payload;
         epochStore.clientSnaps.addHistoricalClient(clientClone, apolloActionId);
         epochStore.commitLog.apolloActionIds[apolloActionId] = timeStamp;
@@ -107,23 +112,21 @@ const ApolloEpochDevHook = ({ rootId }) => {
       if (event.data.type === '$$$epochShift$$$') {
         const { apolloActionId } = event.data.payload;
         const historicalClient = epochStore.clientSnaps.getHistoricalClient(apolloActionId);
-        // console.log('CURRENT CLIENT -> ', epochStore.currentApolloClient);
-        // console.log(`${apolloActionId} Historical Client -> `, historicalClient);
 
-        historicalClient.zzzUPDATESUCCESS = { type: 'SUCCESS', AAID: apolloActionId };
         const jumpRecord = epochShift(
           epochStore.currentApolloClient,
           historicalClient,
-          hostRootFiber.current
+          hostRootFiber.current,
+          apolloActionId
         );
-        // console.log('CURRENT CLIENT POST SHIFT -> ', epochStore.currentApolloClient);
-        // console.log('APOLLO WINDOW POST SHIFT -> ', window.__APOLLO_CLIENT__);
-        // console.log('JUMP RECORD -> ', jumpRecord);
+
+        // Trigger Update Entry in Epoch
+        window.postMessage({ type: '$$$completedEpochShift$$$', payload: apolloActionId }, '*');
       }
     }
   });
 
-  return <>{/* console.log('Apollo Context -> ', context) */}</>;
+  return null;
 };
 
 export default ApolloEpochDevHook;
