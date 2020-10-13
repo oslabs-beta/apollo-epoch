@@ -68,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
 const InfoContainer = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [timeTravelEnabled, toggleTimeTravel] = React.useState(true);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -77,8 +78,13 @@ const InfoContainer = () => {
   const selectedQuery = useSelector((state) => state.apollo.activeQuery);
   const loadingApollo = useSelector((state) => state.apollo.loadingApollo);
   const timeTravelPossible = useSelector((state) => state.apollo.timeTravelPossible);
+  console.log('TTP', timeTravelPossible);
   
-  const [timeTravelEnabled, toggleTimeTravel] = React.useState(timeTravelPossible);
+  console.log('TTE, TTP',{timeTravelEnabled, timeTravelPossible});
+
+  React.useEffect(() => {
+    toggleTimeTravel(timeTravelPossible);
+  }, [timeTravelPossible]);
   
   return (
     <div>
