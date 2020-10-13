@@ -427,6 +427,17 @@ body {
   max-height: 100vh;
   width: 100%;
 }
+.time-travel-directions {
+  max-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.time-travel-dir-inner {
+  width: 95%;
+}
 
 .MuiTab-wrapper-62 {
   border: 1px solid var(--nav-buttons);
