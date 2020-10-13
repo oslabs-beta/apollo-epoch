@@ -75,6 +75,7 @@ const InfoContainer = () => {
   // get selected query based on state
   const selectedQuery = useSelector((state) => state.apollo.activeQuery);
   const loadingApollo = useSelector((state) => state.apollo.loadingApollo);
+  const timeTravelPossible = useSelector((state) => state.apollo.timeTravelPossible);
 
   return (
     <div className="info-container">

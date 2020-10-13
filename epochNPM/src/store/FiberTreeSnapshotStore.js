@@ -58,5 +58,4 @@ ComponentStore.prototype.getComponent = function (componentId) {
   return this.historicalComponents[componentId];
 };
 
-// console.log('COMPONENT STORE IS INJECTED!');
 export default ComponentStore;

@@ -22,10 +22,8 @@ const initializePort = ({ dispatch }) => (next) => (action) => {
   if (action.type !== connectToBackground.type) return next(action);
   const { onSuccess } = action.payload;
 
-  console.log('successWill call', onSuccess);
-
   const SuperPort = function (dispatchFunction) {
-    const { epoch, contentScript, background } = sendMessageTypes;
+    const { epoch, contentScript, background, clientWindow } = sendMessageTypes;
     const { tabId } = chrome.devtools.inspectedWindow;
     const dispatch = dispatchFunction;
     const { apolloActions } = action.payload;
@@ -35,12 +33,17 @@ const initializePort = ({ dispatch }) => (next) => (action) => {
       noApollo,
       initializeCache,
       clearApolloData,
+      toggleTimeTravel,
     } = apolloActions;
     const backgroundConnection = chrome.runtime.connect();
 
     backgroundConnection.onMessage.addListener((message, sender, sendResponse) => {
       if (message.type === contentScript.initialCacheCheck) {
         dispatch({ type: initializeCache });
+      }
+
+      if (message.type === clientWindow.timeTravelPossible) {
+        dispatch({ type: toggleTimeTravel, payload: message.payload });
       }
 
       if (message.type === background.log || message.type === contentScript.log) {

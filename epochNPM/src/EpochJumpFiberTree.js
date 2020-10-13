@@ -47,9 +47,8 @@ export default class CustomFiberTree {
     this.commitRecord = commitRecord;
     this.treeId = apolloActionId;
     this.circularFiberReference = new Set();
-    // console.log('HOST ROOT FIBER IN TREE ->', rootFiber);
+
     this.rootFiber = this.traverseFiberTree(rootFiber, null);
-    // console.log('RootFiber in Tree -> ', this.rootFiber);
 
     // after finishing traversal rest all this so it's not hanging around
     this.componentStore = null;
@@ -80,8 +79,7 @@ export default class CustomFiberTree {
     if (!customFiberNode && (tag === 0 || tag === 1 || tag === 2 || tag === 3)) {
       customFiberNode = createStatelessNode(reactFiber, this.treeId);
     }
-    // console.log('CURRENT REACT FIBER -> ', reactFiber);
-    // console.log('CURRENT CUSTOM FIBER NODE ->', customFiberNode);
+
     return customFiberNode;
   }
 
@@ -131,7 +129,6 @@ function CustomFiberNode(componentId, unserializedState, reactFiber) {
   this.elementType = elementType ? elementType.name : 'No Type';
   this.isStatefulComponent = false;
   this.tag = tag;
-  // console.log('ELEMENT TYPE IN CUSTOM FIBER NODE ->', elementType);
 
   if (unserializedState) {
     this.componentData.serializedState = serializeState(unserializedState);
@@ -143,7 +140,6 @@ function CustomFiberNode(componentId, unserializedState, reactFiber) {
       HELPERS
 ---------------------*/
 function serializeState(unserializedState) {
-  // console.log('FLATTENING YOUR STATE! ->', unserializedState);
   return 'PLACEHOLDER STATE OBJ';
 }
 
@@ -152,7 +148,6 @@ function serializeState(unserializedState) {
 // The queue should be the component in which the hooks reside
 // Individual hooksFibers also have a memoized state property which appears to be another linked list to ... don't know yet
 function createHooksNode(hooksFiber, componentStore, refList, commitLog, commitRecord, treeId) {
-  // console.log('Creating Hooks Node');
   let { memoizedState: currentHook } = hooksFiber;
   const hookStateObjsForComponentStore = [];
   const treeHooksStates = [];
@@ -182,8 +177,6 @@ function createHooksNode(hooksFiber, componentStore, refList, commitLog, commitR
         currentHook.memoizedState.current &&
         currentHook.memoizedState.current.client
       ) {
-        console.log('INSIDE QUERY HOOK IF -> ', currentHook.memoizedState);
-
         // // accounts for ref.current not assigned synchronously
         const epochProp = currentHook.memoizedState.current.epoch;
         if (!epochProp) setEpochRefProp(currentHook.memoizedState, refList, refTags.queryRef);
@@ -192,7 +185,6 @@ function createHooksNode(hooksFiber, componentStore, refList, commitLog, commitR
         refList.addRef(initialComponent, currentHook.memoizedState, refId, tag);
         commitLog.addRefState(commitRecord, currentHook.memoizedState);
         initialComponent.dispatch();
-        // currentHook.memoizedState.current = undefined;
       }
 
       // covers Deep Memo Hooks (these will overwrite the "current" property when their key property doesn't match the query data from the query hook)
@@ -207,7 +199,6 @@ function createHooksNode(hooksFiber, componentStore, refList, commitLog, commitR
           'deepMemo',
           refTags.deepMemoRef
         );
-        // currentHook.memoizedState.current = undefined;
       }
 
       currentHook = currentHook.next !== currentHook ? currentHook.next : null;
@@ -223,7 +214,6 @@ function createHooksNode(hooksFiber, componentStore, refList, commitLog, commitR
 }
 
 function createClassNode(reactFiber, componentStore, treeId) {
-  // console.log('Creating Class Node');
   const { stateNode } = reactFiber;
   const componentId = componentStore.addComponent(stateNode.state, stateNode, treeId);
 
@@ -231,6 +221,5 @@ function createClassNode(reactFiber, componentStore, treeId) {
 }
 
 function createStatelessNode(reactFiber, treeId) {
-  // console.log('Creating Stateless Node');
   return new CustomFiberNode(`${treeId}'Stateless'`, 'stateless', reactFiber);
 }
