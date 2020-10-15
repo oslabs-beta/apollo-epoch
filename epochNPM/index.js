@@ -31,9 +31,11 @@ const ApolloEpochDevHook = ({ rootId }) => {
   const timeTravelPossible = !canUseWeakMap;
 
   const epochHookProp = '__APOLLO_EPOCH_FIBER_HOOK__';
-  if (!window[epochHookProp]) window[epochHookProp] = new EpochStore(apolloClient);
+  if (!window[epochHookProp])
+    window[epochHookProp] = new EpochStore(apolloClient);
   const epochStore = window[epochHookProp];
-  const hostRootFiber = document.getElementById(rootId)._reactRootContainer._internalRoot;
+  const hostRootFiber = document.getElementById(rootId)._reactRootContainer
+    ._internalRoot;
   hostRootFiber._epochCurrent = hostRootFiber.current;
 
   // TEST ONLY -- Easy Access
@@ -47,8 +49,16 @@ const ApolloEpochDevHook = ({ rootId }) => {
       hostRootFiber._epochCurrent = value;
 
       const commitId = Date.now();
-      const commitRecord = epochStore.commitLog.initializeCommitRecord(commitId, apolloClient);
-      const newCustomTree = new CustomFiberTree(value, epochStore, commitRecord, 'randomKey'); // not storing this anywhere right now...looking at side effect storage in epoch store
+      const commitRecord = epochStore.commitLog.initializeCommitRecord(
+        commitId,
+        apolloClient
+      );
+      const newCustomTree = new CustomFiberTree(
+        value,
+        epochStore,
+        commitRecord,
+        'randomKey'
+      ); // not storing this anywhere right now...looking at side effect storage in epoch store
       return value;
     },
   });
@@ -71,11 +81,22 @@ const ApolloEpochDevHook = ({ rootId }) => {
 
       // Testing
       // eslint-disable-next-line no-plusplus
-      epochStore.reactUseRefList.addRef('noComponent', epochRef, ++count, epochRefTag);
+      epochStore.reactUseRefList.addRef(
+        'noComponent',
+        epochRef,
+        ++count,
+        epochRefTag
+      );
 
-      if (epochRef.current && !epochRef.current.epoch && epochRefTag === refTags.queryRef) {
+      if (
+        epochRef.current &&
+        !epochRef.current.epoch &&
+        epochRefTag === refTags.queryRef
+      ) {
         const actionName =
-          epochRefTag === 1 ? epochRef.current.currentObservable.queryName : 'noName';
+          epochRefTag === 1
+            ? epochRef.current.currentObservable.queryName
+            : 'noName';
 
         epochRef.current.epoch = {
           refId: `${actionName}${epochStore.refList.claimRefId()}`,
@@ -97,12 +118,16 @@ const ApolloEpochDevHook = ({ rootId }) => {
     if (event.source !== window) return;
     if (event.data) {
       if (event.data.type === '$$$epochPanelOpened$$$') {
-        window.postMessage({ type: '$$$timeTravelPossible$$$', payload: timeTravelPossible }, '*');
+        window.postMessage(
+          { type: '$$$timeTravelPossible$$$', payload: timeTravelPossible },
+          '*'
+        );
       }
 
       if (event.data.type === '$$$takeStateSnapshot$$$') {
         const lastCommitId = `${epochStore.commitLog.lastCommit}`;
-        const clientClone = epochStore.commitLog.commits[lastCommitId].clientSnap;
+        const clientClone =
+          epochStore.commitLog.commits[lastCommitId].clientSnap;
 
         const { id: apolloActionId, timeStamp } = event.data.payload;
         epochStore.clientSnaps.addHistoricalClient(clientClone, apolloActionId);
@@ -111,7 +136,9 @@ const ApolloEpochDevHook = ({ rootId }) => {
 
       if (event.data.type === '$$$epochShift$$$') {
         const { apolloActionId } = event.data.payload;
-        const historicalClient = epochStore.clientSnaps.getHistoricalClient(apolloActionId);
+        const historicalClient = epochStore.clientSnaps.getHistoricalClient(
+          apolloActionId
+        );
 
         const jumpRecord = epochShift(
           epochStore.currentApolloClient,
@@ -121,7 +148,10 @@ const ApolloEpochDevHook = ({ rootId }) => {
         );
 
         // Trigger Update Entry in Epoch
-        window.postMessage({ type: '$$$completedEpochShift$$$', payload: apolloActionId }, '*');
+        window.postMessage(
+          { type: '$$$completedEpochShift$$$', payload: apolloActionId },
+          '*'
+        );
       }
     }
   });

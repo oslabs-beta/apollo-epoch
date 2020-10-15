@@ -83,6 +83,7 @@
     "react-html-parser": "^2.0.2",
     "react-json-view": "^1.19.1",
     "react-redux": "^7.2.1",
+    "react-syntax-highlighter": "^15.2.1",
     "redux": "^4.0.5",
     "reselect": "^4.0.0"
   },
