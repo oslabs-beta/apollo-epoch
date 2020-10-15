@@ -78,7 +78,7 @@ const InfoContainer = () => {
   const selectedQuery = useSelector((state) => state.apollo.activeQuery);
   const loadingApollo = useSelector((state) => state.apollo.loadingApollo);
   const timeTravelPossible = useSelector((state) => state.apollo.timeTravelPossible);
-  
+  console.log('TTP', timeTravelPossible);
 
   React.useEffect(() => {
     toggleTimeTravel(timeTravelPossible);
