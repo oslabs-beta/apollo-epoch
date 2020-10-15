@@ -437,6 +437,7 @@ body {
 
 .time-travel-directions-modal {
   max-height: 85vh;
+  padding-top: 15px;
 }
 
 .time-travel-dir-inner {
