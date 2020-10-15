@@ -435,8 +435,26 @@ body {
   overflow-y: auto;
 }
 
+.time-travel-directions-modal {
+  max-height: 85vh;
+  padding-top: 15px;
+}
+
 .time-travel-dir-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 95%;
+}
+
+.code-wrapper {
+  /* border: 4px dotted hotpink; */
+  width: 90%;
+}
+
+.code-wrapper li {
+  padding: 10px 0;
 }
 
 .MuiTab-wrapper-62 {

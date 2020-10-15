@@ -79,8 +79,6 @@ const InfoContainer = () => {
   const loadingApollo = useSelector((state) => state.apollo.loadingApollo);
   const timeTravelPossible = useSelector((state) => state.apollo.timeTravelPossible);
   console.log('TTP', timeTravelPossible);
-  
-  console.log('TTE, TTP',{timeTravelEnabled, timeTravelPossible});
 
   React.useEffect(() => {
     toggleTimeTravel(timeTravelPossible);

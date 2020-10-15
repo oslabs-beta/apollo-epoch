@@ -10,7 +10,7 @@ const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } })
 const getTimelineData = getTimeline; // Per Redux Docs, defining outside component perserves memoized memory state
 
 // This component displays a list of the queries/mutations in the left sidebar of the extension
-const HistoryView = () => {
+const HistoryView = ({handleOpen}) => {
   const dispatch = useDispatch();
   // getTimelineData retrieves an array of queries/mutations from the Redux store
   const queryHistory = useSelector(getTimelineData);
@@ -33,6 +33,7 @@ const HistoryView = () => {
         id={timelineObj.id}
         active={activeFlag}
         timelineObj={timelineObj}
+        handleOpen={handleOpen}
         // onClick handler changes the active query/muation by dispatching to Redux
         onClick={() => {
           changeActiveQuery(timelineObj);
