@@ -138,7 +138,7 @@ Until branching is fully operational, we recommend reverting to your most recent
 
 You can also take a manual snapshot of the cache whenever you want via the Get Cache button to create a sort of cache breakpoint if you will.
 
-<Gif>
+![Manual fetch](epoch_manual_cache_fetch.gif)
 
 # Wrap Up
 
