@@ -10,7 +10,6 @@ import ResponseInfo from '../components/ResponseInfo';
 import StateInfo from '../components/StateInfo';
 import DiffInfo from '../components/DiffInfo';
 import SphereLoader from '../components/SphereLoader/SphereLoader';
-import {TimeTravelDirections} from '../components/TimeTravelDirections';
 
 const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
 
@@ -68,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
 const InfoContainer = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [timeTravelEnabled, toggleTimeTravel] = React.useState(true);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -77,72 +75,58 @@ const InfoContainer = () => {
   // get selected query based on state
   const selectedQuery = useSelector((state) => state.apollo.activeQuery);
   const loadingApollo = useSelector((state) => state.apollo.loadingApollo);
-  const timeTravelPossible = useSelector((state) => state.apollo.timeTravelPossible);
-  console.log('TTP', timeTravelPossible);
 
-  React.useEffect(() => {
-    toggleTimeTravel(timeTravelPossible);
-  }, [timeTravelPossible]);
-  
   return (
     <div>
-    {timeTravelEnabled?(<div className="info-container">
-    <ThemeProvider theme={epochTheme}>
-      <AppBar position="static" style={{ height: '2rem' }}>
-        <Tabs
-          className={classes.tabsRoot}
-          value={value}
-          onChange={handleChange}
-          variant="scrollable"
-          TabIndicatorProps={{
-            style: {
-              top: '0px',
-            },
-          }}
-        >
-          <Tab label="Query" className={classes.tabLabel} {...a11yProps(0)} />
-          <Tab label="Response" className={classes.tabLabel} {...a11yProps(1)} />
-          <Tab label="Cache" className={classes.tabLabel} {...a11yProps(2)} />
-          <Tab label="Diff" className={classes.tabLabel} {...a11yProps(3)} />
-        </Tabs>
-      </AppBar>
-    </ThemeProvider>
-    {loadingApollo && (
-      <div className="loader">
-        <h2>Waiting for data from Apollo Client</h2>
-        <SphereLoader />
+      <div className="info-container">
+        <ThemeProvider theme={epochTheme}>
+          <AppBar position="static" style={{ height: '2rem' }}>
+            <Tabs
+              className={classes.tabsRoot}
+              value={value}
+              onChange={handleChange}
+              variant="scrollable"
+              TabIndicatorProps={{
+                style: {
+                  top: '0px',
+                },
+              }}
+            >
+              <Tab label="Query" className={classes.tabLabel} {...a11yProps(0)} />
+              <Tab label="Response" className={classes.tabLabel} {...a11yProps(1)} />
+              <Tab label="Cache" className={classes.tabLabel} {...a11yProps(2)} />
+              <Tab label="Diff" className={classes.tabLabel} {...a11yProps(3)} />
+            </Tabs>
+          </AppBar>
+        </ThemeProvider>
+        {loadingApollo && (
+          <div className="loader">
+            <h2>Waiting for data from Apollo Client</h2>
+            <SphereLoader />
+          </div>
+        )}
+        {!loadingApollo && (
+          <div className="active-panel">
+            <TabPanel value={value} index={0} className={classes.tabPanel}>
+              <QueryInfo
+                queryString={selectedQuery.queryString}
+                variables={selectedQuery.variables}
+              />
+            </TabPanel>
+            <TabPanel value={value} index={1} className={classes.tabPanel}>
+              <ResponseInfo response={selectedQuery.response} />
+            </TabPanel>
+            <TabPanel value={value} index={2} className={classes.tabPanel}>
+              <StateInfo stateSnapshot={selectedQuery.cacheSnapshot} />
+            </TabPanel>
+            <TabPanel value={value} index={3} className={classes.tabPanel}>
+              <DiffInfo diff={selectedQuery.diff} />
+            </TabPanel>
+          </div>
+        )}
       </div>
-    )}
-    {!loadingApollo && (
-      <div className="active-panel">
-        <TabPanel value={value} index={0} className={classes.tabPanel}>
-          <QueryInfo
-            queryString={selectedQuery.queryString}
-            variables={selectedQuery.variables}
-          />
-        </TabPanel>
-        <TabPanel value={value} index={1} className={classes.tabPanel}>
-          <ResponseInfo response={selectedQuery.response} />
-        </TabPanel>
-        <TabPanel value={value} index={2} className={classes.tabPanel}>
-          <StateInfo stateSnapshot={selectedQuery.cacheSnapshot} />
-        </TabPanel>
-        <TabPanel value={value} index={3} className={classes.tabPanel}>
-          <DiffInfo diff={selectedQuery.diff} />
-        </TabPanel>
-      </div>
-    )}
-  </div>
-):(<TimeTravelDirections 
-     onClose={() => {
-                     console.log("Close Directions");
-                      toggleTimeTravel(true)
-                    }
-              }
-  />)}
     </div>
-
-      );
+  );
 };
 
 TabPanel.propTypes = {
