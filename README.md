@@ -2,7 +2,7 @@
 
 A time travel debugging solution for Apollo Client 3.0 and React.
 
-<Gif of UI in action coming soon>
+![Epoch UI](epoch_ui.gif)
 
 Apollo Epoch can be used as a stand alone chrome extension for tracking user initiated graphQL queries and mutations, their responses, and observing how your Apollo Cache changes over time. With the accompanying NPM package and a very small adjustment to the Apollo source code, you can also revert your Apollo state to previous points in time.
 
@@ -83,7 +83,7 @@ Let's start with the ugly part. We did have a more elegant solution for this nex
 
 Epoch tracks all user initiated queries and mutations (some user actions can trigger multiple of each).
 
-<Insert GIF of timeline filling up>
+![Epoch timeline](epoch_timeline.gif)
 
 Apollo Actions can query a server on the network or its local cache. You’ll be able to see which flavor you’re getting via the network icon, which is present when an Apollo action leaves the comfort of your browser. You’ll also be able to see the amount of time it takes to get your response.
 
@@ -107,23 +107,23 @@ This is exactly what it sounds like, the response object returned by your query/
 
 Displays the contents of the Apollo Cache after your selected query or mutation returned. You can select cache items to see the data stored within.
 
-<GIF of selecting cache item>
+![Cache Click](epoch_cache_click.gif)
 
 ## Diff
 
 The diff tab allows you to track the differences between your selected query or mutation and the previous Apollo Action by default. If you’d like to diff between your selected query and another query in your timeline, just select it via the drop down.
 
-<GIF of selecting new query>
+![Diff select](epoch_diff_change.gif)
 
 You can also view the full cache by clicking the toggle in the upper left corner of the window.
 
-<Appropriate Gif here as well>
+![Diff full cache](epoch_full_cache.gif)
 
 ## Time Travel
 
 If you have enabled time travel with the code swapping we explained above, you jump to any previous Apollo Action via the jump button.
 
-<GIF of the wicked awesome animation>
+![Epoch Jump](epoch_jump.gif)
 
 If you try to initiate time travel (...or as we like to say, an Epoch Shift) without enabling time travel in the Apollo source code, you’ll be prompted to do so.
 
