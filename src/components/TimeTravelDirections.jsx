@@ -14,7 +14,8 @@ export const TimeTravelDirections = ({ onClose, modal }) => {
   return (
     <div className={`time-travel-directions${modal ? ' time-travel-directions-modal' : ''}`}>
       <div className="time-travel-dir-inner">
-        <h1>Time Travel Directions</h1>
+        <h3>Hey there! We noticed that you don't have time travel enabled.</h3>
+        <h5>Here's how to get it working: </h5>
         <ThemeProvider theme={epochTheme}>
           <div className="code-wrapper">
             <ol>
@@ -38,17 +39,21 @@ export const TimeTravelDirections = ({ onClose, modal }) => {
 `}
               </SyntaxHighlighter>
               <li>Navigate to node_modules/@apollo/client/utilities/common/canUse.js</li>
-              <li>Comment out the below line</li>
+              <p>Replace this:</p>
               <SyntaxHighlighter language="javascript" style={agate}>
-                {`var canUseWeakMap = typeof WeakMap === 'function' && \n !(typeof navigator === 'object' && navigator.product === 'ReactNative');`}
+                {`export var canUseWeakMap = typeof WeakMap === 'function' \n
+&& !(typeof navigator === 'object' && navigator.product === 'ReactNative'); \n
+//# sourceMappingURL=canUse.js.map`}
               </SyntaxHighlighter>
-              <li>Below the commented code, type in</li>
+              <p>With This:</p>
               <SyntaxHighlighter language="javascript" style={agate}>
-                {`const canUseWeakMap = false;`}
-              </SyntaxHighlighter>
-              <li>Now canUse.js should look like this</li>
-              <SyntaxHighlighter language="javascript" style={agate}>
-                {`// var canUseWeakMap =\n//   typeof WeakMap === 'function' &&\n//   !(typeof navigator === 'object' && navigator.product === 'ReactNative');\nconst canUseWeakMap = false;\nexport { canUseWeakMap };`}
+                {`// var canUseWeakMap = typeof WeakMap === 'function' && !(typeof navigator === 'object' &&
+//     navigator.product === 'ReactNative');
+const canUseWeakMap = false;
+
+export { canUseWeakMap };
+//# sourceMappingURL=canUse.js.map
+`}
               </SyntaxHighlighter>
               <li>Rebuild and restart your application.</li>
             </ol>
