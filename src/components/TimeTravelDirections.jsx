@@ -55,7 +55,7 @@ export { canUseWeakMap };
 //# sourceMappingURL=canUse.js.map
 `}
               </SyntaxHighlighter>
-              <li>Rebuild and restart your application.</li>
+              <li>Rebuild and restart your application, and restart Epoch in your dev panel.</li>
             </ol>
           </div>
           <Button variant="contained" color="primary" onClick={onClose}>
