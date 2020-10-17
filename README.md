@@ -2,14 +2,7 @@
 
 A time travel debugging solution for Apollo Client 3.0 and React.
 
-![Epoch UI](./readMeWEBMs/epoch_ui.webm)
-![Shake it Off](./readMeWEBMs/epoch_ui.webm './src/static/flux_capacitor.png')
-
-<figure class="video_container">
-  <video controls="true" allowfullscreen="true">
-    <source src="./readMeWEBMs/epoch_ui.webm" type="video/webm">
-  </video>
-</figure>
+![Epoch UI](./readMeGifs/epoch_ui.gif)
 
 Apollo Epoch can be used as a stand alone chrome extension for tracking user initiated graphQL queries and mutations, their responses, and observing how your Apollo Cache changes over time. With the accompanying NPM package and a very small adjustment to the Apollo source code, you can also revert your Apollo state to previous points in time.
 
@@ -90,7 +83,7 @@ Let's start with the ugly part. We did have a more elegant solution for this nex
 
 Epoch tracks all user initiated queries and mutations (some user actions can trigger multiple of each).
 
-![Epoch timeline](./readMeWEBMs/epoch_timeline.webm)
+![Epoch timeline](./readMeGifs/epoch_timeline.gif)
 
 Apollo Actions can query a server on the network or its local cache. You’ll be able to see which flavor you’re getting via the network icon, which is present when an Apollo action leaves the comfort of your browser. You’ll also be able to see the amount of time it takes to get your response.
 
@@ -114,23 +107,23 @@ This is exactly what it sounds like, the response object returned by your query/
 
 Displays the contents of the Apollo Cache after your selected query or mutation returned. You can select cache items to see the data stored within.
 
-![Cache Click](./readMeWEBMs/epoch_cache_click.webm)
+![Cache Click](./readMeGifs/epoch_cache_click.gif)
 
 ## Diff
 
 The diff tab allows you to track the differences between your selected query or mutation and the previous Apollo Action by default. If you’d like to diff between your selected query and another query in your timeline, just select it via the drop down.
 
-![Diff select](./readMeWEBMs/epoch_diff_change.webm)
+![Diff select](./readMeGifs/epoch_diff_change.gif)
 
 You can also view the full cache by clicking the toggle in the upper left corner of the window.
 
-![Diff full cache](./readMeWEBMs/epoch_full_cache.webm)
+![Diff full cache](./readMeGifs/epoch_full_cache.gif)
 
 ## Time Travel
 
 If you have enabled time travel with the code swapping we explained above, you jump to any previous Apollo Action via the jump button.
 
-![Epoch Jump](./readMeWEBMs/epoch_jump.webm)
+![Epoch Jump](./readMeGifs/epoch_jump.gif)
 
 If you try to initiate time travel (...or what we lovingly call, an Epoch Shift) without enabling time travel in the Apollo source code, you’ll be prompted to do so.
 
@@ -145,7 +138,7 @@ Until branching is fully operational, we recommend reverting to your most recent
 
 You can also take a manual snapshot of the cache whenever you want via the Get Cache button to create a sort of cache breakpoint if you will.
 
-![Manual fetch](./readMeWEBMs/epoch_manual_cache_fetch.webm)
+![Manual fetch](./readMeGifs/epoch_manual_cache_fetch.gif)
 
 # On the Shoulders of Giants...
 
