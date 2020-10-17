@@ -2,8 +2,6 @@
 
 A time travel debugging solution for Apollo Client 3.0 and React.
 
-![Epoch UI](./readMeGifs/epoch_ui.gif)
-
 Apollo Epoch can be used as a stand alone chrome extension for tracking user initiated graphQL queries and mutations, their responses, and observing how your Apollo Cache changes over time. With the accompanying NPM package and a very small adjustment to the Apollo source code, you can also revert your Apollo state to previous points in time.
 
 # Installation
@@ -14,7 +12,7 @@ In order to track Apollo Data in a coherent timeline, there are two steps.
 
 1. **Download our chrome extension here**: [Apollo Epoch Chrome Extension Link Coming Soon](www.comingsoon.com)
 
-2. **Make sure you're Apollo Client is configured to your liking**: [Apollo Dev Tools Configuration](https://www.apollographql.com/docs/react/development-testing/developer-tooling/#configuration)
+2. **Make sure your Apollo Client is configured to your liking**: [Apollo Dev Tools Configuration](https://www.apollographql.com/docs/react/development-testing/developer-tooling/#configuration)
 
 For basic features Epoch relies on the `window.__APOLLO_CLIENT__` object mentioned in the above linked docs.
 
@@ -50,7 +48,7 @@ Let's start with the ugly part. We did have a more elegant solution for this nex
    //# sourceMappingURL=canUse.js.map
    ```
 
-   This is the exact same code that already exists in the file commented out and replaced with a permanent boolean instead. All you’re doing here is leveraging Apollo’s built in flag to ensure it uses Maps instead of Weakmaps, so that we’re able to iterate over and replace data when we jump back in time. This change will not persist in your production builds so long as you’re ignoring your node modules folder in git hub. And now you’re ready for the normal part!
+   This is the exact same code that already exists in the file commented out and replaced with a permanent boolean instead. All you’re doing here is leveraging Apollo’s built in flag to ensure it uses Maps instead of Weak Maps, so that we’re able to iterate over and replace data when we jump back in time. This change will not persist in your production builds so long as you’re ignoring your node modules folder in git hub. And now you’re ready for the normal part!
 
    2. **Download the Package**:
 
