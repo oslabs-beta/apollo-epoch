@@ -24,6 +24,7 @@ module.exports = merge(common, {
       new HtmlWebpackPlugin({
         filename: 'panel.html',
         template: `${src}/panelProd.html`,
+        excludeChunks: ['background', 'contentScript'],
         minify: {
           removeAttributeQuotes: true,
           collapseWhitespace: true,

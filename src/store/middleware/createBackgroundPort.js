@@ -38,6 +38,9 @@ const initializePort = ({ dispatch }) => (next) => (action) => {
     const backgroundConnection = chrome.runtime.connect();
 
     backgroundConnection.onMessage.addListener((message, sender, sendResponse) => {
+      console.log('MESSAGE CREATED -> ', message);
+      // Prod builds produce a null message sometimes -- causes error but breaks nothing not sure what that's about
+      // Does not happen in Dev -- out of time to unpack the problem
       if (message.type === contentScript.initialCacheCheck) {
         dispatch({ type: initializeCache });
       }
