@@ -44,6 +44,7 @@
     "eslint-config-node": "^4.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^24.1.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -82,7 +83,14 @@
     "react-html-parser": "^2.0.2",
     "react-json-view": "^1.19.1",
     "react-redux": "^7.2.1",
+    "react-syntax-highlighter": "^15.2.1",
     "redux": "^4.0.5",
     "reselect": "^4.0.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/fileMock.js"
+    }
   }
 }

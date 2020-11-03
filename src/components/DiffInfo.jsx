@@ -9,49 +9,42 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { getTimeline, setPrevQuery } from '../store/entities/apollo'; // Per Redux Docs, defining outside component perserves memoized memory state
 
-// import { diff1, diff2, diff3, diff4, diffHtml, nullDiff } from '../dummyData/data';
 import '../styles/diff.css';
 
-// export interface HistoryViewProps {}
 const getTimelineData = getTimeline;
 
 const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
 
+// Material UI styling
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
-    // border: `1px dotted white`,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
   select: {
     color: 'white',
-    // border: `1px dotted white`,
-
     '&:before': {
       borderColor: 'white',
     },
     '&:after': {
       borderColor: 'white',
     },
-    // height: '1rem',
   },
   icon: {
     fill: 'white',
   },
 }));
 
-// export interface DiffInfoProps {}
-
+// This component displays inside of the InfoContainer and displays diff information between selected queries/mutations (defualts to the previous one in timeline)
 const DiffInfo = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [unchanged, setUnchanged] = React.useState(false);
   const { activeQuery, prevQuery } = useSelector((state) => state.apollo);
   const queryHistory = useSelector(getTimelineData).filter((q) => q.id !== activeQuery.id);
-  console.log('aQ and pQ  ->', activeQuery, prevQuery);
 
   const handleChangeDiff = (event) => {
     dispatch(setPrevQuery(event.target.value));
@@ -64,10 +57,10 @@ const DiffInfo = () => {
   // conditionally render changes or not based on unchanged bool
   formatters.html.showUnchanged(unchanged);
   const handleChange = () => {
-    console.log('Clicked on checkbox');
     setUnchanged(!unchanged);
   };
 
+  // The select component is the dropdown that displays all previous and future queries/mutations
   return (
     <div className="diff-info">
       <div className="unchanged-toggle-div">

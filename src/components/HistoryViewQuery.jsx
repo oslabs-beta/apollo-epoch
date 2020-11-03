@@ -2,17 +2,23 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import networkIcon from '../static/flux_capacitor.png';
 import { initiateEpochShift } from '../store/entities/apollo';
 
 const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
 
-const HistoryViewQuery = ({ timelineObj, onClick, active }) => {
+// this component displays a specific query/mutation inside of the left sidebar of the extension
+const HistoryViewQuery = ({ timelineObj, onClick, active, handleOpen }) => {
   const { id, name, isNetwork, timingData } = timelineObj;
+  
   const dispatch = useDispatch();
 
+  const timeTravelPossible = useSelector((state) => state.apollo.timeTravelPossible);
+
+
+  // clicking buttons with this callback initiate a time jump to the associated query/mutation
   const epochShift = (apolloActionId) => {
     dispatch(initiateEpochShift({ apolloActionId }));
   };
@@ -44,7 +50,8 @@ const HistoryViewQuery = ({ timelineObj, onClick, active }) => {
                   <div
                     className="jump-button"
                     onClick={() => {
-                      epochShift(id);
+                      if(timeTravelPossible) epochShift(id);
+                      else handleOpen();
                     }}
                   >
                     <p>Jump</p>

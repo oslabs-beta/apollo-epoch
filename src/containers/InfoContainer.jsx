@@ -1,4 +1,7 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/forbid-prop-types */
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { AppBar, Tabs, Tab, Typography, Box } from '@material-ui/core/';
@@ -10,6 +13,7 @@ import SphereLoader from '../components/SphereLoader/SphereLoader';
 
 const epochTheme = createMuiTheme({ palette: { primary: { main: '#20909f' } } });
 
+// material UI component for TabPanel
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -73,54 +77,62 @@ const InfoContainer = () => {
   const loadingApollo = useSelector((state) => state.apollo.loadingApollo);
 
   return (
-    <div className="info-container">
-      <ThemeProvider theme={epochTheme}>
-        <AppBar position="static" style={{ height: '2rem' }}>
-          <Tabs
-            className={classes.tabsRoot}
-            value={value}
-            onChange={handleChange}
-            variant="scrollable"
-            TabIndicatorProps={{
-              style: {
-                top: '0px',
-              },
-            }}
-          >
-            <Tab label="Query" className={classes.tabLabel} {...a11yProps(0)} />
-            <Tab label="Response" className={classes.tabLabel} {...a11yProps(1)} />
-            <Tab label="Cache" className={classes.tabLabel} {...a11yProps(2)} />
-            <Tab label="Diff" className={classes.tabLabel} {...a11yProps(3)} />
-          </Tabs>
-        </AppBar>
-      </ThemeProvider>
-      {loadingApollo && (
-        <div className="loader">
-          <h2>Waiting for data from Apollo Client</h2>
-          <SphereLoader />
-        </div>
-      )}
-      {!loadingApollo && (
-        <div className="active-panel">
-          <TabPanel value={value} index={0} className={classes.tabPanel}>
-            <QueryInfo
-              queryString={selectedQuery.queryString}
-              variables={selectedQuery.variables}
-            />
-          </TabPanel>
-          <TabPanel value={value} index={1} className={classes.tabPanel}>
-            <ResponseInfo response={selectedQuery.response} />
-          </TabPanel>
-          <TabPanel value={value} index={2} className={classes.tabPanel}>
-            <StateInfo stateSnapshot={selectedQuery.cacheSnapshot} />
-          </TabPanel>
-          <TabPanel value={value} index={3} className={classes.tabPanel}>
-            <DiffInfo diff={selectedQuery.diff} />
-          </TabPanel>
-        </div>
-      )}
+    <div>
+      <div className="info-container">
+        <ThemeProvider theme={epochTheme}>
+          <AppBar position="static" style={{ height: '2rem' }}>
+            <Tabs
+              className={classes.tabsRoot}
+              value={value}
+              onChange={handleChange}
+              variant="scrollable"
+              TabIndicatorProps={{
+                style: {
+                  top: '0px',
+                },
+              }}
+            >
+              <Tab label="Query" className={classes.tabLabel} {...a11yProps(0)} />
+              <Tab label="Response" className={classes.tabLabel} {...a11yProps(1)} />
+              <Tab label="Cache" className={classes.tabLabel} {...a11yProps(2)} />
+              <Tab label="Diff" className={classes.tabLabel} {...a11yProps(3)} />
+            </Tabs>
+          </AppBar>
+        </ThemeProvider>
+        {loadingApollo && (
+          <div className="loader">
+            <h2>Waiting for data from Apollo Client</h2>
+            <SphereLoader />
+          </div>
+        )}
+        {!loadingApollo && (
+          <div className="active-panel">
+            <TabPanel value={value} index={0} className={classes.tabPanel}>
+              <QueryInfo
+                queryString={selectedQuery.queryString}
+                variables={selectedQuery.variables}
+              />
+            </TabPanel>
+            <TabPanel value={value} index={1} className={classes.tabPanel}>
+              <ResponseInfo response={selectedQuery.response} />
+            </TabPanel>
+            <TabPanel value={value} index={2} className={classes.tabPanel}>
+              <StateInfo stateSnapshot={selectedQuery.cacheSnapshot} />
+            </TabPanel>
+            <TabPanel value={value} index={3} className={classes.tabPanel}>
+              <DiffInfo diff={selectedQuery.diff} />
+            </TabPanel>
+          </div>
+        )}
+      </div>
     </div>
   );
+};
+
+TabPanel.propTypes = {
+  children: PropTypes.array.isRequired,
+  value: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default InfoContainer;

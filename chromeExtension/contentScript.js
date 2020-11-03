@@ -12,7 +12,6 @@ All informational messages can be log messages sans data (data property on paylo
 
 const timeout = 10; // ms to wait for Apollo to update
 const { epoch, contentScript, clientWindow, background } = sendMessageTypes;
-console.log('contentScript Running');
 
 /*
 -----------------------
@@ -57,11 +56,10 @@ chrome.runtime.sendMessage(
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === epoch.initialize) {
-    console.log(epoch.initialize);
-
     const { queryCount, mutationCount } = counts.getCounts();
+    window.postMessage({ type: epoch.initialize }, '*'); // Query Client App to indicate whether or not time travel is activated
     injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, true); // pass true for initialize param
-    sendResponse({ type: contentScript.initialCacheCheck }); // this response triggers exponential backoff check in Epoch Panel
+    // sendResponse({ type: contentScript.initialCacheCheck }); // this response triggers exponential backoff check in Epoch Panel (not yet implemented)
   }
 
   if (message.type === epoch.fetchApolloData) {
@@ -103,11 +101,18 @@ CLIENT APP LISTENERS
 */
 
 window.addEventListener('message', (event) => {
-  console.log('windowEvent', event.data);
   if (event.source !== window) return;
   if (event.data && event.data.type === clientWindow.noApolloClient) {
     chrome.runtime.sendMessage({
       type: contentScript.noApolloClient,
+    });
+    return;
+  }
+
+  if (event.data && event.data.type === clientWindow.timeTravelPossible) {
+    chrome.runtime.sendMessage({
+      type: clientWindow.timeTravelPossible,
+      payload: event.data.payload,
     });
     return;
   }
@@ -117,6 +122,13 @@ window.addEventListener('message', (event) => {
       type: contentScript.log,
       payload: event.data.payload,
     });
+    return;
+  }
+
+  if (event.data && event.data.type === clientWindow.epochShiftComplete) {
+    const { queryCount, mutationCount } = counts.getCounts();
+    const epochShiftTo = event.data.payload; // Apollo Action Id from Client App
+    injectAndRunInDom(sendMessageWithCache, queryCount, mutationCount, false, true, epochShiftTo); // pass true for manual and epoch shift to flag response data
     return;
   }
 
@@ -159,16 +171,16 @@ window.addEventListener('keyup', (e) => {
     }, timeout);
 
     // Debug
-    chrome.runtime.sendMessage({
-      type: contentScript.log,
-      payload: {
-        title: 'Enter Key Pressed',
-        data: {
-          currQCount: queryCount,
-          currMCount: mutationCount,
-        },
-      },
-    });
+    // chrome.runtime.sendMessage({
+    //   type: contentScript.log,
+    //   payload: {
+    //     title: 'Enter Key Pressed',
+    //     data: {
+    //       currQCount: queryCount,
+    //       currMCount: mutationCount,
+    //     },
+    //   },
+    // });
   }
 });
 
@@ -181,16 +193,16 @@ window.addEventListener('click', (e) => {
   }, timeout);
 
   // Debug
-  chrome.runtime.sendMessage({
-    type: contentScript.log,
-    payload: {
-      title: 'Clicked',
-      data: {
-        currQCount: queryCount,
-        currMCount: mutationCount,
-      },
-    },
-  });
+  // chrome.runtime.sendMessage({
+  //   type: contentScript.log,
+  //   payload: {
+  //     title: 'Clicked',
+  //     data: {
+  //       currQCount: queryCount,
+  //       currMCount: mutationCount,
+  //     },
+  //   },
+  // });
 });
 
 /*
@@ -206,9 +218,14 @@ The content script and the client application share the DOM but not the same win
 This is how we're able to get the Apollo Cache created by the client application
 into our application. Client App -> Content Script -> Background Script -> Epoch App 
 */
-const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch) => {
+const sendMessageWithCache = (
+  queryCount,
+  mutationCount,
+  initialize,
+  manualFetch,
+  apolloActionId
+) => {
   const apolloData = window.__APOLLO_CLIENT__.queryManager;
-  console.log('WINDOW TEST', apolloData);
   if (!apolloData) {
     window.postMessage({ type: '$$$noApollo$$$' });
     return;
@@ -225,23 +242,22 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
   if (cache && cache.data) cacheInstance = cache.data.data;
 
   // Debugging
-  window.postMessage(
-    {
-      type: 'logPayload',
-      payload: {
-        title: 'Counters',
-        data: {
-          currQCount: queryCount,
-          currMCount: mutationCount,
-          cliQCount: queryIdCounter,
-          cliMCount: mutationIdCounter,
-        },
-      },
-    },
-    '*'
-  );
-  console.log('initializeType', initialize);
-  console.log('manualType', manualFetch);
+  // window.postMessage(
+  //   {
+  //     type: 'logPayload',
+  //     payload: {
+  //       title: 'Counters',
+  //       data: {
+  //         currQCount: queryCount,
+  //         currMCount: mutationCount,
+  //         cliQCount: queryIdCounter,
+  //         cliMCount: mutationIdCounter,
+  //       },
+  //     },
+  //   },
+  //   '*'
+  // );
+
   if (
     queryIdCounter <= queryCount &&
     mutationIdCounter <= mutationCount &&
@@ -252,8 +268,6 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
 
   // Get necessary query data
   function filterQueryInfo(queryInfoMap) {
-    console.log('queryMap', queryInfoMap);
-
     const filteredQueryInfo = [];
 
     queryInfoMap.forEach((value, key) => {
@@ -309,6 +323,7 @@ const sendMessageWithCache = (queryCount, mutationCount, initialize, manualFetch
       type: '$$$queryUpdate$$$',
       payload: JSON.stringify({
         manual: manualFetch,
+        epochShift: apolloActionId,
         graphQlUri,
         queries: filterQueryInfo(queries), // array of Query objs
         mutations: filterMutationInfo(mutations), // array of Mutation objs

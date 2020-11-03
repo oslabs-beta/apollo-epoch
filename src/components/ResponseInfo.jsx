@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import ReactJson from 'react-json-view';
 import { epochTheme } from '../styles/themes/EpochTheme';
 
-// export interface ResponseInfoProps {}
-
+// this component displays a collapsible view of the response inside of the InfoContainer for the currently selected query/mutation
 const ResponseInfo = ({ response }) => {
   return (
     <div className="response-info">
@@ -24,7 +23,7 @@ const ResponseInfo = ({ response }) => {
   );
 };
 
-// eslint-disable-next-line react/forbid-prop-types
-ResponseInfo.propTypes = { response: PropTypes.object.isRequired };
+// eslint-disable-next-line react/forbid-prop-types, react/require-default-props
+ResponseInfo.propTypes = { response: PropTypes.object };
 
 export default ResponseInfo;
