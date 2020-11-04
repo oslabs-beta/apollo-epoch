@@ -18,5 +18,5 @@
       "js": ["contentScript.js"]
     }
   ],
-  "permissions": ["storage", "activeTab", "<all_urls>", "tabs", "webRequest"]
+  "permissions": ["activeTab"]
 }

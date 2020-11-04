@@ -52,30 +52,32 @@ Let's start with the ugly part. We did have a more elegant solution for this nex
 
    This is the exact same code that already exists in the file commented out and replaced with a permanent boolean instead. All you’re doing here is leveraging Apollo’s built in flag to ensure it uses Maps instead of Weak Maps, so that we’re able to iterate over and replace data when we jump back in time. This change will not persist in your production builds so long as you’re ignoring your node modules folder in git hub. And now you’re ready for the normal part!
 
-   2. **Download the Package**:
+2. **Download the Package**:
 
-   ```
-    npm install apollo-epoch
-   ```
+```
+ npm install apollo-epoch
+```
 
-   3. **Add the Component inside your Apollo Provider Wrapper**:
-      Here all you'll need to do is import our component
+3.  **Add the Component inside your Apollo Provider Wrapper**:
+    Here all you'll need to do is import our component
 
-   ```
-    import ApolloEpochDevHook from 'apollo-epoch';
-   ```
+```
+ import ApolloEpochDevHook from 'apollo-epoch';
+```
 
-   and render that component inside your Apollo Provider. Be sure to pass the id of the DOM element that holds your React App (in our example that id is root):
+and render that component inside your Apollo Provider. Be sure to pass the id of the DOM element that holds your React App (in our example that id is root):
 
-   ```
-    ReactDOM.render(
-   <ApolloProvider client={client}>
-    <ApolloEpochDevHook rootId='root'/>
-      <Your App's Component(s) />
-   </ApolloProvider>,
-   document.getElementById('root'),
-   );
-   ```
+```
+ ReactDOM.render(
+<ApolloProvider client={client}>
+ <ApolloEpochDevHook rootId='root'/>
+   <Your App's Component(s) />
+</ApolloProvider>,
+document.getElementById('root'),
+);
+```
+
+If you've taken these steps and Epoch appears to have trouble picking up that you've enabled time travel, reload the Epoch app in the dev panel (right click -> "Reload Frame"), and then refresh your client app. Epoch should get the message.
 
 # Features
 
