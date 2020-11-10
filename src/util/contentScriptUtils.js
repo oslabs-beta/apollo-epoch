@@ -13,7 +13,7 @@ import { print } from 'graphql/language/printer';
 
 export const newPrint = print;
 
-const runInPageContext = (method, ...args) => {
+const injectAndRunInDom = (method, ...args) => {
   // The stringified method which will be parsed as a function object.
   const stringifiedMethod = method instanceof Function ? method.toString() : `() => { ${method} }`;
 
@@ -36,4 +36,4 @@ const runInPageContext = (method, ...args) => {
   document.documentElement.prepend(scriptElement);
 };
 
-export default runInPageContext;
+export default injectAndRunInDom;

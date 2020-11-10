@@ -3,8 +3,11 @@ import { LOG, ERROR } from './loggerActions';
 const sendMessageTypes = {
   epoch: {
     saveConnection: 'saveConnection',
-    initialize: 'epochPanelOpened',
+    initialize: '$$$epochPanelOpened$$$',
     fetchApolloData: 'fetchApolloData',
+    fetchApolloDataForNetQuery: 'fetchDataForNetQuery',
+    createSnapshot: '$$$takeStateSnapshot$$$',
+    epochShift: '$$$epochShift$$$',
   },
   contentScript: {
     initialize: 'contentScriptInitialized',
@@ -19,10 +22,18 @@ const sendMessageTypes = {
     apolloReceived: 'apolloDataReceived',
     apolloReceivedManual: 'apolloDataReceivedManual',
     noApolloClient: 'noApollo',
+    fetchFullApolloData: 'onNetworkRequest',
+    clearData: 'clearApolloData',
     log: LOG,
     error: ERROR,
   },
-  clientWindow: { queryUpdate: '$$$queryUpdate$$$', noApolloClient: '$$$noApollo$$$', log: LOG }, // ensure no window message conflicts
+  clientWindow: {
+    queryUpdate: '$$$queryUpdate$$$',
+    noApolloClient: '$$$noApollo$$$',
+    log: LOG,
+    epochShiftComplete: '$$$completedEpochShift$$$',
+    timeTravelPossible: '$$$timeTravelPossible$$$',
+  }, // ensure no window message conflicts
 };
 
 export default sendMessageTypes;

@@ -8,10 +8,12 @@ All Data Transfer Messages in Shape of : { type: senderType, payload: dataObj}
 All informational messages can be log messages sans data (data property on payload will print as undefined)
 */
 
-const { epoch, contentScript, background } = sendMessageTypes;
+const { epoch, contentScript, background, clientWindow } = sendMessageTypes;
 
 console.log('Background Script Initialized');
-const connections = {};
+const connections = {}; // {tabId, epochPort}
+const preEpochCaches = {}; // {tabId, cacheResponses: [cacheObj]};
+const noApollos = new Set(); // {tabId}
 
 /*
 --------------------------------
@@ -21,8 +23,6 @@ CONTENT SCRIPT COMMUNICATION
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === contentScript.initialize) {
-    console.log('Content Script Initialized');
-
     const portId = sender.tab.id;
     if (connections[portId]) {
       connections[portId].postMessage({
@@ -30,6 +30,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         payload: { title: `Background connected to content and Epoch Panel Instance ${portId}` },
       });
     }
+
+    // No reason for these to split...when we have testing (because Matt's afraid) fix?
+    if (connections[portId]) {
+      connections[portId].postMessage({
+        type: background.clearData,
+      });
+    }
+
     sendResponse({ type: 'Background Connected to Content' });
   }
 
@@ -42,15 +50,35 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     connections[portId].postMessage({ type: background.log, payload: message.payload });
   }
 
-  if (message.type === contentScript.apolloReceived) {
-    const apolloData = message.payload;
-
+  if (message.type === clientWindow.timeTravelPossible) {
     const portId = sender.tab.id;
     if (!connections[portId]) {
+      console.log(`No Epoch Panel Connection Id ${portId} for Content Log`, message.payload);
+      return;
+    }
+    connections[portId].postMessage(message);
+  }
+
+  if (message.type === contentScript.apolloReceived) {
+    const apolloData = message.payload;
+    const portId = sender.tab.id;
+
+    // Handle no Epoch Panel Initialized. Takes into account multiple tabs
+    if (!connections[portId]) {
+      if (!preEpochCaches[portId]) preEpochCaches[portId] = [];
+      preEpochCaches[portId].push(apolloData);
+
       console.log(`No Epoch Panel ${portId} to send Apollo Data -> `, apolloData);
       return;
     }
-    connections[portId].postMessage({ type: background.apolloReceived, payload: apolloData });
+
+    // Handles Transfer of Data to Epoch. Passes current cache or cache history depending on when Epoch was initialized
+    let allApolloData = apolloData;
+    if (preEpochCaches[portId]) {
+      allApolloData = [...preEpochCaches[portId], apolloData];
+      delete preEpochCaches[portId];
+    }
+    connections[portId].postMessage({ type: background.apolloReceived, payload: allApolloData });
   }
 
   if (message.type === contentScript.apolloReceivedManual) {
@@ -69,7 +97,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   if (message.type === contentScript.noApolloClient) {
     const portId = sender.tab.id;
+
+    // Handle when content script loads and there's no Epoch panel Open
     if (!connections[portId]) {
+      noApollos.add(portId);
       console.log(`No Epoch Panel Connection Id ${portId} for No Apollo Client Log`);
     }
     connections[portId].postMessage({
@@ -88,7 +119,6 @@ chrome.runtime.onConnect.addListener((port) => {
   // create Listener that will save connection instance (port) for later use AND respond
   // to messages sent via that connection instance -- in case Multiple Apollo tabs in use
   const epochListener = (message) => {
-    console.log('messageObj', message);
     const { payload: tabId, type } = message;
 
     if (type === epoch.saveConnection) {
@@ -107,9 +137,23 @@ chrome.runtime.onConnect.addListener((port) => {
     }
 
     if (type === epoch.fetchApolloData) {
-      console.log('tabId', message.payload);
-      console.log('tabId', message.type);
       chrome.tabs.sendMessage(Number(tabId), message, (response) => {
+        connections[tabId].postMessage(response);
+      });
+    }
+
+    if (type === epoch.createSnapshot) {
+      const { tabId: snapTabId, data } = message.payload;
+      const newMessage = { type, payload: data };
+      chrome.tabs.sendMessage(Number(snapTabId), newMessage, (response) => {
+        connections[snapTabId].postMessage(response);
+      });
+    }
+
+    if (type === epoch.epochShift) {
+      const { tabId: shiftTabId, data } = message.payload;
+      const newMessage = { type, payload: data };
+      chrome.tabs.sendMessage(Number(shiftTabId), newMessage, (response) => {
         connections[tabId].postMessage(response);
       });
     }

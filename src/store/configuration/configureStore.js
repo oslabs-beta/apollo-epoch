@@ -1,6 +1,8 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import rootReducer from './rootReducer';
 import initializePort from '../middleware/createBackgroundPort';
+import listenToNetwork from '../middleware/createNetworkListener';
+import composeNetworkQuery from '../middleware/composeNetworkObj';
 import logger from '../middleware/logger';
 
 export default function () {
@@ -9,7 +11,9 @@ export default function () {
     middleware: [
       ...getDefaultMiddleware(), // returns THUNK and compose w/ DevTools
       logger,
+      listenToNetwork,
       initializePort,
+      composeNetworkQuery,
     ],
   });
 }

@@ -10,7 +10,7 @@
   },
   "background": {
     "scripts": ["background.js"],
-    "persistent": false
+    "persistent": true
   },
   "content_scripts": [
     {
@@ -18,5 +18,5 @@
       "js": ["contentScript.js"]
     }
   ],
-  "permissions": ["storage", "activeTab", "<all_urls>", "tabs"]
+  "permissions": ["activeTab"]
 }

@@ -22,31 +22,39 @@ const initializePort = ({ dispatch }) => (next) => (action) => {
   if (action.type !== connectToBackground.type) return next(action);
   const { onSuccess } = action.payload;
 
-  console.log('successWill call', onSuccess);
-
   const SuperPort = function (dispatchFunction) {
-    const { epoch, contentScript, background } = sendMessageTypes;
+    const { epoch, contentScript, background, clientWindow } = sendMessageTypes;
     const { tabId } = chrome.devtools.inspectedWindow;
     const dispatch = dispatchFunction;
     const { apolloActions } = action.payload;
-    const { receivedApollo, receivedApolloManual, noApollo, initializeCache } = apolloActions;
+    const {
+      receivedApollo,
+      receivedApolloManual,
+      noApollo,
+      initializeCache,
+      clearApolloData,
+      toggleTimeTravel,
+    } = apolloActions;
     const backgroundConnection = chrome.runtime.connect();
 
     backgroundConnection.onMessage.addListener((message, sender, sendResponse) => {
-      /*
-      Backgroung.noApolloClient
-      background.apolloReceivedManual
-      background.apolloReceived
-      background.log
-      contentScript.initializeCacheCheck
-      conntentScript.log
-      */
+      console.log('MESSAGE CREATED -> ', message);
+      // Prod builds produce a null message sometimes -- causes error but breaks nothing not sure what that's about
+      // Does not happen in Dev -- out of time to unpack the problem
       if (message.type === contentScript.initialCacheCheck) {
         dispatch({ type: initializeCache });
       }
 
+      if (message.type === clientWindow.timeTravelPossible) {
+        dispatch({ type: toggleTimeTravel, payload: message.payload });
+      }
+
       if (message.type === background.log || message.type === contentScript.log) {
         dispatch(log(message.payload));
+      }
+
+      if (message.type === background.clearData) {
+        dispatch({ type: clearApolloData });
       }
 
       if (message.type === background.noApolloClient) {
